@@ -1,0 +1,74 @@
+{
+  "presets": [
+    {
+      "id": "fast-road",
+      "name": "Fast road",
+      "description": "Paved speed and long rides.",
+      "answers": {
+        "surface": "paved",
+        "priority": "speed",
+        "distance": "long",
+        "climbing": "rolling",
+        "cargo": "none",
+        "maintenance": "normal",
+        "weather": "fair"
+      }
+    },
+    {
+      "id": "mixed-explore",
+      "name": "Mixed exploration",
+      "description": "Pavement, rough paths and balanced capability.",
+      "answers": {
+        "surface": "mixed",
+        "priority": "balanced",
+        "distance": "medium",
+        "climbing": "rolling",
+        "cargo": "light",
+        "maintenance": "normal",
+        "weather": "mixed"
+      }
+    },
+    {
+      "id": "trail",
+      "name": "Trail riding",
+      "description": "Off-road control with real climbing and rough terrain.",
+      "answers": {
+        "surface": "trail",
+        "priority": "control",
+        "distance": "medium",
+        "climbing": "high",
+        "cargo": "none",
+        "maintenance": "high",
+        "weather": "mixed"
+      }
+    },
+    {
+      "id": "technical-trail",
+      "name": "Technical trail",
+      "description": "Maximum rough-terrain capability.",
+      "answers": {
+        "surface": "technical",
+        "priority": "control",
+        "distance": "short",
+        "climbing": "high",
+        "cargo": "none",
+        "maintenance": "high",
+        "weather": "mixed"
+      }
+    },
+    {
+      "id": "daily-utility",
+      "name": "Daily utility",
+      "description": "All-weather riding with meaningful cargo needs.",
+      "answers": {
+        "surface": "paved",
+        "priority": "balanced",
+        "distance": "medium",
+        "climbing": "rolling",
+        "cargo": "significant",
+        "maintenance": "low",
+        "weather": "all"
+      }
+    }
+  ]
+}
