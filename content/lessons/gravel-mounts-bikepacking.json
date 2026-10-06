@@ -1,0 +1,87 @@
+{
+  "id": "gravel-mounts-bikepacking",
+  "bikeId": "bike.gravel.g1",
+  "title": "Mounts, bags and light bikepacking loads",
+  "summary": "Understand what frame and fork mounting points enable, where their limits come from, and how added luggage changes the bicycle.",
+  "systemId": "accessories",
+  "difficulty": "beginner",
+  "durationMinutes": 5,
+  "prerequisiteLessonIds": [],
+  "steps": [
+    {
+      "id": "built-in-mounts",
+      "eyebrow": "01 · Interfaces",
+      "title": "Purpose-built mounts provide defined attachment points.",
+      "body": "Threaded frame and fork bosses let compatible cages or accessories attach without improvised clamps around the structure.",
+      "keyFact": "A threaded hole does not imply unlimited load or compatibility with every accessory.",
+      "focusComponentId": "bike.gravel.g1.frame-mounts",
+      "highlightComponentIds": [
+        "bike.gravel.g1.frame-mounts",
+        "bike.gravel.g1.frame",
+        "bike.gravel.g1.fork-mounts"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "fork-mounts",
+      "eyebrow": "02 · Fork loads",
+      "title": "Fork-mounted cargo affects steering.",
+      "body": "Mass attached to the fork moves with steering and can change steering feel. The allowed mass, bolt length and accessory type depend on the actual fork and mounting system.",
+      "keyFact": "Bike Atlas does not infer cargo capacity from the number of visible fork bosses.",
+      "focusComponentId": "bike.gravel.g1.fork-mounts",
+      "highlightComponentIds": [
+        "bike.gravel.g1.fork-mounts",
+        "bike.gravel.g1.fork",
+        "bike.gravel.g1.front-wheel"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "frame-protection",
+      "eyebrow": "03 · Protection",
+      "title": "Rough surfaces expose the lower frame to debris.",
+      "body": "A downtube protector adds a replaceable or sacrificial layer against abrasion and smaller debris impacts. It does not make the frame immune to structural damage.",
+      "keyFact": "Protection reduces exposure; impact damage still requires inspection of the underlying frame.",
+      "focusComponentId": "bike.gravel.g1.downtube-protector",
+      "highlightComponentIds": [
+        "bike.gravel.g1.downtube-protector",
+        "bike.gravel.g1.frame"
+      ],
+      "inspectionMode": "xray"
+    },
+    {
+      "id": "loaded-handling",
+      "eyebrow": "04 · Handling",
+      "title": "Where luggage sits matters as much as how much it weighs.",
+      "body": "Added mass changes acceleration, braking and handling. Loads attached high, far forward or asymmetrically can feel different from compact loads centered within the frame.",
+      "keyFact": "Use the documented limits of every real mounting interface and test loaded handling in a controlled environment.",
+      "focusComponentId": "bike.gravel.g1.frame",
+      "highlightComponentIds": [
+        "bike.gravel.g1.frame",
+        "bike.gravel.g1.frame-mounts",
+        "bike.gravel.g1.fork-mounts"
+      ],
+      "inspectionMode": "normal",
+      "challenge": {
+        "type": "multiple-choice",
+        "prompt": "What determines the allowable load on a Gravel G1-style mounting point?",
+        "options": [
+          {
+            "id": "appearance",
+            "label": "How strong the mount looks"
+          },
+          {
+            "id": "system",
+            "label": "The actual frame/fork, fastener and accessory specifications"
+          },
+          {
+            "id": "count",
+            "label": "The number of visible mounting bolts"
+          }
+        ],
+        "correctOptionId": "system",
+        "explanation": "Load capacity is defined by the actual mounting system and its documented limits."
+      }
+    }
+  ]
+}
