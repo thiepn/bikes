@@ -589,6 +589,7 @@ export function BikeViewer() {
     if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
       for (const key of [
+        "bike",
         "part",
         "view",
         "explode",
@@ -705,6 +706,7 @@ export function BikeViewer() {
     const url = new URL(window.location.href);
 
     if (experienceMode === "lesson") {
+      url.searchParams.delete("bike");
       url.searchParams.delete("part");
       url.searchParams.delete("view");
       url.searchParams.delete("explode");
@@ -715,6 +717,7 @@ export function BikeViewer() {
         String(safeLessonStepIndex + 1),
       );
     } else if (experienceMode === "workshop") {
+      url.searchParams.delete("bike");
       url.searchParams.delete("part");
       url.searchParams.delete("view");
       url.searchParams.delete("explode");
@@ -1067,7 +1070,9 @@ export function BikeViewer() {
             onExplosionChange={setExplosionAmount}
           />
 
-          {mode === "systems" && <SystemsLegend />}
+          {mode === "systems" && (
+            <SystemsLegend bikeId={activeBike.id} />
+          )}
 
           <ComponentPanel
             bikeId={activeBike.id}
