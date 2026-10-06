@@ -10,6 +10,7 @@ export interface ViewerInteractionState {
   explosionAmount: number;
   highlightedIds: string[];
   removedIds: string[];
+  hiddenIds?: string[];
   ghost?: boolean;
 }
 
