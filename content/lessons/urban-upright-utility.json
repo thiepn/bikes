@@ -1,0 +1,93 @@
+{
+  "id": "urban-upright-utility",
+  "bikeId": "bike.urban.u1",
+  "title": "Why utility bikes ride upright",
+  "summary": "See how step-through access, swept bars, cockpit height and wheelbase shape everyday comfort, visibility and low-speed control.",
+  "systemId": "frame",
+  "difficulty": "beginner",
+  "durationMinutes": 6,
+  "prerequisiteLessonIds": [],
+  "steps": [
+    {
+      "id": "step-through",
+      "eyebrow": "01 · Access",
+      "title": "The frame is built around easy access.",
+      "body": "A step-through frame lowers the structure the rider must pass over when mounting or dismounting. That can make frequent stops, ordinary clothing and loaded everyday riding more convenient.",
+      "keyFact": "Step-through describes frame architecture, not rider gender or ability.",
+      "focusComponentId": "bike.urban.u1.frame",
+      "highlightComponentIds": [
+        "bike.urban.u1.frame",
+        "bike.urban.u1.seatpost",
+        "bike.urban.u1.saddle"
+      ],
+      "inspectionMode": "normal"
+    },
+    {
+      "id": "upright-cockpit",
+      "eyebrow": "02 · Cockpit",
+      "title": "The hands come back toward the rider.",
+      "body": "The raised stem and swept handlebar position the hands closer to the rider than a performance road cockpit. The result is a more upright torso and strong low-speed steering leverage.",
+      "keyFact": "An upright position trades some aerodynamic efficiency for comfort, visibility and easy control.",
+      "focusComponentId": "bike.urban.u1.handlebar",
+      "highlightComponentIds": [
+        "bike.urban.u1.handlebar",
+        "bike.urban.u1.stem",
+        "bike.urban.u1.saddle"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "stable-platform",
+      "eyebrow": "03 · Stability",
+      "title": "Utility geometry favors predictable everyday handling.",
+      "body": "Urban U1 combines an upright rider position with a relatively long, stable chassis. This is useful when stopping often, carrying ordinary luggage and riding through city traffic at moderate speeds.",
+      "keyFact": "Stable does not mean slow to steer; it means the geometry is not optimized around aggressive racing or technical-trail handling.",
+      "focusComponentId": "bike.urban.u1.frame",
+      "highlightComponentIds": [
+        "bike.urban.u1.frame",
+        "bike.urban.u1.front-wheel",
+        "bike.urban.u1.rear-wheel"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "contact-points",
+      "eyebrow": "04 · Contact points",
+      "title": "Comfort is a system, not a saddle alone.",
+      "body": "The saddle, swept bar, grips, pedals and tire volume all influence how the rider experiences the bicycle. Changing only one contact point cannot fully define comfort.",
+      "keyFact": "Comfort depends on fit, posture, contact points, tires, rider and ride duration.",
+      "focusComponentId": "bike.urban.u1.saddle",
+      "highlightComponentIds": [
+        "bike.urban.u1.saddle",
+        "bike.urban.u1.handlebar",
+        "bike.urban.u1.left-grip",
+        "bike.urban.u1.right-grip"
+      ],
+      "inspectionMode": "normal"
+    },
+    {
+      "id": "identify-upright",
+      "eyebrow": "05 · Identify",
+      "title": "Find the component that most directly shapes hand position.",
+      "body": "Identify the part whose rearward sweep is a defining feature of this upright cockpit.",
+      "keyFact": "The handlebar shape strongly influences hand position and steering leverage.",
+      "focusComponentId": "bike.urban.u1.stem",
+      "highlightComponentIds": [],
+      "inspectionMode": "normal",
+      "challenge": {
+        "type": "select-component",
+        "prompt": "Which component gives Urban U1 its swept-back hand position?",
+        "candidateComponentIds": [
+          "bike.urban.u1.handlebar",
+          "bike.urban.u1.stem",
+          "bike.urban.u1.saddle"
+        ],
+        "correctComponentIds": [
+          "bike.urban.u1.handlebar"
+        ],
+        "successText": "Correct. The swept handlebar moves the grips rearward and supports the upright cockpit.",
+        "retryText": "That component affects rider position, but it is not the swept steering bar."
+      }
+    }
+  ]
+}
