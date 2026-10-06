@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "validate:assets": "node scripts/validate-road-r1.mjs",
     "asset:road-r1:fetch": "node scripts/fetch-road-r1-source.mjs",
-    "validate:domain": "node scripts/validate-road-r1.mjs && node scripts/validate-mtb-m1.mjs && node scripts/validate-urban-u1.mjs && node scripts/validate-gravel-g1.mjs && node scripts/validate-comparison.mjs && node scripts/validate-finder.mjs && node scripts/validate-history.mjs && node scripts/validate-global-knowledge.mjs && node scripts/validate-physics.mjs && node scripts/validate-compatibility.mjs && node scripts/validate-build-visuals.mjs && node scripts/validate-build-consequences.mjs && node scripts/validate-geometry.mjs"
+    "validate:domain": "node scripts/validate-road-r1.mjs && node scripts/validate-mtb-m1.mjs && node scripts/validate-urban-u1.mjs && node scripts/validate-gravel-g1.mjs && node scripts/validate-comparison.mjs && node scripts/validate-finder.mjs && node scripts/validate-history.mjs && node scripts/validate-global-knowledge.mjs && node scripts/validate-physics.mjs && node scripts/validate-compatibility.mjs && node scripts/validate-build-visuals.mjs && node scripts/validate-build-consequences.mjs && node scripts/validate-geometry.mjs && node scripts/validate-optimizer.mjs"
   },
   "dependencies": {
     "@react-three/drei": "10.7.9",
