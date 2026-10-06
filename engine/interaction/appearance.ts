@@ -21,6 +21,17 @@ export function getPartAppearance(
   parentIds: string[] = [],
 ): PartAppearance {
   const semanticIds = [componentId, ...parentIds];
+
+  if (state.ghost) {
+    return {
+      color: "#65e3ff",
+      emissive: "#0b2630",
+      emissiveIntensity: 0.42,
+      opacity: 0.12,
+      transparent: true,
+      depthWrite: false,
+    };
+  }
   const selected = state.selectedId
     ? semanticIds.includes(state.selectedId)
     : false;
