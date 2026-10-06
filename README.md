@@ -4,28 +4,59 @@ Bike Atlas is an interactive 3D bicycle knowledge platform for exploring multipl
 
 ## Current phase
 
-**P10 — Multi-Bike Architecture & Second Archetype Foundation**
+**P11 — MTB M1 Knowledge, Suspension Learning & MTB Workshop Expansion**
 
-Bike Atlas is no longer architecturally Road-R1-only.
+Bike Atlas now has two real content families.
 
-Current bike registry:
+### Road R1
 
-- **Road R1** — performance road reference bike; interactive prototype, full encyclopedia, Learn and Workshop.
-- **MTB M1** — generic full-suspension trail MTB; interactive prototype and semantic/assembly foundation.
+- 35 semantic components
+- full encyclopedia
+- interactive Learn catalog
+- guided Workshop procedures
+- mechanical operation dependencies
 
-MTB M1 introduces rear suspension, linkage, flat cockpit, dropper post and a 1× wide-range drivetrain so the shared architecture is tested against genuinely different bicycle systems.
+### MTB M1
 
-Bike-aware links:
+- 37 semantic components
+- 30 interactive prototype parts
+- full 37-component encyclopedia
+- 4 MTB-specific interactive lessons
+- 4 MTB-specific Workshop procedures
+- full-suspension, dropper and 1× drivetrain concepts
+
+MTB Learn currently covers:
+
+- suspension fundamentals;
+- dropper-post operation;
+- 1× drivetrain architecture;
+- trail tire grip/pressure concepts.
+
+MTB Workshop currently covers:
+
+- suspension pre-ride inspection;
+- manufacturer-guided sag baseline measurement;
+- dropper-post function checking;
+- trail-tire pre-ride inspection.
+
+Lessons and Workshop procedures are bike-owned. Switching or deep-linking into content restores the correct bike rather than reusing Road content on MTB M1.
+
+Example links:
 
 ```text
-/?bike=mtb-m1
 /?bike=mtb-m1&part=rear-shock
-/?bike=mtb-m1&part=dropper-post
-/?bike=mtb-m1&view=systems
+/?bike=mtb-m1&lesson=mtb-suspension-basics
+/?bike=mtb-m1&lesson=mtb-one-by-drivetrain
+/?bike=mtb-m1&workshop=mtb-sag-baseline
+/?bike=mtb-m1&workshop=mtb-trail-tire-check
 ```
 
-Road-specific Learn and Workshop features are capability-gated and do not appear on MTB M1 until MTB-specific content exists.
+Bike Atlas deliberately does not invent universal suspension pressure, sag, damping, tire-pressure or torque values. Component-specific setup remains tied to the real frame/component manufacturer guidance.
 
-Shared camera, inspection, selection and component lookup now resolve through the bike registry rather than hardcoded Road R1 IDs.
+Run domain validation with:
 
-See `docs/P1.md` through `docs/P10.md`.
+```bash
+npm run validate:domain
+```
+
+See `docs/P1.md` through `docs/P11.md`.
