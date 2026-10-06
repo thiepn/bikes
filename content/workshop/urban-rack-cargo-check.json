@@ -1,0 +1,104 @@
+{
+  "id": "urban-rack-cargo-check",
+  "bikeId": "bike.urban.u1",
+  "title": "Check rack and everyday cargo setup",
+  "summary": "Verify the rack, compatible luggage and load placement before carrying ordinary commuting or shopping cargo.",
+  "systemId": "cargo-utility",
+  "difficulty": "beginner",
+  "durationMinutes": 6,
+  "prerequisiteProcedureIds": [
+    "urban-pre-ride-check"
+  ],
+  "assumedOperationIds": [],
+  "tools": [
+    {
+      "id": "manufacturer-info",
+      "name": "Rack/bicycle load information",
+      "required": true,
+      "note": "Use the actual rack, bicycle and luggage manufacturer's limits."
+    },
+    {
+      "id": "inspection-light",
+      "name": "Inspection light",
+      "required": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "inspect-rack",
+      "title": "Inspect the rack and its mounts",
+      "instruction": "Look for cracks, bending, looseness, missing hardware or movement at the rack-to-frame mounting points.",
+      "why": "The rack is a load path into the bicycle frame; damaged or loose mounts can compromise luggage support.",
+      "focusComponentId": "bike.urban.u1.rear-rack",
+      "highlightComponentIds": [
+        "bike.urban.u1.rear-rack",
+        "bike.urban.u1.frame"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0.14,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "Do not tighten rack hardware to an invented torque. Use the actual rack/frame instructions.",
+      "check": "The rack and visible mounting points show no obvious damage or unsafe looseness.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "confirm-limits",
+      "title": "Confirm the real system limits",
+      "instruction": "Check the permitted rack load and any lower limits imposed by the bicycle, luggage system or mounting hardware before loading.",
+      "why": "A rack's capacity is not a universal property of every bicycle that can physically accept it.",
+      "focusComponentId": "bike.urban.u1.rear-rack",
+      "highlightComponentIds": [
+        "bike.urban.u1.rear-rack",
+        "bike.urban.u1.frame"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0,
+      "tools": [
+        "manufacturer-info"
+      ],
+      "warning": "Use the lowest applicable load limit in the actual rack/bicycle/luggage system.",
+      "check": "The intended cargo is within the applicable documented limits.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "secure-load",
+      "title": "Secure the load away from wheels and controls",
+      "instruction": "Attach compatible luggage so straps, hooks and loose material cannot enter the rear wheel, brake or drivetrain. Keep the load stable rather than able to swing freely.",
+      "why": "Loose luggage can shift handling or become entangled with moving parts.",
+      "focusComponentId": "bike.urban.u1.rear-rack",
+      "highlightComponentIds": [
+        "bike.urban.u1.rear-rack",
+        "bike.urban.u1.rear-wheel",
+        "bike.urban.u1.rear-fender",
+        "bike.urban.u1.chain-guard"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0,
+      "tools": [],
+      "warning": "Never allow loose straps or fabric to hang near the wheel, rotor, chain or sprocket.",
+      "check": "Cargo is secure, stable and clear of moving parts.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "handling-check",
+      "title": "Do a controlled handling check",
+      "instruction": "Before normal riding, push and then ride the loaded bicycle at low speed in a safe area. Confirm steering, braking and stand-over/parking behavior remain predictable.",
+      "why": "Added mass and its position can change steering feel, braking distance and parking stability.",
+      "focusComponentId": "bike.urban.u1.frame",
+      "highlightComponentIds": [
+        "bike.urban.u1.frame",
+        "bike.urban.u1.rear-rack",
+        "bike.urban.u1.front-wheel",
+        "bike.urban.u1.rear-wheel"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0,
+      "tools": [],
+      "warning": "If the bicycle feels unstable or the load shifts, stop and change the setup before entering traffic or normal riding.",
+      "check": "The loaded bicycle remains predictable during the controlled check.",
+      "removedComponentIds": []
+    }
+  ]
+}
