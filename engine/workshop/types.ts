@@ -26,6 +26,7 @@ export interface WorkshopStep {
 
 export interface WorkshopProcedure {
   id: string;
+  bikeId: string;
   title: string;
   summary: string;
   systemId: BikeSystemId;
