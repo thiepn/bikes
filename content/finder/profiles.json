@@ -113,6 +113,44 @@
         "Not intended for technical trails",
         "Heavier and less performance-focused than minimalist sport bikes"
       ]
+    },
+    {
+      "bikeId": "bike.gravel.g1",
+      "traits": {
+        "pavedEfficiency": 0.9,
+        "mixedSurface": 1,
+        "technicalTerrain": 0.48,
+        "distanceEfficiency": 0.93,
+        "climbingCapability": 0.9,
+        "comfortControl": 0.78,
+        "cargoUtility": 0.58,
+        "allWeather": 0.78,
+        "maintenanceSimplicity": 0.7,
+        "suspensionCapability": 0.02
+      },
+      "traitReasons": {
+        "pavedEfficiency": "Gravel G1 keeps a drop-bar riding position and efficient rigid chassis, while wider mixed-surface tires trade a little paved speed for versatility.",
+        "mixedSurface": "Wide gravel tires, stable all-road geometry and a rigid but terrain-tolerant chassis are centered on pavement-to-gravel transitions.",
+        "technicalTerrain": "Gravel G1 can handle rough roads and moderate off-road surfaces, but lacks the suspension, tire volume and trail geometry of MTB M1.",
+        "distanceEfficiency": "Drop bars, efficient rolling geometry and multiple hand positions support long all-road rides.",
+        "climbingCapability": "A low-mass rigid platform and wide-range 1× gearing support sustained paved and gravel climbing.",
+        "comfortControl": "Wider tires, longer all-road geometry and flared drops add control on broken surfaces while preserving a performance-oriented posture.",
+        "cargoUtility": "Frame and fork mounts support light touring or bikepacking equipment, but Gravel G1 is not a dedicated cargo bicycle.",
+        "allWeather": "Disc brakes, larger tire volume and accessory mounts make mixed-weather riding practical, though full fenders and integrated lighting are not part of this reference bike.",
+        "maintenanceSimplicity": "The rigid frame/fork avoids suspension service, while the exposed derailleur drivetrain still requires normal cleaning, wear checks and adjustment.",
+        "suspensionCapability": "Gravel G1 is intentionally rigid; rough-surface compliance comes primarily from tires, frame/fork behavior and rider technique."
+      },
+      "generalStrengths": [
+        "Mixed-surface versatility",
+        "Long-distance all-road efficiency",
+        "Wide-range climbing capability",
+        "Bikepacking and light-carry mounting flexibility"
+      ],
+      "generalTradeoffs": [
+        "Not as fast on smooth pavement as Road R1",
+        "Not intended for technical trails like MTB M1",
+        "Less cargo and weather integration than Urban U1"
+      ]
     }
   ]
 }
