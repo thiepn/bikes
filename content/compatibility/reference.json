@@ -1886,7 +1886,10 @@
       "sourceComponentId": "bike.road.r1.handlebar",
       "interfaces": {
         "barClamp": 31.8,
-        "controlFamily": "drop-integrated"
+        "controlFamily": "drop-integrated",
+        "barReachMm": 75,
+        "barDropMm": 125,
+        "barWidthMm": 460
       },
       "notes": [
         "Reference performance drop bar."
@@ -1900,7 +1903,10 @@
       "sourceComponentId": "bike.gravel.g1.handlebar",
       "interfaces": {
         "barClamp": 31.8,
-        "controlFamily": "drop-integrated"
+        "controlFamily": "drop-integrated",
+        "barReachMm": 80,
+        "barDropMm": 120,
+        "barWidthMm": 640
       },
       "notes": [
         "Reference flared drop bar."
@@ -1914,7 +1920,10 @@
       "sourceComponentId": "bike.mtb.m1.handlebar",
       "interfaces": {
         "barClamp": 31.8,
-        "controlFamily": "flat-clamp"
+        "controlFamily": "flat-clamp",
+        "barReachMm": 10,
+        "barDropMm": 0,
+        "barWidthMm": 720
       },
       "notes": [
         "Reference trail flat bar."
@@ -1928,7 +1937,10 @@
       "sourceComponentId": "bike.urban.u1.handlebar",
       "interfaces": {
         "barClamp": 31.8,
-        "controlFamily": "flat-clamp"
+        "controlFamily": "flat-clamp",
+        "barReachMm": -45,
+        "barDropMm": 0,
+        "barWidthMm": 640
       },
       "notes": [
         "Reference swept utility bar."
@@ -1941,7 +1953,8 @@
       "sourceBikeId": "bike.road.r1",
       "sourceComponentId": "bike.road.r1.seatpost",
       "interfaces": {
-        "postDiameter": 27.2
+        "postDiameter": 27.2,
+        "setbackMm": 15
       },
       "notes": [
         "Reference rigid 27.2 mm post."
@@ -1954,7 +1967,8 @@
       "sourceBikeId": "bike.gravel.g1",
       "sourceComponentId": "bike.gravel.g1.seatpost",
       "interfaces": {
-        "postDiameter": 27.2
+        "postDiameter": 27.2,
+        "setbackMm": 20
       },
       "notes": [
         "Reference rigid 27.2 mm post."
@@ -1967,7 +1981,8 @@
       "sourceBikeId": "bike.mtb.m1",
       "sourceComponentId": "bike.mtb.m1.dropper-post",
       "interfaces": {
-        "postDiameter": 31.6
+        "postDiameter": 31.6,
+        "setbackMm": 0
       },
       "notes": [
         "Reference 31.6 mm dropper. Remote routing is not modeled in P21."
@@ -1980,7 +1995,8 @@
       "sourceBikeId": "bike.urban.u1",
       "sourceComponentId": "bike.urban.u1.seatpost",
       "interfaces": {
-        "postDiameter": 27.2
+        "postDiameter": 27.2,
+        "setbackMm": 25
       },
       "notes": [
         "Reference rigid 27.2 mm utility post."
@@ -2150,7 +2166,9 @@
       "sourceComponentId": "bike.road.r1.stem",
       "interfaces": {
         "steererClamp": 28.6,
-        "barClamp": 31.8
+        "barClamp": 31.8,
+        "stemLengthMm": 100,
+        "stemRiseDeg": -6
       },
       "notes": [
         "Bike Atlas reference stem; length/rise are visual/fit properties rather than P22 compatibility gates."
@@ -2192,7 +2210,9 @@
       "sourceComponentId": "bike.gravel.g1.stem",
       "interfaces": {
         "steererClamp": 28.6,
-        "barClamp": 31.8
+        "barClamp": 31.8,
+        "stemLengthMm": 80,
+        "stemRiseDeg": 6
       },
       "notes": [
         "Bike Atlas reference stem; length/rise are visual/fit properties rather than P22 compatibility gates."
@@ -2234,7 +2254,9 @@
       "sourceComponentId": "bike.mtb.m1.stem",
       "interfaces": {
         "steererClamp": 28.6,
-        "barClamp": 31.8
+        "barClamp": 31.8,
+        "stemLengthMm": 50,
+        "stemRiseDeg": 6
       },
       "notes": [
         "Bike Atlas reference stem; length/rise are visual/fit properties rather than P22 compatibility gates."
@@ -2276,7 +2298,9 @@
       "sourceComponentId": "bike.urban.u1.stem",
       "interfaces": {
         "steererClamp": 28.6,
-        "barClamp": 31.8
+        "barClamp": 31.8,
+        "stemLengthMm": 70,
+        "stemRiseDeg": 25
       },
       "notes": [
         "Bike Atlas reference stem; length/rise are visual/fit properties rather than P22 compatibility gates."
@@ -2323,7 +2347,8 @@
         "brakeMount": "flat-mount",
         "axleToCrown": 385,
         "suspensionTravel": 0,
-        "maxRotorDiameter": 160
+        "maxRotorDiameter": 160,
+        "forkOffsetMm": 43
       },
       "notes": [
         "Bike Atlas reference rigid fork; geometry limits are authored reference envelopes."
@@ -2373,7 +2398,11 @@
         "chainFamily": "ba-12-road",
         "ringCount": 2,
         "frontSmallTeeth": 34,
-        "frontLargeTeeth": 50
+        "frontLargeTeeth": 50,
+        "chainringTeeth": [
+          34,
+          50
+        ]
       },
       "notes": [
         "Reference 2× crankset. Ring topology can create companion-control consequences beyond physical mounting."
@@ -2391,7 +2420,21 @@
         "chainFamily": "ba-12-road",
         "gearCount": 12,
         "rearSmallTeeth": 11,
-        "rearLargeTeeth": 34
+        "rearLargeTeeth": 34,
+        "sprocketTeeth": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          17,
+          19,
+          21,
+          24,
+          27,
+          30,
+          34
+        ]
       },
       "notes": [
         "Reference external cassette; derailleur clearance and capacity are evaluated separately."
@@ -2427,7 +2470,8 @@
         "brakeMount": "flat-mount",
         "axleToCrown": 410,
         "suspensionTravel": 0,
-        "maxRotorDiameter": 180
+        "maxRotorDiameter": 180,
+        "forkOffsetMm": 50
       },
       "notes": [
         "Bike Atlas reference rigid fork; geometry limits are authored reference envelopes."
@@ -2477,7 +2521,10 @@
         "chainFamily": "ba-12-road",
         "ringCount": 1,
         "frontSmallTeeth": 42,
-        "frontLargeTeeth": 42
+        "frontLargeTeeth": 42,
+        "chainringTeeth": [
+          42
+        ]
       },
       "notes": [
         "Reference 1× crankset. Ring topology can create companion-control consequences beyond physical mounting."
@@ -2495,7 +2542,21 @@
         "chainFamily": "ba-12-road",
         "gearCount": 12,
         "rearSmallTeeth": 10,
-        "rearLargeTeeth": 44
+        "rearLargeTeeth": 44,
+        "sprocketTeeth": [
+          10,
+          11,
+          12,
+          13,
+          15,
+          17,
+          20,
+          24,
+          28,
+          33,
+          38,
+          44
+        ]
       },
       "notes": [
         "Reference external cassette; derailleur clearance and capacity are evaluated separately."
@@ -2531,7 +2592,8 @@
         "brakeMount": "post-mount",
         "axleToCrown": 530,
         "suspensionTravel": 130,
-        "maxRotorDiameter": 203
+        "maxRotorDiameter": 203,
+        "forkOffsetMm": 44
       },
       "notes": [
         "Bike Atlas reference 130 mm suspension fork; geometry limits are authored reference envelopes."
@@ -2581,7 +2643,10 @@
         "chainFamily": "ba-12-mtb",
         "ringCount": 1,
         "frontSmallTeeth": 32,
-        "frontLargeTeeth": 32
+        "frontLargeTeeth": 32,
+        "chainringTeeth": [
+          32
+        ]
       },
       "notes": [
         "Reference 1× crankset. Ring topology can create companion-control consequences beyond physical mounting."
@@ -2599,7 +2664,21 @@
         "chainFamily": "ba-12-mtb",
         "gearCount": 12,
         "rearSmallTeeth": 10,
-        "rearLargeTeeth": 51
+        "rearLargeTeeth": 51,
+        "sprocketTeeth": [
+          10,
+          12,
+          14,
+          16,
+          18,
+          21,
+          24,
+          28,
+          33,
+          39,
+          45,
+          51
+        ]
       },
       "notes": [
         "Reference external cassette; derailleur clearance and capacity are evaluated separately."
@@ -2635,7 +2714,8 @@
         "brakeMount": "flat-mount",
         "axleToCrown": 410,
         "suspensionTravel": 0,
-        "maxRotorDiameter": 180
+        "maxRotorDiameter": 180,
+        "forkOffsetMm": 45
       },
       "notes": [
         "Bike Atlas reference rigid fork; geometry limits are authored reference envelopes."
@@ -2685,7 +2765,10 @@
         "chainFamily": "ba-single-igh",
         "ringCount": 1,
         "frontSmallTeeth": 42,
-        "frontLargeTeeth": 42
+        "frontLargeTeeth": 42,
+        "chainringTeeth": [
+          42
+        ]
       },
       "notes": [
         "Reference 1× crankset. Ring topology can create companion-control consequences beyond physical mounting."
@@ -2704,7 +2787,20 @@
         "gearCount": 8,
         "rearSmallTeeth": 20,
         "rearLargeTeeth": 20,
-        "internalRangePercent": 307
+        "internalRangePercent": 307,
+        "sprocketTeeth": [
+          20
+        ],
+        "internalGearRatios": [
+          0.527,
+          0.644,
+          0.748,
+          0.851,
+          1,
+          1.223,
+          1.419,
+          1.615
+        ]
       },
       "notes": [
         "Reference internal-hub transmission represented by its external sprocket interface."
