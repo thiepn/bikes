@@ -1,86 +1,118 @@
 # Bike Atlas
 
-Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning, maintenance, history, physics, compatibility, geometry and custom bicycle systems.
+Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning, maintenance, history, physics, compatibility, geometry, gearing and custom bicycle systems.
 
 ## Current phase
 
-P24 — Full Build Geometry & Fit Consequence Solver + Dynamic Gearing Visualization
+**P25 — Build Optimization, Goal-Based Configuration & Constraint Solver**
 
-Bike Atlas now carries one custom bicycle state across Build Lab, the 3D scene, Geometry Lab, and Physics Lab.
+Bike Atlas can now search its compatibility, system-health, geometry, gearing and Physics models for coherent custom builds.
 
-## Geometry Lab
+## Goals
 
-P24 adds four fictional Bike Atlas reference geometry profiles and a build-derived solver.
+P25 includes five transparent goal profiles:
 
-The frame reference remains fixed. Selected components can affect only the geometry they explicitly author:
+- Speed
+- Climbing
+- Mixed Surface
+- Comfort
+- Utility
 
-- fork axle-to-crown and offset
-- front and rear tire radius
-- stem length and rise
-- handlebar reach, drop, and width
-- seatpost setback
+Each goal uses inspectable normalized feature weights rather than an opaque recommendation model.
 
-The solver computes head angle, seat angle, effective reach and stack, wheelbase, BB height/drop, trail, fork geometry, grip coordinates, saddle coordinates, saddle-to-grip reach, and saddle-to-grip drop.
+## Hard constraints
 
-A live side-profile diagram overlays reference and custom geometry.
+Goal score cannot override:
 
-## Fit consequences
+- slot compatibility
+- P23 blocking system dependencies
+- maximum component-change budget
+- the selected P24 geometry guard
+- locked current Build Lab changes
 
-Bike Atlas reports contact-point changes, not rider-size prescriptions.
+Only non-blocked final builds can be recommended.
 
-Examples include bar reach/stack changes, saddle-to-grip reach/drop, bar width, and seatpost setback change.
+## Companion-aware search
 
-The UI explicitly states that this is not a rider-size recommendation.
+P25 uses a bounded beam search over the curated donor graph.
 
-## Dynamic gearing
+Temporarily blocked partial builds can remain in a small search lane when a companion change may resolve them.
 
-P24 adds authored tooth arrays to the fictional reference component library.
+For example, Road R1 plus the Gravel rear transmission is temporarily blocked by the stock Road derailleur. Adding the compatible Gravel derailleur resolves the modeled largest-sprocket and total-capacity constraints, allowing the complete configuration to rank.
 
-Current architectures:
+## Geometry guards
 
-- Road: 2×12 external
-- Gravel: 1×12 external
-- MTB: 1×12 external
-- Urban: 8-speed internal
+Users can choose Strict, Balanced or Open geometry constraints.
 
-The gearing view calculates every available combination and shows overall ratio, development, gear inches, speed at cadence, easiest gear, hardest gear, and total range.
+The guard limits candidate changes in head angle, trail, grip position and wheelbase relative to the current starting build.
 
-Cadence is interactive from 40 to 130 rpm.
+## Preserve current changes
 
-Road R1 exposes 24 combinations from 1.00× through approximately 4.545×.
+The optimizer can lock existing Build Lab modifications and search around them.
 
-Urban U1 exposes eight authored internal ratios with approximately 306% total range.
+## Goal metrics
 
-## Build-aware geometry and gearing
+Candidates are scored using reference values including:
 
-Component changes propagate automatically.
+- mass
+- CdA
+- flat speed
+- 8% climbing speed
+- hardpack speed
+- lowest and highest gearing
+- total gear range
+- tire width
+- brake leverage
+- bar width
+- contact-point posture
+- trail
+- wheelbase
+- internal-gear architecture
 
-Examples:
+## Improvement-only recommendations
 
-- Gravel plus shorter Road fork: steeper front end, less stack, more reach, lower BB
-- Road plus Gravel stem: shorter and higher grip position
-- Gravel plus Road 2× crankset: gear map expands to 24 combinations
+P25 does not recommend a worse bicycle merely to populate a list.
 
-P23 still evaluates mechanical system conflicts, so a kinematically valid gear map does not imply a coherent finished bicycle.
+A final candidate must improve the current goal score after change and warning penalties.
 
-## Geometry and Physics consistency
+If nothing improves the active bicycle under the selected constraints, the optimizer reports that directly.
 
-Reference wheel radii are tied to Physics Lab wheel circumference.
+## Explainability
 
-The gearing solver uses the active build-adjusted Physics profile, so tire changes can alter wheel circumference, development, gear inches, and speed at cadence.
+Each result exposes:
 
-Physics remains responsible for achievable steady-state speed.
+- goal score
+- score improvement vs current
+- changed components
+- top scoring contributions
+- metric deltas
+- gains and costs
+- P23 health state
+
+## Apply flow
+
+Apply optimized build writes directly into the shared custom bicycle.
+
+Apply + inspect in Build Lab applies the same configuration and opens Build Lab for mechanical inspection.
+
+The resulting build continues into the 3D scene, Geometry Lab, Physics Lab and buildParts URL state.
 
 ## URL state
 
-Geometry supports geometry=1, geometryTab=gearing, and gearCad=100 while the custom bicycle remains stored in buildParts.
+P25 adds optimizer UI state through:
+
+- optimize=1
+- optGoal
+- optChanges
+- optGuard
+- optPreserve=1
+
+The actual bicycle remains encoded separately in buildParts.
 
 ## Validation
 
-P24 adds scripts/validate-geometry.mjs to the existing npm run validate:domain suite.
+P25 adds scripts/validate-optimizer.mjs to npm run validate:domain.
 
-It covers geometry references, component geometry metadata, gearing arrays, solver regressions, internal/external gear behavior, routing, model-boundary wording, build-state sharing, and URL defaults.
+It protects goal normalization, search-space assumptions, companion-change behavior, bounded blocked-state search, hard constraints, improvement-only ranking, URL routing and canonical build-state application.
 
-P24 also fixes absent-query numeric defaults in Physics Lab so missing URL parameters no longer collapse to minimum values through Number(null).
-
-See docs/P1.md through docs/P24.md.
+See docs/P1.md through docs/P25.md.
