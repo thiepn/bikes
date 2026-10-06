@@ -37,6 +37,9 @@ const SYSTEM_LABELS: Record<string, string> = {
   braking: "Braking",
   "saddle-seatpost": "Saddle",
   pedals: "Pedals",
+  lighting: "Lighting",
+  "cargo-utility": "Cargo & utility",
+  accessories: "Accessories",
 };
 
 function lessonStepForComponent(lessonId: string, componentId: string) {
