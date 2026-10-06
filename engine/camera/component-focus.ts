@@ -45,6 +45,18 @@ const FOCUS_BY_SLUG: Record<string, CameraFocus> = {
   "rear-derailleur": { position: [0.58, 0.45, -0.92], target: [0.06, 0.27, -0.55], fov: 18 },
   "left-pedal": { position: [-0.55, 0.48, -0.02], target: [-0.14, 0.39, -0.1], fov: 20 },
   "right-pedal": { position: [0.55, 0.48, -0.02], target: [0.14, 0.39, -0.1], fov: 20 },
+  "rear-sprocket": { position: [0.54, 0.45, -0.9], target: [0.04, 0.37, -0.62], fov: 18 },
+  "chain-guard": { position: [0.68, 0.55, -0.28], target: [0.04, 0.4, -0.28], fov: 20 },
+  "front-fender": { position: [0.72, 0.73, 1.13], target: [0, 0.52, 0.62], fov: 23 },
+  "rear-fender": { position: [0.72, 0.73, -1.13], target: [0, 0.52, -0.62], fov: 23 },
+  "rear-rack": { position: [0.82, 0.96, -1.05], target: [0, 0.79, -0.62], fov: 22 },
+  "front-light": { position: [0.5, 0.86, 0.84], target: [0, 0.72, 0.52], fov: 17 },
+  "rear-light": { position: [0.5, 0.9, -1.08], target: [0, 0.79, -0.91], fov: 17 },
+  kickstand: { position: [0.62, 0.38, -0.55], target: [-0.1, 0.22, -0.34], fov: 19 },
+  "frame-lock": { position: [0.52, 0.67, -0.82], target: [0, 0.55, -0.54], fov: 18 },
+  bell: { position: [0.45, 1.12, 0.47], target: [-0.2, 1.02, 0.28], fov: 16 },
+  "front-axle": { position: [0.48, 0.42, 0.86], target: [0, 0.37, 0.62], fov: 17 },
+  "rear-axle": { position: [0.48, 0.42, -0.86], target: [0, 0.37, -0.62], fov: 17 },
 };
 
 export function getComponentFocus(componentId: string | null): CameraFocus {
