@@ -910,6 +910,7 @@ export function BikeViewer() {
     }
 
     setActiveBikeId(requestedBike.id);
+    setBuildSelections(requestedBuildSelections);
 
     if (requestedConcept) {
       setActiveConceptId(requestedConcept.id);
@@ -935,7 +936,6 @@ export function BikeViewer() {
       setFinderOpen(false);
       setComparisonOpen(false);
     } else if (requestedBuild) {
-      setBuildSelections(requestedBuildSelections);
       setBuildOpen(true);
       setPhysicsOpen(false);
       setHistoryOpen(false);
@@ -963,6 +963,7 @@ export function BikeViewer() {
       requestedConcept ||
       requestedPhysics ||
       requestedBuild ||
+      Object.keys(requestedBuildSelections).length > 0 ||
       Object.keys(requestedFinder).length > 0 ||
       requestedBike.id !== ROAD_R1.id
     ) {
@@ -1159,18 +1160,17 @@ export function BikeViewer() {
 
     if (buildOpen) {
       url.searchParams.set("build", "1");
-      const encodedBuild = encodeBuildSelections(
-        effectiveBuildSelections,
-      );
-      if (encodedBuild) {
-        url.searchParams.set("buildParts", encodedBuild);
-      } else {
-        url.searchParams.delete("buildParts");
-      }
     } else {
-      for (const key of BUILD_QUERY_KEYS) {
-        url.searchParams.delete(key);
-      }
+      url.searchParams.delete("build");
+    }
+
+    const encodedBuild = encodeBuildSelections(
+      effectiveBuildSelections,
+    );
+    if (encodedBuild) {
+      url.searchParams.set("buildParts", encodedBuild);
+    } else {
+      url.searchParams.delete("buildParts");
     }
 
     window.history.replaceState({}, "", url);
@@ -1553,7 +1553,9 @@ export function BikeViewer() {
           highlightedIds={sceneHighlightedIds}
           removedIds={sceneRemovedIds}
           buildSelections={
-            buildOpen ? effectiveBuildSelections : undefined
+            experienceMode === "explore"
+              ? effectiveBuildSelections
+              : undefined
           }
           drivetrainDemo={drivetrainDemo}
           onSelect={
@@ -1619,6 +1621,7 @@ export function BikeViewer() {
       ) : physicsOpen ? (
         <PhysicsLabPanel
           bikeId={activeBike.id}
+          buildSelections={effectiveBuildSelections}
           onClose={() => setPhysicsOpen(false)}
         />
       ) : historyOpen ? (
