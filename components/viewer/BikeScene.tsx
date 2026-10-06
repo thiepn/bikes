@@ -9,6 +9,7 @@ import {
 } from "@react-three/drei";
 import { PrototypeBike } from "./PrototypeBike";
 import { MtbPrototypeBike } from "./MtbPrototypeBike";
+import { UrbanPrototypeBike } from "./UrbanPrototypeBike";
 import { CameraRig } from "./CameraRig";
 import { StoryCameraRig } from "@/components/story/StoryCameraRig";
 import { CAMERA_LIMITS, CAMERA_TARGET } from "@/engine/camera/presets";
@@ -106,6 +107,8 @@ export function BikeScene(props: BikeSceneProps) {
         props.comparisonBikeId !== props.bikeId &&
         (props.comparisonBikeId === "bike.mtb.m1" ? (
           <MtbPrototypeBike {...ghostProps} />
+        ) : props.comparisonBikeId === "bike.urban.u1" ? (
+          <UrbanPrototypeBike {...ghostProps} />
         ) : (
           <PrototypeBike
             {...ghostProps}
@@ -119,6 +122,8 @@ export function BikeScene(props: BikeSceneProps) {
 
       {props.bikeId === "bike.mtb.m1" ? (
         <MtbPrototypeBike {...props} />
+      ) : props.bikeId === "bike.urban.u1" ? (
+        <UrbanPrototypeBike {...props} />
       ) : (
         <PrototypeBike {...props} />
       )}
