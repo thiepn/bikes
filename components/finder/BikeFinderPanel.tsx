@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { getBikeById } from "@/domain/bike/catalog";
 import {
   FINDER_PRESETS,
@@ -36,14 +36,6 @@ export function BikeFinderPanel({
   const [stepIndex, setStepIndex] = useState(
     firstMissing >= 0 ? firstMissing : FINDER_QUESTIONS.length,
   );
-
-  useEffect(() => {
-    if (recommendation.complete) {
-      setStepIndex(FINDER_QUESTIONS.length);
-    } else if (stepIndex >= FINDER_QUESTIONS.length) {
-      setStepIndex(firstMissing >= 0 ? firstMissing : 0);
-    }
-  }, [firstMissing, recommendation.complete, stepIndex]);
 
   const showingResult = stepIndex >= FINDER_QUESTIONS.length;
   const question = FINDER_QUESTIONS[
@@ -241,6 +233,15 @@ export function BikeFinderPanel({
               ))}
             </section>
           )}
+
+          <section className="finder-tradeoffs">
+            <h4>Platform trade-offs</h4>
+            <div>
+              {recommendation.top.generalTradeoffs.map((tradeoff) => (
+                <span key={tradeoff}>{tradeoff}</span>
+              ))}
+            </div>
+          </section>
 
           <div className="finder-result__actions">
             <button
