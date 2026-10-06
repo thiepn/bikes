@@ -91,6 +91,7 @@ const OPTIMIZER_QUERY_KEYS = [
   "optX",
   "optY",
   "optPoint",
+  "portSc",
 ] as const;
 
 const PHYSICS_QUERY_KEYS = [
