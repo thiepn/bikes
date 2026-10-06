@@ -1,179 +1,86 @@
 # Bike Atlas
 
-Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning, maintenance, history, physics, compatibility and custom bicycle systems.
+Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning, maintenance, history, physics, compatibility, geometry and custom bicycle systems.
 
 ## Current phase
 
-**P23 — Advanced Drivetrain, Brake-System & Suspension Compatibility + Build Consequence Analysis**
+P24 — Full Build Geometry & Fit Consequence Solver + Dynamic Gearing Visualization
 
-Bike Atlas now distinguishes:
+Bike Atlas now carries one custom bicycle state across Build Lab, the 3D scene, Geometry Lab, and Physics Lab.
 
-```text
-slot compatibility
-        ↓
-system coherence
-        ↓
-build consequences
-```
+## Geometry Lab
 
-An individually compatible part can therefore enter a draft and still create a complete-bike dependency that must be resolved.
+P24 adds four fictional Bike Atlas reference geometry profiles and a build-derived solver.
 
-## Advanced Build Lab
+The frame reference remains fixed. Selected components can affect only the geometry they explicitly author:
 
-P23 adds:
+- fork axle-to-crown and offset
+- front and rear tire radius
+- stem length and rise
+- handlebar reach, drop, and width
+- seatpost setback
 
-```text
-Fork
-Front caliper
-Rear caliper
-Crankset
-Rear transmission
-Rear derailleur
-```
+The solver computes head angle, seat angle, effective reach and stack, wheelbase, BB height/drop, trail, fork geometry, grip coordinates, saddle coordinates, saddle-to-grip reach, and saddle-to-grip drop.
 
-to the existing Build Lab.
+A live side-profile diagram overlays reference and custom geometry.
 
-Current host sizes:
+## Fit consequences
 
-```text
-Road R1       18 slots
-Gravel G1     18 slots
-MTB M1        18 slots
-Urban U1      17 slots
-```
+Bike Atlas reports contact-point changes, not rider-size prescriptions.
 
-Urban intentionally has no derailleur slot because its reference transmission is internal-gear.
+Examples include bar reach/stack changes, saddle-to-grip reach/drop, bar width, and seatpost setback change.
 
-## System dependency engine
+The UI explicitly states that this is not a rider-size recommendation.
 
-P23 evaluates relationships including:
+## Dynamic gearing
 
-```text
-rotor ↔ caliper range
-rotor ↔ fork limit
-wheel ↔ rotor mount
-fork ↔ front-wheel axle
-rear wheel ↔ transmission carrier
+P24 adds authored tooth arrays to the fictional reference component library.
 
-crankset ↔ transmission chain family
-transmission ↔ derailleur chain family
-cassette largest sprocket ↔ derailleur maximum
-drivetrain total capacity ↔ derailleur capacity
-1× / 2× crankset ↔ front shifting system
-fork geometry / travel changes
-```
+Current architectures:
 
-Build health is:
+- Road: 2×12 external
+- Gravel: 1×12 external
+- MTB: 1×12 external
+- Urban: 8-speed internal
 
-```text
-ready
-attention
-blocked
-```
+The gearing view calculates every available combination and shows overall ratio, development, gear inches, speed at cadence, easiest gear, hardest gear, and total range.
 
-Blocked parts remain in the draft so companion changes can be made explicitly.
+Cadence is interactive from 40 to 130 rpm.
 
-## Example companion change
+Road R1 exposes 24 combinations from 1.00× through approximately 4.545×.
 
-Road R1 accepts the modeled Gravel rear transmission at the slot level.
+Urban U1 exposes eight authored internal ratios with approximately 306% total range.
 
-But the reference Gravel cassette reaches 44T while the Road derailleur is authored for 36T and lacks the required total capacity.
+## Build-aware geometry and gearing
 
-Result:
+Component changes propagate automatically.
 
-```text
-slot compatible
-system blocked
-```
+Examples:
 
-Adding the compatible Gravel rear derailleur resolves the current modeled clearance/capacity conflict.
+- Gravel plus shorter Road fork: steeper front end, less stack, more reach, lower BB
+- Road plus Gravel stem: shorter and higher grip position
+- Gravel plus Road 2× crankset: gear map expands to 24 combinations
 
-## Build consequences
+P23 still evaluates mechanical system conflicts, so a kinematically valid gear map does not imply a coherent finished bicycle.
 
-Build Lab now displays:
+## Geometry and Physics consistency
 
-```text
-mass delta
-CdA delta
-front brake leverage delta
-rear brake leverage delta
-gear range
-fork axle-to-crown delta
-```
+Reference wheel radii are tied to Physics Lab wheel circumference.
 
-Warnings and blocking issues link back to their relevant Build Lab slots.
+The gearing solver uses the active build-adjusted Physics profile, so tire changes can alter wheel circumference, development, gear inches, and speed at cadence.
 
-## Build-aware Physics
+Physics remains responsible for achievable steady-state speed.
 
-The active custom bicycle now changes the Physics Lab baseline.
+## URL state
 
-P23 propagates reference deltas for:
+Geometry supports geometry=1, geometryTab=gearing, and gearCad=100 while the custom bicycle remains stored in buildParts.
 
-```text
-bike mass
-CdA
-surface rolling resistance
-wheel circumference
-drivetrain efficiency
-```
+## Validation
 
-A blocked build can still be simulated experimentally, but Physics marks it:
+P24 adds scripts/validate-geometry.mjs to the existing npm run validate:domain suite.
 
-```text
-Simulation is provisional
-```
+It covers geometry references, component geometry metadata, gearing arrays, solver regressions, internal/external gear behavior, routing, model-boundary wording, build-state sharing, and URL defaults.
 
-rather than presenting it as a coherent finished bicycle.
+P24 also fixes absent-query numeric defaults in Physics Lab so missing URL parameters no longer collapse to minimum values through Number(null).
 
-## Persistent custom bicycle
-
-```text
-build=1
-```
-
-now means the Build panel is open.
-
-```text
-buildParts=...
-```
-
-represents the custom bicycle itself.
-
-Closing Build no longer destroys the draft.
-
-The same bicycle remains visible in 3D and can be carried directly into Physics.
-
-## 3D advanced-system assembly
-
-Normalized donor proxies now also support:
-
-```text
-fork
-caliper
-crankset
-rear transmission
-rear derailleur
-```
-
-Current P23 assembly graph:
-
-```text
-71 reference parts
-71 consequence profiles
-71 visual attachment records
-
-281 static host/candidate evaluations
-165 compatible
-116 incompatible
-0 unknown
-```
-
-These are Bike Atlas reference archetype values, not manufacturer specifications or installation certification.
-
-Run all domain checks with:
-
-```bash
-npm run validate:domain
-```
-
-See `docs/P1.md` through `docs/P23.md`.
+See docs/P1.md through docs/P24.md.
