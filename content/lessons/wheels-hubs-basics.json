@@ -14,7 +14,12 @@
       "body": "The tire contacts the road, the rim supports the tire, spokes transfer load, and the hub provides the rotating center.",
       "keyFact": "Treating a wheel as one object hides the very different jobs performed by its parts.",
       "focusComponentId": "bike.road.r1.rear-wheel",
-      "highlightComponentIds": ["bike.road.r1.rear-wheel","bike.road.r1.rear-tire","bike.road.r1.rear-rim","bike.road.r1.rear-hub"],
+      "highlightComponentIds": [
+        "bike.road.r1.rear-wheel",
+        "bike.road.r1.rear-tire",
+        "bike.road.r1.rear-rim",
+        "bike.road.r1.rear-hub"
+      ],
       "inspectionMode": "systems"
     },
     {
@@ -24,7 +29,10 @@
       "body": "The rim must stay round, support the tire and distribute local road forces around the wheel. Stiffness, mass and shape all affect how the wheel behaves.",
       "keyFact": "The rim is not the rotating bearing surface; that job belongs at the hub.",
       "focusComponentId": "bike.road.r1.rear-rim",
-      "highlightComponentIds": ["bike.road.r1.rear-rim","bike.road.r1.rear-wheel"],
+      "highlightComponentIds": [
+        "bike.road.r1.rear-rim",
+        "bike.road.r1.rear-wheel"
+      ],
       "inspectionMode": "normal"
     },
     {
@@ -34,7 +42,10 @@
       "body": "The hub houses the axle and bearings. The wheel rotates around that bearing system while the axle locates the wheel in the frame.",
       "keyFact": "Good wheel rotation depends heavily on bearing condition, adjustment and alignment at the hub.",
       "focusComponentId": "bike.road.r1.rear-hub",
-      "highlightComponentIds": ["bike.road.r1.rear-hub","bike.road.r1.rear-wheel"],
+      "highlightComponentIds": [
+        "bike.road.r1.rear-hub",
+        "bike.road.r1.rear-wheel"
+      ],
       "inspectionMode": "xray"
     },
     {
@@ -49,11 +60,18 @@
       "challenge": {
         "type": "select-component",
         "prompt": "Which component contains the wheel bearings?",
-        "candidateComponentIds": ["bike.road.r1.rear-tire","bike.road.r1.rear-rim","bike.road.r1.rear-hub"],
-        "correctComponentIds": ["bike.road.r1.rear-hub"],
+        "candidateComponentIds": [
+          "bike.road.r1.rear-tire",
+          "bike.road.r1.rear-rim",
+          "bike.road.r1.rear-hub"
+        ],
+        "correctComponentIds": [
+          "bike.road.r1.rear-hub"
+        ],
         "successText": "Correct. The hub sits at the wheel center and houses the bearing system.",
         "retryText": "That part belongs to the wheel, but it is not the bearing housing. Look toward the center."
       }
     }
-  ]
+  ],
+  "bikeId": "bike.road.r1"
 }
