@@ -6,6 +6,10 @@ import mtbSuspension from "@/content/lessons/mtb-suspension-basics.json";
 import mtbDropper from "@/content/lessons/mtb-dropper-basics.json";
 import mtbOneBy from "@/content/lessons/mtb-one-by-drivetrain.json";
 import mtbTires from "@/content/lessons/mtb-trail-tires.json";
+import urbanUpright from "@/content/lessons/urban-upright-utility.json";
+import urbanHub from "@/content/lessons/urban-internal-gear-hub.json";
+import urbanWeather from "@/content/lessons/urban-weather-systems.json";
+import urbanCargo from "@/content/lessons/urban-cargo-security.json";
 import type { InteractiveLesson } from "@/engine/learning/types";
 
 export const LESSON_CATALOG = [
@@ -17,6 +21,10 @@ export const LESSON_CATALOG = [
   mtbDropper,
   mtbOneBy,
   mtbTires,
+  urbanUpright,
+  urbanHub,
+  urbanWeather,
+  urbanCargo,
 ] as unknown as InteractiveLesson[];
 
 const LESSONS_BY_ID = new Map(
