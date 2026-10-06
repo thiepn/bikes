@@ -6,6 +6,10 @@ import mtbSuspensionCheck from "@/content/workshop/mtb-suspension-pre-ride.json"
 import mtbSag from "@/content/workshop/mtb-sag-baseline.json";
 import mtbDropper from "@/content/workshop/mtb-dropper-function-check.json";
 import mtbTires from "@/content/workshop/mtb-trail-tire-check.json";
+import urbanPreRide from "@/content/workshop/urban-pre-ride-check.json";
+import urbanRack from "@/content/workshop/urban-rack-cargo-check.json";
+import urbanDrivetrain from "@/content/workshop/urban-drivetrain-check.json";
+import urbanWeather from "@/content/workshop/urban-weather-lighting-check.json";
 import type { WorkshopProcedure } from "@/engine/workshop/types";
 
 export const WORKSHOP_CATALOG = [
@@ -17,6 +21,10 @@ export const WORKSHOP_CATALOG = [
   mtbSag,
   mtbDropper,
   mtbTires,
+  urbanPreRide,
+  urbanRack,
+  urbanDrivetrain,
+  urbanWeather,
 ] as unknown as WorkshopProcedure[];
 
 const BY_ID = new Map(
