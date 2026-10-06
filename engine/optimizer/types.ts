@@ -104,7 +104,7 @@ export interface ParetoPoint {
   metrics: OptimizationMetrics;
   xScore: number;
   yScore: number;
-  health: "ready" | "attention";
+  health: "ready" | "attention" | "blocked";
   sourceWeights: number[];
   isCurrent: boolean;
 }
