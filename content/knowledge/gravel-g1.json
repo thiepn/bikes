@@ -1,0 +1,954 @@
+{
+  "bikeId": "bike.gravel.g1",
+  "profiles": [
+    {
+      "componentId": "bike.gravel.g1.frame",
+      "summary": "Rigid all-road frame forming the structural core of Gravel G1.",
+      "function": "Carries rider and luggage loads while locating the fork, wheels, drivetrain, brakes, seatpost and utility mounts.",
+      "materials": [
+        "carbon composite or aluminium-alloy reference structure",
+        "protective finish",
+        "threaded inserts"
+      ],
+      "standards": [
+        "frame size and geometry are model-specific",
+        "tire clearance, mount loads and bottom-bracket/headset interfaces are frame-specific"
+      ],
+      "commonSymptoms": [
+        "cracks or impact damage",
+        "finish abrasion",
+        "damaged threads",
+        "loose inserts or accessory mounts"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.fork",
+        "bike.gravel.g1.headset",
+        "bike.gravel.g1.bottom-bracket",
+        "bike.gravel.g1.seatpost",
+        "bike.gravel.g1.frame-mounts",
+        "bike.gravel.g1.downtube-protector"
+      ],
+      "aliases": [
+        "gravel frame",
+        "all-road frame"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.fork",
+      "summary": "Rigid gravel fork supporting steering, braking and the front wheel.",
+      "function": "Locates the front wheel and brake while adding tire clearance and mounting interfaces suited to mixed-surface use.",
+      "materials": [
+        "carbon composite or aluminium alloy"
+      ],
+      "standards": [
+        "steerer/headset, axle and brake interfaces must match",
+        "tire clearance and accessory load limits are fork-specific"
+      ],
+      "commonSymptoms": [
+        "impact damage",
+        "cracks",
+        "steering misalignment",
+        "damaged mounts"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.frame",
+        "bike.gravel.g1.headset",
+        "bike.gravel.g1.front-wheel",
+        "bike.gravel.g1.front-caliper",
+        "bike.gravel.g1.fork-mounts"
+      ],
+      "aliases": [
+        "gravel fork",
+        "rigid fork"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.headset",
+      "summary": "Bearing system between frame and fork steerer.",
+      "function": "Allows the fork and cockpit to rotate smoothly while carrying steering and impact loads.",
+      "materials": [
+        "steel bearings",
+        "aluminium cups/covers"
+      ],
+      "standards": [
+        "bearing geometry, steerer and head-tube interfaces must match"
+      ],
+      "commonSymptoms": [
+        "play",
+        "notchy steering",
+        "creaking",
+        "rough rotation"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.frame",
+        "bike.gravel.g1.fork",
+        "bike.gravel.g1.stem"
+      ],
+      "aliases": [
+        "steering bearings"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.handlebar",
+      "summary": "Flared drop handlebar for all-road riding.",
+      "function": "Provides tops, hoods and drops while widening the lower hand position for additional leverage and control on loose surfaces.",
+      "materials": [
+        "aluminium alloy",
+        "bar tape"
+      ],
+      "standards": [
+        "stem clamp diameter and control mounting areas must match",
+        "width, reach and flare are rider/component specific"
+      ],
+      "commonSymptoms": [
+        "crash damage",
+        "bar rotation",
+        "damaged tape",
+        "loose controls"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.stem",
+        "bike.gravel.g1.left-shifter",
+        "bike.gravel.g1.right-shifter"
+      ],
+      "aliases": [
+        "flared drops",
+        "gravel bar",
+        "drop bar"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.stem",
+      "summary": "Handlebar-to-steerer connector.",
+      "function": "Sets the handlebar position relative to the steering axis and transfers steering input into the fork.",
+      "materials": [
+        "aluminium alloy",
+        "steel fasteners"
+      ],
+      "standards": [
+        "bar and steerer clamp dimensions must match",
+        "fastener torque is component-specific"
+      ],
+      "commonSymptoms": [
+        "slipping",
+        "loose fasteners",
+        "cracks",
+        "damaged clamp surfaces"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.handlebar",
+        "bike.gravel.g1.headset",
+        "bike.gravel.g1.fork"
+      ],
+      "aliases": [
+        "handlebar stem"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.left-shifter",
+      "summary": "Left integrated drop-bar control.",
+      "function": "Provides a primary hand position plus brake control and any drivetrain function supported by the actual control system.",
+      "materials": [
+        "polymer hood/body",
+        "aluminium lever",
+        "steel hardware"
+      ],
+      "standards": [
+        "brake and drivetrain actuation must match the paired components"
+      ],
+      "commonSymptoms": [
+        "sticky lever",
+        "damaged hood",
+        "poor braking feel",
+        "crash damage"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.handlebar",
+        "bike.gravel.g1.front-caliper",
+        "bike.gravel.g1.rear-caliper"
+      ],
+      "aliases": [
+        "left brifter",
+        "left control",
+        "shift brake lever"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.right-shifter",
+      "summary": "Right integrated drop-bar control.",
+      "function": "Provides braking and the rider input used to command rear derailleur shifts in the reference 1× drivetrain.",
+      "materials": [
+        "polymer hood/body",
+        "aluminium lever",
+        "steel mechanism"
+      ],
+      "standards": [
+        "shifter actuation must match derailleur/drivetrain generation",
+        "brake interface must match the paired brake system"
+      ],
+      "commonSymptoms": [
+        "poor indexing",
+        "sticky lever",
+        "damaged hood",
+        "crash damage"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.handlebar",
+        "bike.gravel.g1.rear-derailleur",
+        "bike.gravel.g1.front-caliper",
+        "bike.gravel.g1.rear-caliper"
+      ],
+      "aliases": [
+        "right brifter",
+        "right control",
+        "shift brake lever"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.front-wheel",
+      "summary": "Front mixed-surface wheel assembly.",
+      "function": "Supports the front of the bike and carries tire, rim, hub and brake rotor while steering through the fork.",
+      "materials": [
+        "aluminium rim",
+        "steel spokes",
+        "aluminium/steel hub parts"
+      ],
+      "standards": [
+        "diameter, axle and brake interfaces must match fork and tire system"
+      ],
+      "commonSymptoms": [
+        "wheel out of true",
+        "loose spokes",
+        "bearing play",
+        "rim damage"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.front-tire",
+        "bike.gravel.g1.front-rim",
+        "bike.gravel.g1.front-hub",
+        "bike.gravel.g1.front-rotor",
+        "bike.gravel.g1.front-thru-axle",
+        "bike.gravel.g1.fork"
+      ],
+      "aliases": [
+        "front wheel"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.rear-wheel",
+      "summary": "Rear driven wheel assembly.",
+      "function": "Carries rider/cargo load and transmits chain and braking forces through the freehub, spokes, rim and tire.",
+      "materials": [
+        "aluminium rim",
+        "steel spokes",
+        "aluminium/steel hub parts"
+      ],
+      "standards": [
+        "diameter, axle, freehub and brake interfaces must match frame/drivetrain"
+      ],
+      "commonSymptoms": [
+        "wheel out of true",
+        "loose spokes",
+        "bearing play",
+        "freehub noise or play"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.rear-tire",
+        "bike.gravel.g1.rear-rim",
+        "bike.gravel.g1.rear-hub",
+        "bike.gravel.g1.rear-rotor",
+        "bike.gravel.g1.rear-thru-axle",
+        "bike.gravel.g1.cassette"
+      ],
+      "aliases": [
+        "rear wheel"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.front-tire",
+      "summary": "High-volume mixed-surface front tire.",
+      "function": "Creates the steering/braking contact patch while balancing pavement efficiency, compliance and traction on rough or loose surfaces.",
+      "materials": [
+        "rubber compounds",
+        "textile casing",
+        "bead material"
+      ],
+      "standards": [
+        "diameter/width must suit rim and fork",
+        "pressure and tubeless compatibility are tire/rim-specific"
+      ],
+      "commonSymptoms": [
+        "cuts",
+        "pressure loss",
+        "sidewall damage",
+        "poor bead seating",
+        "tread wear"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.front-wheel",
+        "bike.gravel.g1.front-rim",
+        "bike.gravel.g1.fork"
+      ],
+      "aliases": [
+        "gravel tire",
+        "front tyre",
+        "all-road tire"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.rear-tire",
+      "summary": "High-volume mixed-surface rear tire.",
+      "function": "Carries rear load and drive force while balancing rolling efficiency, traction and impact compliance.",
+      "materials": [
+        "rubber compounds",
+        "textile casing",
+        "bead material"
+      ],
+      "standards": [
+        "diameter/width must suit rim and frame",
+        "pressure and tubeless compatibility are tire/rim-specific"
+      ],
+      "commonSymptoms": [
+        "cuts",
+        "pressure loss",
+        "sidewall damage",
+        "poor bead seating",
+        "tread wear"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.rear-wheel",
+        "bike.gravel.g1.rear-rim",
+        "bike.gravel.g1.frame"
+      ],
+      "aliases": [
+        "gravel tire",
+        "rear tyre",
+        "all-road tire"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.front-rim",
+      "summary": "Front wheel hoop supporting the gravel tire.",
+      "function": "Locates the tire bead and distributes spoke loads around the front wheel.",
+      "materials": [
+        "aluminium alloy"
+      ],
+      "standards": [
+        "diameter, internal width and bead design must match tire use",
+        "tubeless readiness is rim/tape/valve specific"
+      ],
+      "commonSymptoms": [
+        "dents",
+        "cracks",
+        "out-of-true condition",
+        "bead-seat damage",
+        "tape damage where tubeless"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.front-wheel",
+        "bike.gravel.g1.front-tire",
+        "bike.gravel.g1.front-hub"
+      ],
+      "aliases": [
+        "front rim",
+        "wheel rim"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.rear-rim",
+      "summary": "Rear wheel hoop supporting the driven tire.",
+      "function": "Locates the rear tire and distributes spoke and drivetrain-related loads around the wheel.",
+      "materials": [
+        "aluminium alloy"
+      ],
+      "standards": [
+        "diameter, internal width and bead design must match tire use",
+        "tubeless readiness is rim/tape/valve specific"
+      ],
+      "commonSymptoms": [
+        "dents",
+        "cracks",
+        "out-of-true condition",
+        "bead-seat damage",
+        "tape damage where tubeless"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.rear-wheel",
+        "bike.gravel.g1.rear-tire",
+        "bike.gravel.g1.rear-hub"
+      ],
+      "aliases": [
+        "rear rim",
+        "wheel rim"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.front-hub",
+      "summary": "Bearing-supported center of the front wheel.",
+      "function": "Allows wheel rotation around the axle while anchoring spokes and the brake rotor.",
+      "materials": [
+        "aluminium shell",
+        "steel bearings/axle hardware"
+      ],
+      "standards": [
+        "axle and rotor interfaces must match fork and brake system"
+      ],
+      "commonSymptoms": [
+        "bearing roughness",
+        "play",
+        "damaged axle interface",
+        "rotor-mount damage"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.front-wheel",
+        "bike.gravel.g1.front-rim",
+        "bike.gravel.g1.front-rotor",
+        "bike.gravel.g1.front-thru-axle"
+      ],
+      "aliases": [
+        "front hub"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.rear-hub",
+      "summary": "Rear hub with freehub body for the cassette.",
+      "function": "Supports wheel rotation while allowing the cassette to drive the wheel under pedaling and freewheel when coasting.",
+      "materials": [
+        "aluminium shell",
+        "steel bearings",
+        "freehub mechanism"
+      ],
+      "standards": [
+        "freehub body, axle and rotor interfaces must match cassette/frame/brake system"
+      ],
+      "commonSymptoms": [
+        "bearing roughness",
+        "freehub play",
+        "poor engagement",
+        "abnormal noise"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.rear-wheel",
+        "bike.gravel.g1.rear-rim",
+        "bike.gravel.g1.cassette",
+        "bike.gravel.g1.rear-rotor",
+        "bike.gravel.g1.rear-thru-axle"
+      ],
+      "aliases": [
+        "rear hub",
+        "freehub"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.front-rotor",
+      "summary": "Front disc-brake friction rotor.",
+      "function": "Rotates with the front hub and provides the friction surface clamped by the front brake caliper.",
+      "materials": [
+        "stainless steel"
+      ],
+      "standards": [
+        "mount type, diameter and thickness must match hub/caliper/fork configuration"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "runout",
+        "scoring",
+        "contamination",
+        "heat discoloration"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.front-hub",
+        "bike.gravel.g1.front-caliper",
+        "bike.gravel.g1.front-wheel"
+      ],
+      "aliases": [
+        "front disc",
+        "brake rotor"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.rear-rotor",
+      "summary": "Rear disc-brake friction rotor.",
+      "function": "Rotates with the rear hub and provides the friction surface for rear braking.",
+      "materials": [
+        "stainless steel"
+      ],
+      "standards": [
+        "mount type, diameter and thickness must match hub/caliper/frame configuration"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "runout",
+        "scoring",
+        "contamination",
+        "heat discoloration"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.rear-hub",
+        "bike.gravel.g1.rear-caliper",
+        "bike.gravel.g1.rear-wheel"
+      ],
+      "aliases": [
+        "rear disc",
+        "brake rotor"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.front-caliper",
+      "summary": "Front disc-brake caliper.",
+      "function": "Applies pad friction to the front rotor when commanded by its paired brake lever.",
+      "materials": [
+        "aluminium body",
+        "steel hardware",
+        "friction pads"
+      ],
+      "standards": [
+        "mount, rotor and lever/fluid/cable system must be compatible"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "leaks",
+        "uneven pad wear",
+        "sticky pistons",
+        "weak braking"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.front-rotor",
+        "bike.gravel.g1.fork",
+        "bike.gravel.g1.left-shifter",
+        "bike.gravel.g1.right-shifter"
+      ],
+      "aliases": [
+        "front brake",
+        "brake caliper"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.rear-caliper",
+      "summary": "Rear disc-brake caliper.",
+      "function": "Applies pad friction to the rear rotor when commanded by its paired brake lever.",
+      "materials": [
+        "aluminium body",
+        "steel hardware",
+        "friction pads"
+      ],
+      "standards": [
+        "mount, rotor and lever/fluid/cable system must be compatible"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "leaks",
+        "uneven pad wear",
+        "sticky pistons",
+        "weak braking"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.rear-rotor",
+        "bike.gravel.g1.frame",
+        "bike.gravel.g1.left-shifter",
+        "bike.gravel.g1.right-shifter"
+      ],
+      "aliases": [
+        "rear brake",
+        "brake caliper"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.saddle",
+      "summary": "Gravel-oriented rider seat.",
+      "function": "Supports the rider at the pelvis while allowing efficient pedaling and position changes over mixed surfaces.",
+      "materials": [
+        "synthetic cover",
+        "foam",
+        "metal/composite rails"
+      ],
+      "standards": [
+        "rail dimensions and seatpost clamp must be compatible"
+      ],
+      "commonSymptoms": [
+        "rail damage",
+        "loose shell",
+        "torn cover",
+        "unwanted movement"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.seatpost",
+        "bike.gravel.g1.frame"
+      ],
+      "aliases": [
+        "seat",
+        "gravel saddle"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.seatpost",
+      "summary": "Rigid support between frame and saddle.",
+      "function": "Sets saddle height and transmits seated loads into the frame.",
+      "materials": [
+        "carbon composite reference post",
+        "metal clamp hardware"
+      ],
+      "standards": [
+        "diameter, insertion depth and saddle clamp must suit frame and saddle"
+      ],
+      "commonSymptoms": [
+        "slipping",
+        "surface damage",
+        "cracking",
+        "clamp movement"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.frame",
+        "bike.gravel.g1.saddle"
+      ],
+      "aliases": [
+        "seat post"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.crankset",
+      "summary": "Single-ring gravel crank assembly.",
+      "function": "Turns pedal force into chainring torque through the crank arms and spindle.",
+      "materials": [
+        "aluminium alloy",
+        "steel/aluminium spindle and hardware"
+      ],
+      "standards": [
+        "spindle/bottom-bracket and chainring interfaces must be compatible"
+      ],
+      "commonSymptoms": [
+        "play",
+        "creaking",
+        "loose crank",
+        "impact damage"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.bottom-bracket",
+        "bike.gravel.g1.chainring",
+        "bike.gravel.g1.left-pedal",
+        "bike.gravel.g1.right-pedal"
+      ],
+      "aliases": [
+        "cranks",
+        "1x crankset"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.chainring",
+      "summary": "Single front sprocket in the 1× drivetrain.",
+      "function": "Receives crank torque and drives the chain while all selectable ratios are provided at the rear cassette.",
+      "materials": [
+        "aluminium alloy or steel"
+      ],
+      "standards": [
+        "mount, chainline and chain compatibility must match crank/drivetrain"
+      ],
+      "commonSymptoms": [
+        "tooth wear",
+        "bending",
+        "chain noise",
+        "poor retention"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.crankset",
+        "bike.gravel.g1.chain",
+        "bike.gravel.g1.cassette",
+        "bike.gravel.g1.rear-derailleur"
+      ],
+      "aliases": [
+        "1x chainring",
+        "front sprocket"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.bottom-bracket",
+      "summary": "Bearing assembly supporting the crank spindle.",
+      "function": "Allows the crankset to rotate in the frame while carrying pedaling and mixed-surface loads.",
+      "materials": [
+        "steel bearings",
+        "aluminium/polymer cups"
+      ],
+      "standards": [
+        "frame shell and crank spindle standards must match"
+      ],
+      "commonSymptoms": [
+        "play",
+        "roughness",
+        "creaking",
+        "contamination"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.frame",
+        "bike.gravel.g1.crankset"
+      ],
+      "aliases": [
+        "BB",
+        "crank bearings"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.chain",
+      "summary": "Flexible steel drive link.",
+      "function": "Transfers torque from the single chainring to whichever cassette sprocket the derailleur selects.",
+      "materials": [
+        "hardened steel"
+      ],
+      "standards": [
+        "pitch/width must match chainring, cassette and drivetrain generation"
+      ],
+      "commonSymptoms": [
+        "rust",
+        "stiff links",
+        "wear/elongation",
+        "noise",
+        "damage"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.chainring",
+        "bike.gravel.g1.cassette",
+        "bike.gravel.g1.rear-derailleur"
+      ],
+      "aliases": [
+        "bike chain",
+        "drive chain"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.cassette",
+      "summary": "Wide-range stack of rear sprockets.",
+      "function": "Provides the selectable ratios used for faster road sections and lower climbing gears.",
+      "materials": [
+        "steel sprockets",
+        "aluminium carrier or selected sprockets"
+      ],
+      "standards": [
+        "freehub, sprocket count/range, chain and derailleur must be compatible"
+      ],
+      "commonSymptoms": [
+        "tooth wear",
+        "skipping",
+        "looseness",
+        "damaged sprockets"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.rear-hub",
+        "bike.gravel.g1.chain",
+        "bike.gravel.g1.rear-derailleur",
+        "bike.gravel.g1.chainring"
+      ],
+      "aliases": [
+        "rear cogs",
+        "wide-range cassette"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.rear-derailleur",
+      "summary": "Rear shifting and chain-management mechanism.",
+      "function": "Moves the chain across the cassette and manages changing chain length across the wide 1× ratio range.",
+      "materials": [
+        "aluminium body/cage",
+        "steel springs/hardware",
+        "pulley wheels"
+      ],
+      "standards": [
+        "shifter actuation, cassette range, capacity and hanger interface must match"
+      ],
+      "commonSymptoms": [
+        "poor indexing",
+        "impact damage",
+        "sluggish movement",
+        "excess pulley play"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.right-shifter",
+        "bike.gravel.g1.chain",
+        "bike.gravel.g1.cassette",
+        "bike.gravel.g1.rear-wheel"
+      ],
+      "aliases": [
+        "rear mech",
+        "derailleur"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.left-pedal",
+      "summary": "Left rider foot contact.",
+      "function": "Transfers left-leg force into the crank while supporting the shoe over changing surfaces.",
+      "materials": [
+        "aluminium body",
+        "steel axle/bearings"
+      ],
+      "standards": [
+        "pedal thread must match crank"
+      ],
+      "commonSymptoms": [
+        "bearing play",
+        "binding",
+        "cracks",
+        "damaged axle or platform"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.crankset"
+      ],
+      "aliases": [
+        "pedal"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.right-pedal",
+      "summary": "Right rider foot contact.",
+      "function": "Transfers right-leg force into the crank while supporting the shoe over changing surfaces.",
+      "materials": [
+        "aluminium body",
+        "steel axle/bearings"
+      ],
+      "standards": [
+        "pedal thread must match crank"
+      ],
+      "commonSymptoms": [
+        "bearing play",
+        "binding",
+        "cracks",
+        "damaged axle or platform"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.crankset"
+      ],
+      "aliases": [
+        "pedal"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.front-thru-axle",
+      "summary": "Front wheel retaining thru axle.",
+      "function": "Clamps and locates the front hub in the fork for consistent wheel and brake positioning.",
+      "materials": [
+        "aluminium alloy or steel"
+      ],
+      "standards": [
+        "diameter, length and thread pitch must match fork/hub"
+      ],
+      "commonSymptoms": [
+        "damaged threads",
+        "bending",
+        "poor engagement",
+        "corrosion"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.fork",
+        "bike.gravel.g1.front-hub",
+        "bike.gravel.g1.front-wheel"
+      ],
+      "aliases": [
+        "front axle",
+        "thru axle"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.rear-thru-axle",
+      "summary": "Rear wheel retaining thru axle.",
+      "function": "Clamps and locates the rear hub in the frame while reacting drivetrain and brake loads.",
+      "materials": [
+        "aluminium alloy or steel"
+      ],
+      "standards": [
+        "diameter, length and thread pitch must match frame/hub"
+      ],
+      "commonSymptoms": [
+        "damaged threads",
+        "bending",
+        "poor engagement",
+        "corrosion"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.frame",
+        "bike.gravel.g1.rear-hub",
+        "bike.gravel.g1.rear-wheel",
+        "bike.gravel.g1.cassette"
+      ],
+      "aliases": [
+        "rear axle",
+        "thru axle"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.frame-mounts",
+      "summary": "Purpose-built accessory attachment points on the frame.",
+      "function": "Provide defined interfaces for compatible bottle cages, bags or accessories without improvised clamps.",
+      "materials": [
+        "threaded metal inserts",
+        "frame structure"
+      ],
+      "standards": [
+        "thread size, fastener length, placement and allowable load are frame/accessory specific"
+      ],
+      "commonSymptoms": [
+        "damaged threads",
+        "loose bolts",
+        "corrosion",
+        "spinning insert"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.frame",
+        "bike.gravel.g1.fork-mounts"
+      ],
+      "aliases": [
+        "bottle mounts",
+        "frame bosses",
+        "cargo mounts"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.fork-mounts",
+      "summary": "Accessory attachment points on the rigid fork.",
+      "function": "Provide interfaces for compatible cages or light cargo where the actual fork permits them.",
+      "materials": [
+        "threaded metal inserts",
+        "fork structure"
+      ],
+      "standards": [
+        "load, fastener length and accessory compatibility are fork-specific"
+      ],
+      "commonSymptoms": [
+        "damaged threads",
+        "loose bolts",
+        "corrosion",
+        "mount damage"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.fork",
+        "bike.gravel.g1.frame-mounts",
+        "bike.gravel.g1.front-wheel"
+      ],
+      "aliases": [
+        "fork bosses",
+        "cargo mounts"
+      ]
+    },
+    {
+      "componentId": "bike.gravel.g1.downtube-protector",
+      "summary": "Abrasion and impact-protection layer on the lower frame.",
+      "function": "Absorbs minor stone, debris and abrasion exposure before it reaches the frame surface directly.",
+      "materials": [
+        "polymer or elastomer protector"
+      ],
+      "standards": [
+        "shape, adhesive and coverage are frame-specific"
+      ],
+      "commonSymptoms": [
+        "peeling",
+        "tears",
+        "trapped debris",
+        "impact marks"
+      ],
+      "relatedComponentIds": [
+        "bike.gravel.g1.frame",
+        "bike.gravel.g1.frame-mounts"
+      ],
+      "aliases": [
+        "frame protector",
+        "downtube guard"
+      ]
+    }
+  ]
+}
