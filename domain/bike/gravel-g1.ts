@@ -8,9 +8,9 @@ export const GRAVEL_G1 = normalizeBikeDefinition(
   gravelG1 as RawBikeDefinition,
   {
     model: "prototype",
-    encyclopedia: "foundation",
-    lessons: false,
-    workshop: false,
+    encyclopedia: "full",
+    lessons: true,
+    workshop: true,
   },
 );
 
