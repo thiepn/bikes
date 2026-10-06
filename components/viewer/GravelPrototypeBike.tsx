@@ -261,6 +261,13 @@ export function GravelPrototypeBike(props: Props) {
         </mesh>
       </SemanticPart>
 
+      <SemanticPart {...semanticProps("bike.gravel.g1.bottom-bracket", state, handlers)}>
+        <mesh position={crank} rotation={[0,0,Math.PI/2]} castShadow>
+          <cylinderGeometry args={[0.045,0.045,0.12,24]} />
+          <meshStandardMaterial {...getPartAppearance("#777f84","bike.gravel.g1.bottom-bracket",state)} metalness={0.9} roughness={0.2} />
+        </mesh>
+      </SemanticPart>
+
       <SemanticPart {...semanticProps("bike.gravel.g1.crankset", state, handlers)}>
         <mesh position={crank} rotation={[0,0,Math.PI/2]} castShadow>
           <cylinderGeometry args={[0.088,0.088,0.024,36]} />
