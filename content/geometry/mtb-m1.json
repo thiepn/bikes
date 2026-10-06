@@ -1,0 +1,21 @@
+{
+  "bikeId": "bike.mtb.m1",
+  "source": "bike-atlas-reference",
+  "sizeLabel": "Reference L",
+  "wheelFormat": "29-inch",
+  "wheelbaseMm": 1235,
+  "reachMm": 470,
+  "stackMm": 630,
+  "headAngleDeg": 64.5,
+  "seatAngleDeg": 77,
+  "chainstayMm": 440,
+  "bottomBracketDropMm": 35,
+  "tireWidthMm": 61,
+  "handlebarWidthMm": 780,
+  "frontTravelMm": 150,
+  "rearTravelMm": 140,
+  "notes": [
+    "Bike Atlas reference geometry for the generic MTB M1 trail archetype.",
+    "Not a manufacturer size chart, suspension setup or fit recommendation."
+  ]
+}
