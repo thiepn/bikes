@@ -1,0 +1,771 @@
+{
+  "version": 1,
+  "donorProfiles": [
+    {
+      "bikeId": "bike.road.r1",
+      "accent": "#8fa4b8",
+      "wheelSpokes": 16,
+      "rimThickness": 0.009,
+      "hubRadius": 0.026,
+      "hubWidth": 0.12,
+      "tireThickness": 0.026,
+      "handlebarStyle": "road-drop",
+      "handlebarWidth": 0.46,
+      "seatpostRadius": 0.013,
+      "saddleSize": [
+        0.115,
+        0.035,
+        0.25
+      ],
+      "pedalSize": [
+        0.07,
+        0.018,
+        0.105
+      ],
+      "stemRadius": 0.014
+    },
+    {
+      "bikeId": "bike.gravel.g1",
+      "accent": "#ad8f69",
+      "wheelSpokes": 18,
+      "rimThickness": 0.01,
+      "hubRadius": 0.028,
+      "hubWidth": 0.135,
+      "tireThickness": 0.036,
+      "handlebarStyle": "gravel-flare",
+      "handlebarWidth": 0.64,
+      "seatpostRadius": 0.013,
+      "saddleSize": [
+        0.12,
+        0.035,
+        0.25
+      ],
+      "pedalSize": [
+        0.075,
+        0.018,
+        0.1
+      ],
+      "stemRadius": 0.014
+    },
+    {
+      "bikeId": "bike.mtb.m1",
+      "accent": "#8b9850",
+      "wheelSpokes": 16,
+      "rimThickness": 0.011,
+      "hubRadius": 0.032,
+      "hubWidth": 0.15,
+      "tireThickness": 0.041,
+      "handlebarStyle": "flat",
+      "handlebarWidth": 0.72,
+      "seatpostRadius": 0.016,
+      "saddleSize": [
+        0.13,
+        0.038,
+        0.25
+      ],
+      "pedalSize": [
+        0.08,
+        0.018,
+        0.11
+      ],
+      "stemRadius": 0.016
+    },
+    {
+      "bikeId": "bike.urban.u1",
+      "accent": "#5f8b86",
+      "wheelSpokes": 18,
+      "rimThickness": 0.009,
+      "hubRadius": 0.03,
+      "hubWidth": 0.14,
+      "tireThickness": 0.029,
+      "handlebarStyle": "swept",
+      "handlebarWidth": 0.64,
+      "seatpostRadius": 0.014,
+      "saddleSize": [
+        0.16,
+        0.045,
+        0.27
+      ],
+      "pedalSize": [
+        0.075,
+        0.02,
+        0.095
+      ],
+      "stemRadius": 0.015
+    }
+  ],
+  "hosts": [
+    {
+      "bikeId": "bike.road.r1",
+      "yawRad": -0.09,
+      "attachments": [
+        {
+          "slotId": "front-wheel",
+          "kind": "wheel",
+          "hiddenComponentIds": [
+            "bike.road.r1.front-wheel",
+            "bike.road.r1.front-rim",
+            "bike.road.r1.front-hub"
+          ],
+          "position": [
+            0,
+            0.36,
+            0.58
+          ],
+          "radius": 0.35
+        },
+        {
+          "slotId": "rear-wheel",
+          "kind": "wheel",
+          "hiddenComponentIds": [
+            "bike.road.r1.rear-wheel",
+            "bike.road.r1.rear-rim",
+            "bike.road.r1.rear-hub"
+          ],
+          "position": [
+            0,
+            0.36,
+            -0.58
+          ],
+          "radius": 0.35
+        },
+        {
+          "slotId": "front-tire",
+          "kind": "tire",
+          "hiddenComponentIds": [
+            "bike.road.r1.front-tire"
+          ],
+          "position": [
+            0,
+            0.36,
+            0.58
+          ],
+          "radius": 0.35
+        },
+        {
+          "slotId": "rear-tire",
+          "kind": "tire",
+          "hiddenComponentIds": [
+            "bike.road.r1.rear-tire"
+          ],
+          "position": [
+            0,
+            0.36,
+            -0.58
+          ],
+          "radius": 0.35
+        },
+        {
+          "slotId": "handlebar",
+          "kind": "handlebar",
+          "hiddenComponentIds": [
+            "bike.road.r1.handlebar"
+          ],
+          "position": [
+            0,
+            0.9,
+            0.405
+          ]
+        },
+        {
+          "slotId": "stem",
+          "kind": "tube",
+          "hiddenComponentIds": [
+            "bike.road.r1.stem"
+          ],
+          "from": [
+            0,
+            0.76,
+            0.34
+          ],
+          "to": [
+            0,
+            0.89,
+            0.39
+          ]
+        },
+        {
+          "slotId": "front-rotor",
+          "kind": "rotor",
+          "hiddenComponentIds": [
+            "bike.road.r1.front-rotor"
+          ],
+          "position": [
+            0.065,
+            0.36,
+            0.58
+          ]
+        },
+        {
+          "slotId": "rear-rotor",
+          "kind": "rotor",
+          "hiddenComponentIds": [
+            "bike.road.r1.rear-rotor"
+          ],
+          "position": [
+            0.065,
+            0.36,
+            -0.58
+          ]
+        },
+        {
+          "slotId": "seatpost",
+          "kind": "tube",
+          "hiddenComponentIds": [
+            "bike.road.r1.seatpost"
+          ],
+          "from": [
+            0,
+            0.79,
+            -0.22
+          ],
+          "to": [
+            0,
+            0.86,
+            -0.235
+          ]
+        },
+        {
+          "slotId": "saddle",
+          "kind": "saddle",
+          "hiddenComponentIds": [
+            "bike.road.r1.saddle"
+          ],
+          "position": [
+            0,
+            0.875,
+            -0.25
+          ]
+        },
+        {
+          "slotId": "left-pedal",
+          "kind": "pedal",
+          "hiddenComponentIds": [
+            "bike.road.r1.left-pedal"
+          ],
+          "position": [
+            -0.15,
+            0.39,
+            -0.1
+          ]
+        },
+        {
+          "slotId": "right-pedal",
+          "kind": "pedal",
+          "hiddenComponentIds": [
+            "bike.road.r1.right-pedal"
+          ],
+          "position": [
+            0.15,
+            0.39,
+            -0.1
+          ]
+        }
+      ]
+    },
+    {
+      "bikeId": "bike.gravel.g1",
+      "yawRad": -0.08,
+      "attachments": [
+        {
+          "slotId": "front-wheel",
+          "kind": "wheel",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.front-wheel",
+            "bike.gravel.g1.front-rim",
+            "bike.gravel.g1.front-hub"
+          ],
+          "position": [
+            0,
+            0.365,
+            0.615
+          ],
+          "radius": 0.355
+        },
+        {
+          "slotId": "rear-wheel",
+          "kind": "wheel",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.rear-wheel",
+            "bike.gravel.g1.rear-rim",
+            "bike.gravel.g1.rear-hub"
+          ],
+          "position": [
+            0,
+            0.365,
+            -0.615
+          ],
+          "radius": 0.355
+        },
+        {
+          "slotId": "front-tire",
+          "kind": "tire",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.front-tire"
+          ],
+          "position": [
+            0,
+            0.365,
+            0.615
+          ],
+          "radius": 0.355
+        },
+        {
+          "slotId": "rear-tire",
+          "kind": "tire",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.rear-tire"
+          ],
+          "position": [
+            0,
+            0.365,
+            -0.615
+          ],
+          "radius": 0.355
+        },
+        {
+          "slotId": "handlebar",
+          "kind": "handlebar",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.handlebar"
+          ],
+          "position": [
+            0,
+            0.885,
+            0.44
+          ]
+        },
+        {
+          "slotId": "stem",
+          "kind": "tube",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.stem"
+          ],
+          "from": [
+            0,
+            0.76,
+            0.36
+          ],
+          "to": [
+            0,
+            0.875,
+            0.43
+          ]
+        },
+        {
+          "slotId": "front-rotor",
+          "kind": "rotor",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.front-rotor"
+          ],
+          "position": [
+            0.067,
+            0.365,
+            0.615
+          ]
+        },
+        {
+          "slotId": "rear-rotor",
+          "kind": "rotor",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.rear-rotor"
+          ],
+          "position": [
+            0.067,
+            0.365,
+            -0.615
+          ]
+        },
+        {
+          "slotId": "seatpost",
+          "kind": "tube",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.seatpost"
+          ],
+          "from": [
+            0,
+            0.79,
+            -0.22
+          ],
+          "to": [
+            0,
+            0.86,
+            -0.24
+          ]
+        },
+        {
+          "slotId": "saddle",
+          "kind": "saddle",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.saddle"
+          ],
+          "position": [
+            0,
+            0.875,
+            -0.255
+          ]
+        },
+        {
+          "slotId": "left-pedal",
+          "kind": "pedal",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.left-pedal"
+          ],
+          "position": [
+            -0.155,
+            0.39,
+            -0.08
+          ]
+        },
+        {
+          "slotId": "right-pedal",
+          "kind": "pedal",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.right-pedal"
+          ],
+          "position": [
+            0.155,
+            0.39,
+            -0.08
+          ]
+        }
+      ]
+    },
+    {
+      "bikeId": "bike.mtb.m1",
+      "yawRad": -0.08,
+      "attachments": [
+        {
+          "slotId": "front-wheel",
+          "kind": "wheel",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.front-wheel",
+            "bike.mtb.m1.front-rim",
+            "bike.mtb.m1.front-hub"
+          ],
+          "position": [
+            0,
+            0.39,
+            0.64
+          ],
+          "radius": 0.38
+        },
+        {
+          "slotId": "rear-wheel",
+          "kind": "wheel",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.rear-wheel",
+            "bike.mtb.m1.rear-rim",
+            "bike.mtb.m1.rear-hub"
+          ],
+          "position": [
+            0,
+            0.39,
+            -0.64
+          ],
+          "radius": 0.38
+        },
+        {
+          "slotId": "front-tire",
+          "kind": "tire",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.front-tire"
+          ],
+          "position": [
+            0,
+            0.39,
+            0.64
+          ],
+          "radius": 0.38
+        },
+        {
+          "slotId": "rear-tire",
+          "kind": "tire",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.rear-tire"
+          ],
+          "position": [
+            0,
+            0.39,
+            -0.64
+          ],
+          "radius": 0.38
+        },
+        {
+          "slotId": "handlebar",
+          "kind": "handlebar",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.handlebar"
+          ],
+          "position": [
+            0,
+            0.88,
+            0.43
+          ]
+        },
+        {
+          "slotId": "stem",
+          "kind": "tube",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.stem"
+          ],
+          "from": [
+            0,
+            0.76,
+            0.39
+          ],
+          "to": [
+            0,
+            0.87,
+            0.42
+          ]
+        },
+        {
+          "slotId": "front-rotor",
+          "kind": "rotor",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.front-rotor"
+          ],
+          "position": [
+            0.075,
+            0.39,
+            0.64
+          ]
+        },
+        {
+          "slotId": "rear-rotor",
+          "kind": "rotor",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.rear-rotor"
+          ],
+          "position": [
+            0.075,
+            0.39,
+            -0.64
+          ]
+        },
+        {
+          "slotId": "seatpost",
+          "kind": "tube",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.dropper-post"
+          ],
+          "from": [
+            0,
+            0.77,
+            -0.25
+          ],
+          "to": [
+            0,
+            0.89,
+            -0.28
+          ]
+        },
+        {
+          "slotId": "saddle",
+          "kind": "saddle",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.saddle"
+          ],
+          "position": [
+            0,
+            0.905,
+            -0.29
+          ]
+        },
+        {
+          "slotId": "left-pedal",
+          "kind": "pedal",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.left-pedal"
+          ],
+          "position": [
+            -0.16,
+            0.42,
+            -0.12
+          ]
+        },
+        {
+          "slotId": "right-pedal",
+          "kind": "pedal",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.right-pedal"
+          ],
+          "position": [
+            0.16,
+            0.42,
+            -0.12
+          ]
+        }
+      ]
+    },
+    {
+      "bikeId": "bike.urban.u1",
+      "yawRad": -0.07,
+      "attachments": [
+        {
+          "slotId": "front-wheel",
+          "kind": "wheel",
+          "hiddenComponentIds": [
+            "bike.urban.u1.front-wheel",
+            "bike.urban.u1.front-rim",
+            "bike.urban.u1.front-hub"
+          ],
+          "position": [
+            0,
+            0.37,
+            0.62
+          ],
+          "radius": 0.36
+        },
+        {
+          "slotId": "rear-wheel",
+          "kind": "wheel",
+          "hiddenComponentIds": [
+            "bike.urban.u1.rear-wheel",
+            "bike.urban.u1.rear-rim",
+            "bike.urban.u1.rear-hub"
+          ],
+          "position": [
+            0,
+            0.37,
+            -0.62
+          ],
+          "radius": 0.36
+        },
+        {
+          "slotId": "front-tire",
+          "kind": "tire",
+          "hiddenComponentIds": [
+            "bike.urban.u1.front-tire"
+          ],
+          "position": [
+            0,
+            0.37,
+            0.62
+          ],
+          "radius": 0.36
+        },
+        {
+          "slotId": "rear-tire",
+          "kind": "tire",
+          "hiddenComponentIds": [
+            "bike.urban.u1.rear-tire"
+          ],
+          "position": [
+            0,
+            0.37,
+            -0.62
+          ],
+          "radius": 0.36
+        },
+        {
+          "slotId": "handlebar",
+          "kind": "handlebar",
+          "hiddenComponentIds": [
+            "bike.urban.u1.handlebar"
+          ],
+          "position": [
+            0,
+            0.96,
+            0.37
+          ]
+        },
+        {
+          "slotId": "stem",
+          "kind": "tube",
+          "hiddenComponentIds": [
+            "bike.urban.u1.stem"
+          ],
+          "from": [
+            0,
+            0.75,
+            0.38
+          ],
+          "to": [
+            0,
+            0.96,
+            0.37
+          ]
+        },
+        {
+          "slotId": "front-rotor",
+          "kind": "rotor",
+          "hiddenComponentIds": [
+            "bike.urban.u1.front-rotor"
+          ],
+          "position": [
+            0.07,
+            0.37,
+            0.62
+          ]
+        },
+        {
+          "slotId": "rear-rotor",
+          "kind": "rotor",
+          "hiddenComponentIds": [
+            "bike.urban.u1.rear-rotor"
+          ],
+          "position": [
+            0.07,
+            0.37,
+            -0.62
+          ]
+        },
+        {
+          "slotId": "seatpost",
+          "kind": "tube",
+          "hiddenComponentIds": [
+            "bike.urban.u1.seatpost"
+          ],
+          "from": [
+            0,
+            0.72,
+            -0.27
+          ],
+          "to": [
+            0,
+            0.88,
+            -0.285
+          ]
+        },
+        {
+          "slotId": "saddle",
+          "kind": "saddle",
+          "hiddenComponentIds": [
+            "bike.urban.u1.saddle"
+          ],
+          "position": [
+            0,
+            0.9,
+            -0.29
+          ]
+        },
+        {
+          "slotId": "left-pedal",
+          "kind": "pedal",
+          "hiddenComponentIds": [
+            "bike.urban.u1.left-pedal"
+          ],
+          "position": [
+            -0.16,
+            0.4,
+            -0.1
+          ]
+        },
+        {
+          "slotId": "right-pedal",
+          "kind": "pedal",
+          "hiddenComponentIds": [
+            "bike.urban.u1.right-pedal"
+          ],
+          "position": [
+            0.16,
+            0.4,
+            -0.1
+          ]
+        }
+      ]
+    }
+  ]
+}
