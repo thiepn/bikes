@@ -1,81 +1,89 @@
 # Bike Atlas
 
-Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning, maintenance and use-case fit.
+Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning, maintenance, history and use-case fit.
 
 ## Current phase
 
-**P17 — Gravel G1 Deep Knowledge, All-Road Learning & Gravel Workshop**
+**P18 — Bicycle History, Evolution Timeline & Engineering Lineage**
 
-Bike Atlas now contains four complete content families:
+Bike Atlas now contains a global sourced History workspace connecting historical bicycle development directly to the four modern interactive archetypes.
 
-### Road R1
-
-Performance-road archetype with full encyclopedia, Learn, Workshop and interactive 3D.
-
-### MTB M1
-
-Full-suspension trail archetype with full encyclopedia, MTB Learn, MTB Workshop and interactive 3D.
-
-### Urban U1
-
-Dutch-style utility archetype with full encyclopedia, city/utility Learn, everyday Workshop and interactive 3D.
-
-### Gravel G1
-
-All-road archetype with:
-
-- **34 / 34 full encyclopedia profiles**;
-- **4 Gravel-specific interactive lessons**;
-- **4 mixed-surface Workshop procedures**;
-- **34 / 34 interactive prototype parts**;
-- P12 comparison;
-- P13 Finder integration.
-
-Gravel Learn now covers:
+Current History foundation:
 
 ```text
-tire volume / pressure concepts
-1× wide-range gearing
-flared-drop control
-mounts + bikepacking load concepts
+12 historical milestones
+6 eras
+8 engineering/history categories
+40 modern-component lineage links
+18 source references
 ```
 
-Gravel Workshop now covers:
+The timeline currently spans:
 
 ```text
-mixed-surface pre-ride inspection
-tire / rim / tubeless-condition inspection
-1× drivetrain inspection
-mount + cargo clearance inspection
+1817  steerable draisine
+1863  pedal velocipede
+1871  wire-spoked high-wheel Ordinary
+1880s safety-bicycle convergence
+1888  practical pneumatic bicycle tire
+1890s bicycle transport boom
+1902  internal-gear hub
+1937  derailleur Tour adoption
+1970s mountain-bike emergence
+1976  Repack
+1990–1996 global MTB institutionalization
+Today modern specialization
 ```
 
-Bike Atlas does not invent universal tire pressure, tubeless sealant quantity, tire clearance, drivetrain range, cargo capacity, mounting-point load or component torque. Those remain tied to the real bicycle and components.
+P18 deliberately preserves historical uncertainty instead of inventing clean origin stories:
 
-Current Gravel content:
+- pedal attribution in the Michaux workshop is treated as disputed;
+- Dunlop's practical 1888 pneumatic tire is shown alongside Thomson's earlier pneumatic-tire work;
+- 1937 is treated as derailleur adoption in the Tour, not derailleur invention;
+- mountain biking is treated as an evolving movement rather than the creation of one person.
+
+### Trace it into Bike Atlas
+
+Every milestone links into current semantic 3D components.
+
+For example:
 
 ```text
-34 semantic components
-34 encyclopedia profiles
-34 interactive 3D parts
-20 assembly connections
-4 lessons / 18 lesson steps
-4 Workshop procedures / 16 steps
+1888 pneumatic tire
+├─ Road R1 tire
+├─ MTB M1 tire
+├─ Urban U1 tire
+└─ Gravel G1 tire
 ```
 
-Example links:
+Selecting a lineage target exits History directly into that bike/component in the normal 3D Explore viewer.
+
+### History deep links
 
 ```text
-/?bike=gravel-g1&lesson=gravel-tire-volume-pressure
-/?bike=gravel-g1&lesson=gravel-one-by-gearing
-/?bike=gravel-g1&workshop=gravel-tire-rim-check
-/?bike=gravel-g1&workshop=gravel-mount-cargo-check
+/?history=1817-draisine-steering
+/?history=1888-pneumatic-tire
+/?history=1902-internal-gear-hub
+/?history=1976-repack-race
+/?history=today-specialized-branches
 ```
 
-The P13 Mixed exploration preset continues to resolve to:
+History is global and mutually exclusive with Finder, Compare, Learn, Workshop and Encyclopedia.
+
+### Source families
+
+Milestone evidence currently comes from:
 
 ```text
-Gravel G1 — 100/100 strong current match
+Smithsonian Institution
+National Museums Scotland
+Sturmey-Archer
+Conservatoire national des arts et métiers
+Marin Museum of Bicycling / Mountain Bike Hall of Fame
+Union Cycliste Internationale
 ```
+
+Each milestone stores its own source links.
 
 Run all domain checks with:
 
@@ -83,4 +91,4 @@ Run all domain checks with:
 npm run validate:domain
 ```
 
-See `docs/P1.md` through `docs/P17.md`.
+See `docs/P1.md` through `docs/P18.md`.
