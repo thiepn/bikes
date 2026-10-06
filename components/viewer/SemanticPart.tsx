@@ -24,6 +24,7 @@ export function SemanticPart({
   mode,
   explosionAmount,
   removedIds,
+  hiddenIds = [],
   ghost,
   onSelect,
   onHover,
@@ -54,23 +55,26 @@ export function SemanticPart({
   const hiddenByIsolation = Boolean(
     isolated && selectedId && selectedId !== componentId,
   );
+  const hiddenByBuild = hiddenIds.includes(componentId);
 
   return (
     <group
       position={position}
+      visible={!hiddenByBuild}
       userData={{
         componentId,
         selected: selectedId === componentId,
         isolated: hiddenByIsolation,
         removed: removedIds.includes(componentId),
+        buildHidden: hiddenByBuild,
         comparisonGhost: Boolean(ghost),
         inspectionMode: mode,
         explosionAmount,
       }}
-      onClick={ghost ? undefined : select}
-      onDoubleClick={ghost ? undefined : isolatePart}
-      onPointerOver={ghost ? undefined : enter}
-      onPointerOut={ghost ? undefined : leave}
+      onClick={ghost || hiddenByBuild ? undefined : select}
+      onDoubleClick={ghost || hiddenByBuild ? undefined : isolatePart}
+      onPointerOver={ghost || hiddenByBuild ? undefined : enter}
+      onPointerOut={ghost || hiddenByBuild ? undefined : leave}
     >
       {children}
     </group>
