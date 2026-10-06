@@ -67,12 +67,11 @@
       "defaultMaxChanges": 4,
       "defaultGeometryGuard": "open",
       "weights": {
-        "upright": 0.3,
+        "upright": 0.35,
         "tireWidth": 0.2,
         "barWidthComfort": 0.15,
         "stability": 0.14,
         "hardpackSpeed": 0.08,
-        "mass": 0.05,
         "range": 0.08
       }
     },
