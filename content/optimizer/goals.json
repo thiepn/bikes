@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "notes": [
+    "P25 goals score fictional Bike Atlas reference builds, not purchasing advice or manufacturer recommendations.",
+    "Hard compatibility/system constraints are applied before preference scoring.",
+    "Goal weights explain relative search priorities and are intentionally inspectable."
+  ],
+  "goals": [
+    {
+      "id": "speed",
+      "name": "Speed",
+      "shortName": "Fast",
+      "description": "Prioritize flat-road speed, low drag and low mass while retaining usable top gearing.",
+      "emphasis": "Aerodynamics + rolling performance",
+      "defaultMaxChanges": 4,
+      "defaultGeometryGuard": "balanced",
+      "weights": {
+        "flatSpeed": 0.34,
+        "aero": 0.25,
+        "mass": 0.15,
+        "highGear": 0.1,
+        "hardpackSpeed": 0.06,
+        "upright": 0.1
+      }
+    },
+    {
+      "id": "climbing",
+      "name": "Climbing",
+      "shortName": "Climb",
+      "description": "Prioritize steep-gradient speed, low mass and genuinely low gearing with adequate range.",
+      "emphasis": "Gradient speed + low gear",
+      "defaultMaxChanges": 4,
+      "defaultGeometryGuard": "balanced",
+      "weights": {
+        "climbSpeed": 0.34,
+        "mass": 0.2,
+        "lowGear": 0.24,
+        "range": 0.1,
+        "aero": 0.05,
+        "hardpackSpeed": 0.07
+      }
+    },
+    {
+      "id": "mixed-surface",
+      "name": "Mixed Surface",
+      "shortName": "Mixed",
+      "description": "Balance hardpack efficiency with tire volume, low gearing, braking and stable geometry.",
+      "emphasis": "Surface versatility + control",
+      "defaultMaxChanges": 4,
+      "defaultGeometryGuard": "balanced",
+      "weights": {
+        "hardpackSpeed": 0.24,
+        "tireWidth": 0.2,
+        "lowGear": 0.15,
+        "stability": 0.14,
+        "braking": 0.1,
+        "range": 0.1,
+        "mass": 0.07
+      }
+    },
+    {
+      "id": "comfort",
+      "name": "Comfort",
+      "shortName": "Comfort",
+      "description": "Prioritize a less aggressive contact-point position, useful tire volume and calm steering.",
+      "emphasis": "Contact points + compliance proxy",
+      "defaultMaxChanges": 4,
+      "defaultGeometryGuard": "open",
+      "weights": {
+        "upright": 0.3,
+        "tireWidth": 0.2,
+        "barWidthComfort": 0.15,
+        "stability": 0.14,
+        "hardpackSpeed": 0.08,
+        "mass": 0.05,
+        "range": 0.08
+      }
+    },
+    {
+      "id": "utility",
+      "name": "Utility",
+      "shortName": "Utility",
+      "description": "Prioritize stable, upright, durable-reference configuration with broad gearing and practical surface capability.",
+      "emphasis": "Stability + everyday range",
+      "defaultMaxChanges": 5,
+      "defaultGeometryGuard": "open",
+      "weights": {
+        "upright": 0.2,
+        "tireWidth": 0.15,
+        "stability": 0.15,
+        "internalGear": 0.15,
+        "hardpackSpeed": 0.1,
+        "range": 0.1,
+        "braking": 0.1,
+        "mass": 0.05
+      }
+    }
+  ]
+}
