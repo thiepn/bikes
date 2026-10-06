@@ -1143,7 +1143,7 @@ export function BikeViewer() {
         else if (comparisonOpen) setComparisonOpen(false);
         else if (finderOpen) setFinderOpen(false);
         else if (historyOpen) setHistoryOpen(false);
-      setPhysicsOpen(false);
+        else if (physicsOpen) setPhysicsOpen(false);
         else select(null);
         return;
       }
