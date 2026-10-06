@@ -11,6 +11,7 @@ import {
   getOptimizationGoal,
 } from "@/domain/optimizer/catalog";
 import { optimizeBuild } from "@/domain/optimizer/optimize";
+import { ParetoFrontierPanel } from "@/components/optimizer/ParetoFrontierPanel";
 import type {
   GeometryGuard,
   OptimizationConstraints,
@@ -25,6 +26,16 @@ type Props = {
   onOpenBuild: (next: Record<string, string>) => void;
   onClose: () => void;
 };
+
+type OptimizerView = "ranked" | "frontier";
+
+function initialView(): OptimizerView {
+  if (typeof window === "undefined") return "ranked";
+  return new URL(window.location.href).searchParams.get("optView") ===
+    "frontier"
+    ? "frontier"
+    : "ranked";
+}
 
 function initialGoal(): OptimizationGoalId {
   if (typeof window === "undefined") return "speed";
@@ -165,6 +176,7 @@ export function BuildOptimizerPanel({
   onOpenBuild,
   onClose,
 }: Props) {
+  const [view, setView] = useState<OptimizerView>(initialView);
   const [goalId, setGoalId] =
     useState<OptimizationGoalId>(initialGoal);
   const [maxChanges, setMaxChanges] = useState(initialMaxChanges);
@@ -186,13 +198,15 @@ export function BuildOptimizerPanel({
 
   const optimization = useMemo(
     () =>
-      optimizeBuild(
-        bikeId,
-        goal,
-        buildSelections,
-        constraints,
-      ),
-    [bikeId, buildSelections, constraints, goal],
+      view === "ranked"
+        ? optimizeBuild(
+            bikeId,
+            goal,
+            buildSelections,
+            constraints,
+          )
+        : null,
+    [bikeId, buildSelections, constraints, goal, view],
   );
 
   const selected =
@@ -210,6 +224,15 @@ export function BuildOptimizerPanel({
     if (typeof window === "undefined") return;
     const url = new URL(window.location.href);
     url.searchParams.set("optimize", "1");
+    if (view === "frontier") {
+      url.searchParams.set("optView", "frontier");
+    } else {
+      url.searchParams.delete("optView");
+      url.searchParams.delete("optX");
+      url.searchParams.delete("optY");
+      url.searchParams.delete("optPoint");
+    }
+
     if (goalId === "speed") url.searchParams.delete("optGoal");
     else url.searchParams.set("optGoal", goalId);
 
@@ -234,6 +257,7 @@ export function BuildOptimizerPanel({
     goalId,
     maxChanges,
     preserveCurrentChanges,
+    view,
   ]);
 
   return (
@@ -247,8 +271,8 @@ export function BuildOptimizerPanel({
           <h2>Optimize the whole bicycle.</h2>
           <p>
             Search compatible component combinations, reject mechanically
-            blocked builds, enforce geometry limits and rank the remaining
-            bicycles by an explicit goal model.
+            blocked builds, enforce geometry limits, rank single-goal
+            configurations, or explore non-dominated trade-offs.
           </p>
         </div>
         <button
@@ -262,6 +286,30 @@ export function BuildOptimizerPanel({
       </header>
 
       <div className="optimizer-body">
+        <div className="optimizer-view-tabs" role="tablist" aria-label="Optimizer view">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={view === "ranked"}
+            className={view === "ranked" ? "is-active" : ""}
+            onClick={() => setView("ranked")}
+          >
+            Ranked
+            <span>single goal</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={view === "frontier"}
+            className={view === "frontier" ? "is-active" : ""}
+            onClick={() => setView("frontier")}
+          >
+            Frontier
+            <span>Pareto trade-offs</span>
+          </button>
+        </div>
+
+        {view === "ranked" && (
         <section className="optimizer-goals">
           <div className="optimizer-section-title">
             <span>Goal</span>
@@ -289,6 +337,8 @@ export function BuildOptimizerPanel({
             ))}
           </div>
         </section>
+
+        )}
 
         <section className="optimizer-constraints">
           <div className="optimizer-section-title">
@@ -350,6 +400,16 @@ export function BuildOptimizerPanel({
           </div>
         </section>
 
+        {view === "frontier" ? (
+          <ParetoFrontierPanel
+            bikeId={bikeId}
+            buildSelections={buildSelections}
+            constraints={constraints}
+            onApplySelections={onApplySelections}
+            onOpenBuild={onOpenBuild}
+          />
+        ) : (
+          <>
         {optimization && (
           <section className="optimizer-search-status">
             <article>
@@ -549,13 +609,16 @@ export function BuildOptimizerPanel({
           </section>
         )}
 
+          </>
+        )}
+
         <section className="optimizer-boundary">
-          <strong>P25 model boundary</strong>
+          <strong>P25–P26 model boundary</strong>
           <p>
             Optimization searches only the fictional Bike Atlas donor
-            library. Goal weights are transparent heuristics over the
-            existing compatibility, geometry, gearing and Physics reference
-            models. This is not purchasing advice, manufacturer
+            library. Goal weights and explored Pareto axes are transparent
+            heuristics over the existing compatibility, geometry, gearing
+            and Physics reference models. This is not purchasing advice, manufacturer
             certification, structural engineering or personal fitting.
           </p>
         </section>
