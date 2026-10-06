@@ -7,11 +7,10 @@ export interface BikeCapabilities {
   workshop: boolean;
 }
 
-export interface RawBikeComponent
-  extends Omit<
-    BikeComponent,
-    "interfaces" | "learningConceptIds" | "procedureIds" | "failureModeIds"
-  > {}
+export type RawBikeComponent = Omit<
+  BikeComponent,
+  "interfaces" | "learningConceptIds" | "procedureIds" | "failureModeIds"
+>;
 
 export interface RawBikeDefinition {
   id: string;
