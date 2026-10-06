@@ -21,7 +21,7 @@ import {
   WORKSHOP_CATALOG,
   getWorkshopProcedure,
 } from "@/domain/workshop/catalog";
-import { KnowledgeSearch } from "@/components/knowledge/KnowledgeSearch";
+import { GlobalKnowledgePanel } from "@/components/knowledge/GlobalKnowledgePanel";
 import { ComparisonPanel } from "@/components/comparison/ComparisonPanel";
 import { BikeFinderPanel } from "@/components/finder/BikeFinderPanel";
 import { HistoryPanel } from "@/components/history/HistoryPanel";
@@ -29,6 +29,7 @@ import {
   HISTORY_EVENTS,
   getHistoryEvent,
 } from "@/domain/history/catalog";
+import { getEngineeringConcept } from "@/domain/knowledge/concepts";
 import {
   decodeFinderAnswers,
   encodeFinderAnswers,
@@ -84,6 +85,7 @@ export function BikeViewer() {
   const [learningOpen, setLearningOpen] = useState(false);
   const [workshopOpen, setWorkshopOpen] = useState(false);
   const [knowledgeOpen, setKnowledgeOpen] = useState(false);
+  const [activeConceptId, setActiveConceptId] = useState<string | null>(null);
   const [comparisonOpen, setComparisonOpen] = useState(false);
   const [finderOpen, setFinderOpen] = useState(false);
   const [finderAnswers, setFinderAnswers] = useState<FinderAnswers>({});
@@ -302,6 +304,7 @@ export function BikeViewer() {
     setLearningOpen(false);
     setWorkshopOpen(false);
     setKnowledgeOpen(false);
+    setActiveConceptId(null);
     setComparisonOpen(false);
     setFinderOpen(false);
     setHistoryOpen(false);
@@ -327,6 +330,7 @@ export function BikeViewer() {
         "overlay",
         "finder",
         "history",
+        "concept",
       ]) {
         url.searchParams.delete(key);
       }
@@ -355,6 +359,7 @@ export function BikeViewer() {
       setLearningOpen(false);
       setWorkshopOpen(false);
       setKnowledgeOpen(false);
+      setActiveConceptId(null);
       setExperienceMode("explore");
     },
     [],
@@ -383,6 +388,7 @@ export function BikeViewer() {
       setLearningOpen(false);
       setWorkshopOpen(false);
       setKnowledgeOpen(false);
+      setActiveConceptId(null);
       setComparisonOpen(false);
       setFinderOpen(false);
       setExperienceMode("explore");
@@ -402,6 +408,7 @@ export function BikeViewer() {
           "overlay",
           "finder",
           "history",
+          "concept",
         ]) {
           url.searchParams.delete(key);
         }
@@ -410,6 +417,26 @@ export function BikeViewer() {
     },
     [],
   );
+
+  const openKnowledgeHistory = useCallback((eventId: string) => {
+    const event = getHistoryEvent(eventId);
+    if (!event) return;
+
+    setActiveHistoryEventId(event.id);
+    setHistoryOpen(true);
+    setKnowledgeOpen(false);
+    setActiveConceptId(null);
+    setLearningOpen(false);
+    setWorkshopOpen(false);
+    setComparisonOpen(false);
+    setFinderOpen(false);
+    setSelectedId(null);
+    setHoveredId(null);
+    setIsolated(false);
+    setMode("normal");
+    setExplosionAmount(0);
+    setExperienceMode("explore");
+  }, []);
 
   const swapComparison = useCallback(() => {
     const nextPrimary = getBikeById(comparisonBikeId);
@@ -486,6 +513,7 @@ export function BikeViewer() {
       setLearningOpen(false);
       setWorkshopOpen(false);
       setKnowledgeOpen(false);
+      setActiveConceptId(null);
       setComparisonOpen(false);
       setFinderOpen(false);
       setHistoryOpen(false);
@@ -600,6 +628,7 @@ export function BikeViewer() {
       setLearningOpen(false);
       setWorkshopOpen(false);
       setKnowledgeOpen(false);
+      setActiveConceptId(null);
       setComparisonOpen(false);
       setFinderOpen(false);
       setHistoryOpen(false);
@@ -715,6 +744,7 @@ export function BikeViewer() {
     setLearningOpen(false);
     setWorkshopOpen(false);
     setKnowledgeOpen(false);
+    setActiveConceptId(null);
     setComparisonOpen(false);
     setFinderOpen(false);
     setHistoryOpen(false);
@@ -737,6 +767,7 @@ export function BikeViewer() {
         "overlay",
         "finder",
         "history",
+        "concept",
       ]) {
         url.searchParams.delete(key);
       }
@@ -757,6 +788,9 @@ export function BikeViewer() {
     );
     const requestedHistory = getHistoryEvent(
       url.searchParams.get("history"),
+    );
+    const requestedConcept = getEngineeringConcept(
+      url.searchParams.get("concept"),
     );
     const slug = url.searchParams.get("part");
     const view = url.searchParams.get("view") as InspectionMode | null;
@@ -807,9 +841,16 @@ export function BikeViewer() {
 
     setActiveBikeId(requestedBike.id);
 
-    if (requestedHistory) {
+    if (requestedConcept) {
+      setActiveConceptId(requestedConcept.id);
+      setKnowledgeOpen(true);
+      setHistoryOpen(false);
+      setFinderOpen(false);
+      setComparisonOpen(false);
+    } else if (requestedHistory) {
       setActiveHistoryEventId(requestedHistory.id);
       setHistoryOpen(true);
+      setKnowledgeOpen(false);
       setFinderOpen(false);
       setComparisonOpen(false);
     } else if (Object.keys(requestedFinder).length > 0) {
@@ -830,6 +871,7 @@ export function BikeViewer() {
       view ||
       requestedCompare ||
       requestedHistory ||
+      requestedConcept ||
       Object.keys(requestedFinder).length > 0 ||
       requestedBike.id !== ROAD_R1.id
     ) {
@@ -896,6 +938,7 @@ export function BikeViewer() {
       url.searchParams.delete("overlay");
       url.searchParams.delete("finder");
       url.searchParams.delete("history");
+      url.searchParams.delete("concept");
       url.searchParams.set("lesson", lesson.id);
       url.searchParams.set(
         "step",
@@ -916,6 +959,7 @@ export function BikeViewer() {
       url.searchParams.delete("overlay");
       url.searchParams.delete("finder");
       url.searchParams.delete("history");
+      url.searchParams.delete("concept");
       url.searchParams.set("workshop", procedure.id);
       url.searchParams.set(
         "step",
@@ -1004,6 +1048,12 @@ export function BikeViewer() {
       url.searchParams.delete("history");
     }
 
+    if (knowledgeOpen && activeConceptId) {
+      url.searchParams.set("concept", activeConceptId);
+    } else {
+      url.searchParams.delete("concept");
+    }
+
     window.history.replaceState({}, "", url);
   }, [
     activeBike.id,
@@ -1015,6 +1065,8 @@ export function BikeViewer() {
     finderOpen,
     historyOpen,
     activeHistoryEventId,
+    knowledgeOpen,
+    activeConceptId,
     experienceMode,
     mode,
     explosionAmount,
@@ -1238,7 +1290,9 @@ export function BikeViewer() {
                       : "knowledge-launch"
                   }
                   onClick={() => {
-                    setKnowledgeOpen((value) => !value);
+                    const nextOpen = !knowledgeOpen;
+                    setKnowledgeOpen(nextOpen);
+                    if (!nextOpen) setActiveConceptId(null);
                     setLearningOpen(false);
                     setWorkshopOpen(false);
                     setComparisonOpen(false);
@@ -1246,7 +1300,7 @@ export function BikeViewer() {
                     setHistoryOpen(false);
                   }}
                 >
-                  Encyclopedia
+                  Search
                   <span aria-hidden="true">⌕</span>
                 </button>
               )}
@@ -1403,14 +1457,20 @@ export function BikeViewer() {
           onClose={() => setWorkshopOpen(false)}
         />
       ) : knowledgeOpen ? (
-        <KnowledgeSearch
-          bikeId={activeBike.id}
-          selectedId={selectedId}
-          onSelect={(componentId) => {
-            select(componentId);
+        <GlobalKnowledgePanel
+          conceptId={activeConceptId}
+          onConceptChange={setActiveConceptId}
+          onOpenBike={changeBike}
+          onOpenComponent={openHistoryTarget}
+          onOpenLesson={(lessonId) => startLesson(lessonId, 0)}
+          onOpenWorkshop={(procedureId) =>
+            startWorkshopProcedure(procedureId, 0)
+          }
+          onOpenHistory={openKnowledgeHistory}
+          onClose={() => {
             setKnowledgeOpen(false);
+            setActiveConceptId(null);
           }}
-          onClose={() => setKnowledgeOpen(false)}
         />
       ) : (
         <>
