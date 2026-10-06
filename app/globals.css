@@ -6973,3 +6973,483 @@ body {
   font-size: 7px;
   font-weight: 660;
 }
+
+
+/* P26 Pareto frontier */
+.optimizer-view-tabs {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  margin-bottom: 14px;
+  padding: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.optimizer-view-tabs button {
+  display: grid;
+  gap: 1px;
+  min-width: 116px;
+  min-height: 42px;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 7px;
+  color: #7a8780;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-size: 8px;
+  font-weight: 730;
+}
+
+.optimizer-view-tabs button span {
+  color: #5f6b64;
+  font-size: 6px;
+  font-weight: 560;
+}
+
+.optimizer-view-tabs button.is-active {
+  color: #e0efb5;
+  background: rgba(216, 255, 103, 0.055);
+}
+
+.optimizer-view-tabs button.is-active span {
+  color: #87966f;
+}
+
+.frontier-panel {
+  margin-top: 15px;
+}
+
+.frontier-axis-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 8px;
+  align-items: end;
+}
+
+.frontier-axis-controls label {
+  display: grid;
+  gap: 5px;
+}
+
+.frontier-axis-controls label span {
+  color: #6c7871;
+  font-size: 7px;
+  font-weight: 760;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.frontier-axis-controls select {
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 9px;
+  color: #bec9c1;
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 8px;
+}
+
+.frontier-swap {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(216, 255, 103, 0.1);
+  border-radius: 9px;
+  color: #9caf78;
+  background: rgba(216, 255, 103, 0.025);
+  cursor: pointer;
+}
+
+.frontier-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 11px;
+}
+
+.frontier-summary article {
+  display: grid;
+  gap: 3px;
+  padding: 8px 9px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.016);
+}
+
+.frontier-summary span {
+  color: #657169;
+  font-size: 6px;
+  text-transform: uppercase;
+}
+
+.frontier-summary strong {
+  color: #c3cec6;
+  font-size: 13px;
+  font-weight: 680;
+}
+
+.frontier-chart-wrap {
+  margin-top: 10px;
+  padding: 10px 10px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.045);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 85% 10%, rgba(216, 255, 103, 0.035), transparent 28%),
+    rgba(255, 255, 255, 0.01);
+}
+
+.frontier-chart {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  overflow: visible;
+}
+
+.frontier-chart text {
+  fill: #5f6c64;
+  font-size: 8px;
+  user-select: none;
+}
+
+.frontier-chart .frontier-axis-label {
+  fill: #7b887f;
+  font-size: 9px;
+  font-weight: 650;
+}
+
+.frontier-grid {
+  stroke: rgba(255, 255, 255, 0.04);
+  stroke-width: 1;
+}
+
+.frontier-line {
+  fill: none;
+  stroke: rgba(216, 255, 103, 0.24);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.frontier-point {
+  fill: #8ea360;
+  stroke: rgba(216, 255, 103, 0.18);
+  stroke-width: 3;
+  cursor: pointer;
+  transition:
+    r 120ms ease,
+    fill 120ms ease,
+    stroke 120ms ease;
+}
+
+.frontier-point:hover,
+.frontier-point:focus {
+  outline: none;
+  fill: #bddb72;
+  stroke: rgba(216, 255, 103, 0.42);
+}
+
+.frontier-point.is-selected {
+  fill: #d8ff67;
+  stroke: rgba(216, 255, 103, 0.34);
+}
+
+.frontier-point.is-pinned {
+  fill: #8fc7d0;
+  stroke: rgba(143, 199, 208, 0.34);
+}
+
+.frontier-current rect {
+  fill: rgba(255, 255, 255, 0.45);
+  stroke: rgba(255, 255, 255, 0.22);
+}
+
+.frontier-current text {
+  fill: #89948d;
+  font-size: 7px;
+}
+
+.frontier-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 1px;
+}
+
+.frontier-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #68756d;
+  font-size: 6px;
+}
+
+.frontier-legend i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.frontier-legend-current {
+  border-radius: 1px !important;
+  background: rgba(255, 255, 255, 0.45);
+  transform: rotate(45deg);
+}
+
+.frontier-legend-point {
+  background: #8ea360;
+}
+
+.frontier-legend-pin {
+  background: #8fc7d0;
+}
+
+.frontier-selector {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.frontier-selector input[type="range"] {
+  width: 100%;
+  accent-color: #d8ff67;
+}
+
+.frontier-selector button {
+  width: 30px;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  color: #839087;
+  background: rgba(255, 255, 255, 0.016);
+  cursor: pointer;
+}
+
+.frontier-selector button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.frontier-inspector {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.frontier-inspector > header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: start;
+}
+
+.frontier-inspector > header span {
+  color: #68756d;
+  font-size: 7px;
+  font-weight: 760;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.frontier-inspector h3 {
+  margin: 4px 0 0;
+  color: #dce5df;
+  font-size: 20px;
+  font-weight: 570;
+  letter-spacing: -0.03em;
+}
+
+.frontier-inspector h3 i {
+  color: #69756e;
+  font-style: normal;
+  font-weight: 450;
+}
+
+.frontier-point-actions button {
+  min-height: 30px;
+  padding: 0 9px;
+  border: 1px solid rgba(143, 199, 208, 0.12);
+  border-radius: 8px;
+  color: #90aeb1;
+  background: rgba(143, 199, 208, 0.025);
+  cursor: pointer;
+  font-size: 7px;
+  font-weight: 690;
+}
+
+.frontier-objective-bars {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.frontier-objective-bars article {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 5px 8px;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.016);
+}
+
+.frontier-objective-bars span {
+  color: #69766e;
+  font-size: 6px;
+}
+
+.frontier-objective-bars strong {
+  color: #c7d2ca;
+  font-size: 10px;
+  font-weight: 690;
+}
+
+.frontier-objective-bars i {
+  grid-column: 1 / -1;
+  display: block;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(216, 255, 103, 0.45);
+}
+
+.frontier-changes,
+.frontier-metrics {
+  margin-top: 13px;
+}
+
+.frontier-changes > div:last-child,
+.frontier-metrics > div:last-child {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+  margin-top: 7px;
+}
+
+.frontier-changes article,
+.frontier-metrics article {
+  display: grid;
+  gap: 3px;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.016);
+}
+
+.frontier-changes article span,
+.frontier-metrics article span {
+  color: #66736b;
+  font-size: 6px;
+}
+
+.frontier-changes article strong,
+.frontier-metrics article strong {
+  color: #b9c5bd;
+  font-size: 8px;
+  font-weight: 650;
+}
+
+.frontier-metrics article small {
+  color: #7f8c84;
+  font-size: 6px;
+}
+
+.frontier-compare {
+  margin-top: 11px;
+  padding: 9px 10px;
+  border: 1px solid rgba(143, 199, 208, 0.09);
+  border-radius: 9px;
+  background: rgba(143, 199, 208, 0.018);
+}
+
+.frontier-compare > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.frontier-compare span {
+  color: #738186;
+  font-size: 6px;
+  text-transform: uppercase;
+}
+
+.frontier-compare strong {
+  color: #9db5b7;
+  font-size: 7px;
+}
+
+.frontier-compare p {
+  margin: 5px 0 0;
+  color: #6c7978;
+  font-size: 7px;
+  line-height: 1.45;
+}
+
+.frontier-empty,
+.frontier-boundary {
+  margin-top: 11px;
+  padding: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.045);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.frontier-empty strong,
+.frontier-boundary strong {
+  color: #849188;
+  font-size: 8px;
+  font-weight: 730;
+}
+
+.frontier-empty p,
+.frontier-boundary p {
+  margin: 5px 0 0;
+  color: #68756d;
+  font-size: 7px;
+  line-height: 1.5;
+}
+
+.optimizer-view-tabs button:focus-visible,
+.frontier-axis-controls select:focus-visible,
+.frontier-swap:focus-visible,
+.frontier-selector button:focus-visible,
+.frontier-point-actions button:focus-visible {
+  outline: 2px solid #d8ff67;
+  outline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  .optimizer-view-tabs {
+    display: grid;
+    width: 100%;
+  }
+
+  .optimizer-view-tabs button {
+    min-width: 0;
+  }
+
+  .frontier-axis-controls {
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  .frontier-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .frontier-changes > div:last-child,
+  .frontier-metrics > div:last-child {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .frontier-chart-wrap {
+    padding: 6px;
+  }
+
+  .frontier-inspector > header {
+    flex-direction: column;
+  }
+}
