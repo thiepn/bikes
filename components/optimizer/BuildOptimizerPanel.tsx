@@ -11,13 +11,28 @@ import {
   getOptimizationGoal,
 } from "@/domain/optimizer/catalog";
 import { optimizeBuild } from "@/domain/optimizer/optimize";
+import { analyzeBuild } from "@/domain/compatibility/analyze-build";
+import {
+  encodeBuildSelections,
+  sanitizeBuildSelections,
+} from "@/domain/compatibility/build-state";
+import {
+  loadSavedBuilds,
+  MAX_PORTFOLIO_BUILDS_PER_BIKE,
+  persistSavedBuilds,
+} from "@/domain/optimizer/portfolio-storage";
 import { ParetoFrontierPanel } from "@/components/optimizer/ParetoFrontierPanel";
+import { BuildPortfolioPanel } from "@/components/optimizer/BuildPortfolioPanel";
 import type {
   GeometryGuard,
   OptimizationConstraints,
   OptimizationGoalId,
   OptimizedBuild,
 } from "@/engine/optimizer/types";
+import type {
+  PortfolioSource,
+  SavedBuild,
+} from "@/engine/optimizer/portfolio-types";
 
 type Props = {
   bikeId: string;
@@ -27,13 +42,14 @@ type Props = {
   onClose: () => void;
 };
 
-type OptimizerView = "ranked" | "frontier";
+type OptimizerView = "ranked" | "frontier" | "portfolio";
 
 function initialView(): OptimizerView {
   if (typeof window === "undefined") return "ranked";
-  return new URL(window.location.href).searchParams.get("optView") ===
-    "frontier"
-    ? "frontier"
+  const value =
+    new URL(window.location.href).searchParams.get("optView");
+  return value === "frontier" || value === "portfolio"
+    ? value
     : "ranked";
 }
 
@@ -185,6 +201,98 @@ export function BuildOptimizerPanel({
   const [preserveCurrentChanges, setPreserveCurrentChanges] =
     useState(initialPreserve);
   const [selectedResultId, setSelectedResultId] = useState("");
+  const [portfolioEntries, setPortfolioEntries] = useState<SavedBuild[]>([]);
+  const [portfolioLoaded, setPortfolioLoaded] = useState(false);
+  const [portfolioNotice, setPortfolioNotice] = useState("");
+
+  useEffect(() => {
+    setPortfolioEntries(loadSavedBuilds());
+    setPortfolioLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!portfolioLoaded) return;
+    persistSavedBuilds(portfolioEntries);
+  }, [portfolioEntries, portfolioLoaded]);
+
+  function savePortfolioBuild(
+    selections: Readonly<Record<string, string>>,
+    source: PortfolioSource,
+    suggestedName: string,
+  ) {
+    const safe = sanitizeBuildSelections(bikeId, selections);
+    const analysis = analyzeBuild(bikeId, safe);
+
+    if (analysis.health === "blocked") {
+      setPortfolioNotice(
+        "Blocked builds cannot be newly saved to the decision portfolio.",
+      );
+      return;
+    }
+
+    const key = encodeBuildSelections(safe);
+    const sameBike = portfolioEntries.filter(
+      (entry) => entry.bikeId === bikeId,
+    );
+    const duplicate = sameBike.find(
+      (entry) =>
+        encodeBuildSelections(entry.selections) === key,
+    );
+
+    if (duplicate) {
+      setPortfolioNotice(
+        `Already saved as “${duplicate.name}”.`,
+      );
+      setView("portfolio");
+      return;
+    }
+
+    if (
+      sameBike.length >= MAX_PORTFOLIO_BUILDS_PER_BIKE
+    ) {
+      setPortfolioNotice(
+        `Portfolio limit reached: ${MAX_PORTFOLIO_BUILDS_PER_BIKE} saved builds for this bike.`,
+      );
+      setView("portfolio");
+      return;
+    }
+
+    const entry: SavedBuild = {
+      id:
+        bikeId +
+        ":" +
+        Date.now().toString(36) +
+        ":" +
+        Math.random().toString(36).slice(2, 7),
+      bikeId,
+      name: suggestedName.slice(0, 48),
+      selections: safe,
+      source,
+      savedAt: Date.now(),
+    };
+
+    setPortfolioEntries((current) => [...current, entry]);
+    setPortfolioNotice(`Saved “${entry.name}”.`);
+  }
+
+  function renamePortfolioBuild(id: string, name: string) {
+    const safeName = name.trim().slice(0, 48);
+    if (!safeName) return;
+    setPortfolioEntries((current) =>
+      current.map((entry) =>
+        entry.id === id
+          ? { ...entry, name: safeName }
+          : entry,
+      ),
+    );
+  }
+
+  function deletePortfolioBuild(id: string) {
+    setPortfolioEntries((current) =>
+      current.filter((entry) => entry.id !== id),
+    );
+    setPortfolioNotice("Saved build removed.");
+  }
 
   const goal = getOptimizationGoal(goalId);
   const constraints: OptimizationConstraints = useMemo(
@@ -226,11 +334,20 @@ export function BuildOptimizerPanel({
     url.searchParams.set("optimize", "1");
     if (view === "frontier") {
       url.searchParams.set("optView", "frontier");
+    } else if (view === "portfolio") {
+      url.searchParams.set("optView", "portfolio");
     } else {
       url.searchParams.delete("optView");
+    }
+
+    if (view !== "frontier") {
       url.searchParams.delete("optX");
       url.searchParams.delete("optY");
       url.searchParams.delete("optPoint");
+    }
+
+    if (view !== "portfolio") {
+      url.searchParams.delete("portSc");
     }
 
     if (view === "ranked") {
@@ -276,7 +393,8 @@ export function BuildOptimizerPanel({
           <p>
             Search compatible component combinations, reject mechanically
             blocked builds, enforce geometry limits, rank single-goal
-            configurations, or explore non-dominated trade-offs.
+            configurations, explore non-dominated trade-offs, or keep a
+            saved decision portfolio across riding scenarios.
           </p>
         </div>
         <button
@@ -311,7 +429,30 @@ export function BuildOptimizerPanel({
             Frontier
             <span>Pareto trade-offs</span>
           </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={view === "portfolio"}
+            className={view === "portfolio" ? "is-active" : ""}
+            onClick={() => setView("portfolio")}
+          >
+            Portfolio
+            <span>saved decisions</span>
+          </button>
         </div>
+
+        {portfolioNotice && (
+          <div className="portfolio-notice" role="status">
+            {portfolioNotice}
+            <button
+              type="button"
+              onClick={() => setPortfolioNotice("")}
+              aria-label="Dismiss portfolio message"
+            >
+              ×
+            </button>
+          </div>
+        )}
 
         {view === "ranked" && (
         <section className="optimizer-goals">
@@ -344,6 +485,7 @@ export function BuildOptimizerPanel({
 
         )}
 
+        {view !== "portfolio" && (
         <section className="optimizer-constraints">
           <div className="optimizer-section-title">
             <span>Hard constraints</span>
@@ -403,8 +545,41 @@ export function BuildOptimizerPanel({
             </label>
           </div>
         </section>
+        )}
 
-        {view === "frontier" ? (
+        {view === "portfolio" ? (
+          <BuildPortfolioPanel
+            bikeId={bikeId}
+            entries={portfolioEntries}
+            buildSelections={buildSelections}
+            onSaveCurrent={() =>
+              savePortfolioBuild(
+                buildSelections,
+                "current",
+                "Current build " +
+                  (portfolioEntries.filter(
+                    (entry) => entry.bikeId === bikeId,
+                  ).length +
+                    1),
+              )
+            }
+            onRename={renamePortfolioBuild}
+            onDelete={deletePortfolioBuild}
+            onApplySelections={onApplySelections}
+            onOpenBuild={onOpenBuild}
+            onSaveSelection={(next) =>
+              savePortfolioBuild(
+                next,
+                "frontier",
+                "Frontier candidate " +
+                  (portfolioEntries.filter(
+                    (entry) => entry.bikeId === bikeId,
+                  ).length +
+                    1),
+              )
+            }
+          />
+        ) : view === "frontier" ? (
           <ParetoFrontierPanel
             bikeId={bikeId}
             buildSelections={buildSelections}
@@ -607,6 +782,23 @@ export function BuildOptimizerPanel({
                   >
                     Apply + inspect in Build Lab
                   </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      savePortfolioBuild(
+                        selected.selections,
+                        "ranked",
+                        goal.name +
+                          " candidate " +
+                          (portfolioEntries.filter(
+                            (entry) => entry.bikeId === bikeId,
+                          ).length +
+                            1),
+                      )
+                    }
+                  >
+                    Save to portfolio
+                  </button>
                 </div>
               </main>
             )}
@@ -617,13 +809,15 @@ export function BuildOptimizerPanel({
         )}
 
         <section className="optimizer-boundary">
-          <strong>P25–P26 model boundary</strong>
+          <strong>P25–P27 model boundary</strong>
           <p>
             Optimization searches only the fictional Bike Atlas donor
-            library. Goal weights and explored Pareto axes are transparent
-            heuristics over the existing compatibility, geometry, gearing
-            and Physics reference models. This is not purchasing advice, manufacturer
-            certification, structural engineering or personal fitting.
+            library. Goal weights, Pareto axes and P27 scenario scores are
+            transparent educational references over the existing
+            compatibility, geometry, gearing and Physics models. Saved
+            portfolio entries are browser-local in P27. This is not
+            purchasing advice, manufacturer certification, structural
+            engineering or personal fitting.
           </p>
         </section>
       </div>
