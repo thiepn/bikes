@@ -13,3 +13,11 @@ yarn-error.log*
 .vercel
 *.tsbuildinfo
 next-env.d.ts
+
+# Large/source 3D files are reproducibly fetched instead of committed.
+assets/source/road-r1/*.fbx
+assets/source/road-r1/*.obj
+assets/source/road-r1/*.mb
+assets/work/
+!assets/source/road-r1/README.md
+!assets/source/road-r1/ATTRIBUTION.md

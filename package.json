@@ -1,12 +1,14 @@
 {
   "name": "bikes",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "validate:assets": "node scripts/validate-road-r1.mjs",
+    "asset:road-r1:fetch": "node scripts/fetch-road-r1-source.mjs"
   },
   "dependencies": {
     "@react-three/drei": "10.7.9",

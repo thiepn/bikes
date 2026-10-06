@@ -1,0 +1,60 @@
+{
+  "id": "asset.road.r1",
+  "bikeId": "bike.road.r1",
+  "status": "source-locked",
+  "source": {
+    "provider": "github",
+    "repository": "MirageYM/3DModels",
+    "branch": "master",
+    "path": "RoadBike/RoadBike_SubDiv.fbx",
+    "downloadUrl": "https://raw.githubusercontent.com/MirageYM/3DModels/master/RoadBike/RoadBike_SubDiv.fbx",
+    "gitBlobSha1": "02d1ba11fbbd1c4034f147a65a58ee621e134d51",
+    "reportedSizeBytes": 5075109,
+    "creator": "Yasutoshi Mori",
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "sourceRepositoryUrl": "https://github.com/MirageYM/3DModels",
+    "notes": "Road bike source is modeled but has no UVs. It is used as geometry source material, not shipped unchanged."
+  },
+  "local": {
+    "sourcePath": "assets/source/road-r1/RoadBike_SubDiv.fbx",
+    "auditPath": "assets/work/road-r1/source-audit.json",
+    "workingBlendPath": "assets/work/road-r1/road-r1.blend"
+  },
+  "runtime": {
+    "format": "glb",
+    "lods": [
+      {
+        "level": 0,
+        "path": "/models/road-r1/road-r1-lod0.glb",
+        "purpose": "close component inspection",
+        "maxTriangles": 350000
+      },
+      {
+        "level": 1,
+        "path": "/models/road-r1/road-r1-lod1.glb",
+        "purpose": "normal desktop exploration",
+        "maxTriangles": 180000
+      },
+      {
+        "level": 2,
+        "path": "/models/road-r1/road-r1-lod2.glb",
+        "purpose": "mobile and distant viewing",
+        "maxTriangles": 80000
+      },
+      {
+        "level": 3,
+        "path": "/models/road-r1/road-r1-lod3.glb",
+        "purpose": "thumbnail and background",
+        "maxTriangles": 20000
+      }
+    ],
+    "textures": {
+      "encoding": "ktx2",
+      "desktopMax": 2048,
+      "mobileMax": 1024,
+      "heroComponentMax": 4096
+    },
+    "compression": ["meshopt", "ktx2"]
+  }
+}

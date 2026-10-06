@@ -1,0 +1,5 @@
+{
+  "_status": "pending-source-audit",
+  "_description": "After running the Blender audit, map exact upstream FBX object names to Bike Atlas semantic nodes. Do not guess source names.",
+  "objects": {}
+}

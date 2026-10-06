@@ -4,9 +4,11 @@ Bike Atlas is an interactive 3D bicycle knowledge platform: explore bicycles, in
 
 ## Current phase
 
-**P1 — 3D Engine, Camera, Lighting, Rendering & Asset Pipeline**
+**P2 — Production Road R1 Asset & Semantic Component Preparation**
 
-The repository currently contains the production rendering foundation plus a procedural calibration bike. The calibration model is deliberately temporary; P2 replaces it with the first production-quality Road R1 asset.
+P1 established the web 3D engine. P2 now locks the first production road-bike source, provenance, semantic component registry, asset validation, and Blender preparation workflow.
+
+The browser still displays the procedural calibration bike until a cleaned and optimized Road R1 GLB passes the production asset contract.
 
 ## Stack
 
@@ -25,6 +27,21 @@ npm install
 npm run dev
 ```
 
-Then open `http://localhost:3000`.
+## Road R1 asset workflow
 
-See `docs/P1.md` and `docs/ASSET_PIPELINE.md`.
+```bash
+# Download the pinned CC BY source model and verify its Git blob SHA
+npm run asset:road-r1:fetch
+
+# Validate metadata / semantic registry
+npm run validate:assets
+
+# Audit the source in Blender
+blender --background --python scripts/blender/audit-road-r1.py -- \
+  assets/source/road-r1/RoadBike_SubDiv.fbx \
+  assets/work/road-r1/source-audit.json
+```
+
+The source FBX itself is intentionally ignored by Git. Its exact upstream location, blob SHA, license, and attribution are committed so it can be reproduced without bloating the application repository.
+
+See `docs/P1.md`, `docs/P2.md`, and `docs/ASSET_PIPELINE.md`.
