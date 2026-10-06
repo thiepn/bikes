@@ -156,6 +156,7 @@ for (const token of [
   'url.searchParams.set("optY", yGoalId)',
   'url.searchParams.set("optPoint", String(safeIndex))',
   "hasMountedAxes",
+  "if (xGoalId !== yGoalId) return;",
 ]) {
   assert(
     frontierPanelText.includes(token),
