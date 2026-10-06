@@ -5,6 +5,7 @@ import { Canvas } from "@react-three/fiber";
 import { ACESFilmicToneMapping, SRGBColorSpace } from "three";
 import { ROAD_R1 } from "@/domain/bike/road-r1";
 import {
+  BIKE_CATALOG,
   getBikeById,
   getBikeBySlug,
 } from "@/domain/bike/catalog";
@@ -21,6 +22,7 @@ import {
   getWorkshopProcedure,
 } from "@/domain/workshop/catalog";
 import { KnowledgeSearch } from "@/components/knowledge/KnowledgeSearch";
+import { ComparisonPanel } from "@/components/comparison/ComparisonPanel";
 import type { InspectionMode } from "@/engine/inspection/types";
 import {
   calculateLessonScore,
@@ -71,6 +73,11 @@ export function BikeViewer() {
   const [learningOpen, setLearningOpen] = useState(false);
   const [workshopOpen, setWorkshopOpen] = useState(false);
   const [knowledgeOpen, setKnowledgeOpen] = useState(false);
+  const [comparisonOpen, setComparisonOpen] = useState(false);
+  const [comparisonBikeId, setComparisonBikeId] = useState(
+    BIKE_CATALOG.find((bike) => bike.id !== ROAD_R1.id)?.id ?? ROAD_R1.id,
+  );
+  const [comparisonOverlay, setComparisonOverlay] = useState(true);
 
   const [activeLessonId, setActiveLessonId] = useState(
     LESSON_CATALOG[0].id,
@@ -265,6 +272,11 @@ export function BikeViewer() {
     if (!nextBike) return;
 
     setActiveBikeId(nextBike.id);
+    setComparisonBikeId((current) =>
+      current === nextBike.id
+        ? (BIKE_CATALOG.find((bike) => bike.id !== nextBike.id)?.id ?? current)
+        : current,
+    );
     setSelectedId(null);
     setHoveredId(null);
     setIsolated(false);
@@ -285,7 +297,6 @@ export function BikeViewer() {
       }
 
       for (const key of [
-        "bike",
         "part",
         "view",
         "explode",
@@ -299,6 +310,20 @@ export function BikeViewer() {
       window.history.replaceState({}, "", url);
     }
   }, []);
+
+  const swapComparison = useCallback(() => {
+    const nextPrimary = getBikeById(comparisonBikeId);
+    if (!nextPrimary || nextPrimary.id === activeBike.id) return;
+
+    const previousPrimaryId = activeBike.id;
+    setActiveBikeId(nextPrimary.id);
+    setComparisonBikeId(previousPrimaryId);
+    setSelectedId(null);
+    setHoveredId(null);
+    setIsolated(false);
+    setMode("normal");
+    setExplosionAmount(0);
+  }, [activeBike.id, comparisonBikeId]);
 
   const changeMode = useCallback((nextMode: InspectionMode) => {
     setMode(nextMode);
@@ -361,6 +386,7 @@ export function BikeViewer() {
       setLearningOpen(false);
       setWorkshopOpen(false);
       setKnowledgeOpen(false);
+      setComparisonOpen(false);
       setExperienceMode("lesson");
     },
     [
@@ -472,6 +498,7 @@ export function BikeViewer() {
       setLearningOpen(false);
       setWorkshopOpen(false);
       setKnowledgeOpen(false);
+      setComparisonOpen(false);
       setExperienceMode("workshop");
     },
     [
@@ -584,6 +611,7 @@ export function BikeViewer() {
     setLearningOpen(false);
     setWorkshopOpen(false);
     setKnowledgeOpen(false);
+    setComparisonOpen(false);
     setMode("normal");
     setExplosionAmount(0);
     setStoryProgress(0);
@@ -610,6 +638,10 @@ export function BikeViewer() {
     const url = new URL(window.location.href);
     const requestedBike =
       getBikeBySlug(url.searchParams.get("bike")) ?? ROAD_R1;
+    const requestedCompare = getBikeBySlug(
+      url.searchParams.get("compare"),
+    );
+    const requestedOverlay = url.searchParams.get("overlay");
     const slug = url.searchParams.get("part");
     const view = url.searchParams.get("view") as InspectionMode | null;
     const explode = Number(url.searchParams.get("explode"));
@@ -659,7 +691,18 @@ export function BikeViewer() {
 
     setActiveBikeId(requestedBike.id);
 
-    if (slug || view || requestedBike.id !== ROAD_R1.id) {
+    if (requestedCompare && requestedCompare.id !== requestedBike.id) {
+      setComparisonBikeId(requestedCompare.id);
+      setComparisonOverlay(requestedOverlay !== "0");
+      setComparisonOpen(true);
+    }
+
+    if (
+      slug ||
+      view ||
+      requestedCompare ||
+      requestedBike.id !== ROAD_R1.id
+    ) {
       setExperienceMode("explore");
     }
 
@@ -797,10 +840,26 @@ export function BikeViewer() {
       url.searchParams.delete("explode");
     }
 
+    const comparisonBike = getBikeById(comparisonBikeId);
+    if (
+      comparisonOpen &&
+      comparisonBike &&
+      comparisonBike.id !== activeBike.id
+    ) {
+      url.searchParams.set("compare", comparisonBike.slug);
+      url.searchParams.set("overlay", comparisonOverlay ? "1" : "0");
+    } else {
+      url.searchParams.delete("compare");
+      url.searchParams.delete("overlay");
+    }
+
     window.history.replaceState({}, "", url);
   }, [
     activeBike.id,
     activeBike.slug,
+    comparisonBikeId,
+    comparisonOpen,
+    comparisonOverlay,
     experienceMode,
     mode,
     explosionAmount,
@@ -825,6 +884,7 @@ export function BikeViewer() {
         if (learningOpen) setLearningOpen(false);
         else if (workshopOpen) setWorkshopOpen(false);
         else if (knowledgeOpen) setKnowledgeOpen(false);
+        else if (comparisonOpen) setComparisonOpen(false);
         else select(null);
         return;
       }
@@ -846,6 +906,7 @@ export function BikeViewer() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [
     changeMode,
+    comparisonOpen,
     experienceMode,
     knowledgeOpen,
     learningOpen,
@@ -896,6 +957,25 @@ export function BikeViewer() {
                 bikeId={activeBike.id}
                 onChange={changeBike}
               />
+              {BIKE_CATALOG.length > 1 && (
+                <button
+                  type="button"
+                  className={
+                    comparisonOpen
+                      ? "comparison-launch is-active"
+                      : "comparison-launch"
+                  }
+                  onClick={() => {
+                    setComparisonOpen((value) => !value);
+                    setLearningOpen(false);
+                    setWorkshopOpen(false);
+                    setKnowledgeOpen(false);
+                  }}
+                >
+                  Compare
+                  <span aria-hidden="true">⇄</span>
+                </button>
+              )}
               {activeBike.capabilities.lessons && (
                 <button
                   type="button"
@@ -908,6 +988,7 @@ export function BikeViewer() {
                     setLearningOpen((value) => !value);
                     setWorkshopOpen(false);
                     setKnowledgeOpen(false);
+                    setComparisonOpen(false);
                   }}
                 >
                   Learn
@@ -926,6 +1007,7 @@ export function BikeViewer() {
                     setWorkshopOpen((value) => !value);
                     setLearningOpen(false);
                     setKnowledgeOpen(false);
+                    setComparisonOpen(false);
                   }}
                 >
                   Workshop
@@ -944,6 +1026,7 @@ export function BikeViewer() {
                     setKnowledgeOpen((value) => !value);
                     setLearningOpen(false);
                     setWorkshopOpen(false);
+                    setComparisonOpen(false);
                   }}
                 >
                   Encyclopedia
@@ -990,6 +1073,13 @@ export function BikeViewer() {
       >
         <BikeScene
           bikeId={activeBike.id}
+          comparisonBikeId={
+            experienceMode === "explore" &&
+            comparisonOpen &&
+            comparisonOverlay
+              ? comparisonBikeId
+              : null
+          }
           experienceMode={experienceMode}
           storyProgress={storyProgress}
           selectedId={sceneSelectedId}
@@ -1051,6 +1141,18 @@ export function BikeViewer() {
           onStepChange={changeWorkshopStep}
           onCompleteCurrent={completeCurrentWorkshopStep}
           onExit={exitWorkshop}
+        />
+      ) : comparisonOpen ? (
+        <ComparisonPanel
+          bikeAId={activeBike.id}
+          bikeBId={comparisonBikeId}
+          overlayEnabled={comparisonOverlay}
+          onBikeBChange={(bikeId) => {
+            if (bikeId !== activeBike.id) setComparisonBikeId(bikeId);
+          }}
+          onOverlayChange={setComparisonOverlay}
+          onSwap={swapComparison}
+          onClose={() => setComparisonOpen(false)}
         />
       ) : learningOpen ? (
         <LearningCatalog
