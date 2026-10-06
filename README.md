@@ -4,13 +4,16 @@ Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle
 
 ## Current phase
 
-**P25 — Build Optimization, Goal-Based Configuration & Constraint Solver**
+**P26 — Interactive Optimization Frontier, Pareto Trade-Offs & Build Comparison**
 
-Bike Atlas can now search its compatibility, system-health, geometry, gearing and Physics models for coherent custom builds.
+Optimize now supports two connected workflows:
 
-## Goals
+- Ranked — P25 single-goal configuration search
+- Frontier — P26 two-objective Pareto exploration
 
-P25 includes five transparent goal profiles:
+## Explored Pareto frontier
+
+P26 lets users choose any two distinct goals from:
 
 - Speed
 - Climbing
@@ -18,101 +21,102 @@ P25 includes five transparent goal profiles:
 - Comfort
 - Utility
 
-Each goal uses inspectable normalized feature weights rather than an opaque recommendation model.
+Bike Atlas performs five bounded weighted searches between the two objectives, unions the coherent candidates, rescoring every build independently on both axes and removes dominated configurations.
 
-## Hard constraints
+The result is explicitly an **explored frontier**, not a claim of exhaustive global optimality.
 
-Goal score cannot override:
+## Current build as reference
 
-- slot compatibility
-- P23 blocking system dependencies
-- maximum component-change budget
-- the selected P24 geometry guard
-- locked current Build Lab changes
+The active custom bicycle is plotted as a reference diamond.
 
-Only non-blocked final builds can be recommended.
+If it is coherent, any candidate worse on both objective scores is removed.
 
-## Companion-aware search
+This prevents the frontier from presenting a trade that is inferior to simply keeping the current bicycle.
 
-P25 uses a bounded beam search over the curated donor graph.
+## Frontier interaction
 
-Temporarily blocked partial builds can remain in a small search lane when a companion change may resolve them.
+The P26 workspace includes:
 
-For example, Road R1 plus the Gravel rear transmission is temporarily blocked by the stock Road derailleur. Adding the compatible Gravel derailleur resolves the modeled largest-sprocket and total-capacity constraints, allowing the complete configuration to rank.
+- X/Y objective selectors
+- axis swap
+- 0–100 SVG score chart
+- Pareto curve
+- current-build reference
+- clickable and keyboard-accessible frontier points
+- previous/next navigation
+- frontier slider
+- comparison pin
+- selected-vs-pinned metric deltas
 
-## Geometry guards
+## Build comparison
 
-Users can choose Strict, Balanced or Open geometry constraints.
+Frontier points can be compared using:
 
-The guard limits candidate changes in head angle, trail, grip position and wheelbase relative to the current starting build.
-
-## Preserve current changes
-
-The optimizer can lock existing Build Lab modifications and search around them.
-
-## Goal metrics
-
-Candidates are scored using reference values including:
-
-- mass
-- CdA
+- X objective score
+- Y objective score
 - flat speed
 - 8% climbing speed
 - hardpack speed
-- lowest and highest gearing
-- total gear range
+- bike mass
+- lowest gear
 - tire width
-- brake leverage
-- bar width
-- contact-point posture
-- trail
-- wheelbase
-- internal-gear architecture
 
-## Improvement-only recommendations
+The exact changed components are also shown.
 
-P25 does not recommend a worse bicycle merely to populate a list.
+## Shared hard constraints
 
-A final candidate must improve the current goal score after change and warning penalties.
+Ranked and Frontier share:
 
-If nothing improves the active bicycle under the selected constraints, the optimizer reports that directly.
+- maximum component-change budget
+- Strict / Balanced / Open geometry guard
+- preserve-current-modified-slots
 
-## Explainability
+P26 does not bypass P23 mechanical system constraints.
 
-Each result exposes:
+Blocked final builds cannot enter the frontier.
 
-- goal score
-- score improvement vs current
-- changed components
-- top scoring contributions
-- metric deltas
-- gains and costs
-- P23 health state
+## Companion-aware search
+
+P26 reuses P25's bounded companion-aware optimizer.
+
+Temporary blocked states can survive long enough for a second compatible component change to resolve them, such as the Road R1 wide-range Gravel cassette + derailleur pair.
+
+## Pareto tie-break
+
+Scores use a 0.05 epsilon.
+
+When two builds are effectively equal on both axes, the configuration with fewer changed component slots dominates the heavier edit.
 
 ## Apply flow
 
-Apply optimized build writes directly into the shared custom bicycle.
+Apply frontier build writes directly into the canonical custom bicycle state.
 
-Apply + inspect in Build Lab applies the same configuration and opens Build Lab for mechanical inspection.
+Apply + inspect in Build Lab applies the same build and opens Build Lab.
 
-The resulting build continues into the 3D scene, Geometry Lab, Physics Lab and buildParts URL state.
+The selected configuration then continues into:
+
+- 3D scene
+- Geometry Lab
+- Physics Lab
+- buildParts URL state
 
 ## URL state
 
-P25 adds optimizer UI state through:
+P26 adds:
 
-- optimize=1
-- optGoal
-- optChanges
-- optGuard
-- optPreserve=1
+- optView=frontier
+- optX
+- optY
+- optPoint
 
-The actual bicycle remains encoded separately in buildParts.
+P25 hard-constraint URL state remains shared.
+
+Malformed same-axis frontier deep links are repaired automatically.
 
 ## Validation
 
-P25 adds scripts/validate-optimizer.mjs to npm run validate:domain.
+P26 adds scripts/validate-pareto.mjs to npm run validate:domain.
 
-It protects goal normalization, search-space assumptions, companion-change behavior, bounded blocked-state search, hard constraints, improvement-only ranking, URL routing and canonical build-state application.
+It protects Pareto dominance semantics, current-build filtering, fewer-change tie-breaks, five-sweep exploration, Ranked/Frontier compute separation, accessible SVG interaction, comparison behavior, routing and shared build application.
 
-See docs/P1.md through docs/P25.md.
+See docs/P1.md through docs/P26.md.
