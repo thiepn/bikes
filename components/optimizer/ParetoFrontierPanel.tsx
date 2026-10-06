@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   getCompatibilityPart,
   getCompatibilityProfile,
@@ -178,6 +178,7 @@ export function ParetoFrontierPanel({
   );
   const [selectedIndex, setSelectedIndex] = useState(initialPointIndex);
   const [pinnedId, setPinnedId] = useState<string | null>(null);
+  const hasMountedAxes = useRef(false);
 
   const xGoal = getOptimizationGoal(xGoalId);
   const yGoal = getOptimizationGoal(yGoalId);
@@ -208,6 +209,10 @@ export function ParetoFrontierPanel({
   }, [safeIndex, selectedIndex]);
 
   useEffect(() => {
+    if (!hasMountedAxes.current) {
+      hasMountedAxes.current = true;
+      return;
+    }
     setSelectedIndex(0);
     setPinnedId(null);
   }, [bikeId, xGoalId, yGoalId]);
