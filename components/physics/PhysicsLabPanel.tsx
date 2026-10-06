@@ -90,20 +90,20 @@ function initialState(profile: BikePhysicsProfile): {
 
   return {
     scenario: {
-      riderPowerW: readNumber(params, "pwr", DEFAULTS.riderPowerW, 0, 1200),
-      riderMassKg: readNumber(params, "rider", DEFAULTS.riderMassKg, 30, 200),
-      cargoMassKg: readNumber(params, "cargo", DEFAULTS.cargoMassKg, 0, 80),
-      gradePercent: readNumber(params, "grade", DEFAULTS.gradePercent, -20, 30),
-      windSpeedKph: readNumber(params, "wind", DEFAULTS.windSpeedKph, -60, 100),
+      riderPowerW: readNumber(params, "pwr", DEFAULTS.riderPowerW, 0, 600),
+      riderMassKg: readNumber(params, "rider", DEFAULTS.riderMassKg, 40, 140),
+      cargoMassKg: readNumber(params, "cargo", DEFAULTS.cargoMassKg, 0, 40),
+      gradePercent: readNumber(params, "grade", DEFAULTS.gradePercent, -15, 20),
+      windSpeedKph: readNumber(params, "wind", DEFAULTS.windSpeedKph, -40, 60),
       airDensityKgM3: readNumber(params, "rho", DEFAULTS.airDensityKgM3, 0.8, 1.4),
       surfaceId: surface,
-      cadenceRpm: readNumber(params, "cad", DEFAULTS.cadenceRpm, 20, 180),
+      cadenceRpm: readNumber(params, "cad", DEFAULTS.cadenceRpm, 40, 140),
       driveRatio: readNumber(
         params,
         "ratio",
         profile.defaultDriveRatio,
-        0.4,
-        6,
+        0.5,
+        5,
       ),
     },
     overrides: {
