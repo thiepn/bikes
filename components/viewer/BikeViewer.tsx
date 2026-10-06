@@ -1496,6 +1496,15 @@ export function BikeViewer() {
             }
             onOpenLesson={startLesson}
             onOpenWorkshop={startWorkshopProcedure}
+            onOpenConcept={(conceptId) => {
+              setActiveConceptId(conceptId);
+              setKnowledgeOpen(true);
+              setLearningOpen(false);
+              setWorkshopOpen(false);
+              setComparisonOpen(false);
+              setFinderOpen(false);
+              setHistoryOpen(false);
+            }}
           />
 
           <div
