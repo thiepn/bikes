@@ -739,9 +739,11 @@ export function BikeViewer() {
     if (Object.keys(requestedFinder).length > 0) {
       setFinderAnswers(requestedFinder);
       setFinderOpen(true);
-    }
-
-    if (requestedCompare && requestedCompare.id !== requestedBike.id) {
+      setComparisonOpen(false);
+    } else if (
+      requestedCompare &&
+      requestedCompare.id !== requestedBike.id
+    ) {
       setComparisonBikeId(requestedCompare.id);
       setComparisonOverlay(requestedOverlay !== "0");
       setComparisonOpen(true);
