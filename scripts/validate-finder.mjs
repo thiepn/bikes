@@ -1,5 +1,6 @@
 import road from "../content/bikes/road-r1.json" with { type: "json" };
 import mtb from "../content/bikes/mtb-m1.json" with { type: "json" };
+import urban from "../content/bikes/urban-u1.json" with { type: "json" };
 import questionsJson from "../content/finder/questions.json" with { type: "json" };
 import profilesJson from "../content/finder/profiles.json" with { type: "json" };
 import presetsJson from "../content/finder/presets.json" with { type: "json" };
@@ -27,6 +28,7 @@ const traitSet = new Set(traits);
 const bikes = new Map([
   [road.id, road],
   [mtb.id, mtb],
+  [urban.id, urban],
 ]);
 const questions = questionsJson.questions;
 const profiles = profilesJson.profiles;
@@ -286,8 +288,12 @@ assert(
   "Technical-trail preset must prefer MTB M1.",
 );
 assert(
-  utility.catalogGap,
-  "Daily-utility preset must expose the current cargo/utility catalog gap.",
+  utility.top.bikeId === urban.id,
+  "Daily-utility preset must prefer Urban U1 after P14.",
+);
+assert(
+  !utility.catalogGap,
+  "Daily-utility preset should no longer expose a catalog gap after P14.",
 );
 
 if (errors.length) {
@@ -297,5 +303,5 @@ if (errors.length) {
 }
 
 console.log(
-  `✓ P13 finder valid: ${questions.length} questions, ${traits.length} traits, ${profiles.length} bike profiles, ${presets.length} presets. Fast road → ${fastRoad.top.bikeId} (${fastRoad.top.score}), trail → ${trail.top.bikeId} (${trail.top.score}), daily utility gap=${utility.catalogGap}.`,
+  `✓ P13 finder valid: ${questions.length} questions, ${traits.length} traits, ${profiles.length} bike profiles, ${presets.length} presets. Fast road → ${fastRoad.top.bikeId} (${fastRoad.top.score}), trail → ${trail.top.bikeId} (${trail.top.score}), daily utility → ${utility.top.bikeId} (${utility.top.score}), gap=${utility.catalogGap}.`,
 );
