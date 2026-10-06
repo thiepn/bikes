@@ -5,67 +5,115 @@
   "systemId": "transmission",
   "difficulty": "intermediate",
   "durationMinutes": 10,
-  "prerequisiteProcedureIds": ["rear-wheel-removal"],
-  "assumedOperationIds": ["release-rear-thru-axle","remove-rear-wheel"],
+  "prerequisiteProcedureIds": [
+    "rear-wheel-removal"
+  ],
+  "assumedOperationIds": [
+    "release-rear-thru-axle",
+    "remove-rear-wheel"
+  ],
   "tools": [
-    {"id":"cassette-lockring-tool","name":"Cassette lockring tool","required":true},
-    {"id":"chain-whip","name":"Chain whip","required":true},
-    {"id":"wrench","name":"Wrench / ratchet for lockring tool","required":true}
+    {
+      "id": "cassette-lockring-tool",
+      "name": "Cassette lockring tool",
+      "required": true
+    },
+    {
+      "id": "chain-whip",
+      "name": "Chain whip",
+      "required": true
+    },
+    {
+      "id": "wrench",
+      "name": "Wrench / ratchet for lockring tool",
+      "required": true
+    }
   ],
   "steps": [
     {
-      "id":"prepare-wheel",
-      "title":"Work with the rear wheel removed",
-      "instruction":"Place the removed rear wheel securely with the cassette accessible and the rotor protected from contamination or impact.",
-      "why":"Cassette service is done on the wheel, not while the wheel remains clamped in the bike.",
-      "focusComponentId":"bike.road.r1.cassette",
-      "highlightComponentIds":["bike.road.r1.cassette","bike.road.r1.rear-hub"],
-      "inspectionMode":"exploded",
-      "explosionAmount":0.7,
-      "tools":[],
-      "warning":"Keep oily tools and hands away from the brake rotor.",
-      "removedComponentIds":["bike.road.r1.rear-wheel","bike.road.r1.rear-tire","bike.road.r1.rear-rim","bike.road.r1.rear-hub","bike.road.r1.rear-rotor","bike.road.r1.cassette"]
+      "id": "prepare-wheel",
+      "title": "Work with the rear wheel removed",
+      "instruction": "Place the removed rear wheel securely with the cassette accessible and the rotor protected from contamination or impact.",
+      "why": "Cassette service is done on the wheel, not while the wheel remains clamped in the bike.",
+      "focusComponentId": "bike.road.r1.cassette",
+      "highlightComponentIds": [
+        "bike.road.r1.cassette",
+        "bike.road.r1.rear-hub"
+      ],
+      "inspectionMode": "exploded",
+      "explosionAmount": 0.7,
+      "tools": [],
+      "warning": "Keep oily tools and hands away from the brake rotor.",
+      "removedComponentIds": [
+        "bike.road.r1.rear-wheel",
+        "bike.road.r1.rear-tire",
+        "bike.road.r1.rear-rim",
+        "bike.road.r1.rear-hub",
+        "bike.road.r1.rear-rotor",
+        "bike.road.r1.cassette"
+      ]
     },
     {
-      "id":"hold-cassette",
-      "title":"Counter the freehub with a chain whip",
-      "instruction":"Wrap the chain whip around a suitable sprocket so the cassette cannot freewheel while you loosen the lockring.",
-      "why":"The freehub allows the cassette to rotate backward, so the cassette must be held while loosening.",
-      "focusComponentId":"bike.road.r1.cassette",
-      "highlightComponentIds":["bike.road.r1.cassette","bike.road.r1.rear-hub"],
-      "inspectionMode":"normal",
-      "explosionAmount":0.5,
-      "tools":["chain-whip"],
-      "warning":"Seat the chain whip fully on the sprocket teeth before applying force.",
-      "removedComponentIds":["bike.road.r1.rear-wheel"]
+      "id": "hold-cassette",
+      "title": "Counter the freehub with a chain whip",
+      "instruction": "Wrap the chain whip around a suitable sprocket so the cassette cannot freewheel while you loosen the lockring.",
+      "why": "The freehub allows the cassette to rotate backward, so the cassette must be held while loosening.",
+      "focusComponentId": "bike.road.r1.cassette",
+      "highlightComponentIds": [
+        "bike.road.r1.cassette",
+        "bike.road.r1.rear-hub"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0.5,
+      "tools": [
+        "chain-whip"
+      ],
+      "warning": "Seat the chain whip fully on the sprocket teeth before applying force.",
+      "removedComponentIds": [
+        "bike.road.r1.rear-wheel"
+      ]
     },
     {
-      "id":"release-lockring",
-      "title":"Loosen the lockring",
-      "instruction":"Fully engage the lockring tool, counter the cassette with the chain whip and loosen the lockring in the normal unscrewing direction.",
-      "why":"The lockring retains the cassette sprockets on the freehub body.",
-      "focusComponentId":"bike.road.r1.cassette",
-      "highlightComponentIds":["bike.road.r1.cassette"],
-      "inspectionMode":"xray",
-      "explosionAmount":0.55,
-      "tools":["cassette-lockring-tool","chain-whip","wrench"],
-      "warning":"Use a securely seated tool; slipping can damage the lockring or injure your hand.",
-      "check":"Lockring is fully loose before lifting sprockets.",
-      "removedComponentIds":["bike.road.r1.rear-wheel"]
+      "id": "release-lockring",
+      "title": "Loosen the lockring",
+      "instruction": "Fully engage the lockring tool, counter the cassette with the chain whip and loosen the lockring in the normal unscrewing direction.",
+      "why": "The lockring retains the cassette sprockets on the freehub body.",
+      "focusComponentId": "bike.road.r1.cassette",
+      "highlightComponentIds": [
+        "bike.road.r1.cassette"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.55,
+      "tools": [
+        "cassette-lockring-tool",
+        "chain-whip",
+        "wrench"
+      ],
+      "warning": "Use a securely seated tool; slipping can damage the lockring or injure your hand.",
+      "check": "Lockring is fully loose before lifting sprockets.",
+      "removedComponentIds": [
+        "bike.road.r1.rear-wheel"
+      ]
     },
     {
-      "id":"remove-cassette",
-      "title":"Lift the cassette from the freehub",
-      "instruction":"Remove the lockring, then slide the cassette or sprocket stack straight off the freehub, keeping spacers in order.",
-      "why":"Correct spacer order determines cassette position and indexing after reassembly.",
-      "focusComponentId":"bike.road.r1.cassette",
-      "highlightComponentIds":["bike.road.r1.cassette","bike.road.r1.rear-hub"],
-      "inspectionMode":"exploded",
-      "explosionAmount":1,
-      "operationId":"remove-cassette",
-      "tools":[],
-      "check":"Cassette and any spacers are stored in their original order.",
-      "removedComponentIds":["bike.road.r1.cassette"]
+      "id": "remove-cassette",
+      "title": "Lift the cassette from the freehub",
+      "instruction": "Remove the lockring, then slide the cassette or sprocket stack straight off the freehub, keeping spacers in order.",
+      "why": "Correct spacer order determines cassette position and indexing after reassembly.",
+      "focusComponentId": "bike.road.r1.cassette",
+      "highlightComponentIds": [
+        "bike.road.r1.cassette",
+        "bike.road.r1.rear-hub"
+      ],
+      "inspectionMode": "exploded",
+      "explosionAmount": 1,
+      "operationId": "remove-cassette",
+      "tools": [],
+      "check": "Cassette and any spacers are stored in their original order.",
+      "removedComponentIds": [
+        "bike.road.r1.cassette"
+      ]
     }
-  ]
+  ],
+  "bikeId": "bike.road.r1"
 }
