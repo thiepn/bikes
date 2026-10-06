@@ -1,37 +1,57 @@
 # Bike Atlas
 
-Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning, maintenance, history, physics, compatibility and use-case fit.
+Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning, maintenance, history, physics, compatibility and custom builds.
 
 ## Current phase
 
-**P21 — Compatibility Engine & Build Lab Foundation**
+**P22 — Build Lab 3D Assembly, Component Transforms & Expanded System Compatibility**
 
-Bike Atlas now has an explicit compatibility engine and the first Build Lab.
+Bike Atlas now turns compatibility-checked Build Lab selections into visible assembled 3D drafts.
 
-## Compatibility engine
+## 3D Build Lab
 
-Compatibility is evaluated from authored interface requirements rather than visual similarity.
-
-Results use three states:
+P22 adds a normalized assembly layer:
 
 ```text
-compatible
-incompatible
-unknown
+compatible component
+      ↓
+host attachment transform
+      ↓
+hide host-owned semantic geometry
+      ↓
+render donor proxy
+      ↓
+assembled custom draft
 ```
 
-A missing specification therefore never becomes an assumed fit.
-
-Current requirement types:
+Current visual assembly foundation:
 
 ```text
-exact interface match
-numeric range
+4 host bikes
+12 attachment slots per bike
+48 attachment records
+4 donor visual profiles
+0 broken visual references
 ```
 
-## Build scope
+Donor proxies currently support:
 
-P21 exposes nine safe foundation slots per current bike:
+```text
+wheels
+tires
+handlebars
+stems
+seatposts
+saddles
+pedals
+rotors
+```
+
+Donor source traits such as tire thickness, bar shape, wheel construction, saddle dimensions and rotor size remain visible while the host attachment point remains authoritative.
+
+## Expanded compatibility
+
+The Build Lab now has 12 slots per bike:
 
 ```text
 Front wheel
@@ -39,93 +59,75 @@ Rear wheel
 Front tire
 Rear tire
 Handlebar
+Stem
+Front rotor
+Rear rotor
 Seatpost
 Saddle
 Left pedal
 Right pedal
 ```
 
-More complex drivetrain, suspension, brake and headset compatibility remains intentionally deferred until the required interface data is explicit.
-
-## Current reference library
+Compatibility matrix:
 
 ```text
 4 host bikes
-9 slots per bike
-36 donor/reference parts
-144 evaluated host/candidate combinations
+48 reference donor parts
+192 evaluated combinations
 
-90 compatible
-54 incompatible
+123 compatible
+69 incompatible
 0 unknown
 ```
 
-All donor and host references resolve to existing semantic Bike Atlas components.
+The engine still supports `unknown` for future incomplete/imported component data.
 
-## Explainable decisions
+## New rotor rules
 
-The Build Lab shows every requirement behind a result.
-
-Example:
+P22 checks:
 
 ```text
-Road R1 host
-Gravel G1 front wheel
+disc interface
+rotor diameter envelope
+```
 
-622 wheel format      match
-12x100 thru axle      match
-center-lock disc      match
+so a mount-type match alone is no longer enough.
 
+Examples:
+
+```text
+Road host + Gravel 160 mm center-lock rotor
 → compatible
+
+Road host + Urban 180 mm center-lock rotor
+→ incompatible by modeled diameter envelope
+
+MTB host + Road center-lock rotor
+→ incompatible by modeled disc interface
 ```
 
-while:
+## One authoritative build state
+
+The build draft now lives in the main viewer and is shared by:
 
 ```text
-Road R1 host
-MTB M1 front wheel
-
-622 wheel format      match
-12x100 vs 15x110      mismatch
-center-lock vs 6-bolt mismatch
-
-→ incompatible
+URL
+Build Lab
+compatibility engine
+3D scene
 ```
 
-## Logical build drafts
+URL-loaded drafts are revalidated against the active host before anything is rendered.
 
-Only fully compatible candidates can be added to a draft.
+Selecting the already-installed reference part canonicalizes to no change.
 
-Users can:
+## Model boundary
 
-- change a slot;
-- inspect why a part fits/fails;
-- restore a slot;
-- reset the whole build;
-- jump between modified slots.
+P22's donor geometry is normalized procedural proxy geometry.
 
-Selecting a slot highlights its host component on the existing 3D bike.
+It proves the component-transform and assembly architecture but is not yet manufacturer CAD/GLB interchange.
 
-P21 intentionally does **not** transplant donor meshes yet.
-
-## Shareable builds
-
-```text
-build=1
-buildParts=...
-```
-
-store Build Lab state in the URL.
-
-Loaded selections are always re-evaluated; hand-editing the URL cannot force an incompatible candidate into the logical draft.
-
-## Compatibility boundary
-
-A P21 compatible result means only:
-
-> all currently modeled Bike Atlas interfaces match.
-
-It is not an installation certification and does not imply that unmodeled clearance, fastener, structural, routing, adapter, manufacturer, warranty or legal constraints are satisfied.
+Likewise, a compatible result means all **currently modeled Bike Atlas interfaces** match; it is not installation certification.
 
 Run all domain checks with:
 
@@ -133,4 +135,4 @@ Run all domain checks with:
 npm run validate:domain
 ```
 
-See `docs/P1.md` through `docs/P21.md`.
+See `docs/P1.md` through `docs/P22.md`.
