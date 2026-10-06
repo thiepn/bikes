@@ -8,9 +8,19 @@ import drivetrain from "../content/lessons/drivetrain-basics.json" with { type: 
 import wheels from "../content/lessons/wheels-hubs-basics.json" with { type: "json" };
 import brakes from "../content/lessons/braking-basics.json" with { type: "json" };
 import steering from "../content/lessons/frame-steering-basics.json" with { type: "json" };
+import rearWheelProcedure from "../content/workshop/rear-wheel-removal.json" with { type: "json" };
+import cassetteProcedure from "../content/workshop/cassette-removal.json" with { type: "json" };
+import chainProcedure from "../content/workshop/chain-replacement.json" with { type: "json" };
+import brakeProcedure from "../content/workshop/disc-brake-inspection.json" with { type: "json" };
 
 const errors = [];
 const lessons = [drivetrain, wheels, brakes, steering];
+const procedures = [
+  rearWheelProcedure,
+  cassetteProcedure,
+  chainProcedure,
+  brakeProcedure,
+];
 
 function assert(condition, message) {
   if (!condition) errors.push(message);
@@ -153,6 +163,136 @@ function visitLesson(id) {
 
 for (const id of lessonIds) visitLesson(id);
 
+const procedureIds = new Set(
+  procedures.map((procedure) => procedure.id),
+);
+assert(
+  procedureIds.size === procedures.length,
+  "Workshop procedure IDs must be unique.",
+);
+
+for (const procedure of procedures) {
+  assert(
+    procedure.steps.length >= 4,
+    `${procedure.id} must contain at least four workshop steps.`,
+  );
+  assert(
+    new Set(procedure.steps.map((step) => step.id)).size ===
+      procedure.steps.length,
+    `Workshop step IDs must be unique in ${procedure.id}.`,
+  );
+  assert(
+    new Set(procedure.tools.map((tool) => tool.id)).size ===
+      procedure.tools.length,
+    `Workshop tool IDs must be unique in ${procedure.id}.`,
+  );
+
+  const toolIds = new Set(procedure.tools.map((tool) => tool.id));
+
+  for (const prerequisite of procedure.prerequisiteProcedureIds) {
+    assert(
+      procedureIds.has(prerequisite),
+      `Unknown workshop prerequisite ${prerequisite} in ${procedure.id}`,
+    );
+    assert(
+      prerequisite !== procedure.id,
+      `Workshop procedure cannot depend on itself: ${procedure.id}`,
+    );
+  }
+
+  const simulatedOperations = new Set(
+    procedure.assumedOperationIds,
+  );
+  for (const operationId of procedure.assumedOperationIds) {
+    assert(
+      operationIds.has(operationId),
+      `Unknown assumed operation ${operationId} in ${procedure.id}`,
+    );
+  }
+
+  for (const step of procedure.steps) {
+    assert(
+      componentIds.has(step.focusComponentId),
+      `Workshop focus component missing: ${step.focusComponentId}`,
+    );
+    assert(
+      calibrationIds.has(step.focusComponentId),
+      `Workshop focus component not exposed by calibration rig: ${step.focusComponentId}`,
+    );
+
+    for (const componentId of step.highlightComponentIds) {
+      assert(
+        componentIds.has(componentId),
+        `Workshop highlight component missing: ${componentId}`,
+      );
+    }
+
+    for (const componentId of step.removedComponentIds) {
+      assert(
+        componentIds.has(componentId),
+        `Workshop removed component missing: ${componentId}`,
+      );
+      assert(
+        calibrationIds.has(componentId),
+        `Workshop removed component not exposed by calibration rig: ${componentId}`,
+      );
+    }
+
+    for (const toolId of step.tools) {
+      assert(
+        toolIds.has(toolId),
+        `Unknown workshop tool ${toolId} in ${procedure.id}/${step.id}`,
+      );
+    }
+
+    assert(
+      step.explosionAmount >= 0 && step.explosionAmount <= 1,
+      `Invalid workshop explosion amount in ${procedure.id}/${step.id}`,
+    );
+
+    if (step.operationId) {
+      assert(
+        operationIds.has(step.operationId),
+        `Unknown workshop operation ${step.operationId} in ${procedure.id}/${step.id}`,
+      );
+      const operation = operationMap.get(step.operationId);
+      for (const prerequisite of operation?.prerequisites ?? []) {
+        assert(
+          simulatedOperations.has(prerequisite),
+          `Workshop operation order invalid in ${procedure.id}: ${step.operationId} requires ${prerequisite}`,
+        );
+      }
+      simulatedOperations.add(step.operationId);
+    }
+  }
+}
+
+const procedureMap = new Map(
+  procedures.map((procedure) => [procedure.id, procedure]),
+);
+const visitingProcedures = new Set();
+const visitedProcedures = new Set();
+
+function visitProcedure(id) {
+  if (visitingProcedures.has(id)) {
+    errors.push(`Workshop prerequisite cycle detected at ${id}`);
+    return;
+  }
+  if (visitedProcedures.has(id)) return;
+
+  visitingProcedures.add(id);
+  for (
+    const prerequisite of
+    procedureMap.get(id)?.prerequisiteProcedureIds ?? []
+  ) {
+    visitProcedure(prerequisite);
+  }
+  visitingProcedures.delete(id);
+  visitedProcedures.add(id);
+}
+
+for (const id of procedureIds) visitProcedure(id);
+
 try {
   await access(asset.local.sourcePath, constants.R_OK);
   const bytes = await readFile(asset.local.sourcePath);
@@ -175,5 +315,5 @@ if (errors.length) {
 }
 
 console.log(
-  `✓ Road R1 valid: ${bike.components.length} components, ${assembly.connections.length} assembly connections, ${assembly.operations.length} operations, ${lessons.length} lessons.`,
+  `✓ Road R1 valid: ${bike.components.length} components, ${assembly.connections.length} assembly connections, ${assembly.operations.length} operations, ${lessons.length} lessons, ${procedures.length} workshop procedures.`,
 );

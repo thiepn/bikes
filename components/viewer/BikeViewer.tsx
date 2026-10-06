@@ -5,24 +5,36 @@ import { Canvas } from "@react-three/fiber";
 import { ACESFilmicToneMapping, SRGBColorSpace } from "three";
 import { ROAD_R1 } from "@/domain/bike/road-r1";
 import {
+  canPerformOperation,
+  getAssemblyOperation,
+} from "@/domain/assembly/road-r1";
+import {
   LESSON_CATALOG,
   getLessonById,
 } from "@/domain/learning/catalog";
+import {
+  WORKSHOP_CATALOG,
+  getWorkshopProcedure,
+} from "@/domain/workshop/catalog";
 import { isCalibrationComponent } from "@/engine/interaction/calibration-components";
 import type { InspectionMode } from "@/engine/inspection/types";
 import {
   calculateLessonScore,
   isLessonCompleted,
 } from "@/engine/learning/progress";
-import type {
-  LessonChallengeResult,
-} from "@/engine/learning/types";
+import type { LessonChallengeResult } from "@/engine/learning/types";
+import {
+  isProcedureCompleted,
+} from "@/engine/workshop/progress";
 import { getStoryVisualState } from "@/engine/story/config";
 import type { ExperienceMode } from "@/engine/story/types";
 import { CinematicStory } from "@/components/story/CinematicStory";
 import { LearningCatalog } from "@/components/learning/LearningCatalog";
 import { LessonPanel } from "@/components/learning/LessonPanel";
 import { useLearningProgress } from "@/components/learning/useLearningProgress";
+import { WorkshopCatalog } from "@/components/workshop/WorkshopCatalog";
+import { WorkshopPanel } from "@/components/workshop/WorkshopPanel";
+import { useWorkshopProgress } from "@/components/workshop/useWorkshopProgress";
 import { BikeScene } from "./BikeScene";
 import { ComponentPanel } from "./ComponentPanel";
 import { InspectionToolbar } from "./InspectionToolbar";
@@ -51,6 +63,7 @@ export function BikeViewer() {
   const [mode, setMode] = useState<InspectionMode>("normal");
   const [explosionAmount, setExplosionAmount] = useState(0);
   const [learningOpen, setLearningOpen] = useState(false);
+  const [workshopOpen, setWorkshopOpen] = useState(false);
 
   const [activeLessonId, setActiveLessonId] = useState(
     LESSON_CATALOG[0].id,
@@ -62,6 +75,13 @@ export function BikeViewer() {
     Record<string, LessonChallengeResult>
   >({});
 
+  const [activeProcedureId, setActiveProcedureId] = useState(
+    WORKSHOP_CATALOG[0].id,
+  );
+  const [workshopStepIndex, setWorkshopStepIndex] = useState(0);
+  const [workshopCompletedStepIds, setWorkshopCompletedStepIds] =
+    useState<string[]>([]);
+
   const {
     store: learningProgress,
     hydrated: progressHydrated,
@@ -69,6 +89,14 @@ export function BikeViewer() {
     savePosition,
     completeLesson,
   } = useLearningProgress();
+
+  const {
+    store: workshopProgress,
+    hydrated: workshopHydrated,
+    startProcedure: persistProcedureStart,
+    saveStep: persistWorkshopStep,
+    completeProcedure,
+  } = useWorkshopProgress();
 
   const lesson =
     getLessonById(activeLessonId) ?? LESSON_CATALOG[0];
@@ -78,6 +106,42 @@ export function BikeViewer() {
   );
   const lessonStep = lesson.steps[safeLessonStepIndex];
   const challengeResult = challengeResults[lessonStep.id];
+
+  const procedure =
+    getWorkshopProcedure(activeProcedureId) ?? WORKSHOP_CATALOG[0];
+  const safeWorkshopStepIndex = Math.min(
+    procedure.steps.length - 1,
+    Math.max(0, workshopStepIndex),
+  );
+  const workshopStep = procedure.steps[safeWorkshopStepIndex];
+  const workshopCompletedOperations = new Set([
+    ...procedure.assumedOperationIds,
+    ...procedure.steps
+      .filter(
+        (step) =>
+          step.operationId &&
+          workshopCompletedStepIds.includes(step.id),
+      )
+      .map((step) => step.operationId as string),
+  ]);
+  const currentWorkshopOperation = workshopStep.operationId
+    ? getAssemblyOperation(workshopStep.operationId)
+    : null;
+  const canCompleteWorkshopStep =
+    !currentWorkshopOperation ||
+    canPerformOperation(
+      currentWorkshopOperation,
+      workshopCompletedOperations,
+    );
+  const missingWorkshopPrerequisites =
+    currentWorkshopOperation?.prerequisites.filter(
+      (operationId) => !workshopCompletedOperations.has(operationId),
+    ) ?? [];
+  const workshopBlockedReason =
+    missingWorkshopPrerequisites.length > 0
+      ? `Complete mechanical prerequisite${missingWorkshopPrerequisites.length > 1 ? "s" : ""}: ${missingWorkshopPrerequisites.join(", ")}.`
+      : undefined;
+
   const storyVisual = getStoryVisualState(storyProgress);
 
   const sceneMode =
@@ -85,19 +149,28 @@ export function BikeViewer() {
       ? storyVisual.inspectionMode
       : experienceMode === "lesson"
         ? lessonStep.inspectionMode
-        : mode;
+        : experienceMode === "workshop"
+          ? workshopStep.inspectionMode
+          : mode;
+
   const sceneExplosion =
     experienceMode === "story"
       ? storyVisual.explosionAmount
       : experienceMode === "lesson"
         ? 0
-        : explosionAmount;
+        : experienceMode === "workshop"
+          ? workshopStep.explosionAmount
+          : explosionAmount;
+
   const sceneSelectedId =
     experienceMode === "story"
       ? null
       : experienceMode === "lesson"
         ? lessonStep.focusComponentId
-        : selectedId;
+        : experienceMode === "workshop"
+          ? workshopStep.focusComponentId
+          : selectedId;
+
   const sceneHighlightedIds =
     experienceMode === "lesson"
       ? [
@@ -106,7 +179,15 @@ export function BikeViewer() {
             ? [challengeResult.answerId]
             : []),
         ]
+      : experienceMode === "workshop"
+        ? workshopStep.highlightComponentIds
+        : [];
+
+  const sceneRemovedIds =
+    experienceMode === "workshop"
+      ? workshopStep.removedComponentIds
       : [];
+
   const drivetrainDemo =
     experienceMode === "lesson" && lessonStep.demo
       ? {
@@ -187,10 +268,14 @@ export function BikeViewer() {
 
   const changeLessonStep = useCallback(
     (nextIndex: number) => {
-      configureLessonStep(lesson.id, nextIndex);
-      savePosition(lesson.id, nextIndex);
+      const index = Math.min(
+        lesson.steps.length - 1,
+        Math.max(0, nextIndex),
+      );
+      configureLessonStep(lesson.id, index);
+      savePosition(lesson.id, index);
     },
-    [configureLessonStep, lesson.id, savePosition],
+    [configureLessonStep, lesson.id, lesson.steps.length, savePosition],
   );
 
   const startLesson = useCallback(
@@ -211,6 +296,7 @@ export function BikeViewer() {
       configureLessonStep(nextLesson.id, requestedStep);
       markStarted(nextLesson.id, requestedStep);
       setLearningOpen(false);
+      setWorkshopOpen(false);
       setExperienceMode("lesson");
     },
     [
@@ -282,6 +368,139 @@ export function BikeViewer() {
     setIsolated(false);
   }, [lesson.id, safeLessonStepIndex, savePosition]);
 
+  const configureWorkshopStep = useCallback(
+    (procedureId: string, nextIndex: number) => {
+      const nextProcedure = getWorkshopProcedure(procedureId);
+      if (!nextProcedure) return;
+
+      const index = Math.min(
+        nextProcedure.steps.length - 1,
+        Math.max(0, nextIndex),
+      );
+
+      setActiveProcedureId(nextProcedure.id);
+      setWorkshopStepIndex(index);
+    },
+    [],
+  );
+
+  const startWorkshopProcedure = useCallback(
+    (procedureId: string, requestedStep = 0) => {
+      const nextProcedure = getWorkshopProcedure(procedureId);
+      if (!nextProcedure) return;
+
+      const locked = nextProcedure.prerequisiteProcedureIds.some(
+        (prerequisiteId) =>
+          !isProcedureCompleted(workshopProgress, prerequisiteId),
+      );
+      if (locked) return;
+
+      const existing = workshopProgress.procedures[nextProcedure.id];
+      const completedIds = existing?.completedStepIds ?? [];
+
+      setSelectedId(null);
+      setHoveredId(null);
+      setIsolated(false);
+      setWorkshopCompletedStepIds(completedIds);
+      configureWorkshopStep(nextProcedure.id, requestedStep);
+      persistProcedureStart(nextProcedure.id, requestedStep);
+      setLearningOpen(false);
+      setWorkshopOpen(false);
+      setExperienceMode("workshop");
+    },
+    [
+      configureWorkshopStep,
+      persistProcedureStart,
+      workshopProgress,
+    ],
+  );
+
+  const changeWorkshopStep = useCallback(
+    (nextIndex: number) => {
+      const index = Math.min(
+        procedure.steps.length - 1,
+        Math.max(0, nextIndex),
+      );
+
+      configureWorkshopStep(procedure.id, index);
+      persistWorkshopStep(
+        procedure.id,
+        index,
+        workshopCompletedStepIds,
+      );
+    },
+    [
+      configureWorkshopStep,
+      persistWorkshopStep,
+      procedure.id,
+      procedure.steps.length,
+      workshopCompletedStepIds,
+    ],
+  );
+
+  const completeCurrentWorkshopStep = useCallback(() => {
+    if (!canCompleteWorkshopStep) return;
+
+    const completedIds = Array.from(
+      new Set([
+        ...workshopCompletedStepIds,
+        workshopStep.id,
+      ]),
+    );
+
+    setWorkshopCompletedStepIds(completedIds);
+
+    const last =
+      safeWorkshopStepIndex === procedure.steps.length - 1;
+
+    if (last) {
+      completeProcedure(
+        procedure.id,
+        safeWorkshopStepIndex,
+        completedIds,
+      );
+      setExperienceMode("explore");
+      setWorkshopOpen(true);
+      return;
+    }
+
+    const nextIndex = safeWorkshopStepIndex + 1;
+    persistWorkshopStep(
+      procedure.id,
+      nextIndex,
+      completedIds,
+    );
+    configureWorkshopStep(procedure.id, nextIndex);
+  }, [
+    canCompleteWorkshopStep,
+    completeProcedure,
+    configureWorkshopStep,
+    persistWorkshopStep,
+    procedure.id,
+    procedure.steps.length,
+    safeWorkshopStepIndex,
+    workshopCompletedStepIds,
+    workshopStep.id,
+  ]);
+
+  const exitWorkshop = useCallback(() => {
+    persistWorkshopStep(
+      procedure.id,
+      safeWorkshopStepIndex,
+      workshopCompletedStepIds,
+    );
+    setExperienceMode("explore");
+    setWorkshopOpen(true);
+    setSelectedId(null);
+    setHoveredId(null);
+    setIsolated(false);
+  }, [
+    persistWorkshopStep,
+    procedure.id,
+    safeWorkshopStepIndex,
+    workshopCompletedStepIds,
+  ]);
+
   const enterExplore = useCallback(() => {
     setMode(storyVisual.inspectionMode);
     setExplosionAmount(storyVisual.explosionAmount);
@@ -296,6 +515,7 @@ export function BikeViewer() {
     setHoveredId(null);
     setIsolated(false);
     setLearningOpen(false);
+    setWorkshopOpen(false);
     setMode("normal");
     setExplosionAmount(0);
     setStoryProgress(0);
@@ -303,11 +523,16 @@ export function BikeViewer() {
 
     if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
-      url.searchParams.delete("part");
-      url.searchParams.delete("view");
-      url.searchParams.delete("explode");
-      url.searchParams.delete("lesson");
-      url.searchParams.delete("step");
+      for (const key of [
+        "part",
+        "view",
+        "explode",
+        "lesson",
+        "workshop",
+        "step",
+      ]) {
+        url.searchParams.delete(key);
+      }
       window.history.replaceState({}, "", url);
     }
   }, []);
@@ -317,14 +542,27 @@ export function BikeViewer() {
     const slug = url.searchParams.get("part");
     const view = url.searchParams.get("view") as InspectionMode | null;
     const explode = Number(url.searchParams.get("explode"));
-    const requestedLessonId = url.searchParams.get("lesson");
+    const requestedLesson = getLessonById(
+      url.searchParams.get("lesson"),
+    );
+    const requestedProcedure = getWorkshopProcedure(
+      url.searchParams.get("workshop"),
+    );
     const requestedStep = Number(url.searchParams.get("step"));
-    const requestedLesson = getLessonById(requestedLessonId);
-    const lessonDeepLink = Boolean(requestedLesson);
-    const hasDeepLink = Boolean(slug || view || lessonDeepLink);
 
-    if (hasDeepLink) {
-      setExperienceMode(lessonDeepLink ? "lesson" : "explore");
+    if (requestedProcedure) {
+      const index =
+        Number.isFinite(requestedStep) && requestedStep >= 1
+          ? Math.min(
+              requestedProcedure.steps.length - 1,
+              requestedStep - 1,
+            )
+          : 0;
+      setActiveProcedureId(requestedProcedure.id);
+      setWorkshopStepIndex(index);
+      setWorkshopCompletedStepIds([]);
+      setExperienceMode("workshop");
+      return;
     }
 
     if (requestedLesson) {
@@ -342,8 +580,11 @@ export function BikeViewer() {
       setLessonRunning(step.demo?.running ?? false);
       setLessonGearIndex(step.demo?.gearIndex ?? 2);
       setChallengeResults({});
+      setExperienceMode("lesson");
       return;
     }
+
+    if (slug || view) setExperienceMode("explore");
 
     if (slug) {
       const component = ROAD_R1.components.find(
@@ -366,19 +607,54 @@ export function BikeViewer() {
   }, []);
 
   useEffect(() => {
+    if (
+      experienceMode !== "workshop" ||
+      !workshopHydrated
+    ) {
+      return;
+    }
+
+    const record = workshopProgress.procedures[procedure.id];
+    if (record && workshopCompletedStepIds.length === 0) {
+      setWorkshopCompletedStepIds(record.completedStepIds);
+    }
+    persistProcedureStart(procedure.id, safeWorkshopStepIndex);
+  }, [
+    experienceMode,
+    persistProcedureStart,
+    procedure.id,
+    safeWorkshopStepIndex,
+    workshopCompletedStepIds.length,
+    workshopHydrated,
+    workshopProgress.procedures,
+  ]);
+
+  useEffect(() => {
     const url = new URL(window.location.href);
 
     if (experienceMode === "lesson") {
       url.searchParams.delete("part");
       url.searchParams.delete("view");
       url.searchParams.delete("explode");
+      url.searchParams.delete("workshop");
       url.searchParams.set("lesson", lesson.id);
       url.searchParams.set(
         "step",
         String(safeLessonStepIndex + 1),
       );
+    } else if (experienceMode === "workshop") {
+      url.searchParams.delete("part");
+      url.searchParams.delete("view");
+      url.searchParams.delete("explode");
+      url.searchParams.delete("lesson");
+      url.searchParams.set("workshop", procedure.id);
+      url.searchParams.set(
+        "step",
+        String(safeWorkshopStepIndex + 1),
+      );
     } else {
       url.searchParams.delete("lesson");
+      url.searchParams.delete("workshop");
       url.searchParams.delete("step");
     }
 
@@ -386,7 +662,9 @@ export function BikeViewer() {
   }, [
     experienceMode,
     lesson.id,
+    procedure.id,
     safeLessonStepIndex,
+    safeWorkshopStepIndex,
   ]);
 
   useEffect(() => {
@@ -442,11 +720,9 @@ export function BikeViewer() {
       const key = event.key.toLowerCase();
 
       if (event.key === "Escape") {
-        if (learningOpen) {
-          setLearningOpen(false);
-        } else {
-          select(null);
-        }
+        if (learningOpen) setLearningOpen(false);
+        else if (workshopOpen) setWorkshopOpen(false);
+        else select(null);
         return;
       }
 
@@ -471,6 +747,7 @@ export function BikeViewer() {
     learningOpen,
     select,
     selectedId,
+    workshopOpen,
   ]);
 
   const lessonSelectHandler =
@@ -487,7 +764,9 @@ export function BikeViewer() {
           ? "viewer viewer--story"
           : experienceMode === "lesson"
             ? "viewer viewer--lesson"
-            : "viewer viewer--explore"
+            : experienceMode === "workshop"
+              ? "viewer viewer--workshop"
+              : "viewer viewer--explore"
       }
       aria-label="Interactive Bike Atlas 3D viewer"
     >
@@ -508,27 +787,47 @@ export function BikeViewer() {
 
         <div className="topbar-actions">
           {experienceMode === "explore" && (
-            <button
-              type="button"
-              className={
-                learningOpen
-                  ? "learn-launch is-active"
-                  : "learn-launch"
-              }
-              onClick={() =>
-                setLearningOpen((value) => !value)
-              }
-            >
-              Learn
-              <span aria-hidden="true">→</span>
-            </button>
+            <>
+              <button
+                type="button"
+                className={
+                  learningOpen
+                    ? "learn-launch is-active"
+                    : "learn-launch"
+                }
+                onClick={() => {
+                  setLearningOpen((value) => !value);
+                  setWorkshopOpen(false);
+                }}
+              >
+                Learn
+                <span aria-hidden="true">→</span>
+              </button>
+              <button
+                type="button"
+                className={
+                  workshopOpen
+                    ? "workshop-launch is-active"
+                    : "workshop-launch"
+                }
+                onClick={() => {
+                  setWorkshopOpen((value) => !value);
+                  setLearningOpen(false);
+                }}
+              >
+                Workshop
+                <span aria-hidden="true">→</span>
+              </button>
+            </>
           )}
           <div className="phase-label">
             {experienceMode === "story"
               ? "Cinematic introduction"
               : experienceMode === "lesson"
                 ? `Lesson · ${safeLessonStepIndex + 1}/${lesson.steps.length}`
-                : "Explore"}
+                : experienceMode === "workshop"
+                  ? `Workshop · ${safeWorkshopStepIndex + 1}/${procedure.steps.length}`
+                  : "Explore"}
           </div>
         </div>
       </div>
@@ -570,6 +869,7 @@ export function BikeViewer() {
           mode={sceneMode}
           explosionAmount={sceneExplosion}
           highlightedIds={sceneHighlightedIds}
+          removedIds={sceneRemovedIds}
           drivetrainDemo={drivetrainDemo}
           onSelect={
             experienceMode === "explore"
@@ -608,12 +908,30 @@ export function BikeViewer() {
           onFinish={finishLesson}
           onExit={exitLesson}
         />
+      ) : experienceMode === "workshop" ? (
+        <WorkshopPanel
+          procedure={procedure}
+          stepIndex={safeWorkshopStepIndex}
+          completedStepIds={workshopCompletedStepIds}
+          canCompleteCurrent={canCompleteWorkshopStep}
+          blockedReason={workshopBlockedReason}
+          onStepChange={changeWorkshopStep}
+          onCompleteCurrent={completeCurrentWorkshopStep}
+          onExit={exitWorkshop}
+        />
       ) : learningOpen ? (
         <LearningCatalog
           progress={learningProgress}
           hydrated={progressHydrated}
           onStartLesson={startLesson}
           onClose={() => setLearningOpen(false)}
+        />
+      ) : workshopOpen ? (
+        <WorkshopCatalog
+          progress={workshopProgress}
+          hydrated={workshopHydrated}
+          onStartProcedure={startWorkshopProcedure}
+          onClose={() => setWorkshopOpen(false)}
         />
       ) : (
         <>

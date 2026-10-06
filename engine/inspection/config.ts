@@ -51,6 +51,7 @@ const EXPLOSION_VECTORS: Record<string, Vector3Tuple> = {
   "bike.road.r1.rear-tire": [0, 0, -0.32],
   "bike.road.r1.rear-rim": [0.08, 0, -0.3],
   "bike.road.r1.rear-hub": [0.16, 0, -0.27],
+  "bike.road.r1.rear-thru-axle": [0.34, 0, -0.28],
   "bike.road.r1.rear-rotor": [0.25, 0, -0.26],
   "bike.road.r1.rear-caliper": [0.2, 0.12, -0.18],
 

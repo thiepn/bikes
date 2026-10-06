@@ -200,6 +200,7 @@ export function PrototypeBike(props: PrototypeBikeProps) {
     mode: props.mode,
     explosionAmount: props.explosionAmount,
     highlightedIds: props.highlightedIds,
+    removedIds: props.removedIds,
   };
   const handlers: ViewerInteractionHandlers = {
     onSelect: props.onSelect,
@@ -229,6 +230,27 @@ export function PrototypeBike(props: PrototypeBikeProps) {
     <group rotation={[0, -0.09, 0]}>
       <Wheel side="rear" center={rear} state={state} handlers={handlers} />
       <Wheel side="front" center={front} state={state} handlers={handlers} />
+
+      <SemanticPart
+        {...semanticProps("bike.road.r1.rear-thru-axle", state, handlers)}
+      >
+        <mesh
+          position={[0, 0.36, -0.58]}
+          rotation={[0, 0, Math.PI / 2]}
+          castShadow
+        >
+          <cylinderGeometry args={[0.009, 0.009, 0.19, 20]} />
+          <meshStandardMaterial
+            {...getPartAppearance(
+              "#7d8791",
+              "bike.road.r1.rear-thru-axle",
+              state,
+            )}
+            metalness={0.9}
+            roughness={0.18}
+          />
+        </mesh>
+      </SemanticPart>
 
       <SemanticPart {...semanticProps(frameId, state, handlers)}>
         <group>

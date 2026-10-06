@@ -27,10 +27,13 @@ export function getPartAppearance(
   const hovered = state.hoveredId
     ? semanticIds.includes(state.hoveredId)
     : false;
-  const lessonHighlighted = semanticIds.some((id) =>
+  const contextualHighlight = semanticIds.some((id) =>
     state.highlightedIds.includes(id),
   );
-  const highlighted = selected || hovered || lessonHighlighted;
+  const highlighted = selected || hovered || contextualHighlight;
+  const removed = semanticIds.some((id) =>
+    state.removedIds.includes(id),
+  );
   const survivesIsolation =
     !state.selectedId || semanticIds.includes(state.selectedId);
   const dimmed = Boolean(state.isolated && !survivesIsolation);
@@ -41,7 +44,15 @@ export function getPartAppearance(
     semanticIds.some((id) => isXrayShell(id)) &&
     !highlighted;
 
-  const opacity = dimmed ? 0.045 : xrayShell ? 0.14 : 1;
+  const opacity = removed
+    ? highlighted
+      ? 0.24
+      : 0.035
+    : dimmed
+      ? 0.045
+      : xrayShell
+        ? 0.14
+        : 1;
 
   return {
     color: highlighted ? "#d9ff67" : systemColor,

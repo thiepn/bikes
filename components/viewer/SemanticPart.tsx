@@ -23,6 +23,7 @@ export function SemanticPart({
   isolated,
   mode,
   explosionAmount,
+  removedIds,
   onSelect,
   onHover,
   onIsolate,
@@ -60,6 +61,7 @@ export function SemanticPart({
         componentId,
         selected: selectedId === componentId,
         isolated: hiddenByIsolation,
+        removed: removedIds.includes(componentId),
         inspectionMode: mode,
         explosionAmount,
       }}

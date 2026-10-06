@@ -24,6 +24,7 @@ const FOCUS_BY_SLUG: Record<string, CameraFocus> = {
   "rear-rim": { position: [0.68, 0.58, -1.08], target: [0, 0.36, -0.58], fov: 23 },
   "front-hub": { position: [0.55, 0.46, 0.91], target: [0, 0.36, 0.58], fov: 20 },
   "rear-hub": { position: [0.55, 0.46, -0.91], target: [0, 0.36, -0.58], fov: 20 },
+  "rear-thru-axle": { position: [0.48, 0.42, -0.86], target: [0, 0.36, -0.58], fov: 17 },
   "front-rotor": { position: [0.52, 0.44, 0.9], target: [0, 0.36, 0.58], fov: 19 },
   "rear-rotor": { position: [0.52, 0.44, -0.9], target: [0, 0.36, -0.58], fov: 19 },
   "front-caliper": { position: [0.52, 0.56, 0.86], target: [0.08, 0.45, 0.54], fov: 18 },

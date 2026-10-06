@@ -9,6 +9,7 @@ export interface ViewerInteractionState {
   mode: InspectionMode;
   explosionAmount: number;
   highlightedIds: string[];
+  removedIds: string[];
 }
 
 export interface ViewerInteractionHandlers {

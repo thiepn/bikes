@@ -14,6 +14,7 @@ export const CALIBRATION_COMPONENT_IDS = new Set([
   "bike.road.r1.rear-rotor",
   "bike.road.r1.front-caliper",
   "bike.road.r1.rear-caliper",
+  "bike.road.r1.rear-thru-axle",
   "bike.road.r1.handlebar",
   "bike.road.r1.stem",
   "bike.road.r1.saddle",
