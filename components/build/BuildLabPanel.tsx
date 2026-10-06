@@ -9,6 +9,7 @@ import {
   getInstalledReferencePart,
 } from "@/domain/compatibility/catalog";
 import { evaluateCompatibility } from "@/domain/compatibility/evaluate";
+import { analyzeBuild } from "@/domain/compatibility/analyze-build";
 import type {
   CompatibilityPart,
   CompatibilityResult,
@@ -22,6 +23,11 @@ type Props = {
   onPreviewComponent: (componentId: string) => void;
   onClose: () => void;
 };
+
+function signed(value: number, digits = 2) {
+  const rounded = Number(value.toFixed(digits));
+  return `${rounded > 0 ? "+" : ""}${rounded}`;
+}
 
 function statusLabel(result: CompatibilityResult) {
   if (result.status === "compatible") return "Compatible";
@@ -120,6 +126,11 @@ export function BuildLabPanel({
     candidates.find((candidate) => candidate.part.id === draftPartId) ??
     candidates[0] ??
     null;
+
+  const buildAnalysis = useMemo(
+    () => analyzeBuild(bikeId, selections),
+    [bikeId, selections],
+  );
 
   const changedSelections = useMemo(() => {
     if (!profile) return [];
@@ -276,6 +287,126 @@ export function BuildLabPanel({
             </p>
           </section>
 
+          <section
+            className={`build-consequences is-${buildAnalysis.health}`}
+            aria-label="Build consequence analysis"
+          >
+            <div className="build-consequences__head">
+              <div>
+                <span>System analysis</span>
+                <strong>
+                  {buildAnalysis.health === "ready"
+                    ? "Build coherent"
+                    : buildAnalysis.health === "attention"
+                      ? "Review consequences"
+                      : "Companion changes required"}
+                </strong>
+              </div>
+              <b>
+                {buildAnalysis.issues.filter(
+                  (issue) => issue.severity === "blocking",
+                ).length}{" "}
+                blocking ·{" "}
+                {buildAnalysis.issues.filter(
+                  (issue) => issue.severity === "warning",
+                ).length}{" "}
+                warning
+              </b>
+            </div>
+
+            <div className="build-consequence-metrics">
+              <article>
+                <span>Mass</span>
+                <strong>
+                  {signed(buildAnalysis.metrics.massDeltaKg, 2)} kg
+                </strong>
+              </article>
+              <article>
+                <span>CdA</span>
+                <strong>
+                  {signed(buildAnalysis.metrics.cdaDeltaM2, 3)} m²
+                </strong>
+              </article>
+              <article>
+                <span>Front brake leverage</span>
+                <strong>
+                  {signed(
+                    (buildAnalysis.metrics.frontBrakeTorqueRatio - 1) *
+                      100,
+                    1,
+                  )}
+                  %
+                </strong>
+              </article>
+              <article>
+                <span>Rear brake leverage</span>
+                <strong>
+                  {signed(
+                    (buildAnalysis.metrics.rearBrakeTorqueRatio - 1) *
+                      100,
+                    1,
+                  )}
+                  %
+                </strong>
+              </article>
+              <article>
+                <span>Gear range</span>
+                <strong>
+                  {buildAnalysis.metrics.gearRangePercent
+                    ? `${Math.round(
+                        buildAnalysis.metrics.gearRangePercent,
+                      )}%`
+                    : "—"}
+                </strong>
+              </article>
+              <article>
+                <span>Fork A2C</span>
+                <strong>
+                  {signed(
+                    buildAnalysis.metrics.axleToCrownDeltaMm,
+                    0,
+                  )}{" "}
+                  mm
+                </strong>
+              </article>
+            </div>
+
+            {buildAnalysis.issues.length === 0 ? (
+              <p className="build-consequences__clear">
+                No modeled cross-component conflicts in this draft.
+              </p>
+            ) : (
+              <div className="build-issues">
+                {buildAnalysis.issues.map((issue) => (
+                  <button
+                    type="button"
+                    key={issue.id}
+                    className={`is-${issue.severity}`}
+                    onClick={() => {
+                      const target = issue.relatedSlots.find(
+                        (related) =>
+                          profile.slots.some(
+                            (candidateSlot) =>
+                              candidateSlot.id === related,
+                          ),
+                      );
+                      if (target) {
+                        setSlotId(target);
+                        setInspectedPartId(null);
+                      }
+                    }}
+                  >
+                    <span>
+                      {issue.system} · {issue.severity}
+                    </span>
+                    <strong>{issue.title}</strong>
+                    <p>{issue.detail}</p>
+                  </button>
+                ))}
+              </div>
+            )}
+          </section>
+
           <section className="build-candidates">
             <div className="build-section-title">
               <span>Candidate library</span>
@@ -384,9 +515,9 @@ export function BuildLabPanel({
               cable/hose routing, warranty requirements or legal rules.
             </p>
             <p>
-              P22 renders normalized donor proxy geometry at authored host
-              attachment points. These proxies prove assembly transforms;
-              they are not production manufacturer meshes.
+              P23 also evaluates cross-component dependencies and build
+              consequences. Normalized donor proxy geometry still proves
+              assembly transforms rather than manufacturer CAD accuracy.
             </p>
           </section>
         </main>
