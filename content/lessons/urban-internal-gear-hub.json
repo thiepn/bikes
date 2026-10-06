@@ -1,0 +1,113 @@
+{
+  "id": "urban-internal-gear-hub",
+  "bikeId": "bike.urban.u1",
+  "title": "How an internal-gear hub drivetrain works",
+  "summary": "Follow power from the single chainring to the rear sprocket and understand why the selectable ratios live inside the rear hub.",
+  "systemId": "transmission",
+  "difficulty": "beginner",
+  "durationMinutes": 6,
+  "prerequisiteLessonIds": [],
+  "steps": [
+    {
+      "id": "external-path",
+      "eyebrow": "01 · Power path",
+      "title": "The outside drivetrain stays simple.",
+      "body": "Pedal force travels from the crankset to one front chainring, through the chain, and onto one external rear sprocket.",
+      "keyFact": "Unlike a derailleur drivetrain, Urban U1 does not shift the chain across a cassette.",
+      "focusComponentId": "bike.urban.u1.chain",
+      "highlightComponentIds": [
+        "bike.urban.u1.crankset",
+        "bike.urban.u1.chainring",
+        "bike.urban.u1.chain",
+        "bike.urban.u1.rear-sprocket"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "ratios-inside",
+      "eyebrow": "02 · Internal gears",
+      "title": "The gear changes happen inside the hub.",
+      "body": "The rear hub contains the gear mechanism that selects different transmission ratios while the chain continues to run on the same rear sprocket.",
+      "keyFact": "One visible rear sprocket does not mean the bicycle has only one gear.",
+      "focusComponentId": "bike.urban.u1.rear-hub",
+      "highlightComponentIds": [
+        "bike.urban.u1.rear-hub",
+        "bike.urban.u1.rear-sprocket",
+        "bike.urban.u1.rear-wheel"
+      ],
+      "inspectionMode": "xray"
+    },
+    {
+      "id": "protected-chain",
+      "eyebrow": "03 · Protection",
+      "title": "A chain guard protects the exposed drive path.",
+      "body": "The full chain guard covers much of the chain and chainring area. It helps separate clothing from the drivetrain and shields the external chain from everyday splash and dirt.",
+      "keyFact": "A chain guard reduces exposure; it does not make the drivetrain maintenance-free.",
+      "focusComponentId": "bike.urban.u1.chain-guard",
+      "highlightComponentIds": [
+        "bike.urban.u1.chain-guard",
+        "bike.urban.u1.chain",
+        "bike.urban.u1.chainring"
+      ],
+      "inspectionMode": "xray"
+    },
+    {
+      "id": "service-boundary",
+      "eyebrow": "04 · Service",
+      "title": "External checks and internal service are different jobs.",
+      "body": "Chain condition, chain tension/alignment symptoms, sprocket wear and shift behavior can be observed externally. Opening or servicing an internal-gear hub depends on the exact hub design and its service documentation.",
+      "keyFact": "Bike Atlas should not generalize internal-hub oil, grease, adjustment or service intervals across different hub systems.",
+      "focusComponentId": "bike.urban.u1.rear-hub",
+      "highlightComponentIds": [
+        "bike.urban.u1.rear-hub",
+        "bike.urban.u1.chain",
+        "bike.urban.u1.rear-sprocket"
+      ],
+      "inspectionMode": "normal",
+      "challenge": {
+        "type": "multiple-choice",
+        "prompt": "Where are Urban U1's selectable gear ratios created?",
+        "options": [
+          {
+            "id": "cassette",
+            "label": "Across an external cassette"
+          },
+          {
+            "id": "hub",
+            "label": "Inside the rear hub"
+          },
+          {
+            "id": "chainring",
+            "label": "By moving the chain between front chainrings"
+          }
+        ],
+        "correctOptionId": "hub",
+        "explanation": "The internal-gear hub changes ratios inside the rear hub while the chain remains on one external rear sprocket."
+      }
+    },
+    {
+      "id": "identify-sprocket",
+      "eyebrow": "05 · Identify",
+      "title": "Find the single external rear gear.",
+      "body": "Identify the rear sprocket that receives chain force before the hub's internal mechanism changes the effective ratio.",
+      "keyFact": "The rear sprocket is outside the hub; the selectable gear mechanism is inside.",
+      "focusComponentId": "bike.urban.u1.rear-hub",
+      "highlightComponentIds": [],
+      "inspectionMode": "normal",
+      "challenge": {
+        "type": "select-component",
+        "prompt": "Which external part directly engages the chain at the rear wheel?",
+        "candidateComponentIds": [
+          "bike.urban.u1.rear-sprocket",
+          "bike.urban.u1.rear-hub",
+          "bike.urban.u1.rear-wheel"
+        ],
+        "correctComponentIds": [
+          "bike.urban.u1.rear-sprocket"
+        ],
+        "successText": "Correct. The chain drives the single external rear sprocket.",
+        "retryText": "That part belongs to the rear wheel system, but it is not the sprocket engaged by the chain."
+      }
+    }
+  ]
+}
