@@ -4,21 +4,11 @@ Bike Atlas is an interactive 3D bicycle knowledge platform: explore bicycles, in
 
 ## Current phase
 
-**P2 — Production Road R1 Asset & Semantic Component Preparation**
+**P3 — Part Selection, Highlighting, Semantic Navigation & Camera Focus**
 
-P1 established the web 3D engine. P2 now locks the first production road-bike source, provenance, semantic component registry, asset validation, and Blender preparation workflow.
+P1 established the 3D engine. P2 locked the Road R1 asset source and semantic component model. P3 makes that semantic model interactive: click/hover parts, focus them smoothly, isolate them, navigate through an accessible component list, and deep-link selection through `?part=<slug>`.
 
-The browser still displays the procedural calibration bike until a cleaned and optimized Road R1 GLB passes the production asset contract.
-
-## Stack
-
-- Next.js 16
-- React 19
-- TypeScript
-- Three.js
-- React Three Fiber
-- Drei
-- three-mesh-bvh
+The temporary calibration bike remains in place until the production Road R1 GLB finishes the Blender asset-authoring pipeline.
 
 ## Development
 
@@ -27,21 +17,21 @@ npm install
 npm run dev
 ```
 
-## Road R1 asset workflow
+## Interaction
 
-```bash
-# Download the pinned CC BY source model and verify its Git blob SHA
-npm run asset:road-r1:fetch
+- Drag: orbit
+- Scroll/pinch: zoom
+- Click part: select + focus
+- Double-click part: isolate
+- `Esc`: reset
+- `I`: toggle isolation
 
-# Validate metadata / semantic registry
-npm run validate:assets
+Example deep links:
 
-# Audit the source in Blender
-blender --background --python scripts/blender/audit-road-r1.py -- \
-  assets/source/road-r1/RoadBike_SubDiv.fbx \
-  assets/work/road-r1/source-audit.json
+```text
+/?part=frame
+/?part=cassette
+/?part=rear-derailleur
 ```
 
-The source FBX itself is intentionally ignored by Git. Its exact upstream location, blob SHA, license, and attribution are committed so it can be reproduced without bloating the application repository.
-
-See `docs/P1.md`, `docs/P2.md`, and `docs/ASSET_PIPELINE.md`.
+See `docs/P1.md`, `docs/P2.md`, `docs/P3.md`, and `docs/ASSET_PIPELINE.md`.

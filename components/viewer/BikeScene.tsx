@@ -8,12 +8,19 @@ import {
   OrbitControls,
 } from "@react-three/drei";
 import { PrototypeBike } from "./PrototypeBike";
+import { CameraRig } from "./CameraRig";
 import { CAMERA_LIMITS, CAMERA_TARGET } from "@/engine/camera/presets";
 import { enableBvhRaycasting } from "@/engine/raycast/setup-bvh";
+import type {
+  ViewerInteractionHandlers,
+  ViewerInteractionState,
+} from "@/engine/interaction/types";
 
 enableBvhRaycasting();
 
-export function BikeScene() {
+type BikeSceneProps = ViewerInteractionState & ViewerInteractionHandlers;
+
+export function BikeScene(props: BikeSceneProps) {
   return (
     <>
       <color attach="background" args={["#07090c"]} />
@@ -43,7 +50,7 @@ export function BikeScene() {
         <Lightformer form="rect" intensity={1.5} color="#d9ff67" position={[-3, 1.1, -1]} rotation={[0, Math.PI / 2, 0]} scale={[2, 3, 1]} />
       </Environment>
 
-      <PrototypeBike />
+      <PrototypeBike {...props} />
 
       <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.004, 0]}>
         <planeGeometry args={[12, 12]} />
@@ -63,6 +70,7 @@ export function BikeScene() {
         enableDamping
         dampingFactor={0.055}
       />
+      <CameraRig selectedId={props.selectedId} />
 
       <AdaptiveDpr />
     </>

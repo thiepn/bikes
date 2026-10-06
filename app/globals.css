@@ -230,3 +230,230 @@ body {
     animation-iteration-count: 1 !important;
   }
 }
+
+
+/* P3 semantic interaction */
+.component-panel {
+  position: absolute;
+  z-index: 4;
+  top: 92px;
+  right: clamp(18px, 3vw, 44px);
+  display: flex;
+  width: min(340px, calc(100vw - 36px));
+  max-height: calc(100dvh - 174px);
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(9, 12, 16, 0.78);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(24px);
+}
+
+.component-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 17px 17px 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+}
+
+.component-panel__header > div {
+  display: grid;
+  gap: 4px;
+}
+
+.component-panel__header strong {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.component-panel__kicker {
+  color: var(--accent);
+  font-size: 9px;
+  font-weight: 760;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.icon-button,
+.control-button,
+.component-item {
+  border: 0;
+  cursor: pointer;
+}
+
+.icon-button {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: #b8c0c8;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 18px;
+}
+
+.component-panel__intro,
+.selected-card {
+  margin: 0;
+  padding: 14px 17px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.selected-card code {
+  color: #dce4eb;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  overflow-wrap: anywhere;
+}
+
+.selected-card__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #818c97;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.selected-card__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.control-button {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: #cbd2d9;
+  background: rgba(255, 255, 255, 0.035);
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.control-button:hover,
+.control-button.is-active {
+  border-color: rgba(217, 255, 103, 0.28);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.component-list {
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.component-group {
+  padding: 13px 10px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+.component-group h2 {
+  margin: 0 7px 7px;
+  color: #77828d;
+  font-size: 8px;
+  font-weight: 760;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.component-group__items {
+  display: grid;
+  gap: 2px;
+}
+
+.component-item {
+  display: flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 7px 9px;
+  border-radius: 10px;
+  color: #bcc4cc;
+  background: transparent;
+  text-align: left;
+  font-size: 11px;
+}
+
+.component-item small {
+  color: #66717c;
+  font-size: 15px;
+}
+
+.component-item:hover,
+.component-item.is-selected {
+  color: #f2f5f7;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.component-item.is-selected {
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.selection-caption {
+  position: absolute;
+  z-index: 3;
+  left: clamp(20px, 4vw, 54px);
+  bottom: clamp(34px, 5vw, 64px);
+  display: grid;
+  gap: 4px;
+  pointer-events: none;
+}
+
+.selection-caption span {
+  color: var(--accent);
+  font-size: 9px;
+  font-weight: 760;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.selection-caption strong {
+  max-width: min(520px, 70vw);
+  font-size: clamp(34px, 5vw, 72px);
+  font-weight: 520;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+}
+
+@media (max-width: 760px) {
+  .component-panel {
+    top: auto;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    width: auto;
+    max-height: 43dvh;
+    border-radius: 18px;
+  }
+
+  .selection-caption {
+    top: 82px;
+    bottom: auto;
+    left: 18px;
+  }
+
+  .selection-caption strong {
+    max-width: 62vw;
+    font-size: 34px;
+  }
+
+  .component-panel__intro {
+    display: none;
+  }
+
+  .component-group {
+    padding-top: 9px;
+  }
+}
