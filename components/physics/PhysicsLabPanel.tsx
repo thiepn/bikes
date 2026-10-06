@@ -805,7 +805,10 @@ export function PhysicsLabPanel({
 
           <div className="physics-results">
             <section className="physics-hero">
-              <span>{bike.name} · estimated steady state</span>
+              <span>
+                {bike.name}
+                {hasBuild ? " · custom build" : ""} · estimated steady state
+              </span>
               <div>
                 <strong>{fixed(primary.speedKph, 1)}</strong>
                 <small>km/h</small>
