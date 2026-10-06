@@ -8,6 +8,11 @@ import {
   getMtbRelatedComponentIds,
   searchMtbKnowledge,
 } from "@/domain/knowledge/mtb-m1";
+import {
+  getUrbanKnowledgeNode,
+  getUrbanRelatedComponentIds,
+  searchUrbanKnowledge,
+} from "@/domain/knowledge/urban-u1";
 import type {
   ComponentKnowledgeNode,
   KnowledgeSearchResult,
@@ -25,6 +30,10 @@ export function getBikeKnowledgeNode(
     return getMtbKnowledgeNode(componentId);
   }
 
+  if (bikeId === "bike.urban.u1") {
+    return getUrbanKnowledgeNode(componentId);
+  }
+
   return null;
 }
 
@@ -40,6 +49,10 @@ export function getBikeKnowledgeRelatedComponentIds(
     return getMtbRelatedComponentIds(componentId);
   }
 
+  if (bikeId === "bike.urban.u1") {
+    return getUrbanRelatedComponentIds(componentId);
+  }
+
   return [];
 }
 
@@ -53,6 +66,10 @@ export function searchBikeKnowledge(
 
   if (bikeId === "bike.mtb.m1") {
     return searchMtbKnowledge(query);
+  }
+
+  if (bikeId === "bike.urban.u1") {
+    return searchUrbanKnowledge(query);
   }
 
   return [];
