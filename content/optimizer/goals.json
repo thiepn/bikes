@@ -20,7 +20,7 @@
         "mass": 0.15,
         "highGear": 0.1,
         "hardpackSpeed": 0.06,
-        "upright": 0.1
+        "upright": -0.1
       }
     },
     {
