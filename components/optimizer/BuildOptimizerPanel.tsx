@@ -567,6 +567,14 @@ export function BuildOptimizerPanel({
             onDelete={deletePortfolioBuild}
             onApplySelections={onApplySelections}
             onOpenBuild={onOpenBuild}
+          />
+        ) : view === "frontier" ? (
+          <ParetoFrontierPanel
+            bikeId={bikeId}
+            buildSelections={buildSelections}
+            constraints={constraints}
+            onApplySelections={onApplySelections}
+            onOpenBuild={onOpenBuild}
             onSaveSelection={(next) =>
               savePortfolioBuild(
                 next,
@@ -578,14 +586,6 @@ export function BuildOptimizerPanel({
                     1),
               )
             }
-          />
-        ) : view === "frontier" ? (
-          <ParetoFrontierPanel
-            bikeId={bikeId}
-            buildSelections={buildSelections}
-            constraints={constraints}
-            onApplySelections={onApplySelections}
-            onOpenBuild={onOpenBuild}
           />
         ) : (
           <>
