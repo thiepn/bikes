@@ -1,0 +1,109 @@
+{
+  "id": "mtb-trail-tire-check",
+  "bikeId": "bike.mtb.m1",
+  "title": "Check trail tires before riding",
+  "summary": "Inspect tread and casing, confirm pressure is within the actual tire/rim system limits, and verify both wheels rotate and seat normally.",
+  "systemId": "tires",
+  "difficulty": "beginner",
+  "durationMinutes": 5,
+  "prerequisiteProcedureIds": [],
+  "assumedOperationIds": [],
+  "tools": [
+    {
+      "id": "pressure-gauge",
+      "name": "Accurate tire-pressure gauge",
+      "required": true
+    },
+    {
+      "id": "pump",
+      "name": "Compatible bicycle pump",
+      "required": false
+    },
+    {
+      "id": "inspection-light",
+      "name": "Inspection light",
+      "required": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "inspect-tread",
+      "title": "Inspect tread and casing",
+      "instruction": "Rotate each wheel and look for cuts, embedded objects, exposed casing, sidewall damage, unusual bulges or severely worn tread.",
+      "why": "Damage that is easy to see at rest can become a sudden failure once the tire is loaded on trail.",
+      "focusComponentId": "bike.mtb.m1.front-tire",
+      "highlightComponentIds": [
+        "bike.mtb.m1.front-tire",
+        "bike.mtb.m1.rear-tire"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0.05,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "Do not ride a tire with structural casing damage, exposed cords or an unexplained bulge.",
+      "check": "No obvious unsafe tread or casing damage is visible.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "check-pressure",
+      "title": "Measure pressure rather than guessing",
+      "instruction": "Measure both tires with a gauge. Compare the readings with the safe limits and setup guidance for the actual tire, rim and bicycle, then adjust as needed for the rider and conditions.",
+      "why": "A repeatable pressure baseline is more useful than squeezing the tire by hand or copying a universal number.",
+      "focusComponentId": "bike.mtb.m1.rear-tire",
+      "highlightComponentIds": [
+        "bike.mtb.m1.front-tire",
+        "bike.mtb.m1.rear-tire",
+        "bike.mtb.m1.front-rim",
+        "bike.mtb.m1.rear-rim"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0,
+      "tools": [
+        "pressure-gauge",
+        "pump"
+      ],
+      "warning": "Respect the lowest applicable pressure/maximum-pressure constraints across the tire, rim and wheel system.",
+      "check": "Both pressures are measured, recorded if useful, and within the actual system’s safe limits.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "inspect-bead-rim",
+      "title": "Check tire seating and rim condition",
+      "instruction": "Look around the circumference for uneven bead seating, rim damage or signs that the tire is not seated consistently.",
+      "why": "The tire and rim work as one pressure-containing wheel system.",
+      "focusComponentId": "bike.mtb.m1.front-rim",
+      "highlightComponentIds": [
+        "bike.mtb.m1.front-rim",
+        "bike.mtb.m1.front-tire",
+        "bike.mtb.m1.rear-rim",
+        "bike.mtb.m1.rear-tire"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.12,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "If a bead is visibly unseated or the rim is damaged, do not simply add pressure and ride.",
+      "check": "Tire seating appears uniform and no obvious rim damage is visible.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "spin-check",
+      "title": "Spin both wheels and recheck",
+      "instruction": "Spin each wheel and watch the tire and rim for obvious wobble, rubbing or unusual movement. Finish with a controlled low-speed check before normal riding.",
+      "why": "Rotation can reveal problems that are less obvious during a static inspection.",
+      "focusComponentId": "bike.mtb.m1.front-wheel",
+      "highlightComponentIds": [
+        "bike.mtb.m1.front-wheel",
+        "bike.mtb.m1.rear-wheel"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0,
+      "tools": [],
+      "warning": "If a wheel, tire or brake behaves abnormally, stop and identify the cause before trail riding.",
+      "check": "Both wheels rotate normally and the bicycle passes a controlled low-speed check.",
+      "removedComponentIds": []
+    }
+  ]
+}
