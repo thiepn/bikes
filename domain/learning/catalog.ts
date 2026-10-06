@@ -10,6 +10,10 @@ import urbanUpright from "@/content/lessons/urban-upright-utility.json";
 import urbanHub from "@/content/lessons/urban-internal-gear-hub.json";
 import urbanWeather from "@/content/lessons/urban-weather-systems.json";
 import urbanCargo from "@/content/lessons/urban-cargo-security.json";
+import gravelTires from "@/content/lessons/gravel-tire-volume-pressure.json";
+import gravelOneBy from "@/content/lessons/gravel-one-by-gearing.json";
+import gravelControl from "@/content/lessons/gravel-flared-drop-control.json";
+import gravelMounts from "@/content/lessons/gravel-mounts-bikepacking.json";
 import type { InteractiveLesson } from "@/engine/learning/types";
 
 export const LESSON_CATALOG = [
@@ -25,6 +29,10 @@ export const LESSON_CATALOG = [
   urbanHub,
   urbanWeather,
   urbanCargo,
+  gravelTires,
+  gravelOneBy,
+  gravelControl,
+  gravelMounts,
 ] as unknown as InteractiveLesson[];
 
 const LESSONS_BY_ID = new Map(
