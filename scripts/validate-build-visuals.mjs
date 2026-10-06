@@ -240,7 +240,7 @@ assert(
 );
 
 if (errors.length) {
-  console.error("\nP22 visual assembly validation failed:");
+  console.error("\nP23 visual assembly validation failed:");
   for (const error of errors) console.error(`- ${error}`);
   process.exit(1);
 }
