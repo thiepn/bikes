@@ -7,7 +7,12 @@ export type BuildVisualKind =
   | "tube"
   | "saddle"
   | "pedal"
-  | "rotor";
+  | "rotor"
+  | "fork"
+  | "caliper"
+  | "crankset"
+  | "rear-transmission"
+  | "rear-derailleur";
 
 export interface BuildVisualAttachment {
   slotId: CompatibilitySlotId;
@@ -17,6 +22,10 @@ export interface BuildVisualAttachment {
   from?: [number, number, number];
   to?: [number, number, number];
   radius?: number;
+  segments?: Array<{
+    from: [number, number, number];
+    to: [number, number, number];
+  }>;
 }
 
 export interface BikeBuildVisualProfile {
@@ -45,4 +54,7 @@ export interface DonorVisualProfile {
   saddleSize: [number, number, number];
   pedalSize: [number, number, number];
   stemRadius: number;
+  forkRadius: number;
+  caliperSize: [number, number, number];
+  derailleurSize?: [number, number, number];
 }
