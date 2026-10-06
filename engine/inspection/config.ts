@@ -76,6 +76,19 @@ const EXPLOSION_VECTORS_BY_SLUG: Record<string, Vector3Tuple> = {
   "rear-derailleur": [0.23, -0.12, -0.15],
   "left-pedal": [-0.3, 0, 0],
   "right-pedal": [0.3, 0, 0],
+
+  "rear-sprocket": [0.28, 0, -0.08],
+  "chain-guard": [0.24, 0.03, -0.06],
+  "front-fender": [0, 0.16, 0.26],
+  "rear-fender": [0, 0.16, -0.26],
+  "rear-rack": [0, 0.22, -0.28],
+  "front-light": [0, 0.18, 0.2],
+  "rear-light": [0, 0.18, -0.24],
+  kickstand: [-0.2, -0.05, -0.1],
+  "frame-lock": [0.18, 0.08, -0.18],
+  bell: [-0.2, 0.12, 0.08],
+  "front-axle": [0.34, 0, 0.28],
+  "rear-axle": [0.34, 0, -0.28],
 };
 
 export function getSystemColor(componentId: string) {
