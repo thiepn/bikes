@@ -25,6 +25,7 @@ enableBvhRaycasting();
 type BikeSceneProps = ViewerInteractionState &
   ViewerInteractionHandlers & {
     bikeId: string;
+    comparisonBikeId?: string | null;
     experienceMode: ExperienceMode;
     storyProgress: number;
     drivetrainDemo: DrivetrainDemoState;
@@ -32,6 +33,19 @@ type BikeSceneProps = ViewerInteractionState &
 
 export function BikeScene(props: BikeSceneProps) {
   const cinematic = props.experienceMode === "story";
+  const ghostProps = {
+    selectedId: null,
+    hoveredId: null,
+    isolated: false,
+    mode: "normal" as const,
+    explosionAmount: 0,
+    highlightedIds: [],
+    removedIds: [],
+    ghost: true,
+    onSelect: () => {},
+    onHover: () => {},
+    onIsolate: () => {},
+  };
 
   return (
     <>
@@ -87,6 +101,14 @@ export function BikeScene(props: BikeSceneProps) {
           scale={[2, 3, 1]}
         />
       </Environment>
+
+      {props.comparisonBikeId &&
+        props.comparisonBikeId !== props.bikeId &&
+        (props.comparisonBikeId === "bike.mtb.m1" ? (
+          <MtbPrototypeBike {...ghostProps} />
+        ) : (
+          <PrototypeBike {...ghostProps} />
+        ))}
 
       {props.bikeId === "bike.mtb.m1" ? (
         <MtbPrototypeBike {...props} />
