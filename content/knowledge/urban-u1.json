@@ -1,0 +1,1180 @@
+{
+  "bikeId": "bike.urban.u1",
+  "profiles": [
+    {
+      "componentId": "bike.urban.u1.frame",
+      "summary": "Step-through structural chassis for the Urban U1 utility bike.",
+      "function": "Carries rider and cargo loads while locating the fork, wheels, drivetrain, rack, fenders, stand, lock and contact points.",
+      "materials": [
+        "aluminium alloy",
+        "paint / protective finish",
+        "steel or aluminium threaded inserts"
+      ],
+      "standards": [
+        "frame size and geometry are model-specific",
+        "rack, stand, lock and fender mounts must use compatible interfaces"
+      ],
+      "commonSymptoms": [
+        "cracks or dents",
+        "corrosion or finish damage",
+        "damaged threads",
+        "loose accessory mounts"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.fork",
+        "bike.urban.u1.headset",
+        "bike.urban.u1.bottom-bracket",
+        "bike.urban.u1.seatpost",
+        "bike.urban.u1.rear-rack",
+        "bike.urban.u1.rear-fender",
+        "bike.urban.u1.kickstand",
+        "bike.urban.u1.frame-lock"
+      ],
+      "aliases": [
+        "step-through frame",
+        "city frame",
+        "utility frame"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.fork",
+      "summary": "Rigid city fork supporting steering and the front wheel.",
+      "function": "Locates the front wheel, brake, fender and front light while transmitting steering inputs into the frame.",
+      "materials": [
+        "aluminium alloy"
+      ],
+      "standards": [
+        "steerer/headset, axle, brake and fender interfaces must match",
+        "clearance must suit the wheel and tire"
+      ],
+      "commonSymptoms": [
+        "bending or crash damage",
+        "cracks",
+        "loose accessory mounts",
+        "steering misalignment"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.frame",
+        "bike.urban.u1.headset",
+        "bike.urban.u1.front-wheel",
+        "bike.urban.u1.front-caliper",
+        "bike.urban.u1.front-fender",
+        "bike.urban.u1.front-light"
+      ],
+      "aliases": [
+        "city fork",
+        "rigid fork"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.headset",
+      "summary": "Bearing assembly between frame and fork steerer.",
+      "function": "Allows the fork and handlebar system to rotate smoothly while carrying steering loads.",
+      "materials": [
+        "steel bearings",
+        "aluminium cups/covers"
+      ],
+      "standards": [
+        "bearing geometry and steerer/head-tube interfaces must match"
+      ],
+      "commonSymptoms": [
+        "play",
+        "notchy steering",
+        "creaking",
+        "rough rotation"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.frame",
+        "bike.urban.u1.fork",
+        "bike.urban.u1.stem"
+      ],
+      "aliases": [
+        "steering bearings"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.handlebar",
+      "summary": "Swept upright steering bar.",
+      "function": "Provides steering leverage and positions the rider's hands rearward for upright city riding while carrying controls and the bell.",
+      "materials": [
+        "aluminium alloy"
+      ],
+      "standards": [
+        "clamp diameter must match stem",
+        "control/grip mounting areas must suit attached components"
+      ],
+      "commonSymptoms": [
+        "bending",
+        "cracks",
+        "slipping controls",
+        "misalignment"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.stem",
+        "bike.urban.u1.left-grip",
+        "bike.urban.u1.right-grip",
+        "bike.urban.u1.left-brake-lever",
+        "bike.urban.u1.right-brake-lever",
+        "bike.urban.u1.right-shifter",
+        "bike.urban.u1.bell"
+      ],
+      "aliases": [
+        "swept bar",
+        "city bar",
+        "upright handlebar"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.stem",
+      "summary": "Upright handlebar-to-steerer connector.",
+      "function": "Connects the handlebar to the fork steerer and helps establish cockpit height and reach.",
+      "materials": [
+        "aluminium alloy",
+        "steel fasteners"
+      ],
+      "standards": [
+        "bar and steerer clamp dimensions must match",
+        "fastener torque is component-specific"
+      ],
+      "commonSymptoms": [
+        "slipping",
+        "loose fasteners",
+        "cracks",
+        "damaged clamp surfaces"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.handlebar",
+        "bike.urban.u1.headset",
+        "bike.urban.u1.fork"
+      ],
+      "aliases": [
+        "handlebar stem",
+        "upright stem"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.left-grip",
+      "summary": "Left ergonomic hand contact surface.",
+      "function": "Provides traction, cushioning and hand support on the swept handlebar.",
+      "materials": [
+        "rubber or elastomer compound",
+        "polymer/aluminium support or lock ring"
+      ],
+      "standards": [
+        "inner diameter and fixing method must match the handlebar"
+      ],
+      "commonSymptoms": [
+        "rotation",
+        "tearing",
+        "hardening",
+        "loose end or clamp"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.handlebar",
+        "bike.urban.u1.left-brake-lever"
+      ],
+      "aliases": [
+        "grip",
+        "ergonomic grip"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.right-grip",
+      "summary": "Right ergonomic hand contact surface.",
+      "function": "Provides traction, cushioning and hand support near the shifter and brake control.",
+      "materials": [
+        "rubber or elastomer compound",
+        "polymer/aluminium support or lock ring"
+      ],
+      "standards": [
+        "inner diameter and fixing method must match the handlebar"
+      ],
+      "commonSymptoms": [
+        "rotation",
+        "tearing",
+        "hardening",
+        "loose end or clamp"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.handlebar",
+        "bike.urban.u1.right-brake-lever",
+        "bike.urban.u1.right-shifter"
+      ],
+      "aliases": [
+        "grip",
+        "ergonomic grip"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.left-brake-lever",
+      "summary": "Left-hand brake control.",
+      "function": "Converts hand input into the actuation required by its paired brake system.",
+      "materials": [
+        "aluminium lever/body",
+        "polymer seals or bushings"
+      ],
+      "standards": [
+        "lever, hose/cable, caliper and fluid/actuation system must be compatible"
+      ],
+      "commonSymptoms": [
+        "spongy or inconsistent feel",
+        "leakage",
+        "sticky return",
+        "crash damage"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.handlebar",
+        "bike.urban.u1.front-caliper",
+        "bike.urban.u1.rear-caliper"
+      ],
+      "aliases": [
+        "brake lever"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.right-brake-lever",
+      "summary": "Right-hand brake control.",
+      "function": "Converts hand input into the actuation required by its paired brake system.",
+      "materials": [
+        "aluminium lever/body",
+        "polymer seals or bushings"
+      ],
+      "standards": [
+        "lever, hose/cable, caliper and fluid/actuation system must be compatible"
+      ],
+      "commonSymptoms": [
+        "spongy or inconsistent feel",
+        "leakage",
+        "sticky return",
+        "crash damage"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.handlebar",
+        "bike.urban.u1.front-caliper",
+        "bike.urban.u1.rear-caliper",
+        "bike.urban.u1.right-shifter"
+      ],
+      "aliases": [
+        "brake lever"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.right-shifter",
+      "summary": "Handlebar control for the internal-gear hub.",
+      "function": "Sends the rider's gear selection to the rear-hub shifting mechanism by the hub system's compatible control method.",
+      "materials": [
+        "polymer housing",
+        "aluminium/steel mechanism"
+      ],
+      "standards": [
+        "shifter and hub model/gear range must be compatible",
+        "cable/electronic interfaces are hub-system specific"
+      ],
+      "commonSymptoms": [
+        "poor indexing",
+        "stiff movement",
+        "missed gear selection",
+        "damaged cable or connection"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.handlebar",
+        "bike.urban.u1.rear-hub"
+      ],
+      "aliases": [
+        "hub shifter",
+        "gear shifter",
+        "IGH shifter"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.bell",
+      "summary": "Mechanical audible warning device.",
+      "function": "Allows the rider to signal presence with a simple handlebar-mounted sound device.",
+      "materials": [
+        "aluminium or brass dome",
+        "steel spring/striker"
+      ],
+      "standards": [
+        "mount must fit the handlebar",
+        "equipment/use requirements vary by jurisdiction"
+      ],
+      "commonSymptoms": [
+        "weak sound",
+        "sticky striker",
+        "loose clamp",
+        "cracked mechanism"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.handlebar"
+      ],
+      "aliases": [
+        "bicycle bell",
+        "bike bell"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.front-wheel",
+      "summary": "Front rotating wheel assembly.",
+      "function": "Supports the front of the bicycle and carries tire, rim, hub and brake rotor while steering through the fork.",
+      "materials": [
+        "aluminium rim",
+        "steel spokes",
+        "aluminium/steel hub parts"
+      ],
+      "standards": [
+        "diameter, axle and brake interface must match fork and tire system"
+      ],
+      "commonSymptoms": [
+        "wheel out of true",
+        "loose spokes",
+        "bearing play",
+        "rim damage"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.front-tire",
+        "bike.urban.u1.front-rim",
+        "bike.urban.u1.front-hub",
+        "bike.urban.u1.front-rotor",
+        "bike.urban.u1.front-axle",
+        "bike.urban.u1.fork"
+      ],
+      "aliases": [
+        "front wheel"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.rear-wheel",
+      "summary": "Rear rotating wheel assembly around the internal-gear hub.",
+      "function": "Supports rear loads, carries the driven hub and transmits chain torque and braking forces to the road.",
+      "materials": [
+        "aluminium rim",
+        "steel spokes",
+        "aluminium/steel hub parts"
+      ],
+      "standards": [
+        "diameter, axle, brake and internal-hub interfaces must match the frame/drivetrain"
+      ],
+      "commonSymptoms": [
+        "wheel out of true",
+        "loose spokes",
+        "bearing play",
+        "hub-related noise"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.rear-tire",
+        "bike.urban.u1.rear-rim",
+        "bike.urban.u1.rear-hub",
+        "bike.urban.u1.rear-rotor",
+        "bike.urban.u1.rear-axle",
+        "bike.urban.u1.rear-sprocket"
+      ],
+      "aliases": [
+        "rear wheel"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.front-tire",
+      "summary": "Front medium-volume city tire.",
+      "function": "Creates the front road contact patch for steering and braking while adding compliance over imperfect pavement.",
+      "materials": [
+        "rubber compounds",
+        "textile casing",
+        "bead material"
+      ],
+      "standards": [
+        "diameter/width must suit rim and fork",
+        "pressure limits and tube/tubeless compatibility are tire/rim-specific"
+      ],
+      "commonSymptoms": [
+        "cuts",
+        "bulges",
+        "pressure loss",
+        "worn tread",
+        "poor bead seating"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.front-wheel",
+        "bike.urban.u1.front-rim",
+        "bike.urban.u1.front-fender"
+      ],
+      "aliases": [
+        "front tyre",
+        "city tire"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.rear-tire",
+      "summary": "Rear medium-volume city tire.",
+      "function": "Creates rear road contact for drive and braking while carrying rider and cargo load.",
+      "materials": [
+        "rubber compounds",
+        "textile casing",
+        "bead material"
+      ],
+      "standards": [
+        "diameter/width must suit rim and frame",
+        "pressure limits and tube/tubeless compatibility are tire/rim-specific"
+      ],
+      "commonSymptoms": [
+        "cuts",
+        "bulges",
+        "pressure loss",
+        "worn tread",
+        "poor bead seating"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.rear-wheel",
+        "bike.urban.u1.rear-rim",
+        "bike.urban.u1.rear-fender"
+      ],
+      "aliases": [
+        "rear tyre",
+        "city tire"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.front-rim",
+      "summary": "Structural hoop of the front wheel.",
+      "function": "Supports the tire bead and distributes spoke loads around the front wheel.",
+      "materials": [
+        "aluminium alloy"
+      ],
+      "standards": [
+        "diameter, internal width and bead design must suit the tire"
+      ],
+      "commonSymptoms": [
+        "dents",
+        "cracks",
+        "out-of-true condition",
+        "bead-seat damage"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.front-wheel",
+        "bike.urban.u1.front-tire",
+        "bike.urban.u1.front-hub"
+      ],
+      "aliases": [
+        "front rim",
+        "wheel rim"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.rear-rim",
+      "summary": "Structural hoop of the rear wheel.",
+      "function": "Supports the rear tire and distributes spoke, cargo and drivetrain-related loads around the wheel.",
+      "materials": [
+        "aluminium alloy"
+      ],
+      "standards": [
+        "diameter, internal width and bead design must suit the tire"
+      ],
+      "commonSymptoms": [
+        "dents",
+        "cracks",
+        "out-of-true condition",
+        "bead-seat damage"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.rear-wheel",
+        "bike.urban.u1.rear-tire",
+        "bike.urban.u1.rear-hub"
+      ],
+      "aliases": [
+        "rear rim",
+        "wheel rim"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.front-hub",
+      "summary": "Bearing-supported center of the front wheel.",
+      "function": "Allows the wheel to rotate around the axle and anchors spokes and brake rotor.",
+      "materials": [
+        "aluminium shell",
+        "steel bearings and axle hardware"
+      ],
+      "standards": [
+        "axle and rotor interfaces must match fork and brake system"
+      ],
+      "commonSymptoms": [
+        "bearing roughness",
+        "play",
+        "damaged axle interface",
+        "rotor-mount damage"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.front-wheel",
+        "bike.urban.u1.front-rim",
+        "bike.urban.u1.front-rotor",
+        "bike.urban.u1.front-axle"
+      ],
+      "aliases": [
+        "front hub"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.rear-hub",
+      "summary": "Rear hub containing the internal gear mechanism.",
+      "function": "Supports wheel rotation while creating selectable transmission ratios internally and carrying the external rear sprocket.",
+      "materials": [
+        "aluminium shell",
+        "steel gears",
+        "bearings",
+        "seals"
+      ],
+      "standards": [
+        "hub, shifter, sprocket, axle and frame interfaces must match",
+        "lubrication, adjustment and service intervals are hub-model specific"
+      ],
+      "commonSymptoms": [
+        "poor shifting",
+        "hub play",
+        "rough bearings",
+        "abnormal noise",
+        "leakage where applicable"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.rear-wheel",
+        "bike.urban.u1.rear-sprocket",
+        "bike.urban.u1.right-shifter",
+        "bike.urban.u1.rear-axle"
+      ],
+      "aliases": [
+        "internal gear hub",
+        "IGH",
+        "gear hub"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.front-rotor",
+      "summary": "Front disc-brake friction rotor.",
+      "function": "Rotates with the front hub and provides the friction surface clamped by the front caliper.",
+      "materials": [
+        "stainless steel"
+      ],
+      "standards": [
+        "mount type, diameter and thickness must match hub/caliper/fork configuration"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "warping/runout",
+        "scoring",
+        "contamination",
+        "heat discoloration"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.front-hub",
+        "bike.urban.u1.front-caliper",
+        "bike.urban.u1.front-wheel"
+      ],
+      "aliases": [
+        "front disc",
+        "brake rotor"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.rear-rotor",
+      "summary": "Rear disc-brake friction rotor.",
+      "function": "Rotates with the rear hub and provides the friction surface for rear braking.",
+      "materials": [
+        "stainless steel"
+      ],
+      "standards": [
+        "mount type, diameter and thickness must match hub/caliper/frame configuration"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "warping/runout",
+        "scoring",
+        "contamination",
+        "heat discoloration"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.rear-hub",
+        "bike.urban.u1.rear-caliper",
+        "bike.urban.u1.rear-wheel"
+      ],
+      "aliases": [
+        "rear disc",
+        "brake rotor"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.front-caliper",
+      "summary": "Front disc-brake caliper.",
+      "function": "Presses brake pads against the front rotor when actuated by the paired brake control.",
+      "materials": [
+        "aluminium body",
+        "steel hardware",
+        "friction pads"
+      ],
+      "standards": [
+        "mount, rotor and lever/fluid/cable system must be compatible"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "leaks",
+        "uneven pad wear",
+        "sticky pistons",
+        "weak braking"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.front-rotor",
+        "bike.urban.u1.fork",
+        "bike.urban.u1.left-brake-lever",
+        "bike.urban.u1.right-brake-lever"
+      ],
+      "aliases": [
+        "front brake",
+        "brake caliper"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.rear-caliper",
+      "summary": "Rear disc-brake caliper.",
+      "function": "Presses brake pads against the rear rotor when actuated by the paired brake control.",
+      "materials": [
+        "aluminium body",
+        "steel hardware",
+        "friction pads"
+      ],
+      "standards": [
+        "mount, rotor and lever/fluid/cable system must be compatible"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "leaks",
+        "uneven pad wear",
+        "sticky pistons",
+        "weak braking"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.rear-rotor",
+        "bike.urban.u1.frame",
+        "bike.urban.u1.left-brake-lever",
+        "bike.urban.u1.right-brake-lever"
+      ],
+      "aliases": [
+        "rear brake",
+        "brake caliper"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.crankset",
+      "summary": "Single-ring utility crank assembly.",
+      "function": "Turns pedal force into chainring torque through the crank arms and spindle.",
+      "materials": [
+        "aluminium alloy",
+        "steel/aluminium spindle and hardware"
+      ],
+      "standards": [
+        "spindle/bottom-bracket and chainring interfaces must be compatible"
+      ],
+      "commonSymptoms": [
+        "play",
+        "creaking",
+        "loose crank",
+        "bending or impact damage"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.bottom-bracket",
+        "bike.urban.u1.chainring",
+        "bike.urban.u1.left-pedal",
+        "bike.urban.u1.right-pedal"
+      ],
+      "aliases": [
+        "cranks",
+        "utility crank"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.chainring",
+      "summary": "Single front sprocket.",
+      "function": "Engages the chain and sends crank torque into the external chain drive.",
+      "materials": [
+        "aluminium alloy or steel"
+      ],
+      "standards": [
+        "mount, chain width and chainline must suit crank and rear sprocket"
+      ],
+      "commonSymptoms": [
+        "tooth wear",
+        "bending",
+        "chain noise",
+        "poor retention"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.crankset",
+        "bike.urban.u1.chain",
+        "bike.urban.u1.rear-sprocket",
+        "bike.urban.u1.chain-guard"
+      ],
+      "aliases": [
+        "front chainring",
+        "front sprocket"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.bottom-bracket",
+      "summary": "Bearing assembly supporting the crank spindle.",
+      "function": "Allows the crankset to rotate in the frame while carrying pedaling loads.",
+      "materials": [
+        "steel bearings",
+        "aluminium/polymer cups"
+      ],
+      "standards": [
+        "frame shell and crank spindle standards must match"
+      ],
+      "commonSymptoms": [
+        "play",
+        "roughness",
+        "creaking",
+        "contamination"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.frame",
+        "bike.urban.u1.crankset"
+      ],
+      "aliases": [
+        "BB",
+        "crank bearings"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.chain",
+      "summary": "External flexible drive link.",
+      "function": "Transfers torque from the single chainring to the rear sprocket while running largely inside the chain guard.",
+      "materials": [
+        "hardened steel"
+      ],
+      "standards": [
+        "chain width and pitch must match chainring and rear sprocket",
+        "chainline/tension setup is drivetrain-specific"
+      ],
+      "commonSymptoms": [
+        "rust",
+        "stiff links",
+        "wear/elongation",
+        "noise",
+        "poor tension/alignment"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.chainring",
+        "bike.urban.u1.rear-sprocket",
+        "bike.urban.u1.chain-guard"
+      ],
+      "aliases": [
+        "bike chain",
+        "drive chain"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.rear-sprocket",
+      "summary": "Single external sprocket on the internal-gear hub.",
+      "function": "Receives chain torque while gear-ratio selection occurs inside the rear hub.",
+      "materials": [
+        "steel"
+      ],
+      "standards": [
+        "sprocket interface, tooth count, chain width and chainline must match the hub/drivetrain"
+      ],
+      "commonSymptoms": [
+        "tooth wear",
+        "chain noise",
+        "poor retention",
+        "loose interface"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.chain",
+        "bike.urban.u1.rear-hub",
+        "bike.urban.u1.rear-wheel"
+      ],
+      "aliases": [
+        "hub sprocket",
+        "rear cog"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.chain-guard",
+      "summary": "Full protective enclosure around much of the chain drive.",
+      "function": "Separates clothing from moving drivetrain parts and reduces direct splash/debris exposure to the chain and chainring.",
+      "materials": [
+        "polymer",
+        "aluminium"
+      ],
+      "standards": [
+        "guard must clear crank, chainring, chain, frame and rear-wheel movement"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "cracks",
+        "loose mounts",
+        "chain contact",
+        "deformation"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.chain",
+        "bike.urban.u1.chainring",
+        "bike.urban.u1.rear-sprocket",
+        "bike.urban.u1.frame"
+      ],
+      "aliases": [
+        "chainguard",
+        "chain case",
+        "chain cover"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.saddle",
+      "summary": "Broad upright-riding seat.",
+      "function": "Supports the seated rider at the pelvis while allowing pedaling and frequent stops.",
+      "materials": [
+        "synthetic cover",
+        "foam",
+        "metal/composite rails"
+      ],
+      "standards": [
+        "rail dimensions and seatpost clamp must be compatible"
+      ],
+      "commonSymptoms": [
+        "rail damage",
+        "loose shell",
+        "torn cover",
+        "unwanted movement"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.seatpost",
+        "bike.urban.u1.frame"
+      ],
+      "aliases": [
+        "seat",
+        "comfort saddle"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.seatpost",
+      "summary": "Rigid support between frame and saddle.",
+      "function": "Sets saddle height and carries seated rider loads into the frame.",
+      "materials": [
+        "aluminium alloy"
+      ],
+      "standards": [
+        "diameter, insertion depth and saddle clamp must suit frame and saddle"
+      ],
+      "commonSymptoms": [
+        "slipping",
+        "corrosion/seizing",
+        "bending",
+        "clamp movement"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.frame",
+        "bike.urban.u1.saddle"
+      ],
+      "aliases": [
+        "seat post"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.left-pedal",
+      "summary": "Left platform foot contact.",
+      "function": "Transfers left-leg force into the crank while providing a stable everyday shoe platform.",
+      "materials": [
+        "polymer body",
+        "steel axle/bearings"
+      ],
+      "standards": [
+        "pedal thread must match crank"
+      ],
+      "commonSymptoms": [
+        "bearing play",
+        "binding",
+        "cracks",
+        "damaged axle or platform"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.crankset"
+      ],
+      "aliases": [
+        "flat pedal",
+        "platform pedal"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.right-pedal",
+      "summary": "Right platform foot contact.",
+      "function": "Transfers right-leg force into the crank while providing a stable everyday shoe platform.",
+      "materials": [
+        "polymer body",
+        "steel axle/bearings"
+      ],
+      "standards": [
+        "pedal thread must match crank"
+      ],
+      "commonSymptoms": [
+        "bearing play",
+        "binding",
+        "cracks",
+        "damaged axle or platform"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.crankset"
+      ],
+      "aliases": [
+        "flat pedal",
+        "platform pedal"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.front-fender",
+      "summary": "Full-coverage front wheel mudguard.",
+      "function": "Intercepts much of the water and debris thrown by the front tire before it reaches rider and bicycle.",
+      "materials": [
+        "aluminium or polymer shell",
+        "steel/aluminium stays"
+      ],
+      "standards": [
+        "mounting and tire clearance must suit fork, wheel and tire"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "rattle",
+        "bent stays",
+        "cracks",
+        "loose mounts"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.fork",
+        "bike.urban.u1.front-wheel",
+        "bike.urban.u1.front-tire"
+      ],
+      "aliases": [
+        "front mudguard",
+        "front fender"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.rear-fender",
+      "summary": "Full-coverage rear wheel mudguard.",
+      "function": "Reduces spray toward rider, cargo and drivetrain from the rear tire.",
+      "materials": [
+        "aluminium or polymer shell",
+        "steel/aluminium stays"
+      ],
+      "standards": [
+        "mounting and tire clearance must suit frame, wheel, rack and tire"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "rattle",
+        "bent stays",
+        "cracks",
+        "loose mounts"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.frame",
+        "bike.urban.u1.rear-wheel",
+        "bike.urban.u1.rear-tire",
+        "bike.urban.u1.rear-rack"
+      ],
+      "aliases": [
+        "rear mudguard",
+        "rear fender"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.rear-rack",
+      "summary": "Frame-mounted rear luggage carrier.",
+      "function": "Supports compatible panniers or cargo and transfers their load through dedicated mounts into the frame.",
+      "materials": [
+        "aluminium alloy",
+        "steel fasteners"
+      ],
+      "standards": [
+        "rack/frame mounting must be compatible",
+        "load limits are defined by the actual rack, frame, bicycle and luggage system"
+      ],
+      "commonSymptoms": [
+        "loose mounts",
+        "rattle",
+        "bent stays",
+        "cracks",
+        "damaged platform"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.frame",
+        "bike.urban.u1.rear-wheel",
+        "bike.urban.u1.rear-fender",
+        "bike.urban.u1.rear-light"
+      ],
+      "aliases": [
+        "carrier",
+        "luggage rack",
+        "pannier rack"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.front-light",
+      "summary": "Integrated forward bicycle light.",
+      "function": "Provides forward illumination and/or conspicuity as part of the bicycle's permanent utility system.",
+      "materials": [
+        "aluminium housing",
+        "polymer body",
+        "lens material",
+        "electrical components"
+      ],
+      "standards": [
+        "power source, mounting, output and legal requirements are component/jurisdiction specific"
+      ],
+      "commonSymptoms": [
+        "intermittent output",
+        "misalignment",
+        "damaged lens",
+        "wiring or power fault"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.fork",
+        "bike.urban.u1.rear-light"
+      ],
+      "aliases": [
+        "headlight",
+        "front lamp"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.rear-light",
+      "summary": "Integrated rear bicycle light.",
+      "function": "Provides rearward conspicuity through a fixed utility-lighting installation.",
+      "materials": [
+        "aluminium/polymer housing",
+        "lens material",
+        "electrical components"
+      ],
+      "standards": [
+        "power source, mounting, output and legal requirements are component/jurisdiction specific"
+      ],
+      "commonSymptoms": [
+        "intermittent output",
+        "loose mount",
+        "damaged lens",
+        "wiring or power fault"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.rear-rack",
+        "bike.urban.u1.front-light"
+      ],
+      "aliases": [
+        "tail light",
+        "rear lamp"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.kickstand",
+      "summary": "Deployable bicycle parking support.",
+      "function": "Supports the stationary bicycle during ordinary parking and light loading/unloading.",
+      "materials": [
+        "aluminium arm",
+        "steel pivot/spring hardware",
+        "rubber/polymer foot"
+      ],
+      "standards": [
+        "mount and load suitability are frame/stand specific"
+      ],
+      "commonSymptoms": [
+        "loose pivot",
+        "poor return",
+        "bending",
+        "worn foot",
+        "unstable parking"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.frame",
+        "bike.urban.u1.rear-rack"
+      ],
+      "aliases": [
+        "stand",
+        "side stand"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.frame-lock",
+      "summary": "Frame-mounted wheel immobilizer.",
+      "function": "Blocks wheel rotation for convenient short-stop security and can form one layer of a broader locking strategy.",
+      "materials": [
+        "hardened steel",
+        "polymer housing"
+      ],
+      "standards": [
+        "mounting and security rating are lock/model specific",
+        "security needs depend on context and additional locking"
+      ],
+      "commonSymptoms": [
+        "sticky mechanism",
+        "misalignment",
+        "damaged keyway",
+        "loose mount"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.frame",
+        "bike.urban.u1.rear-wheel"
+      ],
+      "aliases": [
+        "ring lock",
+        "cafe lock",
+        "wheel lock"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.front-axle",
+      "summary": "Front wheel retaining axle.",
+      "function": "Locates and secures the front hub in the fork.",
+      "materials": [
+        "steel"
+      ],
+      "standards": [
+        "diameter, length, thread/nut system and hub/fork interface must match"
+      ],
+      "commonSymptoms": [
+        "damaged threads",
+        "bending",
+        "corrosion",
+        "poor engagement"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.fork",
+        "bike.urban.u1.front-hub",
+        "bike.urban.u1.front-wheel"
+      ],
+      "aliases": [
+        "front axle"
+      ]
+    },
+    {
+      "componentId": "bike.urban.u1.rear-axle",
+      "summary": "Rear wheel retaining axle associated with the internal-gear hub.",
+      "function": "Locates and secures the rear hub in the frame while reacting drive and braking loads.",
+      "materials": [
+        "steel"
+      ],
+      "standards": [
+        "hub/frame interface, fixing hardware and any anti-rotation hardware are hub-specific"
+      ],
+      "commonSymptoms": [
+        "damaged threads",
+        "looseness",
+        "bending",
+        "corrosion",
+        "misaligned hardware"
+      ],
+      "relatedComponentIds": [
+        "bike.urban.u1.frame",
+        "bike.urban.u1.rear-hub",
+        "bike.urban.u1.rear-wheel",
+        "bike.urban.u1.rear-sprocket"
+      ],
+      "aliases": [
+        "rear axle",
+        "hub axle"
+      ]
+    }
+  ]
+}
