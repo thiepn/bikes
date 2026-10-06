@@ -8,6 +8,11 @@ import {
   type ColorRepresentation,
 } from "three";
 import { SemanticPart } from "./SemanticPart";
+import {
+  getExplosionOffset,
+  getSystemColor,
+  isXrayShell,
+} from "@/engine/inspection/config";
 import type {
   ViewerInteractionHandlers,
   ViewerInteractionState,
@@ -42,14 +47,22 @@ function appearance(
   const survivesIsolation =
     !state.selectedId || semanticIds.includes(state.selectedId);
   const dimmed = Boolean(state.isolated && !survivesIsolation);
+  const systemColor =
+    state.mode === "systems" ? getSystemColor(componentId) : baseColor;
+  const xrayShell =
+    state.mode === "xray" &&
+    semanticIds.some((id) => isXrayShell(id)) &&
+    !highlighted;
+
+  const opacity = dimmed ? 0.045 : xrayShell ? 0.14 : 1;
 
   return {
-    color: highlighted ? "#d9ff67" : baseColor,
+    color: highlighted ? "#d9ff67" : systemColor,
     emissive: highlighted ? "#26370b" : "#000000",
     emissiveIntensity: highlighted ? 1.3 : 0,
-    opacity: dimmed ? 0.07 : 1,
-    transparent: dimmed,
-    depthWrite: !dimmed,
+    opacity,
+    transparent: opacity < 1,
+    depthWrite: opacity >= 0.95,
   };
 }
 
@@ -111,7 +124,15 @@ function semanticProps(
   state: ViewerInteractionState,
   handlers: ViewerInteractionHandlers,
 ) {
-  return { componentId, ...state, ...handlers };
+  return {
+    componentId,
+    ...state,
+    ...handlers,
+    position: getExplosionOffset(
+      componentId,
+      state.mode === "exploded" ? state.explosionAmount : 0,
+    ),
+  };
 }
 
 function Wheel({
@@ -219,6 +240,8 @@ export function PrototypeBike(props: PrototypeBikeProps) {
     selectedId: props.selectedId,
     hoveredId: props.hoveredId,
     isolated: props.isolated,
+    mode: props.mode,
+    explosionAmount: props.explosionAmount,
   };
   const handlers: ViewerInteractionHandlers = {
     onSelect: props.onSelect,

@@ -11,14 +11,18 @@ type SemanticPartProps = ViewerInteractionState &
   ViewerInteractionHandlers & {
     componentId: string;
     children: ReactNode;
+    position?: [number, number, number];
   };
 
 export function SemanticPart({
   componentId,
   children,
+  position = [0, 0, 0],
   selectedId,
   hoveredId,
   isolated,
+  mode,
+  explosionAmount,
   onSelect,
   onHover,
   onIsolate,
@@ -51,10 +55,13 @@ export function SemanticPart({
 
   return (
     <group
+      position={position}
       userData={{
         componentId,
         selected: selectedId === componentId,
         isolated: hiddenByIsolation,
+        inspectionMode: mode,
+        explosionAmount,
       }}
       onClick={select}
       onDoubleClick={isolatePart}
