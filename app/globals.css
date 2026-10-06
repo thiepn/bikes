@@ -2263,12 +2263,16 @@ body {
   }
 
   .viewer--explore .topbar-actions .learn-launch,
-  .viewer--explore .topbar-actions .workshop-launch {
-    display: none;
+  .viewer--explore .topbar-actions .workshop-launch,
+  .viewer--explore .topbar-actions .knowledge-launch {
+    min-height: 27px;
+    padding: 0 6px;
+    font-size: 7px;
   }
 
-  .viewer--explore .topbar-actions .knowledge-launch {
-    min-height: 28px;
-    padding: 0 7px;
+  .viewer--explore .topbar-actions .learn-launch span,
+  .viewer--explore .topbar-actions .workshop-launch span,
+  .viewer--explore .topbar-actions .knowledge-launch span {
+    display: none;
   }
 }
