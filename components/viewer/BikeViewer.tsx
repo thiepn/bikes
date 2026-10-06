@@ -1281,29 +1281,27 @@ export function BikeViewer() {
                 History
                 <span aria-hidden="true">↗</span>
               </button>
-              {activeBike.capabilities.encyclopedia !== "none" && (
-                <button
-                  type="button"
-                  className={
-                    knowledgeOpen
-                      ? "knowledge-launch is-active"
-                      : "knowledge-launch"
-                  }
-                  onClick={() => {
-                    const nextOpen = !knowledgeOpen;
-                    setKnowledgeOpen(nextOpen);
-                    if (!nextOpen) setActiveConceptId(null);
-                    setLearningOpen(false);
-                    setWorkshopOpen(false);
-                    setComparisonOpen(false);
-                    setFinderOpen(false);
-                    setHistoryOpen(false);
-                  }}
-                >
-                  Search
-                  <span aria-hidden="true">⌕</span>
-                </button>
-              )}
+              <button
+                type="button"
+                className={
+                  knowledgeOpen
+                    ? "knowledge-launch is-active"
+                    : "knowledge-launch"
+                }
+                onClick={() => {
+                  const nextOpen = !knowledgeOpen;
+                  setKnowledgeOpen(nextOpen);
+                  if (!nextOpen) setActiveConceptId(null);
+                  setLearningOpen(false);
+                  setWorkshopOpen(false);
+                  setComparisonOpen(false);
+                  setFinderOpen(false);
+                  setHistoryOpen(false);
+                }}
+              >
+                Search
+                <span aria-hidden="true">⌕</span>
+              </button>
             </>
           )}
           <div className="phase-label">
