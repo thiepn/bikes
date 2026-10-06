@@ -44,6 +44,9 @@ function scenarioResult(
     scenario.scenario,
   );
 
+  const firstGear = gearing.combinations[0];
+  if (!firstGear) return null;
+
   const closest = gearing.combinations.reduce(
     (best, candidate) => {
       const bestError = Math.abs(
@@ -54,10 +57,8 @@ function scenarioResult(
       );
       return nextError < bestError ? candidate : best;
     },
-    gearing.combinations[0],
+    firstGear,
   );
-
-  if (!closest) return null;
 
   const relativeGearError =
     Math.abs(closest.speedKph - result.speedKph) /
