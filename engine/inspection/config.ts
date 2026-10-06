@@ -1,4 +1,4 @@
-import { ROAD_R1_COMPONENTS_BY_ID } from "@/domain/bike/road-r1";
+import { getBikeComponentById } from "@/domain/bike/catalog";
 import type { BikeSystemId } from "@/domain/bike/types";
 
 export type Vector3Tuple = [number, number, number];
@@ -6,6 +6,7 @@ export type Vector3Tuple = [number, number, number];
 export const SYSTEM_COLORS: Record<BikeSystemId, string> = {
   frame: "#d9ff67",
   "fork-suspension": "#b5f36b",
+  "rear-suspension": "#8ee69a",
   steering: "#65e3ff",
   cockpit: "#60cfff",
   "front-wheel": "#b897ff",
@@ -22,67 +23,78 @@ export const SYSTEM_COLORS: Record<BikeSystemId, string> = {
   accessories: "#a9b1ba",
 };
 
-const XRAY_SHELL_IDS = new Set([
-  "bike.road.r1.frame",
-  "bike.road.r1.fork",
-  "bike.road.r1.front-tire",
-  "bike.road.r1.rear-tire",
-  "bike.road.r1.front-rim",
-  "bike.road.r1.rear-rim",
-  "bike.road.r1.handlebar",
-  "bike.road.r1.stem",
-  "bike.road.r1.saddle",
-  "bike.road.r1.seatpost",
+const XRAY_SHELL_SLUGS = new Set([
+  "frame",
+  "fork",
+  "front-tire",
+  "rear-tire",
+  "front-rim",
+  "rear-rim",
+  "handlebar",
+  "stem",
+  "saddle",
+  "seatpost",
+  "dropper-post",
 ]);
 
-const EXPLOSION_VECTORS: Record<string, Vector3Tuple> = {
-  "bike.road.r1.frame": [0, 0, 0],
-  "bike.road.r1.fork": [0, 0.05, 0.2],
-  "bike.road.r1.headset": [0, 0.12, 0.08],
+const EXPLOSION_VECTORS_BY_SLUG: Record<string, Vector3Tuple> = {
+  frame: [0, 0, 0],
+  fork: [0, 0.05, 0.2],
+  headset: [0, 0.12, 0.08],
+  "rear-shock": [0.18, 0.12, -0.04],
+  "suspension-linkage": [0.2, 0.05, -0.14],
 
-  "bike.road.r1.front-wheel": [0, 0, 0.28],
-  "bike.road.r1.front-tire": [0, 0, 0.32],
-  "bike.road.r1.front-rim": [0.08, 0, 0.3],
-  "bike.road.r1.front-hub": [0.16, 0, 0.27],
-  "bike.road.r1.front-rotor": [0.25, 0, 0.26],
-  "bike.road.r1.front-caliper": [0.2, 0.12, 0.18],
+  "front-wheel": [0, 0, 0.28],
+  "front-tire": [0, 0, 0.32],
+  "front-rim": [0.08, 0, 0.3],
+  "front-hub": [0.16, 0, 0.27],
+  "front-thru-axle": [0.34, 0, 0.28],
+  "front-rotor": [0.25, 0, 0.26],
+  "front-caliper": [0.2, 0.12, 0.18],
 
-  "bike.road.r1.rear-wheel": [0, 0, -0.28],
-  "bike.road.r1.rear-tire": [0, 0, -0.32],
-  "bike.road.r1.rear-rim": [0.08, 0, -0.3],
-  "bike.road.r1.rear-hub": [0.16, 0, -0.27],
-  "bike.road.r1.rear-thru-axle": [0.34, 0, -0.28],
-  "bike.road.r1.rear-rotor": [0.25, 0, -0.26],
-  "bike.road.r1.rear-caliper": [0.2, 0.12, -0.18],
+  "rear-wheel": [0, 0, -0.28],
+  "rear-tire": [0, 0, -0.32],
+  "rear-rim": [0.08, 0, -0.3],
+  "rear-hub": [0.16, 0, -0.27],
+  "rear-thru-axle": [0.34, 0, -0.28],
+  "rear-rotor": [0.25, 0, -0.26],
+  "rear-caliper": [0.2, 0.12, -0.18],
 
-  "bike.road.r1.handlebar": [0, 0.24, 0.22],
-  "bike.road.r1.stem": [0, 0.16, 0.15],
-  "bike.road.r1.saddle": [0, 0.24, -0.15],
-  "bike.road.r1.seatpost": [0, 0.17, -0.08],
+  handlebar: [0, 0.24, 0.22],
+  stem: [0, 0.16, 0.15],
+  "left-grip": [-0.28, 0.03, 0],
+  "right-grip": [0.28, 0.03, 0],
+  saddle: [0, 0.24, -0.15],
+  seatpost: [0, 0.17, -0.08],
+  "dropper-post": [0, 0.17, -0.08],
 
-  "bike.road.r1.crankset": [0.22, 0, 0],
-  "bike.road.r1.large-chainring": [0.29, 0, 0],
-  "bike.road.r1.chain": [0.18, -0.04, -0.02],
-  "bike.road.r1.cassette": [0.3, 0, -0.06],
-  "bike.road.r1.rear-derailleur": [0.23, -0.12, -0.15],
-  "bike.road.r1.left-pedal": [-0.3, 0, 0],
-  "bike.road.r1.right-pedal": [0.3, 0, 0],
+  crankset: [0.22, 0, 0],
+  "large-chainring": [0.29, 0, 0],
+  chainring: [0.29, 0, 0],
+  chain: [0.18, -0.04, -0.02],
+  cassette: [0.3, 0, -0.06],
+  "rear-derailleur": [0.23, -0.12, -0.15],
+  "left-pedal": [-0.3, 0, 0],
+  "right-pedal": [0.3, 0, 0],
 };
 
 export function getSystemColor(componentId: string) {
-  const systemId = ROAD_R1_COMPONENTS_BY_ID.get(componentId)?.systemId;
+  const systemId = getBikeComponentById(componentId)?.systemId;
   return systemId ? SYSTEM_COLORS[systemId] : "#a9b1ba";
 }
 
 export function isXrayShell(componentId: string) {
-  return XRAY_SHELL_IDS.has(componentId);
+  const slug = getBikeComponentById(componentId)?.slug;
+  return slug ? XRAY_SHELL_SLUGS.has(slug) : false;
 }
 
 export function getExplosionOffset(
   componentId: string,
   amount: number,
 ): Vector3Tuple {
-  const vector = EXPLOSION_VECTORS[componentId] ?? [0, 0, 0];
+  const slug = getBikeComponentById(componentId)?.slug;
+  const vector =
+    (slug && EXPLOSION_VECTORS_BY_SLUG[slug]) ?? [0, 0, 0];
   const normalized = Math.min(1, Math.max(0, amount));
 
   return [

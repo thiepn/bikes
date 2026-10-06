@@ -6,6 +6,7 @@ import type { BikeSystemId } from "@/domain/bike/types";
 const VISIBLE_SYSTEMS: Array<[BikeSystemId, string]> = [
   ["frame", "Frame"],
   ["fork-suspension", "Fork"],
+  ["rear-suspension", "Rear suspension"],
   ["cockpit", "Cockpit"],
   ["front-wheel", "Front wheel"],
   ["rear-wheel", "Rear wheel"],

@@ -1,6 +1,7 @@
 export type BikeSystemId =
   | "frame"
   | "fork-suspension"
+  | "rear-suspension"
   | "steering"
   | "cockpit"
   | "front-wheel"
@@ -27,7 +28,8 @@ export type MechanicalInterfaceType =
   | "chain"
   | "pedal"
   | "rotor"
-  | "drivetrain";
+  | "drivetrain"
+  | "suspension";
 
 export interface MechanicalInterface {
   type: MechanicalInterfaceType;

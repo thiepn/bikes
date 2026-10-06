@@ -8,6 +8,7 @@ import {
   OrbitControls,
 } from "@react-three/drei";
 import { PrototypeBike } from "./PrototypeBike";
+import { MtbPrototypeBike } from "./MtbPrototypeBike";
 import { CameraRig } from "./CameraRig";
 import { StoryCameraRig } from "@/components/story/StoryCameraRig";
 import { CAMERA_LIMITS, CAMERA_TARGET } from "@/engine/camera/presets";
@@ -23,6 +24,7 @@ enableBvhRaycasting();
 
 type BikeSceneProps = ViewerInteractionState &
   ViewerInteractionHandlers & {
+    bikeId: string;
     experienceMode: ExperienceMode;
     storyProgress: number;
     drivetrainDemo: DrivetrainDemoState;
@@ -86,7 +88,11 @@ export function BikeScene(props: BikeSceneProps) {
         />
       </Environment>
 
-      <PrototypeBike {...props} />
+      {props.bikeId === "bike.mtb.m1" ? (
+        <MtbPrototypeBike {...props} />
+      ) : (
+        <PrototypeBike {...props} />
+      )}
 
       <mesh
         receiveShadow

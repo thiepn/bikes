@@ -1,0 +1,549 @@
+{
+  "id": "bike.mtb.m1",
+  "slug": "mtb-m1",
+  "name": "MTB M1",
+  "archetype": "trail-full-suspension",
+  "status": "prototype",
+  "description": "Generic full-suspension trail mountain-bike archetype used to prove Bike Atlas multi-bike architecture.",
+  "systems": [
+    "frame",
+    "fork-suspension",
+    "rear-suspension",
+    "steering",
+    "cockpit",
+    "front-wheel",
+    "rear-wheel",
+    "tires",
+    "drivetrain",
+    "transmission",
+    "braking",
+    "saddle-seatpost",
+    "pedals"
+  ],
+  "components": [
+    {
+      "id": "bike.mtb.m1.frame",
+      "slug": "frame",
+      "name": "Frame",
+      "systemId": "frame",
+      "modelNode": "COMP__frame",
+      "materialIds": [
+        "mat.carbon.painted"
+      ],
+      "tags": [
+        "structure",
+        "carbon",
+        "trail"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.fork",
+      "slug": "fork",
+      "name": "Suspension fork",
+      "systemId": "fork-suspension",
+      "modelNode": "COMP__fork",
+      "materialIds": [
+        "mat.aluminium",
+        "mat.magnesium"
+      ],
+      "tags": [
+        "suspension",
+        "steering"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.rear-shock",
+      "slug": "rear-shock",
+      "name": "Rear shock",
+      "systemId": "rear-suspension",
+      "modelNode": "COMP__rear_shock",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "suspension",
+        "damper"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.suspension-linkage",
+      "slug": "suspension-linkage",
+      "name": "Suspension linkage",
+      "systemId": "rear-suspension",
+      "modelNode": "COMP__suspension_linkage",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "suspension",
+        "pivot"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.headset",
+      "slug": "headset",
+      "name": "Headset",
+      "systemId": "steering",
+      "modelNode": "COMP__headset",
+      "materialIds": [
+        "mat.steel",
+        "mat.aluminium"
+      ],
+      "tags": [
+        "bearing",
+        "steering"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.handlebar",
+      "slug": "handlebar",
+      "name": "Flat handlebar",
+      "systemId": "cockpit",
+      "modelNode": "COMP__handlebar",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "cockpit",
+        "flat-bar"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.stem",
+      "slug": "stem",
+      "name": "Stem",
+      "systemId": "cockpit",
+      "modelNode": "COMP__stem",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "cockpit",
+        "steering"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.left-grip",
+      "slug": "left-grip",
+      "name": "Left grip",
+      "systemId": "cockpit",
+      "modelNode": "COMP__left_grip",
+      "materialIds": [
+        "mat.rubber"
+      ],
+      "tags": [
+        "contact-point",
+        "grip"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.right-grip",
+      "slug": "right-grip",
+      "name": "Right grip",
+      "systemId": "cockpit",
+      "modelNode": "COMP__right_grip",
+      "materialIds": [
+        "mat.rubber"
+      ],
+      "tags": [
+        "contact-point",
+        "grip"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.left-brake-lever",
+      "slug": "left-brake-lever",
+      "name": "Left brake lever",
+      "systemId": "cockpit",
+      "modelNode": "COMP__left_brake_lever",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "control",
+        "brake"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.right-brake-lever",
+      "slug": "right-brake-lever",
+      "name": "Right brake lever",
+      "systemId": "cockpit",
+      "modelNode": "COMP__right_brake_lever",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "control",
+        "brake"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.right-shifter",
+      "slug": "right-shifter",
+      "name": "Right shifter",
+      "systemId": "cockpit",
+      "modelNode": "COMP__right_shifter",
+      "materialIds": [
+        "mat.polymer",
+        "mat.aluminium"
+      ],
+      "tags": [
+        "control",
+        "shift"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.dropper-remote",
+      "slug": "dropper-remote",
+      "name": "Dropper remote",
+      "systemId": "cockpit",
+      "modelNode": "COMP__dropper_remote",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "control",
+        "dropper"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.front-wheel",
+      "slug": "front-wheel",
+      "name": "Front wheel",
+      "systemId": "front-wheel",
+      "modelNode": "COMP__front_wheel",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "wheel",
+        "29er"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.rear-wheel",
+      "slug": "rear-wheel",
+      "name": "Rear wheel",
+      "systemId": "rear-wheel",
+      "modelNode": "COMP__rear_wheel",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "wheel",
+        "29er"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.front-tire",
+      "slug": "front-tire",
+      "name": "Front trail tire",
+      "systemId": "tires",
+      "modelNode": "COMP__front_tire",
+      "materialIds": [
+        "mat.rubber"
+      ],
+      "tags": [
+        "tire",
+        "knobby"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.rear-tire",
+      "slug": "rear-tire",
+      "name": "Rear trail tire",
+      "systemId": "tires",
+      "modelNode": "COMP__rear_tire",
+      "materialIds": [
+        "mat.rubber"
+      ],
+      "tags": [
+        "tire",
+        "knobby"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.front-rim",
+      "slug": "front-rim",
+      "name": "Front rim",
+      "systemId": "front-wheel",
+      "modelNode": "COMP__front_rim",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "rim"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.rear-rim",
+      "slug": "rear-rim",
+      "name": "Rear rim",
+      "systemId": "rear-wheel",
+      "modelNode": "COMP__rear_rim",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "rim"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.front-hub",
+      "slug": "front-hub",
+      "name": "Front hub",
+      "systemId": "front-wheel",
+      "modelNode": "COMP__front_hub",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "hub",
+        "bearing"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.rear-hub",
+      "slug": "rear-hub",
+      "name": "Rear hub",
+      "systemId": "rear-wheel",
+      "modelNode": "COMP__rear_hub",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "hub",
+        "freehub",
+        "bearing"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.front-rotor",
+      "slug": "front-rotor",
+      "name": "Front brake rotor",
+      "systemId": "braking",
+      "modelNode": "COMP__front_rotor",
+      "materialIds": [
+        "mat.steel"
+      ],
+      "tags": [
+        "brake",
+        "rotor"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.rear-rotor",
+      "slug": "rear-rotor",
+      "name": "Rear brake rotor",
+      "systemId": "braking",
+      "modelNode": "COMP__rear_rotor",
+      "materialIds": [
+        "mat.steel"
+      ],
+      "tags": [
+        "brake",
+        "rotor"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.front-caliper",
+      "slug": "front-caliper",
+      "name": "Front brake caliper",
+      "systemId": "braking",
+      "modelNode": "COMP__front_caliper",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "brake",
+        "hydraulic"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.rear-caliper",
+      "slug": "rear-caliper",
+      "name": "Rear brake caliper",
+      "systemId": "braking",
+      "modelNode": "COMP__rear_caliper",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "brake",
+        "hydraulic"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.crankset",
+      "slug": "crankset",
+      "name": "1x crankset",
+      "systemId": "drivetrain",
+      "modelNode": "COMP__crankset",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "drivetrain",
+        "1x"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.chainring",
+      "slug": "chainring",
+      "name": "Single chainring",
+      "systemId": "transmission",
+      "modelNode": "COMP__chainring",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "drivetrain",
+        "gear",
+        "1x"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.bottom-bracket",
+      "slug": "bottom-bracket",
+      "name": "Bottom bracket",
+      "systemId": "drivetrain",
+      "modelNode": "COMP__bottom_bracket",
+      "materialIds": [
+        "mat.steel",
+        "mat.aluminium"
+      ],
+      "tags": [
+        "bearing",
+        "drivetrain"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.chain",
+      "slug": "chain",
+      "name": "Chain",
+      "systemId": "transmission",
+      "modelNode": "COMP__chain",
+      "materialIds": [
+        "mat.steel"
+      ],
+      "tags": [
+        "drivetrain",
+        "transmission"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.cassette",
+      "slug": "cassette",
+      "name": "Wide-range cassette",
+      "systemId": "transmission",
+      "modelNode": "COMP__cassette",
+      "materialIds": [
+        "mat.steel",
+        "mat.aluminium"
+      ],
+      "tags": [
+        "drivetrain",
+        "gear",
+        "wide-range"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.rear-derailleur",
+      "slug": "rear-derailleur",
+      "name": "Rear derailleur",
+      "systemId": "transmission",
+      "modelNode": "COMP__rear_derailleur",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "drivetrain",
+        "shifting"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.saddle",
+      "slug": "saddle",
+      "name": "Saddle",
+      "systemId": "saddle-seatpost",
+      "modelNode": "COMP__saddle",
+      "materialIds": [
+        "mat.saddle.synthetic"
+      ],
+      "tags": [
+        "contact-point"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.dropper-post",
+      "slug": "dropper-post",
+      "name": "Dropper seatpost",
+      "systemId": "saddle-seatpost",
+      "modelNode": "COMP__dropper_post",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "dropper",
+        "seatpost"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.left-pedal",
+      "slug": "left-pedal",
+      "name": "Left flat pedal",
+      "systemId": "pedals",
+      "modelNode": "COMP__left_pedal",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "contact-point",
+        "flat-pedal"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.right-pedal",
+      "slug": "right-pedal",
+      "name": "Right flat pedal",
+      "systemId": "pedals",
+      "modelNode": "COMP__right_pedal",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "contact-point",
+        "flat-pedal"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.front-thru-axle",
+      "slug": "front-thru-axle",
+      "name": "Front thru axle",
+      "systemId": "front-wheel",
+      "modelNode": "COMP__front_thru_axle",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "axle",
+        "fastener"
+      ]
+    },
+    {
+      "id": "bike.mtb.m1.rear-thru-axle",
+      "slug": "rear-thru-axle",
+      "name": "Rear thru axle",
+      "systemId": "rear-wheel",
+      "modelNode": "COMP__rear_thru_axle",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "axle",
+        "fastener"
+      ]
+    }
+  ]
+}

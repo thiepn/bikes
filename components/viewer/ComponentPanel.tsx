@@ -1,15 +1,19 @@
 "use client";
 
-import { ROAD_R1, ROAD_R1_COMPONENTS_BY_ID } from "@/domain/bike/road-r1";
 import {
-  getKnowledgeNode,
-  getKnowledgeRelatedComponentIds,
-} from "@/domain/knowledge/road-r1";
+  getBikeById,
+  getBikeComponentById,
+} from "@/domain/bike/catalog";
+import {
+  getBikeKnowledgeNode,
+  getBikeKnowledgeRelatedComponentIds,
+} from "@/domain/knowledge/catalog";
 import { LESSON_CATALOG } from "@/domain/learning/catalog";
 import { WORKSHOP_CATALOG } from "@/domain/workshop/catalog";
-import { CALIBRATION_COMPONENT_IDS } from "@/engine/interaction/calibration-components";
+import { getInteractiveComponentIds } from "@/engine/interaction/component-availability";
 
 type ComponentPanelProps = {
+  bikeId: string;
   selectedId: string | null;
   isolated: boolean;
   onSelect: (componentId: string | null) => void;
@@ -22,6 +26,7 @@ type ComponentPanelProps = {
 const SYSTEM_LABELS: Record<string, string> = {
   frame: "Frame",
   "fork-suspension": "Fork",
+  "rear-suspension": "Rear suspension",
   steering: "Steering",
   cockpit: "Cockpit",
   "front-wheel": "Front wheel",
@@ -69,6 +74,7 @@ function procedureStepForComponent(
 }
 
 export function ComponentPanel({
+  bikeId,
   selectedId,
   isolated,
   onSelect,
@@ -77,11 +83,17 @@ export function ComponentPanel({
   onOpenLesson,
   onOpenWorkshop,
 }: ComponentPanelProps) {
+  const bike = getBikeById(bikeId);
+  if (!bike) return null;
+
   const selected =
-    ROAD_R1.components.find((component) => component.id === selectedId) ?? null;
-  const knowledge = getKnowledgeNode(selectedId);
-  const available = ROAD_R1.components.filter((component) =>
-    CALIBRATION_COMPONENT_IDS.has(component.id),
+    selectedId && selectedId.startsWith(`${bike.id}.`)
+      ? getBikeComponentById(selectedId)
+      : null;
+  const knowledge = getBikeKnowledgeNode(bikeId, selectedId);
+  const interactiveIds = getInteractiveComponentIds(bikeId);
+  const available = bike.components.filter((component) =>
+    interactiveIds.has(component.id),
   );
 
   const grouped = available.reduce<Record<string, typeof available>>(
@@ -93,15 +105,18 @@ export function ComponentPanel({
   );
 
   const relatedIds = selected
-    ? getKnowledgeRelatedComponentIds(selected.id)
+    ? getBikeKnowledgeRelatedComponentIds(bikeId, selected.id)
     : [];
 
   return (
-    <aside className="component-panel" aria-label="Road R1 component navigator">
+    <aside
+      className="component-panel"
+      aria-label={`${bike.name} component navigator`}
+    >
       <div className="component-panel__header">
         <div>
           <span className="component-panel__kicker">
-            {selected ? "Encyclopedia" : "Road R1"}
+            {selected ? "Encyclopedia" : bike.name}
           </span>
           <strong>{selected?.name ?? "Explore components"}</strong>
         </div>
@@ -163,7 +178,7 @@ export function ComponentPanel({
               <h3>Connected & related parts</h3>
               <div className="knowledge-links">
                 {relatedIds.slice(0, 8).map((componentId) => {
-                  const component = ROAD_R1_COMPONENTS_BY_ID.get(componentId);
+                  const component = getBikeComponentById(componentId);
                   if (!component) return null;
 
                   return (
@@ -243,6 +258,17 @@ export function ComponentPanel({
             </section>
           )}
 
+          {bike.capabilities.encyclopedia === "foundation" && (
+            <section className="knowledge-section knowledge-section--foundation">
+              <h3>MTB M1 foundation</h3>
+              <p>
+                This entry proves cross-bike semantics and graph navigation.
+                Full standards, symptoms and MTB-specific teaching content
+                will be authored in a later content phase.
+              </p>
+            </section>
+          )}
+
           <div className="selected-card__actions">
             {knowledge.availableIn3d && (
               <button
@@ -266,9 +292,10 @@ export function ComponentPanel({
         </div>
       ) : (
         <p className="component-panel__intro">
-          Select directly on the bike or browse the encyclopedia. Every
-          semantic component can link into lessons, Workshop procedures and
-          mechanically related parts.
+          Select directly on the bike or browse the encyclopedia.
+          {bike.capabilities.encyclopedia === "foundation"
+            ? " MTB M1 currently exposes its semantic foundation and assembly relationships."
+            : " Components cross-link into lessons, Workshop procedures and mechanically related parts."}
         </p>
       )}
 
@@ -276,7 +303,7 @@ export function ComponentPanel({
         <div className="component-list">
           {Object.entries(grouped).map(([systemId, components]) => (
             <section className="component-group" key={systemId}>
-              <h2>{SYSTEM_LABELS[systemId] ?? systemId}</h2>
+              <h2>{SYSTEM_LABELS[systemId] ?? systemId.replaceAll("-", " ")}</h2>
               <div className="component-group__items">
                 {components.map((component) => (
                   <button

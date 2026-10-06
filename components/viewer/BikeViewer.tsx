@@ -5,6 +5,10 @@ import { Canvas } from "@react-three/fiber";
 import { ACESFilmicToneMapping, SRGBColorSpace } from "three";
 import { ROAD_R1 } from "@/domain/bike/road-r1";
 import {
+  getBikeById,
+  getBikeBySlug,
+} from "@/domain/bike/catalog";
+import {
   canPerformOperation,
   getAssemblyOperation,
 } from "@/domain/assembly/road-r1";
@@ -39,6 +43,7 @@ import { BikeScene } from "./BikeScene";
 import { ComponentPanel } from "./ComponentPanel";
 import { InspectionToolbar } from "./InspectionToolbar";
 import { SystemsLegend } from "./SystemsLegend";
+import { BikeSwitcher } from "./BikeSwitcher";
 
 const VALID_MODES = new Set<InspectionMode>([
   "normal",
@@ -57,6 +62,7 @@ export function BikeViewer() {
   const [experienceMode, setExperienceMode] =
     useState<ExperienceMode>("story");
   const [storyProgress, setStoryProgress] = useState(0);
+  const [activeBikeId, setActiveBikeId] = useState(ROAD_R1.id);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [isolated, setIsolated] = useState(false);
@@ -98,6 +104,8 @@ export function BikeViewer() {
     saveStep: persistWorkshopStep,
     completeProcedure,
   } = useWorkshopProgress();
+
+  const activeBike = getBikeById(activeBikeId) ?? ROAD_R1;
 
   const lesson =
     getLessonById(activeLessonId) ?? LESSON_CATALOG[0];
@@ -200,24 +208,34 @@ export function BikeViewer() {
 
   const selectedComponent = useMemo(
     () =>
-      ROAD_R1.components.find((component) => component.id === selectedId) ??
-      null,
-    [selectedId],
+      activeBike.components.find(
+        (component) => component.id === selectedId,
+      ) ?? null,
+    [activeBike, selectedId],
   );
 
-  const updatePartUrl = useCallback((componentId: string | null) => {
-    if (typeof window === "undefined") return;
+  const updatePartUrl = useCallback(
+    (componentId: string | null) => {
+      if (typeof window === "undefined") return;
 
-    const url = new URL(window.location.href);
-    const component = ROAD_R1.components.find(
-      (item) => item.id === componentId,
-    );
+      const url = new URL(window.location.href);
+      const component = activeBike.components.find(
+        (item) => item.id === componentId,
+      );
 
-    if (component) url.searchParams.set("part", component.slug);
-    else url.searchParams.delete("part");
+      if (activeBike.id === ROAD_R1.id) {
+        url.searchParams.delete("bike");
+      } else {
+        url.searchParams.set("bike", activeBike.slug);
+      }
 
-    window.history.replaceState({}, "", url);
-  }, []);
+      if (component) url.searchParams.set("part", component.slug);
+      else url.searchParams.delete("part");
+
+      window.history.replaceState({}, "", url);
+    },
+    [activeBike],
+  );
 
   const select = useCallback(
     (componentId: string | null) => {
@@ -238,6 +256,46 @@ export function BikeViewer() {
     },
     [updatePartUrl],
   );
+
+  const changeBike = useCallback((bikeId: string) => {
+    const nextBike = getBikeById(bikeId);
+    if (!nextBike) return;
+
+    setActiveBikeId(nextBike.id);
+    setSelectedId(null);
+    setHoveredId(null);
+    setIsolated(false);
+    setMode("normal");
+    setExplosionAmount(0);
+    setLearningOpen(false);
+    setWorkshopOpen(false);
+    setKnowledgeOpen(false);
+    setExperienceMode("explore");
+
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+
+      if (nextBike.id === ROAD_R1.id) {
+        url.searchParams.delete("bike");
+      } else {
+        url.searchParams.set("bike", nextBike.slug);
+      }
+
+      for (const key of [
+        "bike",
+        "part",
+        "view",
+        "explode",
+        "lesson",
+        "workshop",
+        "step",
+      ]) {
+        url.searchParams.delete(key);
+      }
+
+      window.history.replaceState({}, "", url);
+    }
+  }, []);
 
   const changeMode = useCallback((nextMode: InspectionMode) => {
     setMode(nextMode);
@@ -290,6 +348,7 @@ export function BikeViewer() {
       );
       if (locked) return;
 
+      setActiveBikeId(ROAD_R1.id);
       setSelectedId(null);
       setHoveredId(null);
       setIsolated(false);
@@ -400,6 +459,7 @@ export function BikeViewer() {
       const existing = workshopProgress.procedures[nextProcedure.id];
       const completedIds = existing?.completedStepIds ?? [];
 
+      setActiveBikeId(ROAD_R1.id);
       setSelectedId(null);
       setHoveredId(null);
       setIsolated(false);
@@ -514,6 +574,7 @@ export function BikeViewer() {
   }, [storyVisual.explosionAmount, storyVisual.inspectionMode]);
 
   const returnToStory = useCallback(() => {
+    setActiveBikeId(ROAD_R1.id);
     setSelectedId(null);
     setHoveredId(null);
     setIsolated(false);
@@ -543,6 +604,8 @@ export function BikeViewer() {
 
   useEffect(() => {
     const url = new URL(window.location.href);
+    const requestedBike =
+      getBikeBySlug(url.searchParams.get("bike")) ?? ROAD_R1;
     const slug = url.searchParams.get("part");
     const view = url.searchParams.get("view") as InspectionMode | null;
     const explode = Number(url.searchParams.get("explode"));
@@ -555,6 +618,7 @@ export function BikeViewer() {
     const requestedStep = Number(url.searchParams.get("step"));
 
     if (requestedProcedure) {
+      setActiveBikeId(ROAD_R1.id);
       const index =
         Number.isFinite(requestedStep) && requestedStep >= 1
           ? Math.min(
@@ -570,6 +634,7 @@ export function BikeViewer() {
     }
 
     if (requestedLesson) {
+      setActiveBikeId(ROAD_R1.id);
       const index =
         Number.isFinite(requestedStep) && requestedStep >= 1
           ? Math.min(
@@ -588,10 +653,14 @@ export function BikeViewer() {
       return;
     }
 
-    if (slug || view) setExperienceMode("explore");
+    setActiveBikeId(requestedBike.id);
+
+    if (slug || view || requestedBike.id !== ROAD_R1.id) {
+      setExperienceMode("explore");
+    }
 
     if (slug) {
-      const component = ROAD_R1.components.find(
+      const component = requestedBike.components.find(
         (item) => item.slug === slug,
       );
       if (component) setSelectedId(component.id);
@@ -692,6 +761,12 @@ export function BikeViewer() {
 
     const url = new URL(window.location.href);
 
+    if (activeBike.id === ROAD_R1.id) {
+      url.searchParams.delete("bike");
+    } else {
+      url.searchParams.set("bike", activeBike.slug);
+    }
+
     if (mode === "normal") url.searchParams.delete("view");
     else url.searchParams.set("view", mode);
 
@@ -705,7 +780,13 @@ export function BikeViewer() {
     }
 
     window.history.replaceState({}, "", url);
-  }, [experienceMode, mode, explosionAmount]);
+  }, [
+    activeBike.id,
+    activeBike.slug,
+    experienceMode,
+    mode,
+    explosionAmount,
+  ]);
 
   useEffect(() => {
     if (experienceMode !== "explore") return;
@@ -793,54 +874,64 @@ export function BikeViewer() {
         <div className="topbar-actions">
           {experienceMode === "explore" && (
             <>
-              <button
-                type="button"
-                className={
-                  learningOpen
-                    ? "learn-launch is-active"
-                    : "learn-launch"
-                }
-                onClick={() => {
-                  setLearningOpen((value) => !value);
-                  setWorkshopOpen(false);
-                  setKnowledgeOpen(false);
-                }}
-              >
-                Learn
-                <span aria-hidden="true">→</span>
-              </button>
-              <button
-                type="button"
-                className={
-                  workshopOpen
-                    ? "workshop-launch is-active"
-                    : "workshop-launch"
-                }
-                onClick={() => {
-                  setWorkshopOpen((value) => !value);
-                  setLearningOpen(false);
-                  setKnowledgeOpen(false);
-                }}
-              >
-                Workshop
-                <span aria-hidden="true">→</span>
-              </button>
-              <button
-                type="button"
-                className={
-                  knowledgeOpen
-                    ? "knowledge-launch is-active"
-                    : "knowledge-launch"
-                }
-                onClick={() => {
-                  setKnowledgeOpen((value) => !value);
-                  setLearningOpen(false);
-                  setWorkshopOpen(false);
-                }}
-              >
-                Encyclopedia
-                <span aria-hidden="true">⌕</span>
-              </button>
+              <BikeSwitcher
+                bikeId={activeBike.id}
+                onChange={changeBike}
+              />
+              {activeBike.capabilities.lessons && (
+                <button
+                  type="button"
+                  className={
+                    learningOpen
+                      ? "learn-launch is-active"
+                      : "learn-launch"
+                  }
+                  onClick={() => {
+                    setLearningOpen((value) => !value);
+                    setWorkshopOpen(false);
+                    setKnowledgeOpen(false);
+                  }}
+                >
+                  Learn
+                  <span aria-hidden="true">→</span>
+                </button>
+              )}
+              {activeBike.capabilities.workshop && (
+                <button
+                  type="button"
+                  className={
+                    workshopOpen
+                      ? "workshop-launch is-active"
+                      : "workshop-launch"
+                  }
+                  onClick={() => {
+                    setWorkshopOpen((value) => !value);
+                    setLearningOpen(false);
+                    setKnowledgeOpen(false);
+                  }}
+                >
+                  Workshop
+                  <span aria-hidden="true">→</span>
+                </button>
+              )}
+              {activeBike.capabilities.encyclopedia !== "none" && (
+                <button
+                  type="button"
+                  className={
+                    knowledgeOpen
+                      ? "knowledge-launch is-active"
+                      : "knowledge-launch"
+                  }
+                  onClick={() => {
+                    setKnowledgeOpen((value) => !value);
+                    setLearningOpen(false);
+                    setWorkshopOpen(false);
+                  }}
+                >
+                  Encyclopedia
+                  <span aria-hidden="true">⌕</span>
+                </button>
+              )}
             </>
           )}
           <div className="phase-label">
@@ -850,7 +941,7 @@ export function BikeViewer() {
                 ? `Lesson · ${safeLessonStepIndex + 1}/${lesson.steps.length}`
                 : experienceMode === "workshop"
                   ? `Workshop · ${safeWorkshopStepIndex + 1}/${procedure.steps.length}`
-                  : "Explore"}
+                  : activeBike.name}
           </div>
         </div>
       </div>
@@ -880,6 +971,7 @@ export function BikeViewer() {
         }}
       >
         <BikeScene
+          bikeId={activeBike.id}
           experienceMode={experienceMode}
           storyProgress={storyProgress}
           selectedId={sceneSelectedId}
@@ -958,6 +1050,7 @@ export function BikeViewer() {
         />
       ) : knowledgeOpen ? (
         <KnowledgeSearch
+          bikeId={activeBike.id}
           selectedId={selectedId}
           onSelect={(componentId) => {
             select(componentId);
@@ -977,6 +1070,7 @@ export function BikeViewer() {
           {mode === "systems" && <SystemsLegend />}
 
           <ComponentPanel
+            bikeId={activeBike.id}
             selectedId={selectedId}
             isolated={isolated}
             onSelect={select}
@@ -999,7 +1093,7 @@ export function BikeViewer() {
               {selectedComponent
                 ? selectedComponent.systemId.replaceAll("-", " ")
                 : mode === "normal"
-                  ? "Road R1"
+                  ? activeBike.name
                   : mode.replaceAll("-", " ")}
             </span>
             <strong>

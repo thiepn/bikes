@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "validate:assets": "node scripts/validate-road-r1.mjs",
-    "asset:road-r1:fetch": "node scripts/fetch-road-r1-source.mjs"
+    "asset:road-r1:fetch": "node scripts/fetch-road-r1-source.mjs",
+    "validate:domain": "node scripts/validate-road-r1.mjs && node scripts/validate-mtb-m1.mjs"
   },
   "dependencies": {
     "@react-three/drei": "10.7.9",

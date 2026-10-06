@@ -1,10 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ROAD_R1 } from "@/domain/bike/road-r1";
-import { searchRoadR1Knowledge } from "@/domain/knowledge/road-r1";
+import { getBikeById } from "@/domain/bike/catalog";
+import { searchBikeKnowledge } from "@/domain/knowledge/catalog";
 
 type KnowledgeSearchProps = {
+  bikeId: string;
   selectedId: string | null;
   onSelect: (componentId: string) => void;
   onClose: () => void;
@@ -13,6 +14,7 @@ type KnowledgeSearchProps = {
 const SYSTEM_LABELS: Record<string, string> = {
   frame: "Frame",
   "fork-suspension": "Fork",
+  "rear-suspension": "Rear suspension",
   steering: "Steering",
   cockpit: "Cockpit",
   "front-wheel": "Front wheel",
@@ -26,22 +28,26 @@ const SYSTEM_LABELS: Record<string, string> = {
 };
 
 export function KnowledgeSearch({
+  bikeId,
   selectedId,
   onSelect,
   onClose,
 }: KnowledgeSearchProps) {
   const [query, setQuery] = useState("");
   const [systemFilter, setSystemFilter] = useState<string>("all");
+  const bike = getBikeById(bikeId);
 
   const results = useMemo(
     () =>
-      searchRoadR1Knowledge(query).filter(
+      searchBikeKnowledge(bikeId, query).filter(
         (result) =>
           systemFilter === "all" ||
           result.systemId === systemFilter,
       ),
-    [query, systemFilter],
+    [bikeId, query, systemFilter],
   );
+
+  if (!bike) return null;
 
   return (
     <aside className="knowledge-search" aria-label="Bike component encyclopedia">
@@ -50,8 +56,10 @@ export function KnowledgeSearch({
           <span className="knowledge-kicker">Encyclopedia</span>
           <h2>Know every part.</h2>
           <p>
-            Search components, systems, materials, standards and common
-            symptoms across the Road R1 knowledge graph.
+            Search components and systems across {bike.name}.
+            {bike.capabilities.encyclopedia === "foundation"
+              ? " Detailed MTB encyclopedia content is still being authored."
+              : " Materials, standards and symptoms are included where authored."}
           </p>
         </div>
         <button
@@ -71,7 +79,11 @@ export function KnowledgeSearch({
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search hub, creaking, carbon, brake…"
+            placeholder={
+              bike.id === "bike.road.r1"
+                ? "Search hub, creaking, carbon, brake…"
+                : "Search shock, dropper, cassette, fork…"
+            }
             autoFocus
           />
           <span>{results.length}</span>
@@ -85,7 +97,7 @@ export function KnowledgeSearch({
           >
             All
           </button>
-          {ROAD_R1.systems.map((systemId) => (
+          {bike.systems.map((systemId) => (
             <button
               type="button"
               key={systemId}
@@ -102,10 +114,7 @@ export function KnowledgeSearch({
         {results.length === 0 ? (
           <div className="knowledge-empty">
             <strong>No matching component.</strong>
-            <p>
-              Try a component name, system, material or symptom such as
-              “bearing”, “brake”, “creaking” or “carbon”.
-            </p>
+            <p>Try a component name, system, material or tag.</p>
           </div>
         ) : (
           results.map((result) => (

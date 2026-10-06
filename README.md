@@ -1,42 +1,31 @@
 # Bike Atlas
 
-Bike Atlas is an interactive 3D bicycle knowledge platform: explore bicycles, inspect components, understand systems, learn how they work, practice maintenance, and navigate a cross-linked bicycle encyclopedia.
+Bike Atlas is an interactive 3D bicycle knowledge platform for exploring multiple bicycle archetypes, their components, systems, lessons, maintenance workflows and technical relationships.
 
 ## Current phase
 
-**P9 — Component Encyclopedia, Search, Cross-Linking & Knowledge Graph**
+**P10 — Multi-Bike Architecture & Second Archetype Foundation**
 
-Every one of the 35 Road R1 semantic components now has an encyclopedia profile.
+Bike Atlas is no longer architecturally Road-R1-only.
 
-Explore includes three knowledge modes:
+Current bike registry:
 
-- **Learn** — interactive lessons and assessment.
-- **Workshop** — prerequisite-aware maintenance procedures.
-- **Encyclopedia** — search and component knowledge graph.
+- **Road R1** — performance road reference bike; interactive prototype, full encyclopedia, Learn and Workshop.
+- **MTB M1** — generic full-suspension trail MTB; interactive prototype and semantic/assembly foundation.
 
-Component profiles cover:
+MTB M1 introduces rear suspension, linkage, flat cockpit, dropper post and a 1× wide-range drivetrain so the shared architecture is tested against genuinely different bicycle systems.
 
-- function;
-- materials;
-- compatibility/standards;
-- common symptoms;
-- connected/related parts;
-- related lessons;
-- related Workshop procedures.
-
-Search spans names, aliases, systems, tags, materials, standards and symptoms.
-
-The knowledge graph derives mechanical links from the assembly graph and instructional links from Learn/Workshop data instead of duplicating those relationships.
-
-Component deep links work for all Road R1 semantic components, including components whose detailed calibration mesh is still pending:
+Bike-aware links:
 
 ```text
-/?part=cassette
-/?part=headset
-/?part=bottom-bracket
-/?part=front-derailleur
+/?bike=mtb-m1
+/?bike=mtb-m1&part=rear-shock
+/?bike=mtb-m1&part=dropper-post
+/?bike=mtb-m1&view=systems
 ```
 
-The temporary calibration bike currently exposes 27 of the 35 components in 3D. The production Road R1 GLB remains the path to full-detail visual coverage.
+Road-specific Learn and Workshop features are capability-gated and do not appear on MTB M1 until MTB-specific content exists.
 
-See `docs/P1.md` through `docs/P9.md` and `docs/ASSET_PIPELINE.md`.
+Shared camera, inspection, selection and component lookup now resolve through the bike registry rather than hardcoded Road R1 IDs.
+
+See `docs/P1.md` through `docs/P10.md`.

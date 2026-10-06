@@ -1,0 +1,96 @@
+{
+  "bikeId": "bike.mtb.m1",
+  "connections": [
+    {
+      "from": "bike.mtb.m1.frame",
+      "to": "bike.mtb.m1.headset",
+      "type": "bearing"
+    },
+    {
+      "from": "bike.mtb.m1.headset",
+      "to": "bike.mtb.m1.fork",
+      "type": "bearing"
+    },
+    {
+      "from": "bike.mtb.m1.frame",
+      "to": "bike.mtb.m1.rear-shock",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.mtb.m1.frame",
+      "to": "bike.mtb.m1.suspension-linkage",
+      "type": "bearing"
+    },
+    {
+      "from": "bike.mtb.m1.suspension-linkage",
+      "to": "bike.mtb.m1.rear-shock",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.mtb.m1.frame",
+      "to": "bike.mtb.m1.bottom-bracket",
+      "type": "pressed"
+    },
+    {
+      "from": "bike.mtb.m1.bottom-bracket",
+      "to": "bike.mtb.m1.crankset",
+      "type": "bearing"
+    },
+    {
+      "from": "bike.mtb.m1.crankset",
+      "to": "bike.mtb.m1.chainring",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.mtb.m1.chainring",
+      "to": "bike.mtb.m1.chain",
+      "type": "chain"
+    },
+    {
+      "from": "bike.mtb.m1.chain",
+      "to": "bike.mtb.m1.cassette",
+      "type": "chain"
+    },
+    {
+      "from": "bike.mtb.m1.cassette",
+      "to": "bike.mtb.m1.rear-hub",
+      "type": "freehub"
+    },
+    {
+      "from": "bike.mtb.m1.rear-derailleur",
+      "to": "bike.mtb.m1.chain",
+      "type": "chain"
+    },
+    {
+      "from": "bike.mtb.m1.frame",
+      "to": "bike.mtb.m1.dropper-post",
+      "type": "clamped"
+    },
+    {
+      "from": "bike.mtb.m1.dropper-post",
+      "to": "bike.mtb.m1.saddle",
+      "type": "clamped"
+    },
+    {
+      "from": "bike.mtb.m1.front-wheel",
+      "to": "bike.mtb.m1.front-thru-axle",
+      "type": "axle"
+    },
+    {
+      "from": "bike.mtb.m1.rear-wheel",
+      "to": "bike.mtb.m1.rear-thru-axle",
+      "type": "axle"
+    },
+    {
+      "from": "bike.mtb.m1.fork",
+      "to": "bike.mtb.m1.front-caliper",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.mtb.m1.frame",
+      "to": "bike.mtb.m1.rear-caliper",
+      "type": "bolted"
+    }
+  ],
+  "operations": []
+}
