@@ -303,6 +303,8 @@ export function BikeViewer() {
         "lesson",
         "workshop",
         "step",
+        "compare",
+        "overlay",
       ]) {
         url.searchParams.delete(key);
       }
@@ -762,6 +764,8 @@ export function BikeViewer() {
       url.searchParams.delete("view");
       url.searchParams.delete("explode");
       url.searchParams.delete("workshop");
+      url.searchParams.delete("compare");
+      url.searchParams.delete("overlay");
       url.searchParams.set("lesson", lesson.id);
       url.searchParams.set(
         "step",
@@ -778,6 +782,8 @@ export function BikeViewer() {
       url.searchParams.delete("view");
       url.searchParams.delete("explode");
       url.searchParams.delete("lesson");
+      url.searchParams.delete("compare");
+      url.searchParams.delete("overlay");
       url.searchParams.set("workshop", procedure.id);
       url.searchParams.set(
         "step",
@@ -966,6 +972,10 @@ export function BikeViewer() {
                       : "comparison-launch"
                   }
                   onClick={() => {
+                    if (!comparisonOpen) {
+                      select(null);
+                      changeMode("normal");
+                    }
                     setComparisonOpen((value) => !value);
                     setLearningOpen(false);
                     setWorkshopOpen(false);
