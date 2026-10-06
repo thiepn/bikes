@@ -7,6 +7,7 @@ type ComponentPanelProps = {
   selectedId: string | null;
   isolated: boolean;
   onSelect: (componentId: string | null) => void;
+  onHover: (componentId: string | null) => void;
   onToggleIsolate: () => void;
 };
 
@@ -29,17 +30,22 @@ export function ComponentPanel({
   selectedId,
   isolated,
   onSelect,
+  onHover,
   onToggleIsolate,
 }: ComponentPanelProps) {
-  const selected = ROAD_R1.components.find((component) => component.id === selectedId) ?? null;
+  const selected =
+    ROAD_R1.components.find((component) => component.id === selectedId) ?? null;
   const available = ROAD_R1.components.filter((component) =>
     CALIBRATION_COMPONENT_IDS.has(component.id),
   );
 
-  const grouped = available.reduce<Record<string, typeof available>>((groups, component) => {
-    (groups[component.systemId] ??= []).push(component);
-    return groups;
-  }, {});
+  const grouped = available.reduce<Record<string, typeof available>>(
+    (groups, component) => {
+      (groups[component.systemId] ??= []).push(component);
+      return groups;
+    },
+    {},
+  );
 
   return (
     <aside className="component-panel" aria-label="Road R1 component navigator">
@@ -49,7 +55,12 @@ export function ComponentPanel({
           <strong>{selected?.name ?? "Explore components"}</strong>
         </div>
         {selected && (
-          <button className="icon-button" type="button" onClick={() => onSelect(null)} aria-label="Reset selection">
+          <button
+            className="icon-button"
+            type="button"
+            onClick={() => onSelect(null)}
+            aria-label="Reset selection"
+          >
             ×
           </button>
         )}
@@ -66,10 +77,20 @@ export function ComponentPanel({
             to this stable ID rather than to source-mesh naming.
           </p>
           <div className="selected-card__actions">
-            <button type="button" className={isolated ? "control-button is-active" : "control-button"} onClick={onToggleIsolate}>
+            <button
+              type="button"
+              className={
+                isolated ? "control-button is-active" : "control-button"
+              }
+              onClick={onToggleIsolate}
+            >
               {isolated ? "Show bike" : "Isolate part"}
             </button>
-            <button type="button" className="control-button" onClick={() => onSelect(null)}>
+            <button
+              type="button"
+              className="control-button"
+              onClick={() => onSelect(null)}
+            >
               Full bike
             </button>
           </div>
@@ -90,11 +111,20 @@ export function ComponentPanel({
                 <button
                   type="button"
                   key={component.id}
-                  className={selectedId === component.id ? "component-item is-selected" : "component-item"}
+                  className={
+                    selectedId === component.id
+                      ? "component-item is-selected"
+                      : "component-item"
+                  }
+                  aria-pressed={selectedId === component.id}
                   onClick={() => onSelect(component.id)}
+                  onMouseEnter={() => onHover(component.id)}
+                  onMouseLeave={() => onHover(null)}
+                  onFocus={() => onHover(component.id)}
+                  onBlur={() => onHover(null)}
                 >
                   <span>{component.name}</span>
-                  <small>›</small>
+                  <small aria-hidden="true">›</small>
                 </button>
               ))}
             </div>
