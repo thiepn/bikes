@@ -75,6 +75,44 @@
         "More suspension and pivot maintenance",
         "Little cargo utility"
       ]
+    },
+    {
+      "bikeId": "bike.urban.u1",
+      "traits": {
+        "pavedEfficiency": 0.78,
+        "mixedSurface": 0.62,
+        "technicalTerrain": 0.08,
+        "distanceEfficiency": 0.7,
+        "climbingCapability": 0.6,
+        "comfortControl": 0.92,
+        "cargoUtility": 0.94,
+        "allWeather": 0.96,
+        "maintenanceSimplicity": 0.9,
+        "suspensionCapability": 0.02
+      },
+      "traitReasons": {
+        "pavedEfficiency": "Urban U1 rolls efficiently on streets and cycle paths, while its upright position and utility tires prioritize practical control over maximum road speed.",
+        "mixedSurface": "Medium-volume city tires and stable geometry tolerate rough paths and imperfect pavement, but the bike is not built for technical trail terrain.",
+        "technicalTerrain": "Urban U1 is a rigid utility bicycle without trail geometry, suspension or off-road tires.",
+        "distanceEfficiency": "The upright position is comfortable and practical for everyday distance, but creates more aerodynamic drag than Road R1.",
+        "climbingCapability": "The internal-gear drivetrain provides useful everyday ratios, while the heavier utility platform is not optimized for fast or very steep climbing.",
+        "comfortControl": "Upright geometry, swept bars, ergonomic grips and medium-volume tires prioritize visibility, easy handling and everyday comfort.",
+        "cargoUtility": "The integrated rear rack, stable utility chassis and everyday accessory architecture are specifically intended for carrying normal commuting and shopping loads.",
+        "allWeather": "Full fenders, protected chain, integrated lights and hydraulic disc brakes make poor-weather everyday use a core design goal.",
+        "maintenanceSimplicity": "The internal-gear hub and full chain guard reduce exposed drivetrain maintenance, while the rigid frame and fork avoid suspension servicing.",
+        "suspensionCapability": "Urban U1 is intentionally rigid; comfort comes from position and tire volume rather than suspension travel."
+      },
+      "generalStrengths": [
+        "Everyday city practicality",
+        "All-weather commuting",
+        "Integrated cargo and utility equipment",
+        "Low-exposure drivetrain and simple rigid chassis"
+      ],
+      "generalTradeoffs": [
+        "Lower high-speed efficiency than Road R1",
+        "Not intended for technical trails",
+        "Heavier and less performance-focused than minimalist sport bikes"
+      ]
     }
   ]
 }
