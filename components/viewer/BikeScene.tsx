@@ -10,6 +10,7 @@ import {
 import { PrototypeBike } from "./PrototypeBike";
 import { MtbPrototypeBike } from "./MtbPrototypeBike";
 import { UrbanPrototypeBike } from "./UrbanPrototypeBike";
+import { GravelPrototypeBike } from "./GravelPrototypeBike";
 import { CameraRig } from "./CameraRig";
 import { StoryCameraRig } from "@/components/story/StoryCameraRig";
 import { CAMERA_LIMITS, CAMERA_TARGET } from "@/engine/camera/presets";
@@ -109,6 +110,8 @@ export function BikeScene(props: BikeSceneProps) {
           <MtbPrototypeBike {...ghostProps} />
         ) : props.comparisonBikeId === "bike.urban.u1" ? (
           <UrbanPrototypeBike {...ghostProps} />
+        ) : props.comparisonBikeId === "bike.gravel.g1" ? (
+          <GravelPrototypeBike {...ghostProps} />
         ) : (
           <PrototypeBike
             {...ghostProps}
@@ -124,6 +127,8 @@ export function BikeScene(props: BikeSceneProps) {
         <MtbPrototypeBike {...props} />
       ) : props.bikeId === "bike.urban.u1" ? (
         <UrbanPrototypeBike {...props} />
+      ) : props.bikeId === "bike.gravel.g1" ? (
+        <GravelPrototypeBike {...props} />
       ) : (
         <PrototypeBike {...props} />
       )}
