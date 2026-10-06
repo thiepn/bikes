@@ -11,6 +11,8 @@ import { PrototypeBike } from "./PrototypeBike";
 import { MtbPrototypeBike } from "./MtbPrototypeBike";
 import { UrbanPrototypeBike } from "./UrbanPrototypeBike";
 import { GravelPrototypeBike } from "./GravelPrototypeBike";
+import { BuildDonorOverlay } from "@/components/build/BuildDonorOverlay";
+import { getBuildHiddenComponentIds } from "@/domain/compatibility/visual";
 import { CameraRig } from "./CameraRig";
 import { StoryCameraRig } from "@/components/story/StoryCameraRig";
 import { CAMERA_LIMITS, CAMERA_TARGET } from "@/engine/camera/presets";
@@ -31,10 +33,20 @@ type BikeSceneProps = ViewerInteractionState &
     experienceMode: ExperienceMode;
     storyProgress: number;
     drivetrainDemo: DrivetrainDemoState;
+    buildSelections?: Readonly<Record<string, string>>;
   };
 
 export function BikeScene(props: BikeSceneProps) {
   const cinematic = props.experienceMode === "story";
+  const buildSelections = props.buildSelections ?? {};
+  const buildHiddenIds =
+    props.experienceMode === "explore"
+      ? getBuildHiddenComponentIds(props.bikeId, buildSelections)
+      : [];
+  const activeModelProps = {
+    ...props,
+    hiddenIds: buildHiddenIds,
+  };
   const ghostProps = {
     selectedId: null,
     hoveredId: null,
@@ -43,6 +55,7 @@ export function BikeScene(props: BikeSceneProps) {
     explosionAmount: 0,
     highlightedIds: [],
     removedIds: [],
+    hiddenIds: [],
     ghost: true,
     onSelect: () => {},
     onHover: () => {},
@@ -124,14 +137,22 @@ export function BikeScene(props: BikeSceneProps) {
         ))}
 
       {props.bikeId === "bike.mtb.m1" ? (
-        <MtbPrototypeBike {...props} />
+        <MtbPrototypeBike {...activeModelProps} />
       ) : props.bikeId === "bike.urban.u1" ? (
-        <UrbanPrototypeBike {...props} />
+        <UrbanPrototypeBike {...activeModelProps} />
       ) : props.bikeId === "bike.gravel.g1" ? (
-        <GravelPrototypeBike {...props} />
+        <GravelPrototypeBike {...activeModelProps} />
       ) : (
-        <PrototypeBike {...props} />
+        <PrototypeBike {...activeModelProps} />
       )}
+
+      {props.experienceMode === "explore" &&
+        Object.keys(buildSelections).length > 0 && (
+          <BuildDonorOverlay
+            bikeId={props.bikeId}
+            selections={buildSelections}
+          />
+        )}
 
       <mesh
         receiveShadow
