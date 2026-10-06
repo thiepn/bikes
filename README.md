@@ -4,119 +4,138 @@ Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle
 
 ## Current phase
 
-**P26 — Interactive Optimization Frontier, Pareto Trade-Offs & Build Comparison**
+**P27 — Saved Build Portfolio, Scenario Presets & Multi-Build Decision Workspace**
 
-Optimize now supports two connected workflows:
+Optimize now has three connected workflows:
 
-- Ranked — P25 single-goal configuration search
-- Frontier — P26 two-objective Pareto exploration
+- Ranked — P25 single-goal search
+- Frontier — P26 Pareto trade-offs
+- Portfolio — P27 saved multi-scenario decisions
 
-## Explored Pareto frontier
+## Saved build portfolio
 
-P26 lets users choose any two distinct goals from:
+P27 lets users keep candidate builds without repeatedly replacing the active custom bicycle.
 
-- Speed
-- Climbing
-- Mixed Surface
-- Comfort
-- Utility
+Candidates can be saved from:
 
-Bike Atlas performs five bounded weighted searches between the two objectives, unions the coherent candidates, rescoring every build independently on both axes and removes dominated configurations.
+- the current build
+- Ranked recommendations
+- Frontier points
 
-The result is explicitly an **explored frontier**, not a claim of exhaustive global optimality.
+Saved configurations are de-duplicated by canonical build selections.
 
-## Current build as reference
+Blocked builds cannot be newly saved.
 
-The active custom bicycle is plotted as a reference diamond.
+If an older saved snapshot becomes blocked after Bike Atlas rules change, it remains visible for historical comparison but cannot be restored as a coherent build.
 
-If it is coherent, any candidate worse on both objective scores is removed.
+## Persistence
 
-This prevents the frontier from presenting a trade that is inferior to simply keeping the current bicycle.
+P27 stores portfolio data in browser localStorage.
 
-## Frontier interaction
+Current limit:
 
-The P26 workspace includes:
+- 8 saved builds per host bicycle
 
-- X/Y objective selectors
-- axis swap
-- 0–100 SVG score chart
-- Pareto curve
-- current-build reference
-- clickable and keyboard-accessible frontier points
-- previous/next navigation
-- frontier slider
-- comparison pin
-- selected-vs-pinned metric deltas
+The limit is enforced during save, load and persist.
 
-## Build comparison
+Portfolio data is local to this browser in P27; it is not yet account-synced.
 
-Frontier points can be compared using:
+## Five scenario presets
 
-- X objective score
-- Y objective score
-- flat speed
-- 8% climbing speed
-- hardpack speed
+Portfolio comparison can use any combination of:
+
+- Fast Flat — 250 W, smooth asphalt, 0%
+- Long Climb — 250 W, smooth asphalt, 8%
+- Rough Mixed — 220 W, hardpack gravel
+- Headwind — 220 W into 20 km/h headwind
+- Loaded Utility — 180 W, 15 kg cargo, 2%, light headwind
+
+The default comparison uses Fast Flat, Long Climb and Rough Mixed.
+
+## Scenario scoring
+
+Every saved build is re-evaluated through the current:
+
+- compatibility sanitizer
+- P23 system analysis
+- build-aware Physics profile
+- steady-state Physics model
+- P24 gearing solver
+- P24 geometry solver
+
+Each scenario score is:
+
+- 80% normalized steady-state performance
+- 20% cadence/gearing feasibility
+
+Attention builds receive a small health penalty.
+
+Blocked historical builds score zero and cannot be restored.
+
+The multi-scenario score is the mean across the selected presets.
+
+## Decision workspace
+
+The Portfolio table shows:
+
+- aggregate score
+- per-scenario score
+- raw per-scenario speed
 - bike mass
 - lowest gear
-- tire width
 
-The exact changed components are also shown.
+The selected candidate inspector adds:
 
-## Shared hard constraints
+- editable name
+- source
+- modified-slot count
+- system health
+- closest gear at scenario cadence
+- CdA
+- gear span
+- saddle-to-grip drop
 
-Ranked and Frontier share:
+## Restore flow
 
-- maximum component-change budget
-- Strict / Balanced / Open geometry guard
-- preserve-current-modified-slots
+Restore as active build writes directly into the same canonical build state used by:
 
-P26 does not bypass P23 mechanical system constraints.
-
-Blocked final builds cannot enter the frontier.
-
-## Companion-aware search
-
-P26 reuses P25's bounded companion-aware optimizer.
-
-Temporary blocked states can survive long enough for a second compatible component change to resolve them, such as the Road R1 wide-range Gravel cassette + derailleur pair.
-
-## Pareto tie-break
-
-Scores use a 0.05 epsilon.
-
-When two builds are effectively equal on both axes, the configuration with fewer changed component slots dominates the heavier edit.
-
-## Apply flow
-
-Apply frontier build writes directly into the canonical custom bicycle state.
-
-Apply + inspect in Build Lab applies the same build and opens Build Lab.
-
-The selected configuration then continues into:
-
-- 3D scene
+- 3D assembly
+- Build Lab
 - Geometry Lab
 - Physics Lab
-- buildParts URL state
+- buildParts
+
+Restore + inspect in Build Lab restores the same configuration and immediately opens mechanical inspection.
+
+No duplicate Portfolio-owned active-bike state exists.
 
 ## URL state
 
-P26 adds:
+P27 adds:
 
-- optView=frontier
-- optX
-- optY
-- optPoint
+- optView=portfolio
+- portSc=...
 
-P25 hard-constraint URL state remains shared.
-
-Malformed same-axis frontier deep links are repaired automatically.
+The portfolio itself is intentionally not encoded into the URL because persistence is browser-local.
 
 ## Validation
 
-P26 adds scripts/validate-pareto.mjs to npm run validate:domain.
+P27 adds:
 
-It protects Pareto dominance semantics, current-build filtering, fewer-change tie-breaks, five-sweep exploration, Ranked/Frontier compute separation, accessible SVG interaction, comparison behavior, routing and shared build application.
+- scripts/validate-portfolio.mjs
 
-See docs/P1.md through docs/P26.md.
+to:
+
+- npm run validate:domain
+
+The validator protects scenario definitions, scenario-score semantics, capped local persistence, re-sanitization, Ranked/Frontier capture, blocked-snapshot behavior, Portfolio routing and canonical build restore.
+
+P25/P26 regression suites remain active and were updated only for the legitimate third-view UI extension.
+
+## Validation environment
+
+The current execution container could not resolve github.com, so a local clone and Next.js production build could not be run here.
+
+Committed source/data state and validator registration were audited directly through the GitHub repository.
+
+See docs/P1.md through docs/P27.md.
