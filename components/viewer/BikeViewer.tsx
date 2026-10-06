@@ -1180,7 +1180,7 @@ export function BikeViewer() {
         else if (finderOpen) setFinderOpen(false);
         else if (historyOpen) setHistoryOpen(false);
         else if (physicsOpen) setPhysicsOpen(false);
-      setBuildOpen(false);
+        else if (buildOpen) setBuildOpen(false);
         else select(null);
         return;
       }
