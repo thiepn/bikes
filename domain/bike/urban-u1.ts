@@ -8,9 +8,9 @@ export const URBAN_U1 = normalizeBikeDefinition(
   urbanU1 as RawBikeDefinition,
   {
     model: "prototype",
-    encyclopedia: "foundation",
-    lessons: false,
-    workshop: false,
+    encyclopedia: "full",
+    lessons: true,
+    workshop: true,
   },
 );
 
