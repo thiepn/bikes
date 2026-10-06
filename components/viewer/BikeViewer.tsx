@@ -391,6 +391,7 @@ export function BikeViewer() {
       setHistoryOpen(false);
       setPhysicsOpen(false);
       setBuildOpen(false);
+      setBuildSelections({});
       setSelectedId(null);
       setHoveredId(null);
       setIsolated(false);
@@ -427,6 +428,7 @@ export function BikeViewer() {
       setHistoryOpen(false);
       setPhysicsOpen(false);
       setBuildOpen(false);
+      setBuildSelections({});
       setLearningOpen(false);
       setWorkshopOpen(false);
       setKnowledgeOpen(false);
@@ -486,6 +488,7 @@ export function BikeViewer() {
 
     const previousPrimaryId = activeBike.id;
     setActiveBikeId(nextPrimary.id);
+    setBuildSelections({});
     setComparisonBikeId(previousPrimaryId);
     setSelectedId(null);
     setHoveredId(null);
@@ -546,6 +549,7 @@ export function BikeViewer() {
       if (locked) return;
 
       setActiveBikeId(nextLesson.bikeId);
+      setBuildSelections({});
       setSelectedId(null);
       setHoveredId(null);
       setIsolated(false);
@@ -663,6 +667,7 @@ export function BikeViewer() {
       const completedIds = existing?.completedStepIds ?? [];
 
       setActiveBikeId(nextProcedure.bikeId);
+      setBuildSelections({});
       setSelectedId(null);
       setHoveredId(null);
       setIsolated(false);
@@ -784,6 +789,7 @@ export function BikeViewer() {
 
   const returnToStory = useCallback(() => {
     setActiveBikeId(ROAD_R1.id);
+    setBuildSelections({});
     setSelectedId(null);
     setHoveredId(null);
     setIsolated(false);
