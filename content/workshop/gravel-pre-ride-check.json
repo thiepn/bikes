@@ -1,0 +1,113 @@
+{
+  "id": "gravel-pre-ride-check",
+  "bikeId": "bike.gravel.g1",
+  "title": "Mixed-surface Gravel G1 pre-ride check",
+  "summary": "Check tires, wheels, brakes, drivetrain and mounted equipment before a ride that may move between pavement and rough surfaces.",
+  "systemId": "frame",
+  "difficulty": "beginner",
+  "durationMinutes": 7,
+  "prerequisiteProcedureIds": [],
+  "assumedOperationIds": [],
+  "tools": [
+    {
+      "id": "pressure-gauge",
+      "name": "Accurate tire-pressure gauge",
+      "required": true
+    },
+    {
+      "id": "inspection-light",
+      "name": "Inspection light",
+      "required": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "tires",
+      "title": "Inspect both tires and verify pressure",
+      "instruction": "Check for cuts, casing damage, embedded debris, poor bead seating or visible sealant leakage where applicable. Measure pressure against the actual tire/rim/load guidance for the planned surface.",
+      "why": "Tire condition and pressure strongly affect support, traction and rim protection on rough surfaces.",
+      "focusComponentId": "bike.gravel.g1.front-tire",
+      "highlightComponentIds": [
+        "bike.gravel.g1.front-tire",
+        "bike.gravel.g1.rear-tire",
+        "bike.gravel.g1.front-rim",
+        "bike.gravel.g1.rear-rim"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0,
+      "tools": [
+        "pressure-gauge",
+        "inspection-light"
+      ],
+      "warning": "Do not ride a tire with structural casing damage, an unexplained bulge or unsafe bead seating.",
+      "check": "Both tires appear structurally sound and pressure is within the real system limits.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "wheels-brakes",
+      "title": "Check wheels and braking",
+      "instruction": "Spin both wheels, look for obvious wobble or rubbing, and operate both brakes during a stationary then controlled low-speed check.",
+      "why": "Mixed-surface impacts can affect wheel alignment and braking components.",
+      "focusComponentId": "bike.gravel.g1.front-wheel",
+      "highlightComponentIds": [
+        "bike.gravel.g1.front-wheel",
+        "bike.gravel.g1.rear-wheel",
+        "bike.gravel.g1.front-rotor",
+        "bike.gravel.g1.rear-rotor",
+        "bike.gravel.g1.front-caliper",
+        "bike.gravel.g1.rear-caliper"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0.08,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "Stop if braking is weak, inconsistent, leaking or if a wheel/rotor shows unsafe interference.",
+      "check": "Wheels rotate acceptably and both brakes respond predictably.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "drivetrain",
+      "title": "Inspect the exposed 1× drivetrain",
+      "instruction": "Check chain, chainring, cassette and rear derailleur for obvious damage, severe contamination, poor alignment or abnormal movement.",
+      "why": "Gravel drivetrains are exposed to dust, water and impact that can affect shifting and wear.",
+      "focusComponentId": "bike.gravel.g1.rear-derailleur",
+      "highlightComponentIds": [
+        "bike.gravel.g1.chainring",
+        "bike.gravel.g1.chain",
+        "bike.gravel.g1.cassette",
+        "bike.gravel.g1.rear-derailleur"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0.08,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "Do not put fingers or cloth into the moving drivetrain while rotating the cranks or wheel.",
+      "check": "No obvious drivetrain damage or unsafe interference is visible.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "mounts-cockpit",
+      "title": "Check cockpit and anything mounted to the bike",
+      "instruction": "Inspect the handlebar/controls and any accessories or luggage attached to frame/fork mounts. Nothing should be loose or able to enter a wheel, brake, drivetrain or steering path.",
+      "why": "Rough surfaces can loosen hardware and make poor cargo retention more consequential.",
+      "focusComponentId": "bike.gravel.g1.handlebar",
+      "highlightComponentIds": [
+        "bike.gravel.g1.handlebar",
+        "bike.gravel.g1.left-shifter",
+        "bike.gravel.g1.right-shifter",
+        "bike.gravel.g1.frame-mounts",
+        "bike.gravel.g1.fork-mounts"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0.08,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "Use actual component torque and mounting specifications rather than guessing.",
+      "check": "Controls and mounted equipment appear secure and clear of moving parts.",
+      "removedComponentIds": []
+    }
+  ]
+}
