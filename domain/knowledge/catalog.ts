@@ -13,6 +13,11 @@ import {
   getUrbanRelatedComponentIds,
   searchUrbanKnowledge,
 } from "@/domain/knowledge/urban-u1";
+import {
+  getGravelKnowledgeNode,
+  getGravelRelatedComponentIds,
+  searchGravelKnowledge,
+} from "@/domain/knowledge/gravel-g1";
 import type {
   ComponentKnowledgeNode,
   KnowledgeSearchResult,
@@ -34,6 +39,10 @@ export function getBikeKnowledgeNode(
     return getUrbanKnowledgeNode(componentId);
   }
 
+  if (bikeId === "bike.gravel.g1") {
+    return getGravelKnowledgeNode(componentId);
+  }
+
   return null;
 }
 
@@ -53,6 +62,10 @@ export function getBikeKnowledgeRelatedComponentIds(
     return getUrbanRelatedComponentIds(componentId);
   }
 
+  if (bikeId === "bike.gravel.g1") {
+    return getGravelRelatedComponentIds(componentId);
+  }
+
   return [];
 }
 
@@ -70,6 +83,10 @@ export function searchBikeKnowledge(
 
   if (bikeId === "bike.urban.u1") {
     return searchUrbanKnowledge(query);
+  }
+
+  if (bikeId === "bike.gravel.g1") {
+    return searchGravelKnowledge(query);
   }
 
   return [];
