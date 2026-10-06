@@ -11,10 +11,7 @@ import {
 import { SemanticPart } from "./SemanticPart";
 import { getPartAppearance } from "@/engine/interaction/appearance";
 import { getExplosionOffset } from "@/engine/inspection/config";
-import {
-  ROAD_R1_DEMO_SPROCKET_TEETH,
-  getDrivetrainKinematics,
-} from "@/engine/learning/drivetrain-math";
+import { getDrivetrainKinematics } from "@/engine/learning/drivetrain-math";
 import type { DrivetrainDemoState } from "@/engine/learning/types";
 import type {
   ViewerInteractionHandlers,
