@@ -1,5 +1,6 @@
 import {
   getCompatibilityPart,
+  getCompatibilityPartsForSlot,
   getCompatibilityProfile,
 } from "@/domain/compatibility/catalog";
 import type {
@@ -127,19 +128,16 @@ export function compatiblePartsForBikeSlot(
   const slot = profile?.slots.find((item) => item.id === slotId);
   if (!slot) return [];
 
-  return import("@/domain/compatibility/catalog").then(
-    ({ getCompatibilityPartsForSlot }) =>
-      getCompatibilityPartsForSlot(slotId)
-        .map((part) => ({
-          part,
-          result: evaluateCompatibility(slot, part),
-        }))
-        .sort((a, b) => {
-          const order = { compatible: 0, unknown: 1, incompatible: 2 };
-          return (
-            order[a.result.status] - order[b.result.status] ||
-            a.part.label.localeCompare(b.part.label)
-          );
-        }),
-  );
+  return getCompatibilityPartsForSlot(slotId)
+    .map((part) => ({
+      part,
+      result: evaluateCompatibility(slot, part),
+    }))
+    .sort((a, b) => {
+      const order = { compatible: 0, unknown: 1, incompatible: 2 };
+      return (
+        order[a.result.status] - order[b.result.status] ||
+        a.part.label.localeCompare(b.part.label)
+      );
+    });
 }
