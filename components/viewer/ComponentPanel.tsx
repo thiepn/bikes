@@ -11,6 +11,7 @@ import {
 import { LESSON_CATALOG } from "@/domain/learning/catalog";
 import { WORKSHOP_CATALOG } from "@/domain/workshop/catalog";
 import { getInteractiveComponentIds } from "@/engine/interaction/component-availability";
+import { conceptsForComponent } from "@/domain/knowledge/global";
 
 type ComponentPanelProps = {
   bikeId: string;
@@ -21,6 +22,7 @@ type ComponentPanelProps = {
   onToggleIsolate: () => void;
   onOpenLesson: (lessonId: string, stepIndex: number) => void;
   onOpenWorkshop: (procedureId: string, stepIndex: number) => void;
+  onOpenConcept: (conceptId: string) => void;
 };
 
 const SYSTEM_LABELS: Record<string, string> = {
@@ -85,6 +87,7 @@ export function ComponentPanel({
   onToggleIsolate,
   onOpenLesson,
   onOpenWorkshop,
+  onOpenConcept,
 }: ComponentPanelProps) {
   const bike = getBikeById(bikeId);
   if (!bike) return null;
@@ -109,6 +112,9 @@ export function ComponentPanel({
 
   const relatedIds = selected
     ? getBikeKnowledgeRelatedComponentIds(bikeId, selected.id)
+    : [];
+  const concepts = selected
+    ? conceptsForComponent(selected.id)
     : [];
 
   return (
@@ -175,6 +181,24 @@ export function ComponentPanel({
               ))}
             </div>
           </section>
+
+          {concepts.length > 0 && (
+            <section className="knowledge-section">
+              <h3>Engineering concepts</h3>
+              <div className="knowledge-links knowledge-links--concepts">
+                {concepts.map((concept) => (
+                  <button
+                    type="button"
+                    key={concept.id}
+                    onClick={() => onOpenConcept(concept.id)}
+                  >
+                    <span>{concept.shortTitle}</span>
+                    <strong>{concept.title}</strong>
+                  </button>
+                ))}
+              </div>
+            </section>
+          )}
 
           {relatedIds.length > 0 && (
             <section className="knowledge-section">
