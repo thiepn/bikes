@@ -191,6 +191,7 @@ export function UrbanPrototypeBike(props: Props) {
     explosionAmount: props.explosionAmount,
     highlightedIds: props.highlightedIds,
     removedIds: props.removedIds,
+    hiddenIds: props.hiddenIds,
     ghost: props.ghost,
   };
   const handlers: ViewerInteractionHandlers = {
