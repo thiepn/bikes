@@ -37,7 +37,9 @@ function initialGoal(): OptimizationGoalId {
 function initialMaxChanges() {
   if (typeof window === "undefined") return 4;
   const raw = new URL(window.location.href).searchParams.get("optChanges");
-  if (raw === null) return 4;
+  if (raw === null) {
+    return getOptimizationGoal(initialGoal()).defaultMaxChanges;
+  }
   const value = Number(raw);
   return Number.isFinite(value)
     ? Math.min(5, Math.max(1, Math.round(value)))
@@ -47,7 +49,10 @@ function initialMaxChanges() {
 function initialGuard(): GeometryGuard {
   if (typeof window === "undefined") return "balanced";
   const raw = new URL(window.location.href).searchParams.get("optGuard");
-  return raw === "strict" || raw === "open" ? raw : "balanced";
+  if (raw === "strict" || raw === "balanced" || raw === "open") {
+    return raw;
+  }
+  return getOptimizationGoal(initialGoal()).defaultGeometryGuard;
 }
 
 function initialPreserve() {
