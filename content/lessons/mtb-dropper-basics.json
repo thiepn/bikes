@@ -1,0 +1,78 @@
+{
+  "id": "mtb-dropper-basics",
+  "bikeId": "bike.mtb.m1",
+  "title": "Why mountain bikes use dropper posts",
+  "summary": "See how a dropper post changes saddle height while riding and why that changes rider movement and control on technical terrain.",
+  "systemId": "saddle-seatpost",
+  "difficulty": "beginner",
+  "durationMinutes": 4,
+  "prerequisiteLessonIds": [],
+  "steps": [
+    {
+      "id": "two-heights",
+      "eyebrow": "01 · Position",
+      "title": "Saddle height can change while riding.",
+      "body": "A dropper seatpost can move between an extended pedaling position and lower positions without removing the rider from the bike to adjust a clamp.",
+      "keyFact": "The post changes saddle position; it does not change frame size or suspension travel.",
+      "focusComponentId": "bike.mtb.m1.dropper-post",
+      "highlightComponentIds": [
+        "bike.mtb.m1.dropper-post",
+        "bike.mtb.m1.saddle",
+        "bike.mtb.m1.frame"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "remote",
+      "eyebrow": "02 · Control",
+      "title": "A handlebar remote releases the post mechanism.",
+      "body": "The rider operates a remote near the grip. Depending on the post design, a cable, hydraulic line or electronic signal controls the post mechanism.",
+      "keyFact": "The remote is a control interface; rider weight generally supplies the force that lowers the saddle once the mechanism is released.",
+      "focusComponentId": "bike.mtb.m1.dropper-post",
+      "highlightComponentIds": [
+        "bike.mtb.m1.dropper-post",
+        "bike.mtb.m1.dropper-remote",
+        "bike.mtb.m1.handlebar"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "movement-room",
+      "eyebrow": "03 · Body position",
+      "title": "A lower saddle creates movement room.",
+      "body": "Lowering the saddle can create more space for the rider to move the bicycle beneath them on steep, rough or technical terrain. Extending it again restores an efficient seated pedaling position.",
+      "keyFact": "The dropper changes rider clearance and body-position options rather than adding suspension.",
+      "focusComponentId": "bike.mtb.m1.saddle",
+      "highlightComponentIds": [
+        "bike.mtb.m1.saddle",
+        "bike.mtb.m1.dropper-post",
+        "bike.mtb.m1.frame"
+      ],
+      "inspectionMode": "normal"
+    },
+    {
+      "id": "identify-dropper",
+      "eyebrow": "04 · Identify",
+      "title": "Find the height-adjusting component.",
+      "body": "Identify the component that telescopes to change saddle height.",
+      "keyFact": "The dropper seatpost is the moving support directly beneath the saddle.",
+      "focusComponentId": "bike.mtb.m1.saddle",
+      "highlightComponentIds": [],
+      "inspectionMode": "normal",
+      "challenge": {
+        "type": "select-component",
+        "prompt": "Which component changes saddle height while riding?",
+        "candidateComponentIds": [
+          "bike.mtb.m1.dropper-post",
+          "bike.mtb.m1.saddle",
+          "bike.mtb.m1.frame"
+        ],
+        "correctComponentIds": [
+          "bike.mtb.m1.dropper-post"
+        ],
+        "successText": "Correct. The dropper post telescopes to change saddle height.",
+        "retryText": "That part is connected to the saddle system, but it is not the telescoping height-control component."
+      }
+    }
+  ]
+}
