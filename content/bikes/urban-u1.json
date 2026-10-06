@@ -1,0 +1,645 @@
+{
+  "id": "bike.urban.u1",
+  "slug": "urban-u1",
+  "name": "Urban U1",
+  "archetype": "dutch-utility-city",
+  "status": "prototype",
+  "description": "Generic Dutch-style urban utility bicycle built around upright comfort, all-weather practicality, protected drivetrain and everyday cargo use.",
+  "systems": [
+    "frame",
+    "fork-suspension",
+    "steering",
+    "cockpit",
+    "front-wheel",
+    "rear-wheel",
+    "tires",
+    "drivetrain",
+    "transmission",
+    "braking",
+    "saddle-seatpost",
+    "pedals",
+    "lighting",
+    "cargo-utility",
+    "accessories"
+  ],
+  "components": [
+    {
+      "id": "bike.urban.u1.frame",
+      "slug": "frame",
+      "name": "Step-through frame",
+      "systemId": "frame",
+      "modelNode": "COMP__frame",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "structure",
+        "step-through",
+        "utility"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.fork",
+      "slug": "fork",
+      "name": "Rigid city fork",
+      "systemId": "fork-suspension",
+      "modelNode": "COMP__fork",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "rigid",
+        "steering",
+        "utility"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.headset",
+      "slug": "headset",
+      "name": "Headset",
+      "systemId": "steering",
+      "modelNode": "COMP__headset",
+      "materialIds": [
+        "mat.steel",
+        "mat.aluminium"
+      ],
+      "tags": [
+        "bearing",
+        "steering"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.handlebar",
+      "slug": "handlebar",
+      "name": "Swept upright handlebar",
+      "systemId": "cockpit",
+      "modelNode": "COMP__handlebar",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "cockpit",
+        "swept-bar",
+        "upright"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.stem",
+      "slug": "stem",
+      "name": "Upright stem",
+      "systemId": "cockpit",
+      "modelNode": "COMP__stem",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "cockpit",
+        "steering"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.left-grip",
+      "slug": "left-grip",
+      "name": "Left ergonomic grip",
+      "systemId": "cockpit",
+      "modelNode": "COMP__left_grip",
+      "materialIds": [
+        "mat.rubber"
+      ],
+      "tags": [
+        "contact-point",
+        "grip"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.right-grip",
+      "slug": "right-grip",
+      "name": "Right ergonomic grip",
+      "systemId": "cockpit",
+      "modelNode": "COMP__right_grip",
+      "materialIds": [
+        "mat.rubber"
+      ],
+      "tags": [
+        "contact-point",
+        "grip"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.left-brake-lever",
+      "slug": "left-brake-lever",
+      "name": "Left brake lever",
+      "systemId": "cockpit",
+      "modelNode": "COMP__left_brake_lever",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "control",
+        "brake"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.right-brake-lever",
+      "slug": "right-brake-lever",
+      "name": "Right brake lever",
+      "systemId": "cockpit",
+      "modelNode": "COMP__right_brake_lever",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "control",
+        "brake"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.right-shifter",
+      "slug": "right-shifter",
+      "name": "Hub-gear shifter",
+      "systemId": "cockpit",
+      "modelNode": "COMP__right_shifter",
+      "materialIds": [
+        "mat.polymer",
+        "mat.aluminium"
+      ],
+      "tags": [
+        "control",
+        "shift",
+        "internal-gear"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.bell",
+      "slug": "bell",
+      "name": "Bell",
+      "systemId": "accessories",
+      "modelNode": "COMP__bell",
+      "materialIds": [
+        "mat.aluminium",
+        "mat.steel"
+      ],
+      "tags": [
+        "bell",
+        "safety",
+        "city"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.front-wheel",
+      "slug": "front-wheel",
+      "name": "Front wheel",
+      "systemId": "front-wheel",
+      "modelNode": "COMP__front_wheel",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "wheel",
+        "utility"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.rear-wheel",
+      "slug": "rear-wheel",
+      "name": "Rear wheel",
+      "systemId": "rear-wheel",
+      "modelNode": "COMP__rear_wheel",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "wheel",
+        "utility"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.front-tire",
+      "slug": "front-tire",
+      "name": "Front city tire",
+      "systemId": "tires",
+      "modelNode": "COMP__front_tire",
+      "materialIds": [
+        "mat.rubber"
+      ],
+      "tags": [
+        "tire",
+        "puncture-resistant",
+        "city"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.rear-tire",
+      "slug": "rear-tire",
+      "name": "Rear city tire",
+      "systemId": "tires",
+      "modelNode": "COMP__rear_tire",
+      "materialIds": [
+        "mat.rubber"
+      ],
+      "tags": [
+        "tire",
+        "puncture-resistant",
+        "city"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.front-rim",
+      "slug": "front-rim",
+      "name": "Front rim",
+      "systemId": "front-wheel",
+      "modelNode": "COMP__front_rim",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "rim"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.rear-rim",
+      "slug": "rear-rim",
+      "name": "Rear rim",
+      "systemId": "rear-wheel",
+      "modelNode": "COMP__rear_rim",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "rim"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.front-hub",
+      "slug": "front-hub",
+      "name": "Front hub",
+      "systemId": "front-wheel",
+      "modelNode": "COMP__front_hub",
+      "materialIds": [
+        "mat.aluminium",
+        "mat.steel"
+      ],
+      "tags": [
+        "hub",
+        "bearing"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.rear-hub",
+      "slug": "rear-hub",
+      "name": "Internal-gear rear hub",
+      "systemId": "transmission",
+      "modelNode": "COMP__rear_hub",
+      "materialIds": [
+        "mat.aluminium",
+        "mat.steel"
+      ],
+      "tags": [
+        "hub",
+        "bearing",
+        "internal-gear"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.front-rotor",
+      "slug": "front-rotor",
+      "name": "Front brake rotor",
+      "systemId": "braking",
+      "modelNode": "COMP__front_rotor",
+      "materialIds": [
+        "mat.steel"
+      ],
+      "tags": [
+        "brake",
+        "rotor"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.rear-rotor",
+      "slug": "rear-rotor",
+      "name": "Rear brake rotor",
+      "systemId": "braking",
+      "modelNode": "COMP__rear_rotor",
+      "materialIds": [
+        "mat.steel"
+      ],
+      "tags": [
+        "brake",
+        "rotor"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.front-caliper",
+      "slug": "front-caliper",
+      "name": "Front brake caliper",
+      "systemId": "braking",
+      "modelNode": "COMP__front_caliper",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "brake",
+        "hydraulic"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.rear-caliper",
+      "slug": "rear-caliper",
+      "name": "Rear brake caliper",
+      "systemId": "braking",
+      "modelNode": "COMP__rear_caliper",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "brake",
+        "hydraulic"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.crankset",
+      "slug": "crankset",
+      "name": "Utility crankset",
+      "systemId": "drivetrain",
+      "modelNode": "COMP__crankset",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "drivetrain",
+        "single-ring"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.chainring",
+      "slug": "chainring",
+      "name": "Single chainring",
+      "systemId": "transmission",
+      "modelNode": "COMP__chainring",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "drivetrain",
+        "gear",
+        "single-ring"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.bottom-bracket",
+      "slug": "bottom-bracket",
+      "name": "Bottom bracket",
+      "systemId": "drivetrain",
+      "modelNode": "COMP__bottom_bracket",
+      "materialIds": [
+        "mat.steel",
+        "mat.aluminium"
+      ],
+      "tags": [
+        "bearing",
+        "drivetrain"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.chain",
+      "slug": "chain",
+      "name": "Chain",
+      "systemId": "transmission",
+      "modelNode": "COMP__chain",
+      "materialIds": [
+        "mat.steel"
+      ],
+      "tags": [
+        "drivetrain",
+        "transmission"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.rear-sprocket",
+      "slug": "rear-sprocket",
+      "name": "Rear hub sprocket",
+      "systemId": "transmission",
+      "modelNode": "COMP__rear_sprocket",
+      "materialIds": [
+        "mat.steel"
+      ],
+      "tags": [
+        "drivetrain",
+        "gear",
+        "internal-gear"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.chain-guard",
+      "slug": "chain-guard",
+      "name": "Full chain guard",
+      "systemId": "cargo-utility",
+      "modelNode": "COMP__chain_guard",
+      "materialIds": [
+        "mat.polymer",
+        "mat.aluminium"
+      ],
+      "tags": [
+        "chain-guard",
+        "clothing-protection",
+        "utility"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.saddle",
+      "slug": "saddle",
+      "name": "Upright comfort saddle",
+      "systemId": "saddle-seatpost",
+      "modelNode": "COMP__saddle",
+      "materialIds": [
+        "mat.saddle.synthetic"
+      ],
+      "tags": [
+        "contact-point",
+        "comfort"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.seatpost",
+      "slug": "seatpost",
+      "name": "Seatpost",
+      "systemId": "saddle-seatpost",
+      "modelNode": "COMP__seatpost",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "seatpost"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.left-pedal",
+      "slug": "left-pedal",
+      "name": "Left platform pedal",
+      "systemId": "pedals",
+      "modelNode": "COMP__left_pedal",
+      "materialIds": [
+        "mat.polymer",
+        "mat.steel"
+      ],
+      "tags": [
+        "contact-point",
+        "platform-pedal"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.right-pedal",
+      "slug": "right-pedal",
+      "name": "Right platform pedal",
+      "systemId": "pedals",
+      "modelNode": "COMP__right_pedal",
+      "materialIds": [
+        "mat.polymer",
+        "mat.steel"
+      ],
+      "tags": [
+        "contact-point",
+        "platform-pedal"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.front-fender",
+      "slug": "front-fender",
+      "name": "Front full fender",
+      "systemId": "cargo-utility",
+      "modelNode": "COMP__front_fender",
+      "materialIds": [
+        "mat.aluminium",
+        "mat.polymer"
+      ],
+      "tags": [
+        "fender",
+        "mudguard",
+        "weather"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.rear-fender",
+      "slug": "rear-fender",
+      "name": "Rear full fender",
+      "systemId": "cargo-utility",
+      "modelNode": "COMP__rear_fender",
+      "materialIds": [
+        "mat.aluminium",
+        "mat.polymer"
+      ],
+      "tags": [
+        "fender",
+        "mudguard",
+        "weather"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.rear-rack",
+      "slug": "rear-rack",
+      "name": "Rear cargo rack",
+      "systemId": "cargo-utility",
+      "modelNode": "COMP__rear_rack",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "rack",
+        "cargo",
+        "pannier"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.front-light",
+      "slug": "front-light",
+      "name": "Front integrated light",
+      "systemId": "lighting",
+      "modelNode": "COMP__front_light",
+      "materialIds": [
+        "mat.aluminium",
+        "mat.polymer"
+      ],
+      "tags": [
+        "light",
+        "visibility",
+        "utility"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.rear-light",
+      "slug": "rear-light",
+      "name": "Rear integrated light",
+      "systemId": "lighting",
+      "modelNode": "COMP__rear_light",
+      "materialIds": [
+        "mat.aluminium",
+        "mat.polymer"
+      ],
+      "tags": [
+        "light",
+        "visibility",
+        "utility"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.kickstand",
+      "slug": "kickstand",
+      "name": "Kickstand",
+      "systemId": "cargo-utility",
+      "modelNode": "COMP__kickstand",
+      "materialIds": [
+        "mat.aluminium",
+        "mat.steel"
+      ],
+      "tags": [
+        "stand",
+        "parking",
+        "utility"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.frame-lock",
+      "slug": "frame-lock",
+      "name": "Frame lock",
+      "systemId": "accessories",
+      "modelNode": "COMP__frame_lock",
+      "materialIds": [
+        "mat.steel",
+        "mat.polymer"
+      ],
+      "tags": [
+        "lock",
+        "security",
+        "city"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.front-axle",
+      "slug": "front-axle",
+      "name": "Front axle",
+      "systemId": "front-wheel",
+      "modelNode": "COMP__front_axle",
+      "materialIds": [
+        "mat.steel"
+      ],
+      "tags": [
+        "axle",
+        "fastener"
+      ]
+    },
+    {
+      "id": "bike.urban.u1.rear-axle",
+      "slug": "rear-axle",
+      "name": "Rear axle",
+      "systemId": "rear-wheel",
+      "modelNode": "COMP__rear_axle",
+      "materialIds": [
+        "mat.steel"
+      ],
+      "tags": [
+        "axle",
+        "fastener"
+      ]
+    }
+  ]
+}
