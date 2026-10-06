@@ -1,0 +1,112 @@
+{
+  "id": "gravel-one-by-gearing",
+  "bikeId": "bike.gravel.g1",
+  "title": "How a 1× gravel drivetrain spans mixed terrain",
+  "summary": "Follow the single-chainring power path and see how a wide cassette provides both faster and lower climbing ratios.",
+  "systemId": "transmission",
+  "difficulty": "beginner",
+  "durationMinutes": 6,
+  "prerequisiteLessonIds": [],
+  "steps": [
+    {
+      "id": "single-front",
+      "eyebrow": "01 · 1× architecture",
+      "title": "There is only one front chainring.",
+      "body": "Gravel G1 uses one front chainring, so front shifting disappears. All selectable ratios come from moving the chain across the rear cassette.",
+      "keyFact": "1× simplifies the front drivetrain but places more of the total ratio range at the cassette.",
+      "focusComponentId": "bike.gravel.g1.chainring",
+      "highlightComponentIds": [
+        "bike.gravel.g1.crankset",
+        "bike.gravel.g1.chainring",
+        "bike.gravel.g1.chain"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "wide-cassette",
+      "eyebrow": "02 · Range",
+      "title": "The cassette spans a wide range of sprocket sizes.",
+      "body": "Smaller rear sprockets create a higher gear for faster travel, while larger rear sprockets create a lower gear for climbing. Exact tooth counts and total range depend on the actual cassette and derailleur system.",
+      "keyFact": "Wide-range describes the spread of available rear ratios; it does not specify one universal tooth combination.",
+      "focusComponentId": "bike.gravel.g1.cassette",
+      "highlightComponentIds": [
+        "bike.gravel.g1.cassette",
+        "bike.gravel.g1.rear-hub",
+        "bike.gravel.g1.chain"
+      ],
+      "inspectionMode": "xray"
+    },
+    {
+      "id": "derailleur",
+      "eyebrow": "03 · Chain management",
+      "title": "The rear derailleur shifts and manages chain length.",
+      "body": "As the chain moves between cassette sprockets of different sizes, the derailleur guides lateral movement and takes up the resulting chain-length difference.",
+      "keyFact": "Derailleur compatibility depends on shifter actuation, cassette range, chain capacity, hanger interface and drivetrain generation.",
+      "focusComponentId": "bike.gravel.g1.rear-derailleur",
+      "highlightComponentIds": [
+        "bike.gravel.g1.rear-derailleur",
+        "bike.gravel.g1.cassette",
+        "bike.gravel.g1.chain"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "mixed-terrain",
+      "eyebrow": "04 · Why gravel",
+      "title": "Wide range supports changing surfaces and gradients.",
+      "body": "A mixed-surface ride can move from fast pavement to steep loose climbs. A wide-range 1× system trades small ratio steps and front-shifting flexibility for a simpler control scheme and broad rear range.",
+      "keyFact": "No drivetrain architecture is universally best; gear range, step size, efficiency and simplicity are tradeoffs.",
+      "focusComponentId": "bike.gravel.g1.right-shifter",
+      "highlightComponentIds": [
+        "bike.gravel.g1.right-shifter",
+        "bike.gravel.g1.rear-derailleur",
+        "bike.gravel.g1.cassette"
+      ],
+      "inspectionMode": "normal",
+      "challenge": {
+        "type": "multiple-choice",
+        "prompt": "Where does Gravel G1 create its selectable gear ratios?",
+        "options": [
+          {
+            "id": "front",
+            "label": "By shifting between multiple front chainrings"
+          },
+          {
+            "id": "rear",
+            "label": "By shifting across the rear cassette"
+          },
+          {
+            "id": "hub",
+            "label": "Inside an internal-gear hub"
+          }
+        ],
+        "correctOptionId": "rear",
+        "explanation": "Gravel G1 is a 1× derailleur drivetrain: one front chainring and multiple rear cassette sprockets."
+      }
+    },
+    {
+      "id": "identify-shifter",
+      "eyebrow": "05 · Identify",
+      "title": "Find the component that physically moves the chain across the cassette.",
+      "body": "Select the mechanism near the rear wheel that guides the chain between sprockets.",
+      "keyFact": "The handlebar control commands a shift; the rear derailleur performs the chain movement.",
+      "focusComponentId": "bike.gravel.g1.cassette",
+      "highlightComponentIds": [],
+      "inspectionMode": "normal",
+      "challenge": {
+        "type": "select-component",
+        "prompt": "Which component moves the chain across the cassette?",
+        "candidateComponentIds": [
+          "bike.gravel.g1.rear-derailleur",
+          "bike.gravel.g1.cassette",
+          "bike.gravel.g1.rear-hub"
+        ],
+        "correctComponentIds": [
+          "bike.gravel.g1.rear-derailleur"
+        ],
+        "successText": "Correct. The rear derailleur guides the chain between cassette sprockets.",
+        "retryText": "That part is involved in the drivetrain, but it does not guide the chain laterally between sprockets."
+      }
+    }
+  ]
+}
