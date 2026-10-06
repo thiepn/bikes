@@ -10,6 +10,10 @@ import urbanPreRide from "@/content/workshop/urban-pre-ride-check.json";
 import urbanRack from "@/content/workshop/urban-rack-cargo-check.json";
 import urbanDrivetrain from "@/content/workshop/urban-drivetrain-check.json";
 import urbanWeather from "@/content/workshop/urban-weather-lighting-check.json";
+import gravelPreRide from "@/content/workshop/gravel-pre-ride-check.json";
+import gravelTires from "@/content/workshop/gravel-tire-rim-check.json";
+import gravelDrivetrain from "@/content/workshop/gravel-drivetrain-check.json";
+import gravelMounts from "@/content/workshop/gravel-mount-cargo-check.json";
 import type { WorkshopProcedure } from "@/engine/workshop/types";
 
 export const WORKSHOP_CATALOG = [
@@ -25,6 +29,10 @@ export const WORKSHOP_CATALOG = [
   urbanRack,
   urbanDrivetrain,
   urbanWeather,
+  gravelPreRide,
+  gravelTires,
+  gravelDrivetrain,
+  gravelMounts,
 ] as unknown as WorkshopProcedure[];
 
 const BY_ID = new Map(
