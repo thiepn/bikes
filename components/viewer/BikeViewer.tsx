@@ -23,6 +23,12 @@ import {
 } from "@/domain/workshop/catalog";
 import { KnowledgeSearch } from "@/components/knowledge/KnowledgeSearch";
 import { ComparisonPanel } from "@/components/comparison/ComparisonPanel";
+import { BikeFinderPanel } from "@/components/finder/BikeFinderPanel";
+import {
+  decodeFinderAnswers,
+  encodeFinderAnswers,
+} from "@/domain/finder/recommend";
+import type { FinderAnswers } from "@/engine/finder/types";
 import type { InspectionMode } from "@/engine/inspection/types";
 import {
   calculateLessonScore,
@@ -74,6 +80,8 @@ export function BikeViewer() {
   const [workshopOpen, setWorkshopOpen] = useState(false);
   const [knowledgeOpen, setKnowledgeOpen] = useState(false);
   const [comparisonOpen, setComparisonOpen] = useState(false);
+  const [finderOpen, setFinderOpen] = useState(false);
+  const [finderAnswers, setFinderAnswers] = useState<FinderAnswers>({});
   const [comparisonBikeId, setComparisonBikeId] = useState(
     BIKE_CATALOG.find((bike) => bike.id !== ROAD_R1.id)?.id ?? ROAD_R1.id,
   );
@@ -285,6 +293,8 @@ export function BikeViewer() {
     setLearningOpen(false);
     setWorkshopOpen(false);
     setKnowledgeOpen(false);
+    setComparisonOpen(false);
+    setFinderOpen(false);
     setExperienceMode("explore");
 
     if (typeof window !== "undefined") {
@@ -305,6 +315,7 @@ export function BikeViewer() {
         "step",
         "compare",
         "overlay",
+        "finder",
       ]) {
         url.searchParams.delete(key);
       }
@@ -312,6 +323,30 @@ export function BikeViewer() {
       window.history.replaceState({}, "", url);
     }
   }, []);
+
+  const openFinderComparison = useCallback(
+    (primaryBikeId: string, secondaryBikeId: string) => {
+      const primary = getBikeById(primaryBikeId);
+      const secondary = getBikeById(secondaryBikeId);
+      if (!primary || !secondary || primary.id === secondary.id) return;
+
+      setActiveBikeId(primary.id);
+      setComparisonBikeId(secondary.id);
+      setComparisonOverlay(true);
+      setComparisonOpen(true);
+      setFinderOpen(false);
+      setSelectedId(null);
+      setHoveredId(null);
+      setIsolated(false);
+      setMode("normal");
+      setExplosionAmount(0);
+      setLearningOpen(false);
+      setWorkshopOpen(false);
+      setKnowledgeOpen(false);
+      setExperienceMode("explore");
+    },
+    [],
+  );
 
   const swapComparison = useCallback(() => {
     const nextPrimary = getBikeById(comparisonBikeId);
@@ -389,6 +424,7 @@ export function BikeViewer() {
       setWorkshopOpen(false);
       setKnowledgeOpen(false);
       setComparisonOpen(false);
+      setFinderOpen(false);
       setExperienceMode("lesson");
     },
     [
@@ -501,6 +537,7 @@ export function BikeViewer() {
       setWorkshopOpen(false);
       setKnowledgeOpen(false);
       setComparisonOpen(false);
+      setFinderOpen(false);
       setExperienceMode("workshop");
     },
     [
@@ -614,6 +651,7 @@ export function BikeViewer() {
     setWorkshopOpen(false);
     setKnowledgeOpen(false);
     setComparisonOpen(false);
+    setFinderOpen(false);
     setMode("normal");
     setExplosionAmount(0);
     setStoryProgress(0);
@@ -646,6 +684,9 @@ export function BikeViewer() {
       url.searchParams.get("compare"),
     );
     const requestedOverlay = url.searchParams.get("overlay");
+    const requestedFinder = decodeFinderAnswers(
+      url.searchParams.get("finder"),
+    );
     const slug = url.searchParams.get("part");
     const view = url.searchParams.get("view") as InspectionMode | null;
     const explode = Number(url.searchParams.get("explode"));
@@ -695,6 +736,11 @@ export function BikeViewer() {
 
     setActiveBikeId(requestedBike.id);
 
+    if (Object.keys(requestedFinder).length > 0) {
+      setFinderAnswers(requestedFinder);
+      setFinderOpen(true);
+    }
+
     if (requestedCompare && requestedCompare.id !== requestedBike.id) {
       setComparisonBikeId(requestedCompare.id);
       setComparisonOverlay(requestedOverlay !== "0");
@@ -705,6 +751,7 @@ export function BikeViewer() {
       slug ||
       view ||
       requestedCompare ||
+      Object.keys(requestedFinder).length > 0 ||
       requestedBike.id !== ROAD_R1.id
     ) {
       setExperienceMode("explore");
@@ -768,6 +815,7 @@ export function BikeViewer() {
       url.searchParams.delete("workshop");
       url.searchParams.delete("compare");
       url.searchParams.delete("overlay");
+      url.searchParams.delete("finder");
       url.searchParams.set("lesson", lesson.id);
       url.searchParams.set(
         "step",
@@ -786,6 +834,7 @@ export function BikeViewer() {
       url.searchParams.delete("lesson");
       url.searchParams.delete("compare");
       url.searchParams.delete("overlay");
+      url.searchParams.delete("finder");
       url.searchParams.set("workshop", procedure.id);
       url.searchParams.set(
         "step",
@@ -861,6 +910,13 @@ export function BikeViewer() {
       url.searchParams.delete("overlay");
     }
 
+    const encodedFinder = encodeFinderAnswers(finderAnswers);
+    if (finderOpen && encodedFinder) {
+      url.searchParams.set("finder", encodedFinder);
+    } else {
+      url.searchParams.delete("finder");
+    }
+
     window.history.replaceState({}, "", url);
   }, [
     activeBike.id,
@@ -868,6 +924,8 @@ export function BikeViewer() {
     comparisonBikeId,
     comparisonOpen,
     comparisonOverlay,
+    finderAnswers,
+    finderOpen,
     experienceMode,
     mode,
     explosionAmount,
@@ -893,6 +951,7 @@ export function BikeViewer() {
         else if (workshopOpen) setWorkshopOpen(false);
         else if (knowledgeOpen) setKnowledgeOpen(false);
         else if (comparisonOpen) setComparisonOpen(false);
+        else if (finderOpen) setFinderOpen(false);
         else select(null);
         return;
       }
@@ -915,6 +974,7 @@ export function BikeViewer() {
   }, [
     changeMode,
     comparisonOpen,
+    finderOpen,
     experienceMode,
     knowledgeOpen,
     learningOpen,
@@ -965,6 +1025,28 @@ export function BikeViewer() {
                 bikeId={activeBike.id}
                 onChange={changeBike}
               />
+              <button
+                type="button"
+                className={
+                  finderOpen
+                    ? "finder-launch is-active"
+                    : "finder-launch"
+                }
+                onClick={() => {
+                  if (!finderOpen) {
+                    select(null);
+                    changeMode("normal");
+                  }
+                  setFinderOpen((value) => !value);
+                  setComparisonOpen(false);
+                  setLearningOpen(false);
+                  setWorkshopOpen(false);
+                  setKnowledgeOpen(false);
+                }}
+              >
+                Find my bike
+                <span aria-hidden="true">→</span>
+              </button>
               {BIKE_CATALOG.length > 1 && (
                 <button
                   type="button"
@@ -982,6 +1064,7 @@ export function BikeViewer() {
                     setLearningOpen(false);
                     setWorkshopOpen(false);
                     setKnowledgeOpen(false);
+                    setFinderOpen(false);
                   }}
                 >
                   Compare
@@ -1001,6 +1084,7 @@ export function BikeViewer() {
                     setWorkshopOpen(false);
                     setKnowledgeOpen(false);
                     setComparisonOpen(false);
+                    setFinderOpen(false);
                   }}
                 >
                   Learn
@@ -1020,6 +1104,7 @@ export function BikeViewer() {
                     setLearningOpen(false);
                     setKnowledgeOpen(false);
                     setComparisonOpen(false);
+                    setFinderOpen(false);
                   }}
                 >
                   Workshop
@@ -1039,6 +1124,7 @@ export function BikeViewer() {
                     setLearningOpen(false);
                     setWorkshopOpen(false);
                     setComparisonOpen(false);
+                    setFinderOpen(false);
                   }}
                 >
                   Encyclopedia
@@ -1153,6 +1239,14 @@ export function BikeViewer() {
           onStepChange={changeWorkshopStep}
           onCompleteCurrent={completeCurrentWorkshopStep}
           onExit={exitWorkshop}
+        />
+      ) : finderOpen ? (
+        <BikeFinderPanel
+          answers={finderAnswers}
+          onAnswersChange={setFinderAnswers}
+          onExploreBike={changeBike}
+          onCompareBikes={openFinderComparison}
+          onClose={() => setFinderOpen(false)}
         />
       ) : comparisonOpen ? (
         <ComparisonPanel
