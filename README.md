@@ -4,18 +4,26 @@ Bike Atlas is an interactive 3D bicycle knowledge platform: explore bicycles, in
 
 ## Current phase
 
-**P4 — Exploded View, X-Ray, Systems & Inspection Modes**
+**P5 — Cinematic Homepage, Product Storytelling & Transition System**
 
-P1 established the 3D engine. P2 locked the Road R1 asset source and semantic model. P3 made semantic components selectable and focusable. P4 adds viewer-level inspection modes over that same semantic state.
+The root experience now begins with a guided cinematic sequence using the same persistent 3D scene as the interactive explorer.
 
-## Inspection modes
+Story progression moves through:
 
-- **Normal** — product/material view
-- **Systems** — color-coded mechanical systems
-- **X-Ray** — exterior structure fades to expose mechanisms
-- **Exploded** — authored component separation with continuous 0–100% scrubber
+```text
+Hero bike
+→ structural close-up
+→ mechanical systems
+→ X-Ray
+→ exploded assembly
+→ free Explore mode
+```
 
-Keyboard:
+There is no separate static marketing model or route reload. Entering Explore hands the same scene over to the P3/P4 interaction system.
+
+Direct component/view deep links bypass the introduction.
+
+## Explore controls
 
 ```text
 N Normal
@@ -26,7 +34,7 @@ I Isolate selected component
 Esc Reset selection
 ```
 
-Shareable state examples:
+Examples:
 
 ```text
 /?part=rear-derailleur
@@ -35,6 +43,6 @@ Shareable state examples:
 /?view=exploded&explode=70
 ```
 
-The temporary calibration bike remains in place until the production Road R1 GLB completes the Blender asset-authoring pipeline.
+The temporary calibration bike remains until the production Road R1 GLB completes the P2B Blender asset-authoring pipeline.
 
-See `docs/P1.md`, `docs/P2.md`, `docs/P3.md`, `docs/P4.md`, and `docs/ASSET_PIPELINE.md`.
+See `docs/P1.md` through `docs/P5.md` and `docs/ASSET_PIPELINE.md`.

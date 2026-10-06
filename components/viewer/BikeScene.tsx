@@ -9,28 +9,41 @@ import {
 } from "@react-three/drei";
 import { PrototypeBike } from "./PrototypeBike";
 import { CameraRig } from "./CameraRig";
+import { StoryCameraRig } from "@/components/story/StoryCameraRig";
 import { CAMERA_LIMITS, CAMERA_TARGET } from "@/engine/camera/presets";
 import { enableBvhRaycasting } from "@/engine/raycast/setup-bvh";
 import type {
   ViewerInteractionHandlers,
   ViewerInteractionState,
 } from "@/engine/interaction/types";
+import type { ExperienceMode } from "@/engine/story/types";
 
 enableBvhRaycasting();
 
-type BikeSceneProps = ViewerInteractionState & ViewerInteractionHandlers;
+type BikeSceneProps = ViewerInteractionState &
+  ViewerInteractionHandlers & {
+    experienceMode: ExperienceMode;
+    storyProgress: number;
+  };
 
 export function BikeScene(props: BikeSceneProps) {
+  const cinematic = props.experienceMode === "story";
+
   return (
     <>
       <color attach="background" args={["#07090c"]} />
-      <fog attach="fog" args={["#07090c", 4.5, 9]} />
+      <fog
+        attach="fog"
+        args={["#07090c", cinematic ? 4.1 : 4.5, cinematic ? 8 : 9]}
+      />
 
-      <ambientLight intensity={props.mode === "xray" ? 0.34 : 0.2} />
+      <ambientLight
+        intensity={props.mode === "xray" ? 0.34 : cinematic ? 0.14 : 0.2}
+      />
       <directionalLight
         castShadow
         color="#eef5ff"
-        intensity={props.mode === "xray" ? 2.7 : 2.2}
+        intensity={props.mode === "xray" ? 2.7 : cinematic ? 2.45 : 2.2}
         position={[2.5, 4.2, 1.8]}
         shadow-mapSize-width={1024}
         shadow-mapSize-height={1024}
@@ -38,7 +51,9 @@ export function BikeScene(props: BikeSceneProps) {
       />
       <spotLight
         color="#d9ff67"
-        intensity={props.mode === "systems" ? 8 : 18}
+        intensity={
+          props.mode === "systems" ? 8 : cinematic ? 22 : 18
+        }
         angle={0.42}
         penumbra={0.9}
         position={[-2.6, 2.8, -1.8]}
@@ -47,7 +62,7 @@ export function BikeScene(props: BikeSceneProps) {
       <Environment resolution={256}>
         <Lightformer
           form="rect"
-          intensity={3.2}
+          intensity={cinematic ? 4.2 : 3.2}
           color="#f5f8ff"
           position={[0, 4, -3]}
           rotation={[Math.PI / 2, 0, 0]}
@@ -63,7 +78,7 @@ export function BikeScene(props: BikeSceneProps) {
         />
         <Lightformer
           form="rect"
-          intensity={1.5}
+          intensity={cinematic ? 2.1 : 1.5}
           color="#d9ff67"
           position={[-3, 1.1, -1]}
           rotation={[0, Math.PI / 2, 0]}
@@ -88,7 +103,7 @@ export function BikeScene(props: BikeSceneProps) {
 
       <ContactShadows
         position={[0, 0.006, 0]}
-        opacity={props.mode === "xray" ? 0.28 : 0.52}
+        opacity={props.mode === "xray" ? 0.28 : cinematic ? 0.42 : 0.52}
         scale={5}
         blur={2.6}
         far={2.1}
@@ -96,6 +111,7 @@ export function BikeScene(props: BikeSceneProps) {
 
       <OrbitControls
         makeDefault
+        enabled={!cinematic}
         target={CAMERA_TARGET}
         minDistance={CAMERA_LIMITS.minDistance}
         maxDistance={CAMERA_LIMITS.maxDistance}
@@ -105,11 +121,16 @@ export function BikeScene(props: BikeSceneProps) {
         enableDamping
         dampingFactor={0.055}
       />
-      <CameraRig
-        selectedId={props.selectedId}
-        mode={props.mode}
-        explosionAmount={props.explosionAmount}
-      />
+
+      {cinematic ? (
+        <StoryCameraRig progress={props.storyProgress} />
+      ) : (
+        <CameraRig
+          selectedId={props.selectedId}
+          mode={props.mode}
+          explosionAmount={props.explosionAmount}
+        />
+      )}
 
       <AdaptiveDpr />
     </>

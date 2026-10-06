@@ -6,6 +6,11 @@ import { ACESFilmicToneMapping, SRGBColorSpace } from "three";
 import { ROAD_R1 } from "@/domain/bike/road-r1";
 import { isCalibrationComponent } from "@/engine/interaction/calibration-components";
 import type { InspectionMode } from "@/engine/inspection/types";
+import {
+  getStoryVisualState,
+} from "@/engine/story/config";
+import type { ExperienceMode } from "@/engine/story/types";
+import { CinematicStory } from "@/components/story/CinematicStory";
 import { BikeScene } from "./BikeScene";
 import { ComponentPanel } from "./ComponentPanel";
 import { InspectionToolbar } from "./InspectionToolbar";
@@ -19,15 +24,27 @@ const VALID_MODES = new Set<InspectionMode>([
 ]);
 
 export function BikeViewer() {
+  const [experienceMode, setExperienceMode] =
+    useState<ExperienceMode>("story");
+  const [storyProgress, setStoryProgress] = useState(0);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [isolated, setIsolated] = useState(false);
   const [mode, setMode] = useState<InspectionMode>("normal");
   const [explosionAmount, setExplosionAmount] = useState(0);
 
+  const storyVisual = getStoryVisualState(storyProgress);
+  const sceneMode =
+    experienceMode === "story" ? storyVisual.inspectionMode : mode;
+  const sceneExplosion =
+    experienceMode === "story"
+      ? storyVisual.explosionAmount
+      : explosionAmount;
+
   const selectedComponent = useMemo(
     () =>
-      ROAD_R1.components.find((component) => component.id === selectedId) ?? null,
+      ROAD_R1.components.find((component) => component.id === selectedId) ??
+      null,
     [selectedId],
   );
 
@@ -74,15 +91,46 @@ export function BikeViewer() {
     }
   }, []);
 
+  const enterExplore = useCallback(() => {
+    setExperienceMode("explore");
+    setMode("normal");
+    setExplosionAmount(0);
+    setSelectedId(null);
+    setHoveredId(null);
+    setIsolated(false);
+  }, []);
+
+  const returnToStory = useCallback(() => {
+    setSelectedId(null);
+    setHoveredId(null);
+    setIsolated(false);
+    setMode("normal");
+    setExplosionAmount(0);
+    setStoryProgress(0);
+    setExperienceMode("story");
+
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("part");
+      url.searchParams.delete("view");
+      url.searchParams.delete("explode");
+      window.history.replaceState({}, "", url);
+    }
+  }, []);
+
   useEffect(() => {
     const url = new URL(window.location.href);
     const slug = url.searchParams.get("part");
     const view = url.searchParams.get("view") as InspectionMode | null;
     const explode = Number(url.searchParams.get("explode"));
+    const hasDeepLink = Boolean(slug || view);
+
+    if (hasDeepLink) setExperienceMode("explore");
 
     if (slug) {
       const component = ROAD_R1.components.find(
-        (item) => item.slug === slug && isCalibrationComponent(item.id),
+        (item) =>
+          item.slug === slug && isCalibrationComponent(item.id),
       );
       if (component) setSelectedId(component.id);
     }
@@ -100,6 +148,8 @@ export function BikeViewer() {
   }, []);
 
   useEffect(() => {
+    if (experienceMode !== "explore") return;
+
     const url = new URL(window.location.href);
 
     if (mode === "normal") url.searchParams.delete("view");
@@ -115,9 +165,11 @@ export function BikeViewer() {
     }
 
     window.history.replaceState({}, "", url);
-  }, [mode, explosionAmount]);
+  }, [experienceMode, mode, explosionAmount]);
 
   useEffect(() => {
+    if (experienceMode !== "explore") return;
+
     function handleKeyDown(event: KeyboardEvent) {
       const target = event.target as HTMLElement | null;
       if (
@@ -150,16 +202,34 @@ export function BikeViewer() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [changeMode, select, selectedId]);
+  }, [changeMode, experienceMode, select, selectedId]);
 
   return (
-    <section className="viewer" aria-label="Interactive Bike Atlas 3D viewer">
+    <section
+      className={
+        experienceMode === "story"
+          ? "viewer viewer--story"
+          : "viewer viewer--explore"
+      }
+      aria-label="Interactive Bike Atlas 3D viewer"
+    >
       <div className="topbar">
-        <div className="brand">
+        <button
+          className="brand brand-button"
+          type="button"
+          onClick={experienceMode === "story" ? undefined : returnToStory}
+          aria-label={
+            experienceMode === "story"
+              ? "Bike Atlas"
+              : "Return to Bike Atlas introduction"
+          }
+        >
           <strong>BIKE ATLAS</strong>
           <span>Interactive bicycle laboratory</span>
+        </button>
+        <div className="phase-label">
+          {experienceMode === "story" ? "Cinematic introduction" : "Explore"}
         </div>
-        <div className="phase-label">P4 inspection modes</div>
       </div>
 
       <Canvas
@@ -167,7 +237,7 @@ export function BikeViewer() {
         dpr={[1, 1.8]}
         shadows
         camera={{
-          position: [1.85, 1.15, 2.2],
+          position: [1.95, 1.18, 2.35],
           fov: 34,
           near: 0.05,
           far: 60,
@@ -177,7 +247,9 @@ export function BikeViewer() {
           alpha: false,
           powerPreference: "high-performance",
         }}
-        onPointerMissed={() => select(null)}
+        onPointerMissed={() => {
+          if (experienceMode === "explore") select(null);
+        }}
         onCreated={({ gl }) => {
           gl.outputColorSpace = SRGBColorSpace;
           gl.toneMapping = ACESFilmicToneMapping;
@@ -185,55 +257,77 @@ export function BikeViewer() {
         }}
       >
         <BikeScene
-          selectedId={selectedId}
-          hoveredId={hoveredId}
-          isolated={isolated}
-          mode={mode}
-          explosionAmount={explosionAmount}
-          onSelect={select}
-          onHover={setHoveredId}
-          onIsolate={isolate}
+          experienceMode={experienceMode}
+          storyProgress={storyProgress}
+          selectedId={experienceMode === "story" ? null : selectedId}
+          hoveredId={experienceMode === "story" ? null : hoveredId}
+          isolated={experienceMode === "story" ? false : isolated}
+          mode={sceneMode}
+          explosionAmount={sceneExplosion}
+          onSelect={
+            experienceMode === "story" ? () => {} : select
+          }
+          onHover={
+            experienceMode === "story" ? () => {} : setHoveredId
+          }
+          onIsolate={
+            experienceMode === "story" ? () => {} : isolate
+          }
         />
       </Canvas>
 
-      <InspectionToolbar
-        mode={mode}
-        explosionAmount={explosionAmount}
-        onModeChange={changeMode}
-        onExplosionChange={setExplosionAmount}
-      />
+      {experienceMode === "story" ? (
+        <CinematicStory
+          progress={storyProgress}
+          onProgress={setStoryProgress}
+          onEnterExplore={enterExplore}
+        />
+      ) : (
+        <>
+          <InspectionToolbar
+            mode={mode}
+            explosionAmount={explosionAmount}
+            onModeChange={changeMode}
+            onExplosionChange={setExplosionAmount}
+          />
 
-      {mode === "systems" && <SystemsLegend />}
+          {mode === "systems" && <SystemsLegend />}
 
-      <ComponentPanel
-        selectedId={selectedId}
-        isolated={isolated}
-        onSelect={select}
-        onHover={setHoveredId}
-        onToggleIsolate={() => setIsolated((value) => !value)}
-      />
+          <ComponentPanel
+            selectedId={selectedId}
+            isolated={isolated}
+            onSelect={select}
+            onHover={setHoveredId}
+            onToggleIsolate={() =>
+              setIsolated((value) => !value)
+            }
+          />
 
-      <div
-        className={
-          selectedComponent
-            ? "selection-caption is-active"
-            : "selection-caption"
-        }
-      >
-        <span>
-          {selectedComponent
-            ? selectedComponent.systemId.replaceAll("-", " ")
-            : mode === "normal"
-              ? "Road R1"
-              : mode.replaceAll("-", " ")}
-        </span>
-        <strong>{selectedComponent?.name ?? "Inspect the machine"}</strong>
-      </div>
+          <div
+            className={
+              selectedComponent
+                ? "selection-caption is-active"
+                : "selection-caption"
+            }
+          >
+            <span>
+              {selectedComponent
+                ? selectedComponent.systemId.replaceAll("-", " ")
+                : mode === "normal"
+                  ? "Road R1"
+                  : mode.replaceAll("-", " ")}
+            </span>
+            <strong>
+              {selectedComponent?.name ?? "Inspect the machine"}
+            </strong>
+          </div>
 
-      <div className="viewer-hint" aria-hidden="true">
-        <span>Drag</span> rotate · <span>Scroll</span> zoom ·{" "}
-        <span>Esc</span> reset · <span>I</span> isolate
-      </div>
+          <div className="viewer-hint" aria-hidden="true">
+            <span>Drag</span> rotate · <span>Scroll</span> zoom ·{" "}
+            <span>Esc</span> reset · <span>I</span> isolate
+          </div>
+        </>
+      )}
     </section>
   );
 }
