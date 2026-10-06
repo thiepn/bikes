@@ -319,6 +319,12 @@ export function BikeViewer() {
     [updatePartUrl],
   );
 
+  const previewBuildComponent = useCallback((componentId: string) => {
+    setSelectedId(componentId);
+    setHoveredId(null);
+    setIsolated(false);
+  }, []);
+
   const changeBike = useCallback((bikeId: string) => {
     const nextBike = getBikeById(bikeId);
     if (!nextBike) return;
@@ -1607,11 +1613,7 @@ export function BikeViewer() {
               sanitizeBuildSelections(activeBike.id, next),
             )
           }
-          onPreviewComponent={(componentId) => {
-            setSelectedId(componentId);
-            setHoveredId(null);
-            setIsolated(false);
-          }}
+          onPreviewComponent={previewBuildComponent}
           onClose={() => setBuildOpen(false)}
         />
       ) : physicsOpen ? (
