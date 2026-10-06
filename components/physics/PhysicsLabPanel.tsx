@@ -9,6 +9,7 @@ import {
   getBikePhysicsProfile,
   PHYSICS_SURFACES,
 } from "@/domain/physics/catalog";
+import { applyBuildToPhysicsProfile } from "@/domain/compatibility/physics-effects";
 import {
   calculatePhysicsBreakdown,
   cadenceForSpeed,
@@ -24,6 +25,7 @@ import type {
 
 type Props = {
   bikeId: string;
+  buildSelections?: Readonly<Record<string, string>>;
   onClose: () => void;
 };
 
@@ -231,11 +233,21 @@ function AssumptionField({
   );
 }
 
-export function PhysicsLabPanel({ bikeId, onClose }: Props) {
+export function PhysicsLabPanel({
+  bikeId,
+  buildSelections = {},
+  onClose,
+}: Props) {
   const bike = getBikeById(bikeId) ?? BIKE_CATALOG[0];
-  const reference =
+  const stockReference =
     getBikePhysicsProfile(bike.id) ??
     getBikePhysicsProfile(BIKE_CATALOG[0].id)!;
+  const buildPhysics = useMemo(
+    () => applyBuildToPhysicsProfile(bike.id, buildSelections),
+    [bike.id, buildSelections],
+  );
+  const reference = buildPhysics.profile ?? stockReference;
+  const hasBuild = Object.keys(buildSelections).length > 0;
 
   const initial = useMemo(
     () => initialState(reference),
@@ -277,12 +289,12 @@ export function PhysicsLabPanel({ bikeId, onClose }: Props) {
   const comparison = useMemo(
     () =>
       BIKE_CATALOG.map((item) => {
-        if (item.id === bikeId) return primary;
+        if (item.id === bike.id) return primary;
         return simulateBike(item.id, scenario);
       })
         .filter((item): item is NonNullable<typeof item> => Boolean(item))
         .sort((a, b) => b.speedKph - a.speedKph),
-    [bikeId, primary, scenario],
+    [bike.id, primary, scenario],
   );
 
   const cadenceProjection = useMemo(
@@ -416,6 +428,42 @@ export function PhysicsLabPanel({ bikeId, onClose }: Props) {
       </header>
 
       <div className="physics-body">
+        {hasBuild && (
+          <section
+            className={`physics-build-link is-${buildPhysics.analysis.health}`}
+            aria-label="Build effects applied to Physics Lab"
+          >
+            <div>
+              <span>Active Build Lab draft</span>
+              <strong>
+                {buildPhysics.analysis.modifiedSlotCount} modified slot
+                {buildPhysics.analysis.modifiedSlotCount === 1 ? "" : "s"} ·{" "}
+                {buildPhysics.analysis.health === "blocked"
+                  ? "system conflicts remain"
+                  : buildPhysics.analysis.health === "attention"
+                    ? "warnings remain"
+                    : "system coherent"}
+              </strong>
+            </div>
+            <p>
+              Physics baseline updated by{" "}
+              {signed(buildPhysics.analysis.metrics.massDeltaKg, 2)} kg mass
+              and{" "}
+              {signed(buildPhysics.analysis.metrics.cdaDeltaM2, 3)} m² CdA.
+              Tire and rear-transmission donor references also propagate into
+              rolling resistance, wheel circumference and drivetrain
+              efficiency.
+            </p>
+            {buildPhysics.analysis.health === "blocked" && (
+              <b>
+                Simulation is provisional: resolve the Build Lab blocking
+                dependencies before treating this configuration as a coherent
+                bicycle system.
+              </b>
+            )}
+          </section>
+        )}
+
         <section className="physics-presets" aria-label="Physics scenario presets">
           <button
             type="button"
@@ -801,7 +849,9 @@ export function PhysicsLabPanel({ bikeId, onClose }: Props) {
             <section className="physics-comparison">
               <div className="physics-section-title">
                 <span>Same rider & environment</span>
-                <strong>reference bike assumptions</strong>
+                <strong>
+                  {hasBuild ? "active build vs reference bikes" : "reference bike assumptions"}
+                </strong>
               </div>
               <div>
                 {comparison.map((result, index) => {
@@ -840,7 +890,9 @@ export function PhysicsLabPanel({ bikeId, onClose }: Props) {
             <section className="physics-model-note">
               <strong>Model boundary</strong>
               <p>
-                Educational steady-state estimate. It does not model
+                Educational steady-state estimate. P23 build propagation uses
+                reference component deltas rather than measured component test
+                data. It does not model
                 acceleration, cornering, braking, rider position changes,
                 gusts, tire deformation beyond effective Crr, suspension
                 dynamics, terrain impacts or manufacturer test data.
