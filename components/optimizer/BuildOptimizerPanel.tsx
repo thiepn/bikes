@@ -368,20 +368,23 @@ export function BuildOptimizerPanel({
               <small>hard-constraint rejects</small>
             </article>
             <article>
-              <span>Returned</span>
-              <strong>{optimization.results.length}</strong>
-              <small>ranked builds</small>
+              <span>Current score</span>
+              <strong>{optimization.baselineScore.toFixed(1)}</strong>
+              <small>{goal.name.toLowerCase()} baseline</small>
             </article>
           </section>
         )}
 
         {!optimization || optimization.results.length === 0 ? (
           <section className="optimizer-empty">
-            <strong>No coherent result under these constraints.</strong>
+            <strong>No improved coherent result under these constraints.</strong>
             <p>
-              Increase the change budget, relax the geometry guard, or
-              unlock current changes. The optimizer will not return a
-              mechanically blocked build just to fill the list.
+              The current bicycle already scores as well or better than the
+              searched alternatives, or the hard constraints exclude the
+              necessary changes. Increase the change budget, relax the
+              geometry guard, or unlock current changes. P25 will not
+              recommend a worse or mechanically blocked build just to fill
+              the list.
             </p>
           </section>
         ) : (
@@ -413,7 +416,8 @@ export function BuildOptimizerPanel({
                       <span>goal score</span>
                     </div>
                     <p>
-                      {result.changedSlots.length} change
+                      +{(result.score - optimization.baselineScore).toFixed(1)}
+                      {" "}vs current · {result.changedSlots.length} change
                       {result.changedSlots.length === 1 ? "" : "s"} ·{" "}
                       {result.health === "ready"
                         ? "coherent"
@@ -431,7 +435,15 @@ export function BuildOptimizerPanel({
                     <span>Recommended configuration</span>
                     <h3>{goal.name} build</h3>
                   </div>
-                  <b>{selected.score.toFixed(1)}</b>
+                  <div className="optimizer-score">
+                    <b>{selected.score.toFixed(1)}</b>
+                    <small>
+                      +{(
+                        selected.score - optimization.baselineScore
+                      ).toFixed(1)}{" "}
+                      vs current
+                    </small>
+                  </div>
                 </div>
 
                 <section className="optimizer-explanations">
