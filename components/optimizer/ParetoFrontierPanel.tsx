@@ -23,6 +23,7 @@ type Props = {
   constraints: OptimizationConstraints;
   onApplySelections: (next: Record<string, string>) => void;
   onOpenBuild: (next: Record<string, string>) => void;
+  onSaveSelection: (next: Record<string, string>) => void;
 };
 
 function initialAxis(
@@ -169,6 +170,7 @@ export function ParetoFrontierPanel({
   constraints,
   onApplySelections,
   onOpenBuild,
+  onSaveSelection,
 }: Props) {
   const [xGoalId, setXGoalId] = useState<OptimizationGoalId>(() =>
     initialAxis("optX", "speed"),
@@ -683,6 +685,14 @@ export function ParetoFrontierPanel({
                   }
                 >
                   Apply + inspect in Build Lab
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    onSaveSelection(selected.selections)
+                  }
+                >
+                  Save to portfolio
                 </button>
               </div>
             </div>
