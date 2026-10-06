@@ -1,57 +1,75 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { DRIVETRAIN_BASICS_LESSON } from "@/domain/learning/drivetrain-basics";
+import { useMemo } from "react";
+import { ROAD_R1_COMPONENTS_BY_ID } from "@/domain/bike/road-r1";
 import {
   getDrivetrainKinematics,
   ROAD_R1_DEMO_SPROCKET_TEETH,
 } from "@/engine/learning/drivetrain-math";
-import type { LessonStep } from "@/engine/learning/types";
+import type {
+  InteractiveLesson,
+  LessonChallengeResult,
+} from "@/engine/learning/types";
 
 type LessonPanelProps = {
+  lesson: InteractiveLesson;
   stepIndex: number;
   running: boolean;
   cadenceRpm: number;
   gearIndex: number;
+  challengeResult?: LessonChallengeResult;
   onStepChange: (index: number) => void;
   onRunningChange: (running: boolean) => void;
   onGearChange: (gearIndex: number) => void;
+  onChallengeAnswer: (answerId: string) => void;
+  onFinish: () => void;
   onExit: () => void;
 };
 
 export function LessonPanel({
+  lesson,
   stepIndex,
   running,
   cadenceRpm,
   gearIndex,
+  challengeResult,
   onStepChange,
   onRunningChange,
   onGearChange,
+  onChallengeAnswer,
+  onFinish,
   onExit,
 }: LessonPanelProps) {
-  const [quizAnswer, setQuizAnswer] = useState<string | null>(null);
-  const lesson = DRIVETRAIN_BASICS_LESSON;
-  const step = lesson.steps[stepIndex] as LessonStep;
+  const step = lesson.steps[stepIndex];
   const stats = useMemo(
     () => getDrivetrainKinematics(gearIndex, cadenceRpm),
     [cadenceRpm, gearIndex],
   );
   const lastStep = stepIndex === lesson.steps.length - 1;
+  const challengePassed =
+    !step.challenge || challengeResult?.correct === true;
 
-  useEffect(() => {
-    setQuizAnswer(null);
-  }, [stepIndex]);
+  function feedbackText() {
+    if (!step.challenge || !challengeResult) return null;
 
-  const quizCorrect =
-    step.quiz && quizAnswer
-      ? quizAnswer === step.quiz.correctOptionId
-      : null;
+    if (step.challenge.type === "multiple-choice") {
+      return challengeResult.correct
+        ? step.challenge.explanation
+        : "Try again. Compare the mechanical relationship shown on the bike.";
+    }
+
+    return challengeResult.correct
+      ? step.challenge.successText
+      : step.challenge.retryText;
+  }
 
   return (
     <aside className="lesson-panel" aria-label={lesson.title}>
       <div className="lesson-panel__top">
         <div>
-          <span className="lesson-kicker">Interactive lesson</span>
+          <span className="lesson-kicker">
+            Interactive lesson · {lesson.durationMinutes} min
+          </span>
           <strong>{lesson.title}</strong>
         </div>
         <button
@@ -66,6 +84,9 @@ export function LessonPanel({
 
       <div
         className="lesson-progress"
+        style={{
+          gridTemplateColumns: `repeat(${lesson.steps.length}, 1fr)`,
+        }}
         aria-label={`Step ${stepIndex + 1} of ${lesson.steps.length}`}
       >
         {lesson.steps.map((item, index) => (
@@ -95,25 +116,29 @@ export function LessonPanel({
           <p>{step.keyFact}</p>
         </div>
 
-        <div className="lesson-demo">
-          <div className="lesson-demo__header">
-            <span>Live drivetrain</span>
-            <strong>{cadenceRpm} rpm</strong>
-          </div>
+        {step.demo && (
+          <div className="lesson-demo">
+            <div className="lesson-demo__header">
+              <span>Live drivetrain</span>
+              <strong>{cadenceRpm} rpm</strong>
+            </div>
 
-          <button
-            type="button"
-            className={
-              running
-                ? "lesson-play is-running"
-                : "lesson-play"
-            }
-            onClick={() => onRunningChange(!running)}
-          >
-            <span aria-hidden="true">{running ? "Ⅱ" : "▶"}</span>
-            {running ? "Pause motion" : "Run drivetrain"}
-          </button>
-        </div>
+            <button
+              type="button"
+              className={
+                running
+                  ? "lesson-play is-running"
+                  : "lesson-play"
+              }
+              onClick={() => onRunningChange(!running)}
+            >
+              <span aria-hidden="true">
+                {running ? "Ⅱ" : "▶"}
+              </span>
+              {running ? "Pause motion" : "Run drivetrain"}
+            </button>
+          </div>
+        )}
 
         {step.showRatio && (
           <div className="lesson-ratio">
@@ -170,38 +195,79 @@ export function LessonPanel({
           </div>
         )}
 
-        {step.quiz && (
+        {step.challenge && (
           <div className="lesson-quiz">
-            <span>Check your understanding</span>
-            <p>{step.quiz.question}</p>
-            <div className="lesson-quiz__options">
-              {step.quiz.options.map((option) => (
-                <button
-                  key={option.id}
-                  type="button"
-                  className={
-                    quizAnswer === option.id
-                      ? "lesson-quiz__option is-selected"
-                      : "lesson-quiz__option"
-                  }
-                  onClick={() => setQuizAnswer(option.id)}
-                >
-                  {option.label}
-                </button>
-              ))}
-            </div>
-            {quizAnswer && (
+            <span>
+              {step.challenge.type === "select-component"
+                ? "3D challenge"
+                : "Check your understanding"}
+            </span>
+            <p>{step.challenge.prompt}</p>
+
+            {step.challenge.type === "multiple-choice" ? (
+              <div className="lesson-quiz__options">
+                {step.challenge.options.map((option) => (
+                  <button
+                    key={option.id}
+                    type="button"
+                    className={
+                      challengeResult?.answerId === option.id
+                        ? "lesson-quiz__option is-selected"
+                        : "lesson-quiz__option"
+                    }
+                    onClick={() => onChallengeAnswer(option.id)}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <>
+                <p className="lesson-quiz__instruction">
+                  Tap the component on the bike, or use these accessible
+                  choices:
+                </p>
+                <div className="lesson-quiz__options">
+                  {step.challenge.candidateComponentIds.map(
+                    (componentId) => {
+                      const component =
+                        ROAD_R1_COMPONENTS_BY_ID.get(componentId);
+                      return (
+                        <button
+                          key={componentId}
+                          type="button"
+                          className={
+                            challengeResult?.answerId === componentId
+                              ? "lesson-quiz__option is-selected"
+                              : "lesson-quiz__option"
+                          }
+                          onClick={() =>
+                            onChallengeAnswer(componentId)
+                          }
+                        >
+                          {component?.name ?? componentId}
+                        </button>
+                      );
+                    },
+                  )}
+                </div>
+              </>
+            )}
+
+            {challengeResult && (
               <p
                 className={
-                  quizCorrect
+                  challengeResult.correct
                     ? "lesson-quiz__feedback is-correct"
                     : "lesson-quiz__feedback"
                 }
               >
                 <strong>
-                  {quizCorrect ? "Correct." : "Not quite."}
+                  {challengeResult.correct
+                    ? "Correct."
+                    : "Not quite."}
                 </strong>{" "}
-                {step.quiz.explanation}
+                {feedbackText()}
               </p>
             )}
           </div>
@@ -220,8 +286,9 @@ export function LessonPanel({
         <button
           type="button"
           className="lesson-nav lesson-nav--primary"
+          disabled={!challengePassed}
           onClick={() =>
-            lastStep ? onExit() : onStepChange(stepIndex + 1)
+            lastStep ? onFinish() : onStepChange(stepIndex + 1)
           }
         >
           {lastStep ? "Finish lesson" : "Next →"}

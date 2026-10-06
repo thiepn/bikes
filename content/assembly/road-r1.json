@@ -9,7 +9,11 @@
     {"from":"bike.road.r1.cassette","to":"bike.road.r1.rear-hub","type":"freehub"},
     {"from":"bike.road.r1.rear-hub","to":"bike.road.r1.rear-wheel","type":"bearing"},
     {"from":"bike.road.r1.rear-wheel","to":"bike.road.r1.rear-thru-axle","type":"axle"},
-    {"from":"bike.road.r1.rear-derailleur","to":"bike.road.r1.chain","type":"chain"}
+    {"from":"bike.road.r1.rear-derailleur","to":"bike.road.r1.chain","type":"chain"},
+    {"from":"bike.road.r1.frame","to":"bike.road.r1.headset","type":"bearing"},
+    {"from":"bike.road.r1.headset","to":"bike.road.r1.fork","type":"bearing"},
+    {"from":"bike.road.r1.fork","to":"bike.road.r1.front-caliper","type":"bolted"},
+    {"from":"bike.road.r1.frame","to":"bike.road.r1.rear-caliper","type":"bolted"}
   ],
   "operations": [
     {

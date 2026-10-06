@@ -15,6 +15,7 @@ export const HERO_FOCUS: CameraFocus = {
 const FOCUS_BY_SLUG: Record<string, CameraFocus> = {
   frame: { position: [1.35, 0.95, 1.45], target: [0, 0.58, -0.02], fov: 31 },
   fork: { position: [0.95, 0.82, 1.18], target: [0, 0.56, 0.45], fov: 27 },
+  headset: { position: [0.58, 0.82, 0.72], target: [0, 0.69, 0.36], fov: 18 },
   "front-wheel": { position: [0.92, 0.56, 1.34], target: [0, 0.36, 0.58], fov: 26 },
   "rear-wheel": { position: [0.92, 0.56, -1.34], target: [0, 0.36, -0.58], fov: 26 },
   "front-tire": { position: [0.72, 0.62, 1.15], target: [0, 0.36, 0.58], fov: 24 },
@@ -25,6 +26,8 @@ const FOCUS_BY_SLUG: Record<string, CameraFocus> = {
   "rear-hub": { position: [0.55, 0.46, -0.91], target: [0, 0.36, -0.58], fov: 20 },
   "front-rotor": { position: [0.52, 0.44, 0.9], target: [0, 0.36, 0.58], fov: 19 },
   "rear-rotor": { position: [0.52, 0.44, -0.9], target: [0, 0.36, -0.58], fov: 19 },
+  "front-caliper": { position: [0.52, 0.56, 0.86], target: [0.08, 0.45, 0.54], fov: 18 },
+  "rear-caliper": { position: [0.52, 0.56, -0.86], target: [0.08, 0.45, -0.54], fov: 18 },
   handlebar: { position: [0.82, 1.03, 0.83], target: [0, 0.9, 0.405], fov: 23 },
   stem: { position: [0.62, 0.98, 0.72], target: [0, 0.85, 0.39], fov: 21 },
   saddle: { position: [0.72, 1.02, -0.55], target: [0, 0.855, -0.24], fov: 21 },

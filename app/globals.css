@@ -1416,3 +1416,247 @@ body {
     font-size: 15px;
   }
 }
+
+
+/* P7 learning catalog + reusable challenges */
+.learn-launch.is-active {
+  border-color: rgba(217, 255, 103, 0.38);
+  background: rgba(217, 255, 103, 0.14);
+}
+
+.learning-catalog {
+  position: absolute;
+  z-index: 7;
+  top: 92px;
+  right: clamp(18px, 3vw, 44px);
+  width: min(560px, calc(100vw - 36px));
+  max-height: calc(100dvh - 124px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 24px;
+  background: rgba(8, 11, 15, 0.92);
+  box-shadow: 0 32px 100px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(28px);
+}
+
+.learning-catalog__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+}
+
+.learning-catalog__header h2 {
+  margin: 7px 0 0;
+  font-size: 34px;
+  font-weight: 520;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+
+.learning-catalog__header p {
+  max-width: 410px;
+  margin: 10px 0 0;
+  color: #8d98a3;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.learning-overview {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 16px;
+  padding: 13px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+  color: #7f8a95;
+  font-size: 9px;
+}
+
+.learning-overview strong {
+  color: #edf1f4;
+  font-weight: 650;
+}
+
+.learning-overview > div {
+  grid-column: 1 / -1;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.learning-overview i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left;
+  background: var(--accent);
+}
+
+.learning-list {
+  max-height: calc(100dvh - 285px);
+  overflow-y: auto;
+  padding: 9px;
+  scrollbar-width: thin;
+}
+
+.learning-card {
+  display: grid;
+  grid-template-columns: 34px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 13px 11px;
+  border: 1px solid transparent;
+  border-radius: 15px;
+}
+
+.learning-card + .learning-card {
+  margin-top: 3px;
+}
+
+.learning-card:hover {
+  border-color: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.learning-card.is-complete {
+  background: rgba(217, 255, 103, 0.025);
+}
+
+.learning-card.is-locked {
+  opacity: 0.54;
+}
+
+.learning-card__index {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  color: #77828d;
+  font-size: 8px;
+  font-weight: 750;
+}
+
+.learning-card.is-complete .learning-card__index {
+  border-color: rgba(217, 255, 103, 0.25);
+  color: var(--accent);
+}
+
+.learning-card__body {
+  min-width: 0;
+}
+
+.learning-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #65717d;
+  font-size: 7px;
+  font-weight: 730;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.learning-card h3 {
+  margin: 5px 0 0;
+  color: #e6ebef;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.learning-card p {
+  margin: 5px 0 0;
+  color: #87929d;
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.learning-card__lock,
+.learning-card__score {
+  display: block;
+  margin-top: 6px;
+  color: #747f89;
+  font-size: 8px;
+  line-height: 1.35;
+}
+
+.learning-card__score {
+  color: rgba(217, 255, 103, 0.72);
+}
+
+.learning-card__action {
+  display: inline-flex;
+  min-width: 72px;
+  min-height: 32px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: #cbd2d8;
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.learning-card__action:hover:not(:disabled) {
+  border-color: rgba(217, 255, 103, 0.25);
+  color: var(--accent);
+  background: rgba(217, 255, 103, 0.06);
+}
+
+.learning-card__action:disabled {
+  cursor: default;
+}
+
+.lesson-quiz__instruction {
+  margin-top: -4px !important;
+  color: #78838d !important;
+  font-size: 8px !important;
+}
+
+.lesson-quiz__option:focus-visible,
+.learning-card__action:focus-visible,
+.learn-launch:focus-visible,
+.lesson-nav:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  .learning-catalog {
+    top: 72px;
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    width: auto;
+    max-height: none;
+    border-radius: 18px;
+  }
+
+  .learning-catalog__header {
+    padding: 15px;
+  }
+
+  .learning-catalog__header h2 {
+    font-size: 28px;
+  }
+
+  .learning-list {
+    max-height: calc(100dvh - 245px);
+  }
+
+  .learning-card {
+    grid-template-columns: 28px 1fr;
+  }
+
+  .learning-card__action {
+    grid-column: 2;
+    justify-self: start;
+  }
+}

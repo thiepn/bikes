@@ -284,6 +284,37 @@ export function PrototypeBike(props: PrototypeBikeProps) {
         />
       </SemanticPart>
 
+      <SemanticPart
+        {...semanticProps("bike.road.r1.headset", state, handlers)}
+      >
+        <group position={[0, 0.68, 0.365]} rotation={[Math.PI / 2, 0, 0]}>
+          <mesh>
+            <torusGeometry args={[0.036, 0.008, 12, 40]} />
+            <meshStandardMaterial
+              {...getPartAppearance(
+                "#8e99a3",
+                "bike.road.r1.headset",
+                state,
+              )}
+              metalness={0.82}
+              roughness={0.2}
+            />
+          </mesh>
+          <mesh position={[0, 0, 0.03]}>
+            <torusGeometry args={[0.033, 0.006, 12, 40]} />
+            <meshStandardMaterial
+              {...getPartAppearance(
+                "#aab3bc",
+                "bike.road.r1.headset",
+                state,
+              )}
+              metalness={0.86}
+              roughness={0.18}
+            />
+          </mesh>
+        </group>
+      </SemanticPart>
+
       <SemanticPart {...semanticProps("bike.road.r1.stem", state, handlers)}>
         <Tube
           from={[0, 0.76, 0.34]}
@@ -449,6 +480,37 @@ export function PrototypeBike(props: PrototypeBikeProps) {
                 side={DoubleSide}
               />
             </mesh>
+          </SemanticPart>
+        );
+      })}
+
+      {(["front", "rear"] as const).map((side) => {
+        const id = `bike.road.r1.${side}-caliper`;
+        const caliperPosition: Point =
+          side === "front"
+            ? [0.085, 0.455, 0.535]
+            : [0.085, 0.455, -0.535];
+
+        return (
+          <SemanticPart key={id} {...semanticProps(id, state, handlers)}>
+            <group position={caliperPosition} rotation={[0.1, 0, 0.12]}>
+              <mesh castShadow>
+                <boxGeometry args={[0.055, 0.075, 0.04]} />
+                <meshStandardMaterial
+                  {...getPartAppearance("#303840", id, state)}
+                  metalness={0.72}
+                  roughness={0.26}
+                />
+              </mesh>
+              <mesh position={[0.018, -0.026, 0]}>
+                <boxGeometry args={[0.025, 0.025, 0.05]} />
+                <meshStandardMaterial
+                  {...getPartAppearance("#6f7a84", id, state)}
+                  metalness={0.78}
+                  roughness={0.24}
+                />
+              </mesh>
+            </group>
           </SemanticPart>
         );
       })}

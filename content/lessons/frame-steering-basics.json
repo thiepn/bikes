@@ -1,0 +1,59 @@
+{
+  "id": "frame-steering-basics",
+  "title": "Frame and steering fundamentals",
+  "summary": "Understand the structural frame, steering fork, stem and headset as one connected control system.",
+  "systemId": "steering",
+  "difficulty": "beginner",
+  "durationMinutes": 4,
+  "prerequisiteLessonIds": [],
+  "steps": [
+    {
+      "id": "frame-structure",
+      "eyebrow": "01 · Structure",
+      "title": "The frame locates the bicycle's major systems.",
+      "body": "The frame holds the wheels, crank, saddle and steering assembly in defined geometric relationships while carrying rider and road loads.",
+      "keyFact": "Frame geometry changes handling because it changes where those systems are positioned relative to each other.",
+      "focusComponentId": "bike.road.r1.frame",
+      "highlightComponentIds": ["bike.road.r1.frame"],
+      "inspectionMode": "normal"
+    },
+    {
+      "id": "fork-steering",
+      "eyebrow": "02 · Fork",
+      "title": "The fork holds the front wheel and steers it.",
+      "body": "The fork connects the front wheel to the steering axis. Turning the handlebar rotates the fork around that axis.",
+      "keyFact": "The fork is both a structural wheel support and part of the steering mechanism.",
+      "focusComponentId": "bike.road.r1.fork",
+      "highlightComponentIds": ["bike.road.r1.fork","bike.road.r1.front-wheel"],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "headset-bearing",
+      "eyebrow": "03 · Bearing",
+      "title": "The headset lets the fork rotate in the frame.",
+      "body": "The headset is a bearing assembly around the steering axis. It carries steering loads while allowing smooth rotation between fork and frame.",
+      "keyFact": "Too loose produces play; too tight or damaged bearings make steering rough.",
+      "focusComponentId": "bike.road.r1.headset",
+      "highlightComponentIds": ["bike.road.r1.headset","bike.road.r1.fork","bike.road.r1.stem"],
+      "inspectionMode": "xray"
+    },
+    {
+      "id": "identify-headset",
+      "eyebrow": "04 · Identify",
+      "title": "Find the steering bearing.",
+      "body": "Identify the component that sits at the steering axis and allows fork rotation relative to the frame.",
+      "keyFact": "The headset is the steering bearing system.",
+      "focusComponentId": "bike.road.r1.stem",
+      "highlightComponentIds": [],
+      "inspectionMode": "normal",
+      "challenge": {
+        "type": "select-component",
+        "prompt": "Which component is the steering bearing assembly?",
+        "candidateComponentIds": ["bike.road.r1.stem","bike.road.r1.headset","bike.road.r1.fork"],
+        "correctComponentIds": ["bike.road.r1.headset"],
+        "successText": "Correct. The headset is the bearing system between frame and fork.",
+        "retryText": "That component is part of steering, but it is not the bearing assembly."
+      }
+    }
+  ]
+}

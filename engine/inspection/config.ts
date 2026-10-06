@@ -38,18 +38,21 @@ const XRAY_SHELL_IDS = new Set([
 const EXPLOSION_VECTORS: Record<string, Vector3Tuple> = {
   "bike.road.r1.frame": [0, 0, 0],
   "bike.road.r1.fork": [0, 0.05, 0.2],
+  "bike.road.r1.headset": [0, 0.12, 0.08],
 
   "bike.road.r1.front-wheel": [0, 0, 0.28],
   "bike.road.r1.front-tire": [0, 0, 0.32],
   "bike.road.r1.front-rim": [0.08, 0, 0.3],
   "bike.road.r1.front-hub": [0.16, 0, 0.27],
   "bike.road.r1.front-rotor": [0.25, 0, 0.26],
+  "bike.road.r1.front-caliper": [0.2, 0.12, 0.18],
 
   "bike.road.r1.rear-wheel": [0, 0, -0.28],
   "bike.road.r1.rear-tire": [0, 0, -0.32],
   "bike.road.r1.rear-rim": [0.08, 0, -0.3],
   "bike.road.r1.rear-hub": [0.16, 0, -0.27],
   "bike.road.r1.rear-rotor": [0.25, 0, -0.26],
+  "bike.road.r1.rear-caliper": [0.2, 0.12, -0.18],
 
   "bike.road.r1.handlebar": [0, 0.24, 0.22],
   "bike.road.r1.stem": [0, 0.16, 0.15],

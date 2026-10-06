@@ -4,13 +4,25 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { ACESFilmicToneMapping, SRGBColorSpace } from "three";
 import { ROAD_R1 } from "@/domain/bike/road-r1";
-import { DRIVETRAIN_BASICS_LESSON } from "@/domain/learning/drivetrain-basics";
+import {
+  LESSON_CATALOG,
+  getLessonById,
+} from "@/domain/learning/catalog";
 import { isCalibrationComponent } from "@/engine/interaction/calibration-components";
 import type { InspectionMode } from "@/engine/inspection/types";
+import {
+  calculateLessonScore,
+  isLessonCompleted,
+} from "@/engine/learning/progress";
+import type {
+  LessonChallengeResult,
+} from "@/engine/learning/types";
 import { getStoryVisualState } from "@/engine/story/config";
 import type { ExperienceMode } from "@/engine/story/types";
 import { CinematicStory } from "@/components/story/CinematicStory";
+import { LearningCatalog } from "@/components/learning/LearningCatalog";
 import { LessonPanel } from "@/components/learning/LessonPanel";
+import { useLearningProgress } from "@/components/learning/useLearningProgress";
 import { BikeScene } from "./BikeScene";
 import { ComponentPanel } from "./ComponentPanel";
 import { InspectionToolbar } from "./InspectionToolbar";
@@ -38,13 +50,34 @@ export function BikeViewer() {
   const [isolated, setIsolated] = useState(false);
   const [mode, setMode] = useState<InspectionMode>("normal");
   const [explosionAmount, setExplosionAmount] = useState(0);
+  const [learningOpen, setLearningOpen] = useState(false);
 
+  const [activeLessonId, setActiveLessonId] = useState(
+    LESSON_CATALOG[0].id,
+  );
   const [lessonStepIndex, setLessonStepIndex] = useState(0);
-  const [lessonRunning, setLessonRunning] = useState(true);
+  const [lessonRunning, setLessonRunning] = useState(false);
   const [lessonGearIndex, setLessonGearIndex] = useState(2);
+  const [challengeResults, setChallengeResults] = useState<
+    Record<string, LessonChallengeResult>
+  >({});
 
-  const lesson = DRIVETRAIN_BASICS_LESSON;
-  const lessonStep = lesson.steps[lessonStepIndex];
+  const {
+    store: learningProgress,
+    hydrated: progressHydrated,
+    markStarted,
+    savePosition,
+    completeLesson,
+  } = useLearningProgress();
+
+  const lesson =
+    getLessonById(activeLessonId) ?? LESSON_CATALOG[0];
+  const safeLessonStepIndex = Math.min(
+    lesson.steps.length - 1,
+    Math.max(0, lessonStepIndex),
+  );
+  const lessonStep = lesson.steps[safeLessonStepIndex];
+  const challengeResult = challengeResults[lessonStep.id];
   const storyVisual = getStoryVisualState(storyProgress);
 
   const sceneMode =
@@ -67,10 +100,15 @@ export function BikeViewer() {
         : selectedId;
   const sceneHighlightedIds =
     experienceMode === "lesson"
-      ? lessonStep.highlightComponentIds
+      ? [
+          ...lessonStep.highlightComponentIds,
+          ...(challengeResult?.correct
+            ? [challengeResult.answerId]
+            : []),
+        ]
       : [];
   const drivetrainDemo =
-    experienceMode === "lesson"
+    experienceMode === "lesson" && lessonStep.demo
       ? {
           running: lessonRunning,
           cadenceRpm: lessonStep.demo.cadenceRpm,
@@ -128,32 +166,121 @@ export function BikeViewer() {
     }
   }, []);
 
-  const changeLessonStep = useCallback((nextIndex: number) => {
-    const index = Math.min(
-      lesson.steps.length - 1,
-      Math.max(0, nextIndex),
+  const configureLessonStep = useCallback(
+    (nextLessonId: string, nextIndex: number) => {
+      const nextLesson = getLessonById(nextLessonId);
+      if (!nextLesson) return;
+
+      const index = Math.min(
+        nextLesson.steps.length - 1,
+        Math.max(0, nextIndex),
+      );
+      const step = nextLesson.steps[index];
+
+      setActiveLessonId(nextLesson.id);
+      setLessonStepIndex(index);
+      setLessonRunning(step.demo?.running ?? false);
+      setLessonGearIndex(step.demo?.gearIndex ?? 2);
+    },
+    [],
+  );
+
+  const changeLessonStep = useCallback(
+    (nextIndex: number) => {
+      configureLessonStep(lesson.id, nextIndex);
+      savePosition(lesson.id, nextIndex);
+    },
+    [configureLessonStep, lesson.id, savePosition],
+  );
+
+  const startLesson = useCallback(
+    (lessonId: string, requestedStep = 0) => {
+      const nextLesson = getLessonById(lessonId);
+      if (!nextLesson) return;
+
+      const locked = nextLesson.prerequisiteLessonIds.some(
+        (prerequisiteId) =>
+          !isLessonCompleted(learningProgress, prerequisiteId),
+      );
+      if (locked) return;
+
+      setSelectedId(null);
+      setHoveredId(null);
+      setIsolated(false);
+      setChallengeResults({});
+      configureLessonStep(nextLesson.id, requestedStep);
+      markStarted(nextLesson.id, requestedStep);
+      setLearningOpen(false);
+      setExperienceMode("lesson");
+    },
+    [
+      configureLessonStep,
+      learningProgress,
+      markStarted,
+    ],
+  );
+
+  const answerLessonChallenge = useCallback(
+    (answerId: string) => {
+      const challenge = lessonStep.challenge;
+      if (!challenge) return;
+
+      const correct =
+        challenge.type === "multiple-choice"
+          ? answerId === challenge.correctOptionId
+          : challenge.correctComponentIds.includes(answerId);
+
+      setChallengeResults((current) => {
+        const existing = current[lessonStep.id];
+        if (existing?.correct) return current;
+
+        return {
+          ...current,
+          [lessonStep.id]: {
+            answerId,
+            correct,
+            attempts: (existing?.attempts ?? 0) + 1,
+          },
+        };
+      });
+    },
+    [lessonStep],
+  );
+
+  const finishLesson = useCallback(() => {
+    const challengeStepIds = lesson.steps
+      .filter((step) => Boolean(step.challenge))
+      .map((step) => step.id);
+    const score = calculateLessonScore(
+      challengeResults,
+      challengeStepIds,
     );
-    const step = lesson.steps[index];
 
-    setLessonStepIndex(index);
-    setLessonRunning(step.demo.running);
-    setLessonGearIndex(step.demo.gearIndex);
-  }, [lesson.steps]);
-
-  const startLesson = useCallback(() => {
+    completeLesson(
+      lesson.id,
+      lesson.steps.length - 1,
+      score,
+    );
+    setExperienceMode("explore");
+    setLearningOpen(true);
     setSelectedId(null);
     setHoveredId(null);
     setIsolated(false);
-    changeLessonStep(0);
-    setExperienceMode("lesson");
-  }, [changeLessonStep]);
+  }, [
+    challengeResults,
+    completeLesson,
+    lesson.id,
+    lesson.steps,
+  ]);
 
   const exitLesson = useCallback(() => {
+    savePosition(lesson.id, safeLessonStepIndex);
     setExperienceMode("explore");
+    setLearningOpen(true);
     setSelectedId(null);
     setHoveredId(null);
     setIsolated(false);
-  }, []);
+  }, [lesson.id, safeLessonStepIndex, savePosition]);
 
   const enterExplore = useCallback(() => {
     setMode(storyVisual.inspectionMode);
@@ -168,6 +295,7 @@ export function BikeViewer() {
     setSelectedId(null);
     setHoveredId(null);
     setIsolated(false);
+    setLearningOpen(false);
     setMode("normal");
     setExplosionAmount(0);
     setStoryProgress(0);
@@ -189,24 +317,31 @@ export function BikeViewer() {
     const slug = url.searchParams.get("part");
     const view = url.searchParams.get("view") as InspectionMode | null;
     const explode = Number(url.searchParams.get("explode"));
-    const lessonId = url.searchParams.get("lesson");
+    const requestedLessonId = url.searchParams.get("lesson");
     const requestedStep = Number(url.searchParams.get("step"));
-    const lessonDeepLink = lessonId === lesson.id;
+    const requestedLesson = getLessonById(requestedLessonId);
+    const lessonDeepLink = Boolean(requestedLesson);
     const hasDeepLink = Boolean(slug || view || lessonDeepLink);
 
     if (hasDeepLink) {
       setExperienceMode(lessonDeepLink ? "lesson" : "explore");
     }
 
-    if (lessonDeepLink) {
+    if (requestedLesson) {
       const index =
         Number.isFinite(requestedStep) && requestedStep >= 1
-          ? Math.min(lesson.steps.length - 1, requestedStep - 1)
+          ? Math.min(
+              requestedLesson.steps.length - 1,
+              requestedStep - 1,
+            )
           : 0;
-      const step = lesson.steps[index];
+      const step = requestedLesson.steps[index];
+
+      setActiveLessonId(requestedLesson.id);
       setLessonStepIndex(index);
-      setLessonRunning(step.demo.running);
-      setLessonGearIndex(step.demo.gearIndex);
+      setLessonRunning(step.demo?.running ?? false);
+      setLessonGearIndex(step.demo?.gearIndex ?? 2);
+      setChallengeResults({});
       return;
     }
 
@@ -228,7 +363,7 @@ export function BikeViewer() {
         );
       }
     }
-  }, [lesson.id, lesson.steps]);
+  }, []);
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -238,14 +373,38 @@ export function BikeViewer() {
       url.searchParams.delete("view");
       url.searchParams.delete("explode");
       url.searchParams.set("lesson", lesson.id);
-      url.searchParams.set("step", String(lessonStepIndex + 1));
+      url.searchParams.set(
+        "step",
+        String(safeLessonStepIndex + 1),
+      );
     } else {
       url.searchParams.delete("lesson");
       url.searchParams.delete("step");
     }
 
     window.history.replaceState({}, "", url);
-  }, [experienceMode, lesson.id, lessonStepIndex]);
+  }, [
+    experienceMode,
+    lesson.id,
+    safeLessonStepIndex,
+  ]);
+
+  useEffect(() => {
+    if (
+      experienceMode !== "lesson" ||
+      !progressHydrated
+    ) {
+      return;
+    }
+
+    markStarted(lesson.id, safeLessonStepIndex);
+  }, [
+    experienceMode,
+    lesson.id,
+    markStarted,
+    progressHydrated,
+    safeLessonStepIndex,
+  ]);
 
   useEffect(() => {
     if (experienceMode !== "explore") return;
@@ -283,7 +442,11 @@ export function BikeViewer() {
       const key = event.key.toLowerCase();
 
       if (event.key === "Escape") {
-        select(null);
+        if (learningOpen) {
+          setLearningOpen(false);
+        } else {
+          select(null);
+        }
         return;
       }
 
@@ -302,7 +465,20 @@ export function BikeViewer() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [changeMode, experienceMode, select, selectedId]);
+  }, [
+    changeMode,
+    experienceMode,
+    learningOpen,
+    select,
+    selectedId,
+  ]);
+
+  const lessonSelectHandler =
+    lessonStep.challenge?.type === "select-component"
+      ? (componentId: string | null) => {
+          if (componentId) answerLessonChallenge(componentId);
+        }
+      : () => {};
 
   return (
     <section
@@ -334,10 +510,16 @@ export function BikeViewer() {
           {experienceMode === "explore" && (
             <button
               type="button"
-              className="learn-launch"
-              onClick={startLesson}
+              className={
+                learningOpen
+                  ? "learn-launch is-active"
+                  : "learn-launch"
+              }
+              onClick={() =>
+                setLearningOpen((value) => !value)
+              }
             >
-              Learn drivetrain
+              Learn
               <span aria-hidden="true">→</span>
             </button>
           )}
@@ -345,7 +527,7 @@ export function BikeViewer() {
             {experienceMode === "story"
               ? "Cinematic introduction"
               : experienceMode === "lesson"
-                ? "Lesson · drivetrain"
+                ? `Lesson · ${safeLessonStepIndex + 1}/${lesson.steps.length}`
                 : "Explore"}
           </div>
         </div>
@@ -390,7 +572,11 @@ export function BikeViewer() {
           highlightedIds={sceneHighlightedIds}
           drivetrainDemo={drivetrainDemo}
           onSelect={
-            experienceMode === "explore" ? select : () => {}
+            experienceMode === "explore"
+              ? select
+              : experienceMode === "lesson"
+                ? lessonSelectHandler
+                : () => {}
           }
           onHover={
             experienceMode === "explore" ? setHoveredId : () => {}
@@ -409,14 +595,25 @@ export function BikeViewer() {
         />
       ) : experienceMode === "lesson" ? (
         <LessonPanel
-          stepIndex={lessonStepIndex}
+          lesson={lesson}
+          stepIndex={safeLessonStepIndex}
           running={lessonRunning}
-          cadenceRpm={lessonStep.demo.cadenceRpm}
+          cadenceRpm={lessonStep.demo?.cadenceRpm ?? 0}
           gearIndex={lessonGearIndex}
+          challengeResult={challengeResult}
           onStepChange={changeLessonStep}
           onRunningChange={setLessonRunning}
           onGearChange={setLessonGearIndex}
+          onChallengeAnswer={answerLessonChallenge}
+          onFinish={finishLesson}
           onExit={exitLesson}
+        />
+      ) : learningOpen ? (
+        <LearningCatalog
+          progress={learningProgress}
+          hydrated={progressHydrated}
+          onStartLesson={startLesson}
+          onClose={() => setLearningOpen(false)}
         />
       ) : (
         <>
