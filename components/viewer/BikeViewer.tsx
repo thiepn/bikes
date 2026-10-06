@@ -9,9 +9,9 @@ import {
   getBikeBySlug,
 } from "@/domain/bike/catalog";
 import {
-  canPerformOperation,
-  getAssemblyOperation,
-} from "@/domain/assembly/road-r1";
+  canPerformAssemblyOperation,
+  getAssemblyOperationForBike,
+} from "@/domain/assembly/catalog";
 import {
   LESSON_CATALOG,
   getLessonById,
@@ -134,11 +134,14 @@ export function BikeViewer() {
       .map((step) => step.operationId as string),
   ]);
   const currentWorkshopOperation = workshopStep.operationId
-    ? getAssemblyOperation(workshopStep.operationId)
+    ? getAssemblyOperationForBike(
+        procedure.bikeId,
+        workshopStep.operationId,
+      )
     : null;
   const canCompleteWorkshopStep =
     !currentWorkshopOperation ||
-    canPerformOperation(
+    canPerformAssemblyOperation(
       currentWorkshopOperation,
       workshopCompletedOperations,
     );
@@ -348,7 +351,7 @@ export function BikeViewer() {
       );
       if (locked) return;
 
-      setActiveBikeId(ROAD_R1.id);
+      setActiveBikeId(nextLesson.bikeId);
       setSelectedId(null);
       setHoveredId(null);
       setIsolated(false);
@@ -459,7 +462,7 @@ export function BikeViewer() {
       const existing = workshopProgress.procedures[nextProcedure.id];
       const completedIds = existing?.completedStepIds ?? [];
 
-      setActiveBikeId(ROAD_R1.id);
+      setActiveBikeId(nextProcedure.bikeId);
       setSelectedId(null);
       setHoveredId(null);
       setIsolated(false);
@@ -619,7 +622,7 @@ export function BikeViewer() {
     const requestedStep = Number(url.searchParams.get("step"));
 
     if (requestedProcedure) {
-      setActiveBikeId(ROAD_R1.id);
+      setActiveBikeId(requestedProcedure.bikeId);
       const index =
         Number.isFinite(requestedStep) && requestedStep >= 1
           ? Math.min(
@@ -635,7 +638,7 @@ export function BikeViewer() {
     }
 
     if (requestedLesson) {
-      setActiveBikeId(ROAD_R1.id);
+      setActiveBikeId(requestedLesson.bikeId);
       const index =
         Number.isFinite(requestedStep) && requestedStep >= 1
           ? Math.min(
@@ -706,7 +709,12 @@ export function BikeViewer() {
     const url = new URL(window.location.href);
 
     if (experienceMode === "lesson") {
-      url.searchParams.delete("bike");
+      if (lesson.bikeId === ROAD_R1.id) {
+        url.searchParams.delete("bike");
+      } else {
+        const owner = getBikeById(lesson.bikeId);
+        if (owner) url.searchParams.set("bike", owner.slug);
+      }
       url.searchParams.delete("part");
       url.searchParams.delete("view");
       url.searchParams.delete("explode");
@@ -717,7 +725,12 @@ export function BikeViewer() {
         String(safeLessonStepIndex + 1),
       );
     } else if (experienceMode === "workshop") {
-      url.searchParams.delete("bike");
+      if (procedure.bikeId === ROAD_R1.id) {
+        url.searchParams.delete("bike");
+      } else {
+        const owner = getBikeById(procedure.bikeId);
+        if (owner) url.searchParams.set("bike", owner.slug);
+      }
       url.searchParams.delete("part");
       url.searchParams.delete("view");
       url.searchParams.delete("explode");
@@ -736,7 +749,9 @@ export function BikeViewer() {
     window.history.replaceState({}, "", url);
   }, [
     experienceMode,
+    lesson.bikeId,
     lesson.id,
+    procedure.bikeId,
     procedure.id,
     safeLessonStepIndex,
     safeWorkshopStepIndex,
@@ -1039,6 +1054,7 @@ export function BikeViewer() {
         />
       ) : learningOpen ? (
         <LearningCatalog
+          bikeId={activeBike.id}
           progress={learningProgress}
           hydrated={progressHydrated}
           onStartLesson={startLesson}
@@ -1046,6 +1062,7 @@ export function BikeViewer() {
         />
       ) : workshopOpen ? (
         <WorkshopCatalog
+          bikeId={activeBike.id}
           progress={workshopProgress}
           hydrated={workshopHydrated}
           onStartProcedure={startWorkshopProcedure}
