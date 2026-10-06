@@ -87,6 +87,10 @@ const OPTIMIZER_QUERY_KEYS = [
   "optChanges",
   "optGuard",
   "optPreserve",
+  "optView",
+  "optX",
+  "optY",
+  "optPoint",
 ] as const;
 
 const PHYSICS_QUERY_KEYS = [
