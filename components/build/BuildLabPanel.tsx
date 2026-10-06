@@ -8,10 +8,6 @@ import {
   getCompatibilityProfile,
   getInstalledReferencePart,
 } from "@/domain/compatibility/catalog";
-import {
-  decodeBuildSelections,
-  encodeBuildSelections,
-} from "@/domain/compatibility/build-state";
 import { evaluateCompatibility } from "@/domain/compatibility/evaluate";
 import type {
   CompatibilityPart,
@@ -21,32 +17,11 @@ import type {
 
 type Props = {
   bikeId: string;
+  selections: Readonly<Record<string, string>>;
+  onSelectionsChange: (selections: Record<string, string>) => void;
   onPreviewComponent: (componentId: string) => void;
   onClose: () => void;
 };
-
-function initialSelections(bikeId: string) {
-  if (typeof window === "undefined") return {};
-
-  const profile = getCompatibilityProfile(bikeId);
-  const raw = decodeBuildSelections(
-    new URL(window.location.href).searchParams.get("buildParts"),
-  );
-  if (!profile) return {};
-
-  const safe: Record<string, string> = {};
-  for (const [slotId, partId] of Object.entries(raw)) {
-    const slot = profile.slots.find((item) => item.id === slotId);
-    const part = getCompatibilityPart(partId);
-    if (!slot || !part) continue;
-
-    const result = evaluateCompatibility(slot, part);
-    if (result.status === "compatible") {
-      safe[slotId] = part.id;
-    }
-  }
-  return safe;
-}
 
 function statusLabel(result: CompatibilityResult) {
   if (result.status === "compatible") return "Compatible";
@@ -95,6 +70,8 @@ function CandidateCard({
 
 export function BuildLabPanel({
   bikeId,
+  selections,
+  onSelectionsChange,
   onPreviewComponent,
   onClose,
 }: Props) {
@@ -103,9 +80,6 @@ export function BuildLabPanel({
 
   const [slotId, setSlotId] = useState<CompatibilitySlotId>(
     profile?.slots[0]?.id ?? "front-wheel",
-  );
-  const [selections, setSelections] = useState<Record<string, string>>(
-    () => initialSelections(bikeId),
   );
   const [inspectedPartId, setInspectedPartId] = useState<string | null>(
     null,
@@ -172,18 +146,6 @@ export function BuildLabPanel({
     onPreviewComponent(slot.hostComponentId);
   }, [onPreviewComponent, slot]);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const url = new URL(window.location.href);
-    url.searchParams.set("build", "1");
-
-    const encoded = encodeBuildSelections(selections);
-    if (encoded) url.searchParams.set("buildParts", encoded);
-    else url.searchParams.delete("buildParts");
-
-    window.history.replaceState({}, "", url);
-  }, [selections]);
 
   if (!bike || !profile || !slot) return null;
 
@@ -191,15 +153,13 @@ export function BuildLabPanel({
     if (!inspected || inspected.result.status !== "compatible") return;
 
     const installed = getInstalledReferencePart(bikeId, slot.id);
-    setSelections((current) => {
-      const next = { ...current };
-      if (installed?.id === inspected.part.id) {
-        delete next[slot.id];
-      } else {
-        next[slot.id] = inspected.part.id;
-      }
-      return next;
-    });
+    const next = { ...selections };
+    if (installed?.id === inspected.part.id) {
+      delete next[slot.id];
+    } else {
+      next[slot.id] = inspected.part.id;
+    }
+    onSelectionsChange(next);
   };
 
   return (
@@ -211,8 +171,9 @@ export function BuildLabPanel({
           </span>
           <h2>Does it actually fit?</h2>
           <p>
-            Build a logical draft from explicit Bike Atlas interfaces.
-            Every decision shows why it passes or fails.
+            Build a compatibility-checked draft and preview donor geometry
+            directly on the host bike. Every decision still shows why it
+            passes or fails.
           </p>
         </div>
         <button
@@ -292,7 +253,7 @@ export function BuildLabPanel({
                 type="button"
                 className="build-reset-all"
                 onClick={() => {
-                  setSelections({});
+                  onSelectionsChange({});
                   setInspectedPartId(null);
                 }}
               >
@@ -401,11 +362,9 @@ export function BuildLabPanel({
                     type="button"
                     className="build-reset-slot"
                     onClick={() => {
-                      setSelections((current) => {
-                        const next = { ...current };
-                        delete next[slot.id];
-                        return next;
-                      });
+                      const next = { ...selections };
+                      delete next[slot.id];
+                      onSelectionsChange(next);
                       setInspectedPartId(installedPart?.id ?? null);
                     }}
                   >
@@ -425,8 +384,9 @@ export function BuildLabPanel({
               cable/hose routing, warranty requirements or legal rules.
             </p>
             <p>
-              P21 stores a logical draft only. Cross-bike donor meshes are
-              not transplanted into the 3D scene yet.
+              P22 renders normalized donor proxy geometry at authored host
+              attachment points. These proxies prove assembly transforms;
+              they are not production manufacturer meshes.
             </p>
           </section>
         </main>
