@@ -3229,3 +3229,48 @@ body {
   font-size: 7px;
   line-height: 1.25;
 }
+
+
+/* P14 three-bike shell */
+@media (max-width: 760px) {
+  .viewer--explore .topbar {
+    padding-right: 8px;
+    padding-left: 10px;
+  }
+
+  .viewer--explore .brand {
+    flex: 0 0 auto;
+  }
+
+  .viewer--explore .brand strong {
+    font-size: 11px;
+  }
+
+  .viewer--explore .topbar-actions {
+    min-width: 0;
+    flex: 1 1 auto;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .viewer--explore .topbar-actions::-webkit-scrollbar {
+    display: none;
+  }
+
+  .viewer--explore .bike-switcher,
+  .viewer--explore .finder-launch,
+  .viewer--explore .comparison-launch,
+  .viewer--explore .learn-launch,
+  .viewer--explore .workshop-launch,
+  .viewer--explore .knowledge-launch {
+    flex: 0 0 auto;
+  }
+
+  .viewer--explore .bike-switcher__item {
+    padding-right: 6px;
+    padding-left: 6px;
+  }
+}
