@@ -1,54 +1,63 @@
 # Bike Atlas
 
-Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning and maintenance.
+Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning, maintenance and use-case fit.
 
 ## Current phase
 
-**P12 — Bike Comparison, Geometry & Cross-Archetype Engineering Views**
+**P13 — Bike Finder, Use-Case Profiles & Explainable Recommendation Engine**
 
-Bike Atlas currently contains two complete content families:
+Bike Atlas now has an interactive **Find my bike** workflow.
 
-- **Road R1** — performance-road reference archetype.
-- **MTB M1** — full-suspension trail reference archetype.
+The Finder asks about:
 
-P12 adds a dedicated **Compare** workspace with:
+- riding surface;
+- speed vs control priority;
+- normal ride distance;
+- climbing;
+- cargo;
+- maintenance tolerance;
+- weather.
 
-- Bike Atlas reference geometry;
-- Road ↔ MTB signed dimension deltas;
-- component-architecture differences;
-- bike swapping;
-- comparison deep links;
-- an optional synchronized translucent 3D ghost overlay.
+Those answers are converted into explicit demands across ten capability traits and compared with the current Bike Atlas archetypes.
 
-Current reference differences from Road R1 to MTB M1 include:
+Current profiles:
+
+- **Road R1** — paved/distance efficiency, direct handling and lower suspension-service burden.
+- **MTB M1** — technical terrain, suspension, rough-surface control and mixed-surface capability.
+
+The result includes:
+
+- 0–100 fit score;
+- Strong / Good / Closest current match language;
+- reasons the bike fits;
+- unmet needs;
+- always-visible platform trade-offs;
+- the second-ranked alternative;
+- direct **Explore** and **Compare** actions.
+
+The engine does not penalize a bike merely for having extra capability. Only weighted shortfalls against requested needs reduce its score.
+
+If the current catalog cannot satisfy an important requirement, Bike Atlas says so instead of inventing a recommendation.
+
+For example, the **Daily utility** preset currently triggers a catalog-gap warning because neither Road R1 nor MTB M1 has meaningful cargo utility.
+
+Current use-case presets:
 
 ```text
-wheelbase       +243 mm
-reach            +80 mm
-stack            +70 mm
-head angle        -8.7°
-seat angle        +3.5°
-chainstay         +30 mm
-BB drop           -37 mm
-tire width        +31 mm
-handlebar        +360 mm
-front travel     +150 mm
-rear travel      +140 mm
+Fast road
+Mixed exploration
+Trail riding
+Technical trail
+Daily utility
 ```
 
-These values describe Bike Atlas's generic fictional reference archetypes. They are not manufacturer sizing, fit advice or measurements from the temporary procedural meshes.
-
-Example comparison links:
+Complete Finder results can be shared with a versioned URL:
 
 ```text
-/?compare=mtb-m1&overlay=1
-/?bike=mtb-m1&compare=road-r1&overlay=1
-/?compare=mtb-m1&overlay=0
+/?finder=v1:paved:speed:long:rolling:none:normal:fair
 ```
 
-The ghost model shares the same 3D camera but is translucent and non-interactive, so the primary bike retains normal semantic selection.
-
-P12 also fixes the P10 bike-switch URL cleanup bug.
+P13 is designed so future city, gravel, trekking, cargo, touring, folding and electric-bike archetypes can enter the recommendation system by adding a capability profile rather than rewriting the questionnaire.
 
 Run all domain checks with:
 
@@ -56,4 +65,4 @@ Run all domain checks with:
 npm run validate:domain
 ```
 
-See `docs/P1.md` through `docs/P12.md`.
+See `docs/P1.md` through `docs/P13.md`.
