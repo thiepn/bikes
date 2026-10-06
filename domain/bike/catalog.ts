@@ -1,8 +1,9 @@
 import { ROAD_R1 } from "./road-r1";
 import { MTB_M1 } from "./mtb-m1";
+import { URBAN_U1 } from "./urban-u1";
 import type { BikeComponent } from "./types";
 
-export const BIKE_CATALOG = [ROAD_R1, MTB_M1] as const;
+export const BIKE_CATALOG = [ROAD_R1, MTB_M1, URBAN_U1] as const;
 
 const BIKES_BY_ID = new Map(
   BIKE_CATALOG.map((bike) => [bike.id, bike]),
