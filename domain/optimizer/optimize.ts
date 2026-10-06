@@ -192,6 +192,7 @@ function measureBuild(
     physics,
     buildScenario("hardpack-gravel", 220, 0),
   );
+  const analysis = analyzeBuild(bikeId, selections);
 
   return {
     bikeMassKg: physics.bikeMassKg,
@@ -204,8 +205,8 @@ function measureBuild(
     gearRangePercent: gearing.rangePercent,
     averageTireWidthMm: getAverageTireWidth(bikeId, selections),
     averageBrakeLeverageRatio:
-      (analyzeBuild(bikeId, selections).metrics.frontBrakeTorqueRatio +
-        analyzeBuild(bikeId, selections).metrics.rearBrakeTorqueRatio) /
+      (analysis.metrics.frontBrakeTorqueRatio +
+        analysis.metrics.rearBrakeTorqueRatio) /
       2,
     barWidthMm: geometry.bar.widthMm,
     saddleToGripDropMm: geometry.fit.saddleToGripDropMm,
@@ -387,7 +388,10 @@ function explanationsFor(
 
       return {
         featureId,
-        label: FEATURE_LABELS[featureId],
+        label:
+          weight < 0 && featureId === "upright"
+            ? "Lower / less upright contact points"
+            : FEATURE_LABELS[featureId],
         value: metricValue(featureId, metrics),
         contribution,
       };
@@ -660,6 +664,7 @@ export function optimizeBuild(
   }
 
   const results: OptimizedBuild[] = [...coherent.values()]
+    .filter((state) => state.score > base.score + 0.05)
     .sort((a, b) => b.score - a.score)
     .slice(0, 8)
     .map((state, index) => ({
@@ -681,6 +686,7 @@ export function optimizeBuild(
       maxChanges: maxDepth,
     },
     baselineMetrics,
+    baselineScore: base.score,
     searchedStates: cache.size,
     coherentStates: coherent.size,
     rejectedByGeometry,
