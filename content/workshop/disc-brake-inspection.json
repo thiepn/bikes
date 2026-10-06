@@ -8,63 +8,86 @@
   "prerequisiteProcedureIds": [],
   "assumedOperationIds": [],
   "tools": [
-    {"id":"clean-light","name":"Bright inspection light","required":false},
-    {"id":"isopropyl","name":"Brake-safe isopropyl alcohol","required":false,"note":"For rotor cleaning only when appropriate."}
+    {
+      "id": "clean-light",
+      "name": "Bright inspection light",
+      "required": false
+    },
+    {
+      "id": "isopropyl",
+      "name": "Brake-safe isopropyl alcohol",
+      "required": false,
+      "note": "For rotor cleaning only when appropriate."
+    }
   ],
   "steps": [
     {
-      "id":"inspect-rotor",
-      "title":"Inspect the rotor",
-      "instruction":"Rotate the wheel slowly and look for visible side-to-side rotor movement, scoring, cracks or obvious heat damage.",
-      "why":"Rotor defects can cause rubbing, poor braking or unsafe operation.",
-      "focusComponentId":"bike.road.r1.front-rotor",
-      "highlightComponentIds":["bike.road.r1.front-rotor"],
-      "inspectionMode":"normal",
-      "explosionAmount":0.1,
-      "tools":["clean-light"],
-      "warning":"Do not touch the braking surface with oily fingers.",
-      "check":"No cracks or obviously unsafe rotor damage are visible.",
-      "removedComponentIds":[]
+      "id": "inspect-rotor",
+      "title": "Inspect the rotor",
+      "instruction": "Rotate the wheel slowly and look for visible side-to-side rotor movement, scoring, cracks or obvious heat damage.",
+      "why": "Rotor defects can cause rubbing, poor braking or unsafe operation.",
+      "focusComponentId": "bike.road.r1.front-rotor",
+      "highlightComponentIds": [
+        "bike.road.r1.front-rotor"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0.1,
+      "tools": [
+        "clean-light"
+      ],
+      "warning": "Do not touch the braking surface with oily fingers.",
+      "check": "No cracks or obviously unsafe rotor damage are visible.",
+      "removedComponentIds": []
     },
     {
-      "id":"inspect-caliper",
-      "title":"Check rotor-to-caliper alignment",
-      "instruction":"Look through the caliper and compare the rotor clearance on both sides. Rotate the wheel and note any repeated contact.",
-      "why":"Unequal clearance or periodic rubbing can indicate caliper misalignment or rotor runout.",
-      "focusComponentId":"bike.road.r1.front-caliper",
-      "highlightComponentIds":["bike.road.r1.front-caliper","bike.road.r1.front-rotor"],
-      "inspectionMode":"xray",
-      "explosionAmount":0.2,
-      "tools":[],
-      "check":"Rotor passes through the caliper without continuous rubbing.",
-      "removedComponentIds":[]
+      "id": "inspect-caliper",
+      "title": "Check rotor-to-caliper alignment",
+      "instruction": "Look through the caliper and compare the rotor clearance on both sides. Rotate the wheel and note any repeated contact.",
+      "why": "Unequal clearance or periodic rubbing can indicate caliper misalignment or rotor runout.",
+      "focusComponentId": "bike.road.r1.front-caliper",
+      "highlightComponentIds": [
+        "bike.road.r1.front-caliper",
+        "bike.road.r1.front-rotor"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.2,
+      "tools": [],
+      "check": "Rotor passes through the caliper without continuous rubbing.",
+      "removedComponentIds": []
     },
     {
-      "id":"contamination",
-      "title":"Check for contamination",
-      "instruction":"Inspect rotor and caliper area for oil, grease or other contamination. Keep lubricants away from pads and rotor.",
-      "why":"Disc-brake friction surfaces are highly sensitive to contamination.",
-      "focusComponentId":"bike.road.r1.front-rotor",
-      "highlightComponentIds":["bike.road.r1.front-rotor","bike.road.r1.front-caliper"],
-      "inspectionMode":"systems",
-      "explosionAmount":0,
-      "tools":[],
-      "warning":"Do not apply chain lubricant, penetrating oil or general-purpose cleaners near the braking surfaces.",
-      "removedComponentIds":[]
+      "id": "contamination",
+      "title": "Check for contamination",
+      "instruction": "Inspect rotor and caliper area for oil, grease or other contamination. Keep lubricants away from pads and rotor.",
+      "why": "Disc-brake friction surfaces are highly sensitive to contamination.",
+      "focusComponentId": "bike.road.r1.front-rotor",
+      "highlightComponentIds": [
+        "bike.road.r1.front-rotor",
+        "bike.road.r1.front-caliper"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0,
+      "tools": [],
+      "warning": "Do not apply chain lubricant, penetrating oil or general-purpose cleaners near the braking surfaces.",
+      "removedComponentIds": []
     },
     {
-      "id":"functional-check",
-      "title":"Perform a controlled functional check",
-      "instruction":"After visual inspection, confirm normal lever feel and braking response in a safe low-speed test before normal riding.",
-      "why":"A static inspection cannot prove braking performance under load.",
-      "focusComponentId":"bike.road.r1.front-rotor",
-      "highlightComponentIds":["bike.road.r1.front-rotor","bike.road.r1.front-caliper"],
-      "inspectionMode":"normal",
-      "explosionAmount":0,
-      "tools":[],
-      "warning":"If braking feels abnormal, stop using the bicycle until the cause is identified or professionally serviced.",
-      "check":"Brake engages predictably and releases without abnormal drag.",
-      "removedComponentIds":[]
+      "id": "functional-check",
+      "title": "Perform a controlled functional check",
+      "instruction": "After visual inspection, confirm normal lever feel and braking response in a safe low-speed test before normal riding.",
+      "why": "A static inspection cannot prove braking performance under load.",
+      "focusComponentId": "bike.road.r1.front-rotor",
+      "highlightComponentIds": [
+        "bike.road.r1.front-rotor",
+        "bike.road.r1.front-caliper"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0,
+      "tools": [],
+      "warning": "If braking feels abnormal, stop using the bicycle until the cause is identified or professionally serviced.",
+      "check": "Brake engages predictably and releases without abnormal drag.",
+      "removedComponentIds": []
     }
-  ]
+  ],
+  "bikeId": "bike.road.r1"
 }
