@@ -29,6 +29,9 @@ const validSlots = new Set([
   "front-tire",
   "rear-tire",
   "handlebar",
+  "stem",
+  "front-rotor",
+  "rear-rotor",
   "seatpost",
   "saddle",
   "left-pedal",
@@ -78,8 +81,8 @@ assert(
   "P21 needs one compatibility profile per current bike.",
 );
 assert(
-  reference.parts.length >= 32,
-  "P21 should retain a useful cross-bike reference part library.",
+  reference.parts.length >= 48,
+  "P22 should retain the expanded cross-bike reference part library.",
 );
 assert(
   new Set(reference.parts.map((part) => part.id)).size ===
@@ -103,7 +106,7 @@ for (const bike of bikes) {
   );
   assert(
     profile.slots.length === validSlots.size,
-    `Each P21 host must retain all nine build slots: ${bike.id}`,
+    `Each P22 host must retain all twelve build slots: ${bike.id}`,
   );
   assert(
     new Set(profile.slots.map((slot) => slot.id)).size ===
@@ -114,7 +117,7 @@ for (const bike of bikes) {
   for (const slot of profile.slots) {
     assert(
       validSlots.has(slot.id),
-      `Unknown P21 build slot: ${bike.id}/${slot.id}`,
+      `Unknown P22 build slot: ${bike.id}/${slot.id}`,
     );
     assert(
       bike.componentIds.has(slot.hostComponentId),
@@ -167,7 +170,7 @@ for (const bike of bikes) {
       const status = evaluate(slot, part);
       assert(
         status !== "unknown",
-        `Authored P21 candidate lacks interface data: ${bike.id}/${slot.id} <- ${part.id}`,
+        `Authored P22 candidate lacks interface data: ${bike.id}/${slot.id} <- ${part.id}`,
       );
     }
   }
@@ -247,6 +250,26 @@ assert(
     "incompatible",
   "MTB M1 must reject the modeled 27.2 mm post in its 31.6 mm host.",
 );
+assert(
+  status("bike.road.r1", "front-rotor", "part.gravel.front-rotor") ===
+    "compatible",
+  "Road R1 should accept the modeled 160 mm center-lock Gravel front rotor.",
+);
+assert(
+  status("bike.road.r1", "front-rotor", "part.urban.front-rotor") ===
+    "incompatible",
+  "Road R1 reference rotor envelope must reject the modeled 180 mm Urban front rotor.",
+);
+assert(
+  status("bike.mtb.m1", "front-rotor", "part.road.front-rotor") ===
+    "incompatible",
+  "MTB M1 must reject the modeled center-lock Road front rotor.",
+);
+assert(
+  status("bike.road.r1", "stem", "part.urban.stem") ===
+    "compatible",
+  "Road R1 and Urban U1 stems should share the modeled clamp interfaces.",
+);
 
 for (const saddlePart of reference.parts.filter(
   (part) => part.slotId === "saddle",
@@ -287,8 +310,8 @@ assert(
   panelText.includes("Does it actually fit?") &&
     panelText.includes("Compatibility explanation") &&
     panelText.includes("Use in draft") &&
-    panelText.includes("P21 stores a logical draft only"),
-  "Build Lab must retain explanations, gated draft application and model boundary.",
+    panelText.includes("P22 renders normalized donor proxy geometry"),
+  "Build Lab must retain explanations, gated draft application and the P22 visual-model boundary.",
 );
 
 const viewerText = await readFile(
@@ -314,5 +337,5 @@ if (errors.length) {
 }
 
 console.log(
-  `✓ P21 compatibility valid: ${reference.profiles.length} hosts, ${validSlots.size} slots per host, ${reference.parts.length} reference parts.`,
+  `✓ P22 compatibility valid: ${reference.profiles.length} hosts, ${validSlots.size} slots per host, ${reference.parts.length} reference parts.`,
 );
