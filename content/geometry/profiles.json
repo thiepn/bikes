@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "notes": [
+    "P24 geometry profiles are fictional Bike Atlas reference archetypes, not manufacturer frame charts.",
+    "Frame dimensions remain fixed; selected components alter the solved bicycle orientation and contact-point geometry.",
+    "Fit output describes contact-point changes and does not prescribe rider sizing."
+  ],
+  "profiles": [
+    {
+      "bikeId": "bike.road.r1",
+      "source": "bike-atlas-reference",
+      "headAngleDeg": 73,
+      "seatTubeAngleDeg": 73.5,
+      "reachMm": 390,
+      "stackMm": 560,
+      "wheelbaseMm": 990,
+      "chainstayMm": 410,
+      "bbDropMm": 72,
+      "forkAxleToCrownMm": 385,
+      "forkOffsetMm": 43,
+      "frontWheelRadiusMm": 335.8,
+      "rearWheelRadiusMm": 335.8,
+      "saddleXFromBbMm": -185,
+      "saddleYFromBbMm": 735,
+      "notes": [
+        "Performance-road reference geometry for comparative education."
+      ]
+    },
+    {
+      "bikeId": "bike.gravel.g1",
+      "source": "bike-atlas-reference",
+      "headAngleDeg": 71.5,
+      "seatTubeAngleDeg": 73.2,
+      "reachMm": 395,
+      "stackMm": 590,
+      "wheelbaseMm": 1040,
+      "chainstayMm": 425,
+      "bbDropMm": 70,
+      "forkAxleToCrownMm": 410,
+      "forkOffsetMm": 50,
+      "frontWheelRadiusMm": 347,
+      "rearWheelRadiusMm": 347,
+      "saddleXFromBbMm": -190,
+      "saddleYFromBbMm": 730,
+      "notes": [
+        "All-road reference geometry with a taller front end and longer wheelbase."
+      ]
+    },
+    {
+      "bikeId": "bike.mtb.m1",
+      "source": "bike-atlas-reference",
+      "headAngleDeg": 65.5,
+      "seatTubeAngleDeg": 76,
+      "reachMm": 455,
+      "stackMm": 625,
+      "wheelbaseMm": 1195,
+      "chainstayMm": 440,
+      "bbDropMm": 35,
+      "forkAxleToCrownMm": 530,
+      "forkOffsetMm": 44,
+      "frontWheelRadiusMm": 367.6,
+      "rearWheelRadiusMm": 367.6,
+      "saddleXFromBbMm": -155,
+      "saddleYFromBbMm": 720,
+      "notes": [
+        "Trail-MTB reference geometry; static un-sagged fork geometry is used in P24."
+      ]
+    },
+    {
+      "bikeId": "bike.urban.u1",
+      "source": "bike-atlas-reference",
+      "headAngleDeg": 70,
+      "seatTubeAngleDeg": 72.5,
+      "reachMm": 375,
+      "stackMm": 625,
+      "wheelbaseMm": 1090,
+      "chainstayMm": 455,
+      "bbDropMm": 65,
+      "forkAxleToCrownMm": 410,
+      "forkOffsetMm": 45,
+      "frontWheelRadiusMm": 343.8,
+      "rearWheelRadiusMm": 343.8,
+      "saddleXFromBbMm": -205,
+      "saddleYFromBbMm": 690,
+      "notes": [
+        "Upright utility reference geometry emphasizing stable contact-point placement."
+      ]
+    }
+  ]
+}
