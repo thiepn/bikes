@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { PerspectiveCamera, Vector3 } from "three";
 import { getComponentFocus } from "@/engine/camera/component-focus";
+import { getExplosionOffset } from "@/engine/inspection/config";
+import type { InspectionMode } from "@/engine/inspection/types";
 
 type OrbitControlsLike = {
   target: Vector3;
@@ -19,7 +21,15 @@ function easeInOutCubic(value: number) {
     : 1 - Math.pow(-2 * value + 2, 3) / 2;
 }
 
-export function CameraRig({ selectedId }: { selectedId: string | null }) {
+export function CameraRig({
+  selectedId,
+  mode,
+  explosionAmount,
+}: {
+  selectedId: string | null;
+  mode: InspectionMode;
+  explosionAmount: number;
+}) {
   const camera = useThree((state) => state.camera);
   const controls = useThree((state) => state.controls) as OrbitControlsLike | null;
 
@@ -27,6 +37,7 @@ export function CameraRig({ selectedId }: { selectedId: string | null }) {
   const startPosition = useRef(new Vector3());
   const startTarget = useRef(new Vector3());
   const startFov = useRef(34);
+  const explodedFocus = mode === "exploded";
 
   useEffect(() => {
     startPosition.current.copy(camera.position);
@@ -39,7 +50,7 @@ export function CameraRig({ selectedId }: { selectedId: string | null }) {
     return () => {
       if (controls) controls.enabled = true;
     };
-  }, [camera, controls, selectedId]);
+  }, [camera, controls, explodedFocus, selectedId]);
 
   useFrame((_, delta) => {
     if (elapsed.current >= DURATION_SECONDS) {
@@ -54,10 +65,18 @@ export function CameraRig({ selectedId }: { selectedId: string | null }) {
 
     const progress = easeInOutCubic(elapsed.current / DURATION_SECONDS);
     const focus = getComponentFocus(selectedId);
+    const offset = new Vector3(
+      ...getExplosionOffset(
+        selectedId ?? "",
+        mode === "exploded" ? explosionAmount : 0,
+      ),
+    );
+    const desiredPosition = new Vector3(...focus.position).add(offset);
+    const desiredTarget = new Vector3(...focus.target).add(offset);
 
     camera.position.lerpVectors(
       startPosition.current,
-      new Vector3(...focus.position),
+      desiredPosition,
       progress,
     );
 
@@ -68,7 +87,7 @@ export function CameraRig({ selectedId }: { selectedId: string | null }) {
 
     const target = new Vector3().lerpVectors(
       startTarget.current,
-      new Vector3(...focus.target),
+      desiredTarget,
       progress,
     );
 
