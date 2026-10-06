@@ -1,13 +1,15 @@
 "use client";
 
 import {
-  WORKSHOP_CATALOG,
   getProcedurePrerequisites,
+  getWorkshopProceduresForBike,
 } from "@/domain/workshop/catalog";
+import { getBikeById } from "@/domain/bike/catalog";
 import { isProcedureCompleted } from "@/engine/workshop/progress";
 import type { WorkshopProgressStore } from "@/engine/workshop/types";
 
 type WorkshopCatalogProps = {
+  bikeId: string;
   progress: WorkshopProgressStore;
   hydrated: boolean;
   onStartProcedure: (procedureId: string, stepIndex: number) => void;
@@ -15,12 +17,15 @@ type WorkshopCatalogProps = {
 };
 
 export function WorkshopCatalog({
+  bikeId,
   progress,
   hydrated,
   onStartProcedure,
   onClose,
 }: WorkshopCatalogProps) {
-  const completed = WORKSHOP_CATALOG.filter((procedure) =>
+  const bike = getBikeById(bikeId);
+  const procedures = getWorkshopProceduresForBike(bikeId);
+  const completed = procedures.filter((procedure) =>
     isProcedureCompleted(progress, procedure.id),
   ).length;
 
@@ -28,11 +33,12 @@ export function WorkshopCatalog({
     <aside className="workshop-catalog" aria-label="Bike Atlas workshop">
       <div className="workshop-catalog__header">
         <div>
-          <span className="workshop-kicker">Workshop</span>
+          <span className="workshop-kicker">Workshop · {bike?.name ?? "Bike Atlas"}</span>
           <h2>Work on the machine.</h2>
           <p>
-            Guided procedures combine mechanical dependencies, tools,
-            warnings and the same interactive 3D bicycle.
+            Guided procedures combine tools, warnings, checks and the same
+            interactive 3D bicycle. Component-specific limits remain tied to
+            manufacturer guidance.
           </p>
         </div>
         <button
@@ -47,13 +53,13 @@ export function WorkshopCatalog({
 
       <div className="workshop-overview">
         <span>
-          <strong>{completed}</strong> / {WORKSHOP_CATALOG.length} completed
+          <strong>{completed}</strong> / {procedures.length} completed
         </span>
-        <span>Road R1</span>
+        <span>{bike?.name ?? bikeId}</span>
       </div>
 
       <div className="workshop-list">
-        {WORKSHOP_CATALOG.map((procedure, index) => {
+        {procedures.map((procedure, index) => {
           const record = progress.procedures[procedure.id];
           const prerequisites = getProcedurePrerequisites(procedure);
           const locked =
