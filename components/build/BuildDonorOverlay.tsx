@@ -313,6 +313,171 @@ function SimpleProxy({
     );
   }
 
+  if (attachment.kind === "fork" && attachment.segments) {
+    return (
+      <group>
+        {attachment.segments.map((segment, index) => (
+          <Tube
+            key={index}
+            from={segment.from}
+            to={segment.to}
+            radius={donor.forkRadius}
+            color={donor.accent}
+          />
+        ))}
+      </group>
+    );
+  }
+
+  if (attachment.kind === "caliper" && attachment.position) {
+    return (
+      <mesh position={attachment.position} castShadow>
+        <boxGeometry args={donor.caliperSize} />
+        <meshStandardMaterial
+          color={donor.accent}
+          emissive={donor.accent}
+          emissiveIntensity={0.05}
+          metalness={0.72}
+          roughness={0.27}
+        />
+      </mesh>
+    );
+  }
+
+  if (attachment.kind === "crankset" && attachment.position) {
+    const ringCount =
+      typeof part.interfaces.ringCount === "number"
+        ? part.interfaces.ringCount
+        : 1;
+    const frontSmall =
+      typeof part.interfaces.frontSmallTeeth === "number"
+        ? part.interfaces.frontSmallTeeth
+        : 32;
+    const frontLarge =
+      typeof part.interfaces.frontLargeTeeth === "number"
+        ? part.interfaces.frontLargeTeeth
+        : frontSmall;
+    const radiusFor = (teeth: number) =>
+      Math.min(0.105, Math.max(0.06, teeth / 520));
+
+    return (
+      <group position={attachment.position}>
+        <mesh rotation={[0, 0, Math.PI / 2]} castShadow>
+          <cylinderGeometry args={[0.075, 0.075, 0.025, 36]} />
+          <meshStandardMaterial
+            color={donor.accent}
+            emissive={donor.accent}
+            emissiveIntensity={0.05}
+            metalness={0.85}
+            roughness={0.22}
+          />
+        </mesh>
+        <mesh position={[0.025, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
+          <torusGeometry args={[radiusFor(frontLarge), 0.005, 8, 44]} />
+          <meshStandardMaterial
+            color="#a8b0b6"
+            metalness={0.93}
+            roughness={0.18}
+          />
+        </mesh>
+        {ringCount > 1 && (
+          <mesh position={[0.016, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
+            <torusGeometry args={[radiusFor(frontSmall), 0.0045, 8, 40]} />
+            <meshStandardMaterial
+              color="#8f989f"
+              metalness={0.92}
+              roughness={0.19}
+            />
+          </mesh>
+        )}
+      </group>
+    );
+  }
+
+  if (
+    attachment.kind === "rear-transmission" &&
+    attachment.position
+  ) {
+    const architecture = part.interfaces.transmissionArchitecture;
+    const rearLarge =
+      typeof part.interfaces.rearLargeTeeth === "number"
+        ? part.interfaces.rearLargeTeeth
+        : 34;
+
+    if (architecture === "internal-gear") {
+      return (
+        <mesh position={attachment.position} rotation={[0, Math.PI / 2, 0]}>
+          <torusGeometry args={[0.052, 0.006, 8, 36]} />
+          <meshStandardMaterial
+            color={donor.accent}
+            emissive={donor.accent}
+            emissiveIntensity={0.05}
+            metalness={0.88}
+            roughness={0.2}
+          />
+        </mesh>
+      );
+    }
+
+    const maxRadius = Math.min(0.105, Math.max(0.065, rearLarge / 500));
+    const radii = Array.from({ length: 6 }, (_, index) => {
+      const t = index / 5;
+      return 0.034 + (maxRadius - 0.034) * t;
+    });
+
+    return (
+      <group
+        position={attachment.position}
+        rotation={[0, Math.PI / 2, 0]}
+      >
+        {radii.map((radius, index) => (
+          <mesh key={radius} position={[0, 0, index * 0.006 - 0.015]}>
+            <torusGeometry args={[radius, 0.004, 8, 36]} />
+            <meshStandardMaterial
+              color={index === radii.length - 1 ? donor.accent : "#a1abb1"}
+              emissive={donor.accent}
+              emissiveIntensity={index === radii.length - 1 ? 0.05 : 0}
+              metalness={0.94}
+              roughness={0.18}
+            />
+          </mesh>
+        ))}
+      </group>
+    );
+  }
+
+  if (
+    attachment.kind === "rear-derailleur" &&
+    attachment.position &&
+    donor.derailleurSize
+  ) {
+    return (
+      <group position={attachment.position}>
+        <mesh rotation={[0.2, 0, 0.15]} castShadow>
+          <boxGeometry args={donor.derailleurSize} />
+          <meshStandardMaterial
+            color={donor.accent}
+            emissive={donor.accent}
+            emissiveIntensity={0.05}
+            metalness={0.7}
+            roughness={0.28}
+          />
+        </mesh>
+        <mesh
+          position={[0, -0.088, 0]}
+          rotation={[Math.PI / 2, 0, 0]}
+        >
+          <torusGeometry args={[0.029, 0.006, 10, 32]} />
+          <meshStandardMaterial
+            color="#8f999f"
+            metalness={0.9}
+            roughness={0.2}
+          />
+        </mesh>
+      </group>
+    );
+  }
+
   return null;
 }
 
