@@ -11,11 +11,7 @@ import { SemanticPart } from "./SemanticPart";
 import { DrivetrainMotion } from "./DrivetrainMotion";
 import { getPartAppearance } from "@/engine/interaction/appearance";
 import type { DrivetrainDemoState } from "@/engine/learning/types";
-import {
-  getExplosionOffset,
-  getSystemColor,
-  isXrayShell,
-} from "@/engine/inspection/config";
+import { getExplosionOffset } from "@/engine/inspection/config";
 import type {
   ViewerInteractionHandlers,
   ViewerInteractionState,
