@@ -117,6 +117,19 @@ for (const bike of bikes) {
           attachment.to.length === 3,
         `Tube attachment requires from/to anchors: ${bike.id}/${slot.id}`,
       );
+    } else if (attachment.kind === "fork") {
+      assert(
+        Array.isArray(attachment.segments) &&
+          attachment.segments.length >= 2 &&
+          attachment.segments.every(
+            (segment) =>
+              Array.isArray(segment.from) &&
+              segment.from.length === 3 &&
+              Array.isArray(segment.to) &&
+              segment.to.length === 3,
+          ),
+        `Fork attachment requires authored leg segments: ${bike.id}/${slot.id}`,
+      );
     } else {
       assert(
         Array.isArray(attachment.position) &&
@@ -133,7 +146,10 @@ for (const bike of bikes) {
         donor.tireThickness > 0 &&
         donor.handlebarWidth > 0 &&
         donor.seatpostRadius > 0 &&
-        donor.stemRadius > 0,
+        donor.stemRadius > 0 &&
+        donor.forkRadius > 0 &&
+        Array.isArray(donor.caliperSize) &&
+        donor.caliperSize.length === 3,
       `Invalid donor visual dimensions: ${bike.id}`,
     );
   }
@@ -158,6 +174,11 @@ for (const token of [
   'attachment.kind === "saddle"',
   'attachment.kind === "pedal"',
   'attachment.kind === "rotor"',
+  'attachment.kind === "fork"',
+  'attachment.kind === "caliper"',
+  'attachment.kind === "crankset"',
+  'attachment.kind === "rear-transmission"',
+  'attachment.kind === "rear-derailleur"',
 ]) {
   assert(
     overlay.includes(token),
@@ -214,8 +235,8 @@ assert(
   "Build Lab must be controlled by the P22 viewer state.",
 );
 assert(
-  panel.includes("P22 renders normalized donor proxy geometry"),
-  "Build Lab must disclose that P22 uses normalized donor proxies.",
+  panel.includes("P23 also evaluates cross-component dependencies"),
+  "Build Lab must disclose the P23 system-analysis / proxy-geometry boundary.",
 );
 
 if (errors.length) {
@@ -225,5 +246,5 @@ if (errors.length) {
 }
 
 console.log(
-  `✓ P22 visual assembly valid: ${visual.hosts.length} hosts, ${visual.hosts.reduce((n, host) => n + host.attachments.length, 0)} attachments, ${visual.donorProfiles.length} donor visual profiles.`,
+  `✓ P23 visual assembly valid: ${visual.hosts.length} hosts, ${visual.hosts.reduce((n, host) => n + host.attachments.length, 0)} attachments, ${visual.donorProfiles.length} donor visual profiles.`,
 );
