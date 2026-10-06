@@ -1,0 +1,497 @@
+{
+  "version": 1,
+  "concepts": [
+    {
+      "id": "braking-systems",
+      "title": "Braking systems",
+      "shortTitle": "Braking",
+      "summary": "How rider input becomes braking torque at the wheel, and why controls, calipers, rotors, tires and surface grip must be understood as one system.",
+      "principles": [
+        "Brake controls command force; calipers and rotors create braking torque at the wheel.",
+        "Available deceleration also depends on tire grip, load transfer and surface conditions.",
+        "Rotor, caliper, pad, control and fluid/cable compatibility remain component-specific."
+      ],
+      "aliases": [
+        "disc brakes",
+        "brake",
+        "rotor",
+        "caliper",
+        "stopping"
+      ],
+      "componentTargets": [
+        {
+          "bikeId": "bike.road.r1",
+          "componentId": "bike.road.r1.front-caliper",
+          "note": "Performance-road disc brake implementation."
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.front-caliper",
+          "note": "Trail braking designed around repeated off-road control demands."
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.front-caliper",
+          "note": "Everyday utility braking within an all-weather platform."
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.front-caliper",
+          "note": "All-road braking across changing surfaces."
+        }
+      ],
+      "lessonIds": [
+        "braking-basics",
+        "urban-weather-systems"
+      ],
+      "procedureIds": [
+        "disc-brake-inspection",
+        "urban-pre-ride-check",
+        "gravel-pre-ride-check"
+      ],
+      "historyEventIds": [
+        "1890s-bicycle-transport-boom",
+        "1976-repack-race"
+      ]
+    },
+    {
+      "id": "tire-volume-pressure",
+      "title": "Tire volume, pressure & contact",
+      "shortTitle": "Tires & pressure",
+      "summary": "How tire dimensions, pressure, casing, load and surface conditions shape support, compliance, traction and rolling behavior.",
+      "principles": [
+        "Nominal tire width alone cannot determine correct pressure.",
+        "More volume generally broadens the usable support/compliance range but does not remove tire/rim limits.",
+        "Road, trail, utility and gravel tires optimize different mixtures of rolling efficiency, grip, durability and comfort."
+      ],
+      "aliases": [
+        "tires",
+        "tyres",
+        "pressure",
+        "psi",
+        "tubeless",
+        "traction",
+        "contact patch"
+      ],
+      "componentTargets": [
+        {
+          "bikeId": "bike.road.r1",
+          "componentId": "bike.road.r1.front-tire",
+          "note": "Narrow performance-road tire lineage."
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.front-tire",
+          "note": "High-volume trail tire for traction and impact control."
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.front-tire",
+          "note": "Medium-volume utility tire balancing comfort and everyday efficiency."
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.front-tire",
+          "note": "Mixed-surface tire balancing pavement and loose-surface requirements."
+        }
+      ],
+      "lessonIds": [
+        "mtb-trail-tires",
+        "gravel-tire-volume-pressure",
+        "urban-weather-systems"
+      ],
+      "procedureIds": [
+        "mtb-trail-tire-check",
+        "gravel-tire-rim-check",
+        "urban-pre-ride-check"
+      ],
+      "historyEventIds": [
+        "1888-pneumatic-tire"
+      ]
+    },
+    {
+      "id": "chain-drive-power",
+      "title": "Chain drive & power transmission",
+      "shortTitle": "Chain drive",
+      "summary": "How crank torque travels through chainrings, chain and rear gearing to drive the rear wheel across derailleur and internal-hub architectures.",
+      "principles": [
+        "The chain transmits torque between front and rear rotating elements.",
+        "Derailleur systems change the external chain path across multiple sprockets.",
+        "Internal-gear systems can keep one external rear sprocket while changing ratios inside the hub."
+      ],
+      "aliases": [
+        "chain",
+        "power transmission",
+        "drivetrain",
+        "chainring",
+        "sprocket"
+      ],
+      "componentTargets": [
+        {
+          "bikeId": "bike.road.r1",
+          "componentId": "bike.road.r1.chain",
+          "note": "Multi-chainring road derailleur power path."
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.chain",
+          "note": "1× trail drivetrain under rough-surface use."
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.chain",
+          "note": "Protected external chain feeding an internal-gear hub."
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.chain",
+          "note": "1× all-road power path into a wide cassette."
+        }
+      ],
+      "lessonIds": [
+        "drivetrain-basics",
+        "mtb-one-by-drivetrain",
+        "urban-internal-gear-hub",
+        "gravel-one-by-gearing"
+      ],
+      "procedureIds": [
+        "chain-replacement",
+        "urban-drivetrain-check",
+        "gravel-drivetrain-check"
+      ],
+      "historyEventIds": [
+        "1863-pedal-velocipede",
+        "1880s-safety-bicycle"
+      ]
+    },
+    {
+      "id": "gearing-range-shifting",
+      "title": "Gearing, range & shifting",
+      "shortTitle": "Gearing",
+      "summary": "How bicycles trade ratio range, gear steps, simplicity, exposure and control architecture to match different terrain and use cases.",
+      "principles": [
+        "Gear ratio changes the relationship between crank rotation and rear-wheel rotation.",
+        "Road, 1× off-road, 1× gravel and internal-hub systems distribute their ratios differently.",
+        "Shifter, rear mechanism, sprocket range, chain and mounting interfaces must belong to compatible systems."
+      ],
+      "aliases": [
+        "gear ratio",
+        "gears",
+        "cassette",
+        "derailleur",
+        "internal gear hub",
+        "shifting",
+        "1x"
+      ],
+      "componentTargets": [
+        {
+          "bikeId": "bike.road.r1",
+          "componentId": "bike.road.r1.cassette",
+          "note": "Closely stepped performance-road rear ratios."
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.cassette",
+          "note": "Wide-range trail 1× gearing."
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.rear-hub",
+          "note": "Ratios packaged inside the rear hub."
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.cassette",
+          "note": "Wide-range 1× all-road gearing."
+        }
+      ],
+      "lessonIds": [
+        "drivetrain-basics",
+        "mtb-one-by-drivetrain",
+        "urban-internal-gear-hub",
+        "gravel-one-by-gearing"
+      ],
+      "procedureIds": [
+        "cassette-removal",
+        "urban-drivetrain-check",
+        "gravel-drivetrain-check"
+      ],
+      "historyEventIds": [
+        "1902-internal-gear-hub",
+        "1937-derailleur-tour"
+      ]
+    },
+    {
+      "id": "steering-geometry-control",
+      "title": "Steering, geometry & control",
+      "shortTitle": "Steering & geometry",
+      "summary": "How frame geometry, fork, headset, cockpit, rider position and tire contact combine to shape steering response and stability.",
+      "principles": [
+        "The handlebar is the rider interface, but steering behavior comes from the entire front-end and chassis geometry.",
+        "Wheelbase, head angle, reach, stack and rider position create different handling priorities.",
+        "Road, trail, upright utility and gravel bikes deliberately place the rider and front wheel differently."
+      ],
+      "aliases": [
+        "geometry",
+        "handling",
+        "steering",
+        "head angle",
+        "reach",
+        "stack",
+        "cockpit"
+      ],
+      "componentTargets": [
+        {
+          "bikeId": "bike.road.r1",
+          "componentId": "bike.road.r1.frame",
+          "note": "Performance-road geometry and low aerodynamic position."
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.frame",
+          "note": "Trail geometry prioritizing terrain control."
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.handlebar",
+          "note": "Swept cockpit supporting upright everyday control."
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.handlebar",
+          "note": "Flared drops add mixed-surface hand positions and leverage."
+        }
+      ],
+      "lessonIds": [
+        "frame-steering-basics",
+        "urban-upright-utility",
+        "gravel-flared-drop-control"
+      ],
+      "procedureIds": [
+        "urban-pre-ride-check",
+        "gravel-pre-ride-check"
+      ],
+      "historyEventIds": [
+        "1817-draisine-steering",
+        "1880s-safety-bicycle"
+      ]
+    },
+    {
+      "id": "suspension-compliance",
+      "title": "Suspension & compliance",
+      "shortTitle": "Suspension",
+      "summary": "How bicycles absorb terrain through tires, rider movement, frame/fork behavior and—on dedicated off-road machines—spring and damping systems.",
+      "principles": [
+        "Suspension separates wheel movement from chassis movement through spring and damping elements.",
+        "Rigid bicycles still gain compliance from tires, contact points, structure and rider movement.",
+        "Travel, sag, spring rate and damping are suspension-system specific rather than universal bicycle settings."
+      ],
+      "aliases": [
+        "suspension",
+        "fork travel",
+        "rear shock",
+        "sag",
+        "damping",
+        "compliance"
+      ],
+      "componentTargets": [
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.fork",
+          "note": "Dedicated front suspension for trail impacts and control."
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.rear-shock",
+          "note": "Rear spring/damper controlling chassis-wheel motion."
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.front-tire",
+          "note": "Rigid all-road compliance relies heavily on tire volume."
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.front-tire",
+          "note": "Utility comfort without dedicated suspension travel."
+        }
+      ],
+      "lessonIds": [
+        "mtb-suspension-basics",
+        "gravel-tire-volume-pressure"
+      ],
+      "procedureIds": [
+        "mtb-suspension-pre-ride",
+        "mtb-sag-baseline",
+        "gravel-tire-rim-check"
+      ],
+      "historyEventIds": [
+        "1970s-mountain-bike-emergence",
+        "1976-repack-race",
+        "1990s-mtb-mainstream"
+      ]
+    },
+    {
+      "id": "wheels-hubs-axles",
+      "title": "Wheels, hubs & axles",
+      "shortTitle": "Wheels & hubs",
+      "summary": "How rims, spokes, hubs, bearings and axles form rotating structures that carry load while locating tires, brakes and drivetrain interfaces.",
+      "principles": [
+        "The wheel is a load-carrying structure, not just a tire holder.",
+        "Hub architecture can carry bearings, brake rotors, freehub mechanisms or internal gears.",
+        "Axle and hub interfaces must match the frame or fork that locates the wheel."
+      ],
+      "aliases": [
+        "wheel",
+        "hub",
+        "rim",
+        "spokes",
+        "axle",
+        "bearing",
+        "freehub"
+      ],
+      "componentTargets": [
+        {
+          "bikeId": "bike.road.r1",
+          "componentId": "bike.road.r1.rear-hub",
+          "note": "Road freehub and cassette interface."
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.front-wheel",
+          "note": "Trail wheel built around impact and terrain loads."
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.rear-hub",
+          "note": "Wheel hub also contains the transmission."
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.front-rim",
+          "note": "All-road rim supporting a higher-volume mixed-surface tire."
+        }
+      ],
+      "lessonIds": [
+        "wheels-hubs-basics",
+        "urban-internal-gear-hub"
+      ],
+      "procedureIds": [
+        "rear-wheel-removal",
+        "gravel-tire-rim-check",
+        "urban-pre-ride-check"
+      ],
+      "historyEventIds": [
+        "1871-ordinary-wire-wheel",
+        "1888-pneumatic-tire"
+      ]
+    },
+    {
+      "id": "cargo-mounting-utility",
+      "title": "Cargo, mounts & utility hardware",
+      "shortTitle": "Cargo & utility",
+      "summary": "How racks, bosses, fork mounts and everyday equipment attach loads to the bicycle while changing structural demands and handling.",
+      "principles": [
+        "A mounting interface does not reveal its allowable load by appearance alone.",
+        "The lowest applicable frame, fork, rack, fastener or accessory limit governs the real setup.",
+        "Cargo position influences steering, braking, parking stability and wheel/accessory clearance."
+      ],
+      "aliases": [
+        "cargo",
+        "rack",
+        "bikepacking",
+        "mounts",
+        "bosses",
+        "panniers",
+        "luggage"
+      ],
+      "componentTargets": [
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.rear-rack",
+          "note": "Dedicated everyday rear cargo structure."
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.kickstand",
+          "note": "Parking support interacting with loaded-bike stability."
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.frame-mounts",
+          "note": "Frame attachment points for compatible all-road luggage."
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.fork-mounts",
+          "note": "Fork mounts that add steering-sensitive cargo possibilities."
+        }
+      ],
+      "lessonIds": [
+        "urban-cargo-security",
+        "gravel-mounts-bikepacking"
+      ],
+      "procedureIds": [
+        "urban-rack-cargo-check",
+        "gravel-mount-cargo-check"
+      ],
+      "historyEventIds": [
+        "1890s-bicycle-transport-boom",
+        "today-specialized-branches"
+      ]
+    },
+    {
+      "id": "frame-architecture-rider-position",
+      "title": "Frame architecture & rider position",
+      "shortTitle": "Frame architecture",
+      "summary": "How frame form, stack, reach, contact points and intended environment create distinct performance, trail, utility and all-road riding positions.",
+      "principles": [
+        "Frame architecture establishes where major components and rider contact points can be placed.",
+        "Rider position is an outcome of frame geometry plus cockpit, saddle and fit—not one dimension alone.",
+        "Step-through access, aggressive road posture, trail control and all-road balance are different optimization targets."
+      ],
+      "aliases": [
+        "frame",
+        "position",
+        "fit",
+        "step-through",
+        "road position",
+        "stack",
+        "reach"
+      ],
+      "componentTargets": [
+        {
+          "bikeId": "bike.road.r1",
+          "componentId": "bike.road.r1.frame",
+          "note": "Performance-road chassis and rider-position foundation."
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.frame",
+          "note": "Full-suspension trail chassis."
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.frame",
+          "note": "Step-through utility architecture."
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.frame",
+          "note": "All-road chassis between road and trail priorities."
+        }
+      ],
+      "lessonIds": [
+        "frame-steering-basics",
+        "urban-upright-utility",
+        "gravel-flared-drop-control"
+      ],
+      "procedureIds": [],
+      "historyEventIds": [
+        "1817-draisine-steering",
+        "1880s-safety-bicycle",
+        "today-specialized-branches"
+      ]
+    }
+  ]
+}
