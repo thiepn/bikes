@@ -1,0 +1,298 @@
+{
+  "version": 1,
+  "notes": [
+    "P23 consequence values are Bike Atlas reference deltas for fictional archetypes, not measured component specifications.",
+    "Mass values exist to propagate build deltas into the educational Physics Lab; they are not product weights.",
+    "Handlebar CdA contributions are simplified posture/cockpit reference contributions used only as relative build deltas."
+  ],
+  "parts": [
+    {
+      "partId": "part.road.front-wheel",
+      "massKg": 0.75
+    },
+    {
+      "partId": "part.gravel.front-wheel",
+      "massKg": 0.85
+    },
+    {
+      "partId": "part.mtb.front-wheel",
+      "massKg": 0.98
+    },
+    {
+      "partId": "part.urban.front-wheel",
+      "massKg": 1
+    },
+    {
+      "partId": "part.road.rear-wheel",
+      "massKg": 0.9
+    },
+    {
+      "partId": "part.gravel.rear-wheel",
+      "massKg": 1
+    },
+    {
+      "partId": "part.mtb.rear-wheel",
+      "massKg": 1.12
+    },
+    {
+      "partId": "part.urban.rear-wheel",
+      "massKg": 1.3
+    },
+    {
+      "partId": "part.road.front-tire",
+      "massKg": 0.28
+    },
+    {
+      "partId": "part.gravel.front-tire",
+      "massKg": 0.48
+    },
+    {
+      "partId": "part.mtb.front-tire",
+      "massKg": 0.88
+    },
+    {
+      "partId": "part.urban.front-tire",
+      "massKg": 0.65
+    },
+    {
+      "partId": "part.road.rear-tire",
+      "massKg": 0.28
+    },
+    {
+      "partId": "part.gravel.rear-tire",
+      "massKg": 0.48
+    },
+    {
+      "partId": "part.mtb.rear-tire",
+      "massKg": 0.82
+    },
+    {
+      "partId": "part.urban.rear-tire",
+      "massKg": 0.65
+    },
+    {
+      "partId": "part.road.handlebar",
+      "massKg": 0.25,
+      "aeroCdAContributionM2": 0
+    },
+    {
+      "partId": "part.gravel.handlebar",
+      "massKg": 0.31,
+      "aeroCdAContributionM2": 0.03
+    },
+    {
+      "partId": "part.mtb.handlebar",
+      "massKg": 0.32,
+      "aeroCdAContributionM2": 0.14
+    },
+    {
+      "partId": "part.urban.handlebar",
+      "massKg": 0.38,
+      "aeroCdAContributionM2": 0.25
+    },
+    {
+      "partId": "part.road.seatpost",
+      "massKg": 0.18
+    },
+    {
+      "partId": "part.gravel.seatpost",
+      "massKg": 0.2
+    },
+    {
+      "partId": "part.mtb.seatpost",
+      "massKg": 0.6
+    },
+    {
+      "partId": "part.urban.seatpost",
+      "massKg": 0.3
+    },
+    {
+      "partId": "part.road.saddle",
+      "massKg": 0.2
+    },
+    {
+      "partId": "part.gravel.saddle",
+      "massKg": 0.23
+    },
+    {
+      "partId": "part.mtb.saddle",
+      "massKg": 0.24
+    },
+    {
+      "partId": "part.urban.saddle",
+      "massKg": 0.45
+    },
+    {
+      "partId": "part.road.left-pedal",
+      "massKg": 0.13
+    },
+    {
+      "partId": "part.gravel.left-pedal",
+      "massKg": 0.16
+    },
+    {
+      "partId": "part.mtb.left-pedal",
+      "massKg": 0.2
+    },
+    {
+      "partId": "part.urban.left-pedal",
+      "massKg": 0.18
+    },
+    {
+      "partId": "part.road.right-pedal",
+      "massKg": 0.13
+    },
+    {
+      "partId": "part.gravel.right-pedal",
+      "massKg": 0.16
+    },
+    {
+      "partId": "part.mtb.right-pedal",
+      "massKg": 0.2
+    },
+    {
+      "partId": "part.urban.right-pedal",
+      "massKg": 0.18
+    },
+    {
+      "partId": "part.road.stem",
+      "massKg": 0.12
+    },
+    {
+      "partId": "part.road.front-rotor",
+      "massKg": 0.12
+    },
+    {
+      "partId": "part.road.rear-rotor",
+      "massKg": 0.1
+    },
+    {
+      "partId": "part.gravel.stem",
+      "massKg": 0.14
+    },
+    {
+      "partId": "part.gravel.front-rotor",
+      "massKg": 0.14
+    },
+    {
+      "partId": "part.gravel.rear-rotor",
+      "massKg": 0.14
+    },
+    {
+      "partId": "part.mtb.stem",
+      "massKg": 0.15
+    },
+    {
+      "partId": "part.mtb.front-rotor",
+      "massKg": 0.2
+    },
+    {
+      "partId": "part.mtb.rear-rotor",
+      "massKg": 0.17
+    },
+    {
+      "partId": "part.urban.stem",
+      "massKg": 0.2
+    },
+    {
+      "partId": "part.urban.front-rotor",
+      "massKg": 0.16
+    },
+    {
+      "partId": "part.urban.rear-rotor",
+      "massKg": 0.14
+    },
+    {
+      "partId": "part.road.fork",
+      "massKg": 0.4
+    },
+    {
+      "partId": "part.road.front-caliper",
+      "massKg": 0.14
+    },
+    {
+      "partId": "part.road.rear-caliper",
+      "massKg": 0.14
+    },
+    {
+      "partId": "part.road.crankset",
+      "massKg": 0.72
+    },
+    {
+      "partId": "part.road.rear-transmission",
+      "massKg": 0.31
+    },
+    {
+      "partId": "part.road.rear-derailleur",
+      "massKg": 0.25
+    },
+    {
+      "partId": "part.gravel.fork",
+      "massKg": 0.48
+    },
+    {
+      "partId": "part.gravel.front-caliper",
+      "massKg": 0.15
+    },
+    {
+      "partId": "part.gravel.rear-caliper",
+      "massKg": 0.15
+    },
+    {
+      "partId": "part.gravel.crankset",
+      "massKg": 0.74
+    },
+    {
+      "partId": "part.gravel.rear-transmission",
+      "massKg": 0.43
+    },
+    {
+      "partId": "part.gravel.rear-derailleur",
+      "massKg": 0.29
+    },
+    {
+      "partId": "part.mtb.fork",
+      "massKg": 2
+    },
+    {
+      "partId": "part.mtb.front-caliper",
+      "massKg": 0.19
+    },
+    {
+      "partId": "part.mtb.rear-caliper",
+      "massKg": 0.19
+    },
+    {
+      "partId": "part.mtb.crankset",
+      "massKg": 0.66
+    },
+    {
+      "partId": "part.mtb.rear-transmission",
+      "massKg": 0.49
+    },
+    {
+      "partId": "part.mtb.rear-derailleur",
+      "massKg": 0.33
+    },
+    {
+      "partId": "part.urban.fork",
+      "massKg": 0.9
+    },
+    {
+      "partId": "part.urban.front-caliper",
+      "massKg": 0.17
+    },
+    {
+      "partId": "part.urban.rear-caliper",
+      "massKg": 0.17
+    },
+    {
+      "partId": "part.urban.crankset",
+      "massKg": 0.85
+    },
+    {
+      "partId": "part.urban.rear-transmission",
+      "massKg": 0.12
+    }
+  ]
+}
