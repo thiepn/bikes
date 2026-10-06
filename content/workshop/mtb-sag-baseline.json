@@ -1,0 +1,139 @@
+{
+  "id": "mtb-sag-baseline",
+  "bikeId": "bike.mtb.m1",
+  "title": "Establish a suspension sag baseline",
+  "summary": "Measure fork and rear-shock sag methodically and compare the result with the actual component or frame manufacturer’s recommended setup range.",
+  "systemId": "rear-suspension",
+  "difficulty": "intermediate",
+  "durationMinutes": 12,
+  "prerequisiteProcedureIds": [
+    "mtb-suspension-pre-ride"
+  ],
+  "assumedOperationIds": [],
+  "tools": [
+    {
+      "id": "shock-pump",
+      "name": "Compatible suspension shock pump",
+      "required": true
+    },
+    {
+      "id": "ruler",
+      "name": "Ruler or measuring tape",
+      "required": true
+    },
+    {
+      "id": "setup-guide",
+      "name": "Manufacturer setup guide",
+      "required": true,
+      "note": "Use the exact fork, shock and frame guidance where available."
+    },
+    {
+      "id": "assistant",
+      "name": "Assistant",
+      "required": false,
+      "note": "Helpful for holding the bike while the rider assumes a normal position."
+    }
+  ],
+  "steps": [
+    {
+      "id": "record-start",
+      "title": "Record the current setup first",
+      "instruction": "Before adjusting anything, record current pressure and external damping settings, and identify the manufacturer’s recommended starting procedure for the exact fork, shock and frame.",
+      "why": "A written baseline lets you return to the previous setup and avoids losing track of multiple simultaneous changes.",
+      "focusComponentId": "bike.mtb.m1.rear-shock",
+      "highlightComponentIds": [
+        "bike.mtb.m1.fork",
+        "bike.mtb.m1.rear-shock"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0,
+      "tools": [
+        "setup-guide"
+      ],
+      "warning": "Do not copy another rider’s pressure or damping settings as if they were universal.",
+      "check": "Current settings are recorded and the correct setup guidance is available.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "initial-pressure",
+      "title": "Set a manufacturer-guided starting pressure",
+      "instruction": "Use a compatible shock pump and the manufacturer’s setup method to establish a starting air pressure for the rider and component.",
+      "why": "Air pressure sets the spring support that largely determines how far the suspension settles under load.",
+      "focusComponentId": "bike.mtb.m1.rear-shock",
+      "highlightComponentIds": [
+        "bike.mtb.m1.rear-shock",
+        "bike.mtb.m1.fork"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.12,
+      "tools": [
+        "shock-pump",
+        "setup-guide"
+      ],
+      "warning": "Stay within the component’s published pressure limits and follow its equalization/setup instructions.",
+      "check": "Starting pressure is set according to the correct component guidance.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "settle-bike",
+      "title": "Settle into a repeatable riding position",
+      "instruction": "Cycle the suspension as directed by the manufacturer, then carefully assume the specified neutral or riding position without bouncing. Use an assistant if needed for balance.",
+      "why": "Sag measurement is useful only when rider position and suspension preparation are consistent.",
+      "focusComponentId": "bike.mtb.m1.frame",
+      "highlightComponentIds": [
+        "bike.mtb.m1.frame",
+        "bike.mtb.m1.fork",
+        "bike.mtb.m1.rear-shock"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0,
+      "tools": [
+        "assistant",
+        "setup-guide"
+      ],
+      "warning": "Perform this on level, stable ground where you can safely support the bicycle.",
+      "check": "The rider position is stable and repeatable.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "measure-sag",
+      "title": "Measure how far the suspension settled",
+      "instruction": "Use the component’s travel indicator or O-ring where appropriate, then measure the displacement using the manufacturer’s recommended method.",
+      "why": "Sag is a measured displacement, not a feeling. Consistent measurement gives a useful baseline for later adjustments.",
+      "focusComponentId": "bike.mtb.m1.rear-shock",
+      "highlightComponentIds": [
+        "bike.mtb.m1.rear-shock",
+        "bike.mtb.m1.suspension-linkage"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.15,
+      "tools": [
+        "ruler",
+        "setup-guide"
+      ],
+      "check": "Sag has been measured using the correct reference points.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "compare-adjust",
+      "title": "Compare with the recommended range",
+      "instruction": "Compare the measured sag with the exact bike/component guidance. If adjustment is needed, change pressure in small deliberate increments and repeat the same measurement process.",
+      "why": "The purpose is a repeatable baseline within the intended setup range, not chasing a universal percentage.",
+      "focusComponentId": "bike.mtb.m1.rear-shock",
+      "highlightComponentIds": [
+        "bike.mtb.m1.rear-shock",
+        "bike.mtb.m1.fork"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0,
+      "tools": [
+        "shock-pump",
+        "ruler",
+        "setup-guide"
+      ],
+      "warning": "Do not exceed published pressure limits. If correct sag cannot be achieved within the allowed setup range, stop and investigate the component/setup.",
+      "check": "Measured sag is documented and evaluated against the correct manufacturer guidance.",
+      "removedComponentIds": []
+    }
+  ]
+}
