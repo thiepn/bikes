@@ -301,7 +301,7 @@ for (const token of [
   'url.searchParams.set("optimize", "1")',
   "getOptimizationGoal(initialGoal()).defaultMaxChanges",
   "getOptimizationGoal(initialGoal()).defaultGeometryGuard",
-  "P25 model boundary",
+  "P25–P27 model boundary",
 ]) {
   assert(
     panelText.includes(token),
