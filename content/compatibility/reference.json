@@ -1,0 +1,1264 @@
+{
+  "version": 1,
+  "notes": [
+    "P21 compatibility values are Bike Atlas reference interfaces for the fictional archetypes, not manufacturer specifications.",
+    "A compatible result means the interfaces modeled here match. It does not certify unmodeled clearance, fastener, strength, legal or warranty requirements.",
+    "Drivetrain generations, suspension, brake adapters/rotor sizing, bottom brackets and headset swaps are intentionally outside the P21 Build Lab."
+  ],
+  "profiles": [
+    {
+      "bikeId": "bike.road.r1",
+      "source": "bike-atlas-reference",
+      "slots": [
+        {
+          "id": "front-wheel",
+          "label": "Front wheel",
+          "hostComponentId": "bike.road.r1.front-wheel",
+          "description": "Front wheel/fork interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "wheelFormat",
+              "label": "Wheel format",
+              "expected": "622"
+            },
+            {
+              "kind": "exact",
+              "key": "frontAxle",
+              "label": "Front axle",
+              "expected": "12x100-thru"
+            },
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "center-lock"
+            }
+          ]
+        },
+        {
+          "id": "rear-wheel",
+          "label": "Rear wheel",
+          "hostComponentId": "bike.road.r1.rear-wheel",
+          "description": "Rear wheel/frame and cassette-carrier interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "wheelFormat",
+              "label": "Wheel format",
+              "expected": "622"
+            },
+            {
+              "kind": "exact",
+              "key": "rearAxle",
+              "label": "Rear axle",
+              "expected": "12x142-thru"
+            },
+            {
+              "kind": "exact",
+              "key": "freehubFamily",
+              "label": "Freehub family",
+              "expected": "ba-road-gravel"
+            },
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "center-lock"
+            }
+          ]
+        },
+        {
+          "id": "front-tire",
+          "label": "Front tire",
+          "hostComponentId": "bike.road.r1.front-tire",
+          "description": "Combined rim/frame/fork tire envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "beadSeatDiameter",
+              "label": "Bead-seat diameter",
+              "expected": 622,
+              "unit": "mm"
+            },
+            {
+              "kind": "range",
+              "key": "tireWidth",
+              "label": "Reference tire width",
+              "min": 25,
+              "max": 35,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "rear-tire",
+          "label": "Rear tire",
+          "hostComponentId": "bike.road.r1.rear-tire",
+          "description": "Combined rim/frame tire envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "beadSeatDiameter",
+              "label": "Bead-seat diameter",
+              "expected": 622,
+              "unit": "mm"
+            },
+            {
+              "kind": "range",
+              "key": "tireWidth",
+              "label": "Reference tire width",
+              "min": 25,
+              "max": 35,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "handlebar",
+          "label": "Handlebar",
+          "hostComponentId": "bike.road.r1.handlebar",
+          "description": "Stem clamp and control family.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "barClamp",
+              "label": "Stem clamp",
+              "expected": 31.8,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "controlFamily",
+              "label": "Control family",
+              "expected": "drop-integrated"
+            }
+          ]
+        },
+        {
+          "id": "seatpost",
+          "label": "Seatpost",
+          "hostComponentId": "bike.road.r1.seatpost",
+          "description": "Frame seat-tube interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "postDiameter",
+              "label": "Post diameter",
+              "expected": 27.2,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "saddle",
+          "label": "Saddle",
+          "hostComponentId": "bike.road.r1.saddle",
+          "description": "Seatpost clamp/rail interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "railInterface",
+              "label": "Rail interface",
+              "expected": "round-7x7"
+            }
+          ]
+        },
+        {
+          "id": "left-pedal",
+          "label": "Left pedal",
+          "hostComponentId": "bike.road.r1.left-pedal",
+          "description": "Left crank pedal thread.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "pedalThread",
+              "label": "Pedal thread",
+              "expected": "9/16-left"
+            }
+          ]
+        },
+        {
+          "id": "right-pedal",
+          "label": "Right pedal",
+          "hostComponentId": "bike.road.r1.right-pedal",
+          "description": "Right crank pedal thread.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "pedalThread",
+              "label": "Pedal thread",
+              "expected": "9/16-right"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bikeId": "bike.gravel.g1",
+      "source": "bike-atlas-reference",
+      "slots": [
+        {
+          "id": "front-wheel",
+          "label": "Front wheel",
+          "hostComponentId": "bike.gravel.g1.front-wheel",
+          "description": "Front wheel/fork interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "wheelFormat",
+              "label": "Wheel format",
+              "expected": "622"
+            },
+            {
+              "kind": "exact",
+              "key": "frontAxle",
+              "label": "Front axle",
+              "expected": "12x100-thru"
+            },
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "center-lock"
+            }
+          ]
+        },
+        {
+          "id": "rear-wheel",
+          "label": "Rear wheel",
+          "hostComponentId": "bike.gravel.g1.rear-wheel",
+          "description": "Rear wheel/frame and cassette-carrier interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "wheelFormat",
+              "label": "Wheel format",
+              "expected": "622"
+            },
+            {
+              "kind": "exact",
+              "key": "rearAxle",
+              "label": "Rear axle",
+              "expected": "12x142-thru"
+            },
+            {
+              "kind": "exact",
+              "key": "freehubFamily",
+              "label": "Freehub family",
+              "expected": "ba-road-gravel"
+            },
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "center-lock"
+            }
+          ]
+        },
+        {
+          "id": "front-tire",
+          "label": "Front tire",
+          "hostComponentId": "bike.gravel.g1.front-tire",
+          "description": "Combined rim/frame/fork tire envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "beadSeatDiameter",
+              "label": "Bead-seat diameter",
+              "expected": 622,
+              "unit": "mm"
+            },
+            {
+              "kind": "range",
+              "key": "tireWidth",
+              "label": "Reference tire width",
+              "min": 35,
+              "max": 50,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "rear-tire",
+          "label": "Rear tire",
+          "hostComponentId": "bike.gravel.g1.rear-tire",
+          "description": "Combined rim/frame tire envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "beadSeatDiameter",
+              "label": "Bead-seat diameter",
+              "expected": 622,
+              "unit": "mm"
+            },
+            {
+              "kind": "range",
+              "key": "tireWidth",
+              "label": "Reference tire width",
+              "min": 35,
+              "max": 50,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "handlebar",
+          "label": "Handlebar",
+          "hostComponentId": "bike.gravel.g1.handlebar",
+          "description": "Stem clamp and drop-control family.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "barClamp",
+              "label": "Stem clamp",
+              "expected": 31.8,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "controlFamily",
+              "label": "Control family",
+              "expected": "drop-integrated"
+            }
+          ]
+        },
+        {
+          "id": "seatpost",
+          "label": "Seatpost",
+          "hostComponentId": "bike.gravel.g1.seatpost",
+          "description": "Frame seat-tube interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "postDiameter",
+              "label": "Post diameter",
+              "expected": 27.2,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "saddle",
+          "label": "Saddle",
+          "hostComponentId": "bike.gravel.g1.saddle",
+          "description": "Seatpost clamp/rail interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "railInterface",
+              "label": "Rail interface",
+              "expected": "round-7x7"
+            }
+          ]
+        },
+        {
+          "id": "left-pedal",
+          "label": "Left pedal",
+          "hostComponentId": "bike.gravel.g1.left-pedal",
+          "description": "Left crank pedal thread.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "pedalThread",
+              "label": "Pedal thread",
+              "expected": "9/16-left"
+            }
+          ]
+        },
+        {
+          "id": "right-pedal",
+          "label": "Right pedal",
+          "hostComponentId": "bike.gravel.g1.right-pedal",
+          "description": "Right crank pedal thread.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "pedalThread",
+              "label": "Pedal thread",
+              "expected": "9/16-right"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bikeId": "bike.mtb.m1",
+      "source": "bike-atlas-reference",
+      "slots": [
+        {
+          "id": "front-wheel",
+          "label": "Front wheel",
+          "hostComponentId": "bike.mtb.m1.front-wheel",
+          "description": "Boost trail fork/wheel interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "wheelFormat",
+              "label": "Wheel format",
+              "expected": "622"
+            },
+            {
+              "kind": "exact",
+              "key": "frontAxle",
+              "label": "Front axle",
+              "expected": "15x110-thru"
+            },
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "six-bolt"
+            }
+          ]
+        },
+        {
+          "id": "rear-wheel",
+          "label": "Rear wheel",
+          "hostComponentId": "bike.mtb.m1.rear-wheel",
+          "description": "Boost trail frame/rear-wheel interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "wheelFormat",
+              "label": "Wheel format",
+              "expected": "622"
+            },
+            {
+              "kind": "exact",
+              "key": "rearAxle",
+              "label": "Rear axle",
+              "expected": "12x148-thru"
+            },
+            {
+              "kind": "exact",
+              "key": "freehubFamily",
+              "label": "Freehub family",
+              "expected": "ba-wide-1x"
+            },
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "six-bolt"
+            }
+          ]
+        },
+        {
+          "id": "front-tire",
+          "label": "Front tire",
+          "hostComponentId": "bike.mtb.m1.front-tire",
+          "description": "Trail fork/rim tire envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "beadSeatDiameter",
+              "label": "Bead-seat diameter",
+              "expected": 622,
+              "unit": "mm"
+            },
+            {
+              "kind": "range",
+              "key": "tireWidth",
+              "label": "Reference tire width",
+              "min": 55,
+              "max": 66,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "rear-tire",
+          "label": "Rear tire",
+          "hostComponentId": "bike.mtb.m1.rear-tire",
+          "description": "Trail frame/rim tire envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "beadSeatDiameter",
+              "label": "Bead-seat diameter",
+              "expected": 622,
+              "unit": "mm"
+            },
+            {
+              "kind": "range",
+              "key": "tireWidth",
+              "label": "Reference tire width",
+              "min": 55,
+              "max": 66,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "handlebar",
+          "label": "Handlebar",
+          "hostComponentId": "bike.mtb.m1.handlebar",
+          "description": "Stem clamp and flat-bar control family.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "barClamp",
+              "label": "Stem clamp",
+              "expected": 31.8,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "controlFamily",
+              "label": "Control family",
+              "expected": "flat-clamp"
+            }
+          ]
+        },
+        {
+          "id": "seatpost",
+          "label": "Seatpost",
+          "hostComponentId": "bike.mtb.m1.dropper-post",
+          "description": "Frame/dropper seat-tube interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "postDiameter",
+              "label": "Post diameter",
+              "expected": 31.6,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "saddle",
+          "label": "Saddle",
+          "hostComponentId": "bike.mtb.m1.saddle",
+          "description": "Dropper head/rail interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "railInterface",
+              "label": "Rail interface",
+              "expected": "round-7x7"
+            }
+          ]
+        },
+        {
+          "id": "left-pedal",
+          "label": "Left pedal",
+          "hostComponentId": "bike.mtb.m1.left-pedal",
+          "description": "Left crank pedal thread.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "pedalThread",
+              "label": "Pedal thread",
+              "expected": "9/16-left"
+            }
+          ]
+        },
+        {
+          "id": "right-pedal",
+          "label": "Right pedal",
+          "hostComponentId": "bike.mtb.m1.right-pedal",
+          "description": "Right crank pedal thread.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "pedalThread",
+              "label": "Pedal thread",
+              "expected": "9/16-right"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bikeId": "bike.urban.u1",
+      "source": "bike-atlas-reference",
+      "slots": [
+        {
+          "id": "front-wheel",
+          "label": "Front wheel",
+          "hostComponentId": "bike.urban.u1.front-wheel",
+          "description": "Utility fork/front-wheel interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "wheelFormat",
+              "label": "Wheel format",
+              "expected": "622"
+            },
+            {
+              "kind": "exact",
+              "key": "frontAxle",
+              "label": "Front axle",
+              "expected": "9x100-qr"
+            },
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "center-lock"
+            }
+          ]
+        },
+        {
+          "id": "rear-wheel",
+          "label": "Rear wheel",
+          "hostComponentId": "bike.urban.u1.rear-wheel",
+          "description": "Utility frame/internal-hub wheel interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "wheelFormat",
+              "label": "Wheel format",
+              "expected": "622"
+            },
+            {
+              "kind": "exact",
+              "key": "rearAxle",
+              "label": "Rear axle",
+              "expected": "igh-solid-axle"
+            },
+            {
+              "kind": "exact",
+              "key": "freehubFamily",
+              "label": "Transmission interface",
+              "expected": "internal-gear-hub"
+            },
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "center-lock"
+            }
+          ]
+        },
+        {
+          "id": "front-tire",
+          "label": "Front tire",
+          "hostComponentId": "bike.urban.u1.front-tire",
+          "description": "Utility fork/rim tire envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "beadSeatDiameter",
+              "label": "Bead-seat diameter",
+              "expected": 622,
+              "unit": "mm"
+            },
+            {
+              "kind": "range",
+              "key": "tireWidth",
+              "label": "Reference tire width",
+              "min": 38,
+              "max": 52,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "rear-tire",
+          "label": "Rear tire",
+          "hostComponentId": "bike.urban.u1.rear-tire",
+          "description": "Utility frame/rim tire envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "beadSeatDiameter",
+              "label": "Bead-seat diameter",
+              "expected": 622,
+              "unit": "mm"
+            },
+            {
+              "kind": "range",
+              "key": "tireWidth",
+              "label": "Reference tire width",
+              "min": 38,
+              "max": 52,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "handlebar",
+          "label": "Handlebar",
+          "hostComponentId": "bike.urban.u1.handlebar",
+          "description": "Stem clamp and flat-bar utility-control family.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "barClamp",
+              "label": "Stem clamp",
+              "expected": 31.8,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "controlFamily",
+              "label": "Control family",
+              "expected": "flat-clamp"
+            }
+          ]
+        },
+        {
+          "id": "seatpost",
+          "label": "Seatpost",
+          "hostComponentId": "bike.urban.u1.seatpost",
+          "description": "Utility frame seat-tube interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "postDiameter",
+              "label": "Post diameter",
+              "expected": 27.2,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "saddle",
+          "label": "Saddle",
+          "hostComponentId": "bike.urban.u1.saddle",
+          "description": "Utility post/rail interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "railInterface",
+              "label": "Rail interface",
+              "expected": "round-7x7"
+            }
+          ]
+        },
+        {
+          "id": "left-pedal",
+          "label": "Left pedal",
+          "hostComponentId": "bike.urban.u1.left-pedal",
+          "description": "Left crank pedal thread.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "pedalThread",
+              "label": "Pedal thread",
+              "expected": "9/16-left"
+            }
+          ]
+        },
+        {
+          "id": "right-pedal",
+          "label": "Right pedal",
+          "hostComponentId": "bike.urban.u1.right-pedal",
+          "description": "Right crank pedal thread.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "pedalThread",
+              "label": "Pedal thread",
+              "expected": "9/16-right"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "id": "part.road.front-wheel",
+      "label": "Road R1 front wheel",
+      "slotId": "front-wheel",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.front-wheel",
+      "interfaces": {
+        "wheelFormat": "622",
+        "frontAxle": "12x100-thru",
+        "discInterface": "center-lock"
+      },
+      "notes": [
+        "Bike Atlas reference road wheel."
+      ]
+    },
+    {
+      "id": "part.gravel.front-wheel",
+      "label": "Gravel G1 front wheel",
+      "slotId": "front-wheel",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.front-wheel",
+      "interfaces": {
+        "wheelFormat": "622",
+        "frontAxle": "12x100-thru",
+        "discInterface": "center-lock"
+      },
+      "notes": [
+        "Bike Atlas reference gravel wheel."
+      ]
+    },
+    {
+      "id": "part.mtb.front-wheel",
+      "label": "MTB M1 front wheel",
+      "slotId": "front-wheel",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.front-wheel",
+      "interfaces": {
+        "wheelFormat": "622",
+        "frontAxle": "15x110-thru",
+        "discInterface": "six-bolt"
+      },
+      "notes": [
+        "Bike Atlas reference Boost-style trail wheel."
+      ]
+    },
+    {
+      "id": "part.urban.front-wheel",
+      "label": "Urban U1 front wheel",
+      "slotId": "front-wheel",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.front-wheel",
+      "interfaces": {
+        "wheelFormat": "622",
+        "frontAxle": "9x100-qr",
+        "discInterface": "center-lock"
+      },
+      "notes": [
+        "Bike Atlas reference utility wheel."
+      ]
+    },
+    {
+      "id": "part.road.rear-wheel",
+      "label": "Road R1 rear wheel",
+      "slotId": "rear-wheel",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.rear-wheel",
+      "interfaces": {
+        "wheelFormat": "622",
+        "rearAxle": "12x142-thru",
+        "freehubFamily": "ba-road-gravel",
+        "discInterface": "center-lock"
+      },
+      "notes": [
+        "Reference derailleur rear wheel."
+      ]
+    },
+    {
+      "id": "part.gravel.rear-wheel",
+      "label": "Gravel G1 rear wheel",
+      "slotId": "rear-wheel",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.rear-wheel",
+      "interfaces": {
+        "wheelFormat": "622",
+        "rearAxle": "12x142-thru",
+        "freehubFamily": "ba-road-gravel",
+        "discInterface": "center-lock"
+      },
+      "notes": [
+        "Reference all-road derailleur rear wheel."
+      ]
+    },
+    {
+      "id": "part.mtb.rear-wheel",
+      "label": "MTB M1 rear wheel",
+      "slotId": "rear-wheel",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.rear-wheel",
+      "interfaces": {
+        "wheelFormat": "622",
+        "rearAxle": "12x148-thru",
+        "freehubFamily": "ba-wide-1x",
+        "discInterface": "six-bolt"
+      },
+      "notes": [
+        "Reference trail rear wheel."
+      ]
+    },
+    {
+      "id": "part.urban.rear-wheel",
+      "label": "Urban U1 internal-gear rear wheel",
+      "slotId": "rear-wheel",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.rear-wheel",
+      "interfaces": {
+        "wheelFormat": "622",
+        "rearAxle": "igh-solid-axle",
+        "freehubFamily": "internal-gear-hub",
+        "discInterface": "center-lock"
+      },
+      "notes": [
+        "Reference internal-gear utility rear wheel."
+      ]
+    },
+    {
+      "id": "part.road.front-tire",
+      "label": "Road R1 30 mm front tire",
+      "slotId": "front-tire",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.front-tire",
+      "interfaces": {
+        "beadSeatDiameter": 622,
+        "tireWidth": 30
+      },
+      "notes": [
+        "Reference 30 mm road tire."
+      ]
+    },
+    {
+      "id": "part.gravel.front-tire",
+      "label": "Gravel G1 45 mm front tire",
+      "slotId": "front-tire",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.front-tire",
+      "interfaces": {
+        "beadSeatDiameter": 622,
+        "tireWidth": 45
+      },
+      "notes": [
+        "Reference 45 mm mixed-surface tire."
+      ]
+    },
+    {
+      "id": "part.mtb.front-tire",
+      "label": "MTB M1 61 mm front tire",
+      "slotId": "front-tire",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.front-tire",
+      "interfaces": {
+        "beadSeatDiameter": 622,
+        "tireWidth": 61
+      },
+      "notes": [
+        "Reference 61 mm trail tire."
+      ]
+    },
+    {
+      "id": "part.urban.front-tire",
+      "label": "Urban U1 47 mm front tire",
+      "slotId": "front-tire",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.front-tire",
+      "interfaces": {
+        "beadSeatDiameter": 622,
+        "tireWidth": 47
+      },
+      "notes": [
+        "Reference 47 mm utility tire."
+      ]
+    },
+    {
+      "id": "part.road.rear-tire",
+      "label": "Road R1 30 mm rear tire",
+      "slotId": "rear-tire",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.rear-tire",
+      "interfaces": {
+        "beadSeatDiameter": 622,
+        "tireWidth": 30
+      },
+      "notes": [
+        "Reference 30 mm road tire."
+      ]
+    },
+    {
+      "id": "part.gravel.rear-tire",
+      "label": "Gravel G1 45 mm rear tire",
+      "slotId": "rear-tire",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.rear-tire",
+      "interfaces": {
+        "beadSeatDiameter": 622,
+        "tireWidth": 45
+      },
+      "notes": [
+        "Reference 45 mm mixed-surface tire."
+      ]
+    },
+    {
+      "id": "part.mtb.rear-tire",
+      "label": "MTB M1 61 mm rear tire",
+      "slotId": "rear-tire",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.rear-tire",
+      "interfaces": {
+        "beadSeatDiameter": 622,
+        "tireWidth": 61
+      },
+      "notes": [
+        "Reference 61 mm trail tire."
+      ]
+    },
+    {
+      "id": "part.urban.rear-tire",
+      "label": "Urban U1 47 mm rear tire",
+      "slotId": "rear-tire",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.rear-tire",
+      "interfaces": {
+        "beadSeatDiameter": 622,
+        "tireWidth": 47
+      },
+      "notes": [
+        "Reference 47 mm utility tire."
+      ]
+    },
+    {
+      "id": "part.road.handlebar",
+      "label": "Road R1 drop bar",
+      "slotId": "handlebar",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.handlebar",
+      "interfaces": {
+        "barClamp": 31.8,
+        "controlFamily": "drop-integrated"
+      },
+      "notes": [
+        "Reference performance drop bar."
+      ]
+    },
+    {
+      "id": "part.gravel.handlebar",
+      "label": "Gravel G1 flared drop bar",
+      "slotId": "handlebar",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.handlebar",
+      "interfaces": {
+        "barClamp": 31.8,
+        "controlFamily": "drop-integrated"
+      },
+      "notes": [
+        "Reference flared drop bar."
+      ]
+    },
+    {
+      "id": "part.mtb.handlebar",
+      "label": "MTB M1 flat bar",
+      "slotId": "handlebar",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.handlebar",
+      "interfaces": {
+        "barClamp": 31.8,
+        "controlFamily": "flat-clamp"
+      },
+      "notes": [
+        "Reference trail flat bar."
+      ]
+    },
+    {
+      "id": "part.urban.handlebar",
+      "label": "Urban U1 swept bar",
+      "slotId": "handlebar",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.handlebar",
+      "interfaces": {
+        "barClamp": 31.8,
+        "controlFamily": "flat-clamp"
+      },
+      "notes": [
+        "Reference swept utility bar."
+      ]
+    },
+    {
+      "id": "part.road.seatpost",
+      "label": "Road R1 seatpost",
+      "slotId": "seatpost",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.seatpost",
+      "interfaces": {
+        "postDiameter": 27.2
+      },
+      "notes": [
+        "Reference rigid 27.2 mm post."
+      ]
+    },
+    {
+      "id": "part.gravel.seatpost",
+      "label": "Gravel G1 seatpost",
+      "slotId": "seatpost",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.seatpost",
+      "interfaces": {
+        "postDiameter": 27.2
+      },
+      "notes": [
+        "Reference rigid 27.2 mm post."
+      ]
+    },
+    {
+      "id": "part.mtb.seatpost",
+      "label": "MTB M1 dropper post",
+      "slotId": "seatpost",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.dropper-post",
+      "interfaces": {
+        "postDiameter": 31.6
+      },
+      "notes": [
+        "Reference 31.6 mm dropper. Remote routing is not modeled in P21."
+      ]
+    },
+    {
+      "id": "part.urban.seatpost",
+      "label": "Urban U1 seatpost",
+      "slotId": "seatpost",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.seatpost",
+      "interfaces": {
+        "postDiameter": 27.2
+      },
+      "notes": [
+        "Reference rigid 27.2 mm utility post."
+      ]
+    },
+    {
+      "id": "part.road.saddle",
+      "label": "Road R1 saddle",
+      "slotId": "saddle",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.saddle",
+      "interfaces": {
+        "railInterface": "round-7x7"
+      },
+      "notes": [
+        "Reference round-rail saddle."
+      ]
+    },
+    {
+      "id": "part.gravel.saddle",
+      "label": "Gravel G1 saddle",
+      "slotId": "saddle",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.saddle",
+      "interfaces": {
+        "railInterface": "round-7x7"
+      },
+      "notes": [
+        "Reference round-rail saddle."
+      ]
+    },
+    {
+      "id": "part.mtb.saddle",
+      "label": "MTB M1 saddle",
+      "slotId": "saddle",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.saddle",
+      "interfaces": {
+        "railInterface": "round-7x7"
+      },
+      "notes": [
+        "Reference round-rail trail saddle."
+      ]
+    },
+    {
+      "id": "part.urban.saddle",
+      "label": "Urban U1 saddle",
+      "slotId": "saddle",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.saddle",
+      "interfaces": {
+        "railInterface": "round-7x7"
+      },
+      "notes": [
+        "Reference round-rail utility saddle."
+      ]
+    },
+    {
+      "id": "part.road.left-pedal",
+      "label": "Road R1 left pedal",
+      "slotId": "left-pedal",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.left-pedal",
+      "interfaces": {
+        "pedalThread": "9/16-left"
+      },
+      "notes": [
+        "Standard Bike Atlas reference left pedal thread."
+      ]
+    },
+    {
+      "id": "part.gravel.left-pedal",
+      "label": "Gravel G1 left pedal",
+      "slotId": "left-pedal",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.left-pedal",
+      "interfaces": {
+        "pedalThread": "9/16-left"
+      },
+      "notes": [
+        "Standard Bike Atlas reference left pedal thread."
+      ]
+    },
+    {
+      "id": "part.mtb.left-pedal",
+      "label": "MTB M1 left pedal",
+      "slotId": "left-pedal",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.left-pedal",
+      "interfaces": {
+        "pedalThread": "9/16-left"
+      },
+      "notes": [
+        "Standard Bike Atlas reference left pedal thread."
+      ]
+    },
+    {
+      "id": "part.urban.left-pedal",
+      "label": "Urban U1 left pedal",
+      "slotId": "left-pedal",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.left-pedal",
+      "interfaces": {
+        "pedalThread": "9/16-left"
+      },
+      "notes": [
+        "Standard Bike Atlas reference left pedal thread."
+      ]
+    },
+    {
+      "id": "part.road.right-pedal",
+      "label": "Road R1 right pedal",
+      "slotId": "right-pedal",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.right-pedal",
+      "interfaces": {
+        "pedalThread": "9/16-right"
+      },
+      "notes": [
+        "Standard Bike Atlas reference right pedal thread."
+      ]
+    },
+    {
+      "id": "part.gravel.right-pedal",
+      "label": "Gravel G1 right pedal",
+      "slotId": "right-pedal",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.right-pedal",
+      "interfaces": {
+        "pedalThread": "9/16-right"
+      },
+      "notes": [
+        "Standard Bike Atlas reference right pedal thread."
+      ]
+    },
+    {
+      "id": "part.mtb.right-pedal",
+      "label": "MTB M1 right pedal",
+      "slotId": "right-pedal",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.right-pedal",
+      "interfaces": {
+        "pedalThread": "9/16-right"
+      },
+      "notes": [
+        "Standard Bike Atlas reference right pedal thread."
+      ]
+    },
+    {
+      "id": "part.urban.right-pedal",
+      "label": "Urban U1 right pedal",
+      "slotId": "right-pedal",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.right-pedal",
+      "interfaces": {
+        "pedalThread": "9/16-right"
+      },
+      "notes": [
+        "Standard Bike Atlas reference right pedal thread."
+      ]
+    }
+  ]
+}
