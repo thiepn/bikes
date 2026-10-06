@@ -58,7 +58,9 @@ function readNumber(
   min: number,
   max: number,
 ) {
-  const value = Number(params.get(key));
+  const raw = params.get(key);
+  if (raw === null) return fallback;
+  const value = Number(raw);
   return Number.isFinite(value)
     ? clamp(value, min, max)
     : fallback;
