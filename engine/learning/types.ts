@@ -50,6 +50,7 @@ export interface LessonStep {
 
 export interface InteractiveLesson {
   id: string;
+  bikeId: string;
   title: string;
   summary: string;
   systemId: BikeSystemId;
