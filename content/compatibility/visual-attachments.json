@@ -22,7 +22,18 @@
         0.018,
         0.105
       ],
-      "stemRadius": 0.014
+      "stemRadius": 0.014,
+      "forkRadius": 0.014,
+      "caliperSize": [
+        0.055,
+        0.075,
+        0.04
+      ],
+      "derailleurSize": [
+        0.055,
+        0.12,
+        0.035
+      ]
     },
     {
       "bikeId": "bike.gravel.g1",
@@ -45,7 +56,18 @@
         0.018,
         0.1
       ],
-      "stemRadius": 0.014
+      "stemRadius": 0.014,
+      "forkRadius": 0.014,
+      "caliperSize": [
+        0.055,
+        0.073,
+        0.04
+      ],
+      "derailleurSize": [
+        0.058,
+        0.125,
+        0.038
+      ]
     },
     {
       "bikeId": "bike.mtb.m1",
@@ -68,7 +90,18 @@
         0.018,
         0.11
       ],
-      "stemRadius": 0.016
+      "stemRadius": 0.016,
+      "forkRadius": 0.021,
+      "caliperSize": [
+        0.06,
+        0.085,
+        0.045
+      ],
+      "derailleurSize": [
+        0.06,
+        0.13,
+        0.04
+      ]
     },
     {
       "bikeId": "bike.urban.u1",
@@ -91,7 +124,13 @@
         0.02,
         0.095
       ],
-      "stemRadius": 0.015
+      "stemRadius": 0.015,
+      "forkRadius": 0.015,
+      "caliperSize": [
+        0.05,
+        0.07,
+        0.04
+      ]
     }
   ],
   "hosts": [
@@ -259,6 +298,101 @@
             0.15,
             0.39,
             -0.1
+          ]
+        },
+        {
+          "slotId": "fork",
+          "kind": "fork",
+          "hiddenComponentIds": [
+            "bike.road.r1.fork"
+          ],
+          "segments": [
+            {
+              "from": [
+                -0.038,
+                0.59,
+                0.39
+              ],
+              "to": [
+                -0.048,
+                0.36,
+                0.58
+              ]
+            },
+            {
+              "from": [
+                0.038,
+                0.59,
+                0.39
+              ],
+              "to": [
+                0.048,
+                0.36,
+                0.58
+              ]
+            }
+          ]
+        },
+        {
+          "slotId": "front-caliper",
+          "kind": "caliper",
+          "hiddenComponentIds": [
+            "bike.road.r1.front-caliper"
+          ],
+          "position": [
+            0.085,
+            0.455,
+            0.535
+          ]
+        },
+        {
+          "slotId": "rear-caliper",
+          "kind": "caliper",
+          "hiddenComponentIds": [
+            "bike.road.r1.rear-caliper"
+          ],
+          "position": [
+            0.085,
+            0.455,
+            -0.535
+          ]
+        },
+        {
+          "slotId": "crankset",
+          "kind": "crankset",
+          "hiddenComponentIds": [
+            "bike.road.r1.crankset",
+            "bike.road.r1.large-chainring",
+            "bike.road.r1.small-chainring"
+          ],
+          "position": [
+            0,
+            0.39,
+            -0.1
+          ]
+        },
+        {
+          "slotId": "rear-transmission",
+          "kind": "rear-transmission",
+          "hiddenComponentIds": [
+            "bike.road.r1.cassette"
+          ],
+          "position": [
+            0.045,
+            0.36,
+            -0.58
+          ]
+        },
+        {
+          "slotId": "rear-derailleur",
+          "kind": "rear-derailleur",
+          "hiddenComponentIds": [
+            "bike.road.r1.rear-derailleur"
+          ],
+          "position": [
+            0.075,
+            0.27,
+            -0.53
           ]
         }
       ]
@@ -428,6 +562,100 @@
             0.39,
             -0.08
           ]
+        },
+        {
+          "slotId": "fork",
+          "kind": "fork",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.fork"
+          ],
+          "segments": [
+            {
+              "from": [
+                -0.04,
+                0.58,
+                0.42
+              ],
+              "to": [
+                -0.05,
+                0.365,
+                0.615
+              ]
+            },
+            {
+              "from": [
+                0.04,
+                0.58,
+                0.42
+              ],
+              "to": [
+                0.05,
+                0.365,
+                0.615
+              ]
+            }
+          ]
+        },
+        {
+          "slotId": "front-caliper",
+          "kind": "caliper",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.front-caliper"
+          ],
+          "position": [
+            0.085,
+            0.455,
+            0.565
+          ]
+        },
+        {
+          "slotId": "rear-caliper",
+          "kind": "caliper",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.rear-caliper"
+          ],
+          "position": [
+            0.085,
+            0.455,
+            -0.565
+          ]
+        },
+        {
+          "slotId": "crankset",
+          "kind": "crankset",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.crankset",
+            "bike.gravel.g1.chainring"
+          ],
+          "position": [
+            0,
+            0.39,
+            -0.08
+          ]
+        },
+        {
+          "slotId": "rear-transmission",
+          "kind": "rear-transmission",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.cassette"
+          ],
+          "position": [
+            0.052,
+            0.365,
+            -0.615
+          ]
+        },
+        {
+          "slotId": "rear-derailleur",
+          "kind": "rear-derailleur",
+          "hiddenComponentIds": [
+            "bike.gravel.g1.rear-derailleur"
+          ],
+          "position": [
+            0.078,
+            0.265,
+            -0.56
+          ]
         }
       ]
     },
@@ -596,6 +824,100 @@
             0.42,
             -0.12
           ]
+        },
+        {
+          "slotId": "fork",
+          "kind": "fork",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.fork"
+          ],
+          "segments": [
+            {
+              "from": [
+                -0.048,
+                0.74,
+                0.4
+              ],
+              "to": [
+                -0.055,
+                0.39,
+                0.64
+              ]
+            },
+            {
+              "from": [
+                0.048,
+                0.74,
+                0.4
+              ],
+              "to": [
+                0.055,
+                0.39,
+                0.64
+              ]
+            }
+          ]
+        },
+        {
+          "slotId": "front-caliper",
+          "kind": "caliper",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.front-caliper"
+          ],
+          "position": [
+            0.095,
+            0.49,
+            0.59
+          ]
+        },
+        {
+          "slotId": "rear-caliper",
+          "kind": "caliper",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.rear-caliper"
+          ],
+          "position": [
+            0.095,
+            0.49,
+            -0.59
+          ]
+        },
+        {
+          "slotId": "crankset",
+          "kind": "crankset",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.crankset",
+            "bike.mtb.m1.chainring"
+          ],
+          "position": [
+            0,
+            0.42,
+            -0.12
+          ]
+        },
+        {
+          "slotId": "rear-transmission",
+          "kind": "rear-transmission",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.cassette"
+          ],
+          "position": [
+            0.05,
+            0.39,
+            -0.64
+          ]
+        },
+        {
+          "slotId": "rear-derailleur",
+          "kind": "rear-derailleur",
+          "hiddenComponentIds": [
+            "bike.mtb.m1.rear-derailleur"
+          ],
+          "position": [
+            0.078,
+            0.27,
+            -0.59
+          ]
         }
       ]
     },
@@ -763,6 +1085,88 @@
             0.16,
             0.4,
             -0.1
+          ]
+        },
+        {
+          "slotId": "fork",
+          "kind": "fork",
+          "hiddenComponentIds": [
+            "bike.urban.u1.fork"
+          ],
+          "segments": [
+            {
+              "from": [
+                -0.037,
+                0.59,
+                0.42
+              ],
+              "to": [
+                -0.045,
+                0.37,
+                0.62
+              ]
+            },
+            {
+              "from": [
+                0.037,
+                0.59,
+                0.42
+              ],
+              "to": [
+                0.045,
+                0.37,
+                0.62
+              ]
+            }
+          ]
+        },
+        {
+          "slotId": "front-caliper",
+          "kind": "caliper",
+          "hiddenComponentIds": [
+            "bike.urban.u1.front-caliper"
+          ],
+          "position": [
+            0.09,
+            0.47,
+            0.59
+          ]
+        },
+        {
+          "slotId": "rear-caliper",
+          "kind": "caliper",
+          "hiddenComponentIds": [
+            "bike.urban.u1.rear-caliper"
+          ],
+          "position": [
+            0.09,
+            0.47,
+            -0.59
+          ]
+        },
+        {
+          "slotId": "crankset",
+          "kind": "crankset",
+          "hiddenComponentIds": [
+            "bike.urban.u1.crankset",
+            "bike.urban.u1.chainring"
+          ],
+          "position": [
+            0,
+            0.4,
+            -0.1
+          ]
+        },
+        {
+          "slotId": "rear-transmission",
+          "kind": "rear-transmission",
+          "hiddenComponentIds": [
+            "bike.urban.u1.rear-sprocket"
+          ],
+          "position": [
+            0.055,
+            0.37,
+            -0.62
           ]
         }
       ]
