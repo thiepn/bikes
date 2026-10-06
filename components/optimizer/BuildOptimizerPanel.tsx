@@ -233,8 +233,12 @@ export function BuildOptimizerPanel({
       url.searchParams.delete("optPoint");
     }
 
-    if (goalId === "speed") url.searchParams.delete("optGoal");
-    else url.searchParams.set("optGoal", goalId);
+    if (view === "ranked") {
+      if (goalId === "speed") url.searchParams.delete("optGoal");
+      else url.searchParams.set("optGoal", goalId);
+    } else {
+      url.searchParams.delete("optGoal");
+    }
 
     if (maxChanges === 4) url.searchParams.delete("optChanges");
     else url.searchParams.set("optChanges", String(maxChanges));
