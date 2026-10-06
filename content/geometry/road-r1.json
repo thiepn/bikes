@@ -1,0 +1,21 @@
+{
+  "bikeId": "bike.road.r1",
+  "source": "bike-atlas-reference",
+  "sizeLabel": "Reference M/L",
+  "wheelFormat": "700C",
+  "wheelbaseMm": 992,
+  "reachMm": 390,
+  "stackMm": 560,
+  "headAngleDeg": 73.2,
+  "seatAngleDeg": 73.5,
+  "chainstayMm": 410,
+  "bottomBracketDropMm": 72,
+  "tireWidthMm": 30,
+  "handlebarWidthMm": 420,
+  "frontTravelMm": 0,
+  "rearTravelMm": 0,
+  "notes": [
+    "Bike Atlas reference geometry for the generic Road R1 archetype.",
+    "Not a manufacturer size chart or fit recommendation."
+  ]
+}
