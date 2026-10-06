@@ -1,3 +1,8 @@
+import {
+  getCompatibilityPart,
+  getCompatibilityProfile,
+} from "@/domain/compatibility/catalog";
+import { evaluateCompatibility } from "@/domain/compatibility/evaluate";
 import type {
   BuildSelection,
   CompatibilitySlotId,
@@ -9,6 +14,9 @@ const VALID_SLOT_IDS = new Set<CompatibilitySlotId>([
   "front-tire",
   "rear-tire",
   "handlebar",
+  "stem",
+  "front-rotor",
+  "rear-rotor",
   "seatpost",
   "saddle",
   "left-pedal",
@@ -53,4 +61,24 @@ export function buildSelectionList(
       slotId: slotId as CompatibilitySlotId,
       partId,
     }));
+}
+
+export function sanitizeBuildSelections(
+  bikeId: string,
+  selections: Readonly<Record<string, string>>,
+) {
+  const profile = getCompatibilityProfile(bikeId);
+  if (!profile) return {};
+
+  const safe: Record<string, string> = {};
+  for (const [slotId, partId] of Object.entries(selections)) {
+    const slot = profile.slots.find((item) => item.id === slotId);
+    const part = getCompatibilityPart(partId);
+    if (!slot || !part) continue;
+
+    if (evaluateCompatibility(slot, part).status === "compatible") {
+      safe[slotId] = part.id;
+    }
+  }
+  return safe;
 }
