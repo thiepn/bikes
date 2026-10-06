@@ -8,78 +8,121 @@
   "prerequisiteProcedureIds": [],
   "assumedOperationIds": [],
   "tools": [
-    {"id":"hex-key","name":"Correct hex key for the thru axle","required":true},
-    {"id":"work-stand","name":"Bike work stand","required":false,"note":"Helpful but not required."}
+    {
+      "id": "hex-key",
+      "name": "Correct hex key for the thru axle",
+      "required": true
+    },
+    {
+      "id": "work-stand",
+      "name": "Bike work stand",
+      "required": false,
+      "note": "Helpful but not required."
+    }
   ],
   "steps": [
     {
-      "id":"shift-small",
-      "title":"Shift to the smallest rear sprocket",
-      "instruction":"Before touching the axle, shift the chain onto the smallest cassette sprocket. This reduces derailleur tension and gives the wheel more clearance.",
-      "why":"A straighter, less-tensioned chain makes wheel removal and reinstallation easier.",
-      "focusComponentId":"bike.road.r1.rear-derailleur",
-      "highlightComponentIds":["bike.road.r1.rear-derailleur","bike.road.r1.cassette","bike.road.r1.chain"],
-      "inspectionMode":"systems",
-      "explosionAmount":0,
-      "tools":[],
-      "check":"Chain is on the smallest rear sprocket.",
-      "removedComponentIds":[]
+      "id": "shift-small",
+      "title": "Shift to the smallest rear sprocket",
+      "instruction": "Before touching the axle, shift the chain onto the smallest cassette sprocket. This reduces derailleur tension and gives the wheel more clearance.",
+      "why": "A straighter, less-tensioned chain makes wheel removal and reinstallation easier.",
+      "focusComponentId": "bike.road.r1.rear-derailleur",
+      "highlightComponentIds": [
+        "bike.road.r1.rear-derailleur",
+        "bike.road.r1.cassette",
+        "bike.road.r1.chain"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0,
+      "tools": [],
+      "check": "Chain is on the smallest rear sprocket.",
+      "removedComponentIds": []
     },
     {
-      "id":"release-axle",
-      "title":"Release the rear thru axle",
-      "instruction":"Support the wheel and loosen the rear thru axle with the correct interface. Withdraw the axle while keeping control of the wheel.",
-      "why":"The axle locates and clamps the rear wheel in the frame.",
-      "focusComponentId":"bike.road.r1.rear-thru-axle",
-      "highlightComponentIds":["bike.road.r1.rear-thru-axle","bike.road.r1.rear-wheel"],
-      "inspectionMode":"xray",
-      "explosionAmount":0.2,
-      "operationId":"release-rear-thru-axle",
-      "tools":["hex-key"],
-      "warning":"Do not let the wheel drop while the axle is being withdrawn.",
-      "check":"Axle is fully released and controlled.",
-      "removedComponentIds":["bike.road.r1.rear-thru-axle"]
+      "id": "release-axle",
+      "title": "Release the rear thru axle",
+      "instruction": "Support the wheel and loosen the rear thru axle with the correct interface. Withdraw the axle while keeping control of the wheel.",
+      "why": "The axle locates and clamps the rear wheel in the frame.",
+      "focusComponentId": "bike.road.r1.rear-thru-axle",
+      "highlightComponentIds": [
+        "bike.road.r1.rear-thru-axle",
+        "bike.road.r1.rear-wheel"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.2,
+      "operationId": "release-rear-thru-axle",
+      "tools": [
+        "hex-key"
+      ],
+      "warning": "Do not let the wheel drop while the axle is being withdrawn.",
+      "check": "Axle is fully released and controlled.",
+      "removedComponentIds": [
+        "bike.road.r1.rear-thru-axle"
+      ]
     },
     {
-      "id":"clear-derailleur",
-      "title":"Move the derailleur clear",
-      "instruction":"Pull the rear derailleur body gently backward while lowering the wheel out of the dropouts.",
-      "why":"The derailleur and chain wrap around the cassette and otherwise obstruct the wheel.",
-      "focusComponentId":"bike.road.r1.rear-derailleur",
-      "highlightComponentIds":["bike.road.r1.rear-derailleur","bike.road.r1.cassette","bike.road.r1.chain"],
-      "inspectionMode":"normal",
-      "explosionAmount":0.35,
-      "tools":[],
-      "warning":"Do not force or twist the derailleur sideways.",
-      "removedComponentIds":["bike.road.r1.rear-thru-axle"]
+      "id": "clear-derailleur",
+      "title": "Move the derailleur clear",
+      "instruction": "Pull the rear derailleur body gently backward while lowering the wheel out of the dropouts.",
+      "why": "The derailleur and chain wrap around the cassette and otherwise obstruct the wheel.",
+      "focusComponentId": "bike.road.r1.rear-derailleur",
+      "highlightComponentIds": [
+        "bike.road.r1.rear-derailleur",
+        "bike.road.r1.cassette",
+        "bike.road.r1.chain"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0.35,
+      "tools": [],
+      "warning": "Do not force or twist the derailleur sideways.",
+      "removedComponentIds": [
+        "bike.road.r1.rear-thru-axle"
+      ]
     },
     {
-      "id":"remove-wheel",
-      "title":"Lower the wheel out",
-      "instruction":"Guide the wheel down and away while keeping the rotor clear of the brake caliper and the cassette clear of the chain.",
-      "why":"The rotor is thin and easily bent; controlled removal prevents impact against the caliper or frame.",
-      "focusComponentId":"bike.road.r1.rear-wheel",
-      "highlightComponentIds":["bike.road.r1.rear-wheel","bike.road.r1.rear-rotor","bike.road.r1.rear-caliper"],
-      "inspectionMode":"exploded",
-      "explosionAmount":0.75,
-      "operationId":"remove-rear-wheel",
-      "tools":[],
-      "warning":"With a hydraulic disc brake, do not pull the brake lever while the wheel/rotor is removed.",
-      "check":"Wheel is free and rotor has cleared the caliper.",
-      "removedComponentIds":["bike.road.r1.rear-thru-axle","bike.road.r1.rear-wheel","bike.road.r1.rear-tire","bike.road.r1.rear-rim","bike.road.r1.rear-hub","bike.road.r1.rear-rotor","bike.road.r1.cassette"]
+      "id": "remove-wheel",
+      "title": "Lower the wheel out",
+      "instruction": "Guide the wheel down and away while keeping the rotor clear of the brake caliper and the cassette clear of the chain.",
+      "why": "The rotor is thin and easily bent; controlled removal prevents impact against the caliper or frame.",
+      "focusComponentId": "bike.road.r1.rear-wheel",
+      "highlightComponentIds": [
+        "bike.road.r1.rear-wheel",
+        "bike.road.r1.rear-rotor",
+        "bike.road.r1.rear-caliper"
+      ],
+      "inspectionMode": "exploded",
+      "explosionAmount": 0.75,
+      "operationId": "remove-rear-wheel",
+      "tools": [],
+      "warning": "With a hydraulic disc brake, do not pull the brake lever while the wheel/rotor is removed.",
+      "check": "Wheel is free and rotor has cleared the caliper.",
+      "removedComponentIds": [
+        "bike.road.r1.rear-thru-axle",
+        "bike.road.r1.rear-wheel",
+        "bike.road.r1.rear-tire",
+        "bike.road.r1.rear-rim",
+        "bike.road.r1.rear-hub",
+        "bike.road.r1.rear-rotor",
+        "bike.road.r1.cassette"
+      ]
     },
     {
-      "id":"inspect-reinstall",
-      "title":"Inspect before reinstalling",
-      "instruction":"Check the rotor for obvious bends, confirm the axle threads are clean and align the chain with the smallest sprocket before guiding the wheel back into place.",
-      "why":"Reinstallation is easiest when the drivetrain and brake are aligned before the axle is tightened.",
-      "focusComponentId":"bike.road.r1.rear-hub",
-      "highlightComponentIds":["bike.road.r1.rear-hub","bike.road.r1.rear-rotor","bike.road.r1.cassette"],
-      "inspectionMode":"normal",
-      "explosionAmount":0.6,
-      "tools":[],
-      "check":"Rotor enters the caliper slot cleanly and wheel is seated before axle tightening.",
-      "removedComponentIds":[]
+      "id": "inspect-reinstall",
+      "title": "Inspect before reinstalling",
+      "instruction": "Check the rotor for obvious bends, confirm the axle threads are clean and align the chain with the smallest sprocket before guiding the wheel back into place.",
+      "why": "Reinstallation is easiest when the drivetrain and brake are aligned before the axle is tightened.",
+      "focusComponentId": "bike.road.r1.rear-hub",
+      "highlightComponentIds": [
+        "bike.road.r1.rear-hub",
+        "bike.road.r1.rear-rotor",
+        "bike.road.r1.cassette"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0.6,
+      "tools": [],
+      "check": "Rotor enters the caliper slot cleanly and wheel is seated before axle tightening.",
+      "removedComponentIds": []
     }
-  ]
+  ],
+  "bikeId": "bike.road.r1"
 }
