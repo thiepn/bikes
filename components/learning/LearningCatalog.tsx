@@ -1,15 +1,17 @@
 "use client";
 
 import {
-  LESSON_CATALOG,
   getLessonPrerequisites,
+  getLessonsForBike,
 } from "@/domain/learning/catalog";
+import { getBikeById } from "@/domain/bike/catalog";
 import {
   isLessonCompleted,
 } from "@/engine/learning/progress";
 import type { LearningProgressStore } from "@/engine/learning/types";
 
 type LearningCatalogProps = {
+  bikeId: string;
   progress: LearningProgressStore;
   hydrated: boolean;
   onStartLesson: (lessonId: string, stepIndex: number) => void;
@@ -17,23 +19,27 @@ type LearningCatalogProps = {
 };
 
 export function LearningCatalog({
+  bikeId,
   progress,
   hydrated,
   onStartLesson,
   onClose,
 }: LearningCatalogProps) {
-  const completed = LESSON_CATALOG.filter((lesson) =>
+  const bike = getBikeById(bikeId);
+  const lessons = getLessonsForBike(bikeId);
+  const completed = lessons.filter((lesson) =>
     isLessonCompleted(progress, lesson.id),
   ).length;
-  const percentage = Math.round(
-    (completed / LESSON_CATALOG.length) * 100,
-  );
+  const percentage =
+    lessons.length === 0
+      ? 0
+      : Math.round((completed / lessons.length) * 100);
 
   return (
     <aside className="learning-catalog" aria-label="Bike Atlas lessons">
       <div className="learning-catalog__header">
         <div>
-          <span className="lesson-kicker">Learn Bike Atlas</span>
+          <span className="lesson-kicker">Learn · {bike?.name ?? "Bike Atlas"}</span>
           <h2>Understand the systems.</h2>
           <p>
             Short interactive lessons use the same 3D bike you explore.
@@ -52,7 +58,7 @@ export function LearningCatalog({
 
       <div className="learning-overview">
         <span>
-          <strong>{completed}</strong> / {LESSON_CATALOG.length} completed
+          <strong>{completed}</strong> / {lessons.length} completed
         </span>
         <span>{percentage}%</span>
         <div aria-hidden="true">
@@ -61,7 +67,7 @@ export function LearningCatalog({
       </div>
 
       <div className="learning-list">
-        {LESSON_CATALOG.map((lesson, index) => {
+        {lessons.map((lesson, index) => {
           const record = progress.lessons[lesson.id];
           const prerequisites = getLessonPrerequisites(lesson);
           const locked =
