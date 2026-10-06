@@ -191,6 +191,72 @@
               "expected": "9/16-right"
             }
           ]
+        },
+        {
+          "id": "stem",
+          "label": "Stem",
+          "hostComponentId": "bike.road.r1.stem",
+          "description": "Steerer and handlebar clamp interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "steererClamp",
+              "label": "Steerer clamp",
+              "expected": 28.6,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "barClamp",
+              "label": "Handlebar clamp",
+              "expected": 31.8,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "front-rotor",
+          "label": "Front rotor",
+          "hostComponentId": "bike.road.r1.front-rotor",
+          "description": "Front hub rotor interface and reference brake diameter envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "center-lock"
+            },
+            {
+              "kind": "range",
+              "key": "rotorDiameter",
+              "label": "Reference rotor diameter",
+              "min": 140,
+              "max": 160,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "rear-rotor",
+          "label": "Rear rotor",
+          "hostComponentId": "bike.road.r1.rear-rotor",
+          "description": "Rear hub rotor interface and reference brake diameter envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "center-lock"
+            },
+            {
+              "kind": "range",
+              "key": "rotorDiameter",
+              "label": "Reference rotor diameter",
+              "min": 140,
+              "max": 160,
+              "unit": "mm"
+            }
+          ]
         }
       ]
     },
@@ -377,6 +443,72 @@
               "key": "pedalThread",
               "label": "Pedal thread",
               "expected": "9/16-right"
+            }
+          ]
+        },
+        {
+          "id": "stem",
+          "label": "Stem",
+          "hostComponentId": "bike.gravel.g1.stem",
+          "description": "Steerer and handlebar clamp interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "steererClamp",
+              "label": "Steerer clamp",
+              "expected": 28.6,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "barClamp",
+              "label": "Handlebar clamp",
+              "expected": 31.8,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "front-rotor",
+          "label": "Front rotor",
+          "hostComponentId": "bike.gravel.g1.front-rotor",
+          "description": "Front hub rotor interface and reference brake diameter envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "center-lock"
+            },
+            {
+              "kind": "range",
+              "key": "rotorDiameter",
+              "label": "Reference rotor diameter",
+              "min": 160,
+              "max": 180,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "rear-rotor",
+          "label": "Rear rotor",
+          "hostComponentId": "bike.gravel.g1.rear-rotor",
+          "description": "Rear hub rotor interface and reference brake diameter envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "center-lock"
+            },
+            {
+              "kind": "range",
+              "key": "rotorDiameter",
+              "label": "Reference rotor diameter",
+              "min": 160,
+              "max": 180,
+              "unit": "mm"
             }
           ]
         }
@@ -567,6 +699,72 @@
               "expected": "9/16-right"
             }
           ]
+        },
+        {
+          "id": "stem",
+          "label": "Stem",
+          "hostComponentId": "bike.mtb.m1.stem",
+          "description": "Steerer and handlebar clamp interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "steererClamp",
+              "label": "Steerer clamp",
+              "expected": 28.6,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "barClamp",
+              "label": "Handlebar clamp",
+              "expected": 31.8,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "front-rotor",
+          "label": "Front rotor",
+          "hostComponentId": "bike.mtb.m1.front-rotor",
+          "description": "Trail front rotor mount and reference diameter envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "six-bolt"
+            },
+            {
+              "kind": "range",
+              "key": "rotorDiameter",
+              "label": "Reference rotor diameter",
+              "min": 180,
+              "max": 203,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "rear-rotor",
+          "label": "Rear rotor",
+          "hostComponentId": "bike.mtb.m1.rear-rotor",
+          "description": "Trail rear rotor mount and reference diameter envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "six-bolt"
+            },
+            {
+              "kind": "range",
+              "key": "rotorDiameter",
+              "label": "Reference rotor diameter",
+              "min": 180,
+              "max": 203,
+              "unit": "mm"
+            }
+          ]
         }
       ]
     },
@@ -753,6 +951,72 @@
               "key": "pedalThread",
               "label": "Pedal thread",
               "expected": "9/16-right"
+            }
+          ]
+        },
+        {
+          "id": "stem",
+          "label": "Stem",
+          "hostComponentId": "bike.urban.u1.stem",
+          "description": "Steerer and handlebar clamp interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "steererClamp",
+              "label": "Steerer clamp",
+              "expected": 28.6,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "barClamp",
+              "label": "Handlebar clamp",
+              "expected": 31.8,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "front-rotor",
+          "label": "Front rotor",
+          "hostComponentId": "bike.urban.u1.front-rotor",
+          "description": "Utility front rotor mount and reference diameter envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "center-lock"
+            },
+            {
+              "kind": "range",
+              "key": "rotorDiameter",
+              "label": "Reference rotor diameter",
+              "min": 160,
+              "max": 180,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "rear-rotor",
+          "label": "Rear rotor",
+          "hostComponentId": "bike.urban.u1.rear-rotor",
+          "description": "Utility rear rotor mount and reference diameter envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "discInterface",
+              "label": "Disc interface",
+              "expected": "center-lock"
+            },
+            {
+              "kind": "range",
+              "key": "rotorDiameter",
+              "label": "Reference rotor diameter",
+              "min": 160,
+              "max": 180,
+              "unit": "mm"
             }
           ]
         }
@@ -1258,6 +1522,174 @@
       },
       "notes": [
         "Standard Bike Atlas reference right pedal thread."
+      ]
+    },
+    {
+      "id": "part.road.stem",
+      "label": "Road R1 stem",
+      "slotId": "stem",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.stem",
+      "interfaces": {
+        "steererClamp": 28.6,
+        "barClamp": 31.8
+      },
+      "notes": [
+        "Bike Atlas reference stem; length/rise are visual/fit properties rather than P22 compatibility gates."
+      ]
+    },
+    {
+      "id": "part.road.front-rotor",
+      "label": "Road R1 front rotor",
+      "slotId": "front-rotor",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.front-rotor",
+      "interfaces": {
+        "discInterface": "center-lock",
+        "rotorDiameter": 160
+      },
+      "notes": [
+        "Bike Atlas reference 160 mm center-lock rotor. Adapter/caliper/frame brake limits beyond the authored host diameter envelope remain unmodeled."
+      ]
+    },
+    {
+      "id": "part.road.rear-rotor",
+      "label": "Road R1 rear rotor",
+      "slotId": "rear-rotor",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.rear-rotor",
+      "interfaces": {
+        "discInterface": "center-lock",
+        "rotorDiameter": 140
+      },
+      "notes": [
+        "Bike Atlas reference 140 mm center-lock rotor. Adapter/caliper/frame brake limits beyond the authored host diameter envelope remain unmodeled."
+      ]
+    },
+    {
+      "id": "part.gravel.stem",
+      "label": "Gravel G1 stem",
+      "slotId": "stem",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.stem",
+      "interfaces": {
+        "steererClamp": 28.6,
+        "barClamp": 31.8
+      },
+      "notes": [
+        "Bike Atlas reference stem; length/rise are visual/fit properties rather than P22 compatibility gates."
+      ]
+    },
+    {
+      "id": "part.gravel.front-rotor",
+      "label": "Gravel G1 front rotor",
+      "slotId": "front-rotor",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.front-rotor",
+      "interfaces": {
+        "discInterface": "center-lock",
+        "rotorDiameter": 160
+      },
+      "notes": [
+        "Bike Atlas reference 160 mm center-lock rotor. Adapter/caliper/frame brake limits beyond the authored host diameter envelope remain unmodeled."
+      ]
+    },
+    {
+      "id": "part.gravel.rear-rotor",
+      "label": "Gravel G1 rear rotor",
+      "slotId": "rear-rotor",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.rear-rotor",
+      "interfaces": {
+        "discInterface": "center-lock",
+        "rotorDiameter": 160
+      },
+      "notes": [
+        "Bike Atlas reference 160 mm center-lock rotor. Adapter/caliper/frame brake limits beyond the authored host diameter envelope remain unmodeled."
+      ]
+    },
+    {
+      "id": "part.mtb.stem",
+      "label": "MTB M1 stem",
+      "slotId": "stem",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.stem",
+      "interfaces": {
+        "steererClamp": 28.6,
+        "barClamp": 31.8
+      },
+      "notes": [
+        "Bike Atlas reference stem; length/rise are visual/fit properties rather than P22 compatibility gates."
+      ]
+    },
+    {
+      "id": "part.mtb.front-rotor",
+      "label": "MTB M1 front rotor",
+      "slotId": "front-rotor",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.front-rotor",
+      "interfaces": {
+        "discInterface": "six-bolt",
+        "rotorDiameter": 203
+      },
+      "notes": [
+        "Bike Atlas reference 203 mm six-bolt rotor. Adapter/caliper/frame brake limits beyond the authored host diameter envelope remain unmodeled."
+      ]
+    },
+    {
+      "id": "part.mtb.rear-rotor",
+      "label": "MTB M1 rear rotor",
+      "slotId": "rear-rotor",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.rear-rotor",
+      "interfaces": {
+        "discInterface": "six-bolt",
+        "rotorDiameter": 180
+      },
+      "notes": [
+        "Bike Atlas reference 180 mm six-bolt rotor. Adapter/caliper/frame brake limits beyond the authored host diameter envelope remain unmodeled."
+      ]
+    },
+    {
+      "id": "part.urban.stem",
+      "label": "Urban U1 stem",
+      "slotId": "stem",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.stem",
+      "interfaces": {
+        "steererClamp": 28.6,
+        "barClamp": 31.8
+      },
+      "notes": [
+        "Bike Atlas reference stem; length/rise are visual/fit properties rather than P22 compatibility gates."
+      ]
+    },
+    {
+      "id": "part.urban.front-rotor",
+      "label": "Urban U1 front rotor",
+      "slotId": "front-rotor",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.front-rotor",
+      "interfaces": {
+        "discInterface": "center-lock",
+        "rotorDiameter": 180
+      },
+      "notes": [
+        "Bike Atlas reference 180 mm center-lock rotor. Adapter/caliper/frame brake limits beyond the authored host diameter envelope remain unmodeled."
+      ]
+    },
+    {
+      "id": "part.urban.rear-rotor",
+      "label": "Urban U1 rear rotor",
+      "slotId": "rear-rotor",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.rear-rotor",
+      "interfaces": {
+        "discInterface": "center-lock",
+        "rotorDiameter": 160
+      },
+      "notes": [
+        "Bike Atlas reference 160 mm center-lock rotor. Adapter/caliper/frame brake limits beyond the authored host diameter envelope remain unmodeled."
       ]
     }
   ]
