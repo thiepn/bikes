@@ -1062,6 +1062,7 @@ export function BikeViewer() {
       url.searchParams.delete("history");
       url.searchParams.delete("concept");
       for (const key of PHYSICS_QUERY_KEYS) url.searchParams.delete(key);
+      for (const key of GEOMETRY_QUERY_KEYS) url.searchParams.delete(key);
       for (const key of BUILD_QUERY_KEYS) url.searchParams.delete(key);
       url.searchParams.set("lesson", lesson.id);
       url.searchParams.set(
@@ -1085,6 +1086,7 @@ export function BikeViewer() {
       url.searchParams.delete("history");
       url.searchParams.delete("concept");
       for (const key of PHYSICS_QUERY_KEYS) url.searchParams.delete(key);
+      for (const key of GEOMETRY_QUERY_KEYS) url.searchParams.delete(key);
       for (const key of BUILD_QUERY_KEYS) url.searchParams.delete(key);
       url.searchParams.set("workshop", procedure.id);
       url.searchParams.set(
@@ -1258,7 +1260,6 @@ export function BikeViewer() {
         else if (geometryOpen) setGeometryOpen(false);
         else if (physicsOpen) setPhysicsOpen(false);
         else if (buildOpen) setBuildOpen(false);
-      setGeometryOpen(false);
         else select(null);
         return;
       }
