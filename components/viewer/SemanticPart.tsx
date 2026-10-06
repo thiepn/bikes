@@ -24,6 +24,7 @@ export function SemanticPart({
   mode,
   explosionAmount,
   removedIds,
+  ghost,
   onSelect,
   onHover,
   onIsolate,
@@ -62,13 +63,14 @@ export function SemanticPart({
         selected: selectedId === componentId,
         isolated: hiddenByIsolation,
         removed: removedIds.includes(componentId),
+        comparisonGhost: Boolean(ghost),
         inspectionMode: mode,
         explosionAmount,
       }}
-      onClick={select}
-      onDoubleClick={isolatePart}
-      onPointerOver={enter}
-      onPointerOut={leave}
+      onClick={ghost ? undefined : select}
+      onDoubleClick={ghost ? undefined : isolatePart}
+      onPointerOver={ghost ? undefined : enter}
+      onPointerOut={ghost ? undefined : leave}
     >
       {children}
     </group>
