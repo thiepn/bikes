@@ -491,6 +491,20 @@ assert(
   "P24 Geometry Lab must retain geometry, fit and gearing model boundaries.",
 );
 
+assert(
+  panelText.includes('if (raw === null) return 90;'),
+  "P24 Geometry Lab must preserve the 90 rpm default when gearCad is absent.",
+);
+
+const physicsPanelText = await readFile(
+  "components/physics/PhysicsLabPanel.tsx",
+  "utf8",
+);
+assert(
+  physicsPanelText.includes("if (raw === null) return fallback;"),
+  "Physics URL parsing must preserve defaults when query keys are absent.",
+);
+
 const viewerText = await readFile(
   "components/viewer/BikeViewer.tsx",
   "utf8",
