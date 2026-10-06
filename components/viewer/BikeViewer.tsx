@@ -629,6 +629,8 @@ export function BikeViewer() {
         "lesson",
         "workshop",
         "step",
+        "compare",
+        "overlay",
       ]) {
         url.searchParams.delete(key);
       }
