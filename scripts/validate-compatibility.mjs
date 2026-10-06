@@ -36,6 +36,12 @@ const validSlots = new Set([
   "saddle",
   "left-pedal",
   "right-pedal",
+  "fork",
+  "front-caliper",
+  "rear-caliper",
+  "crankset",
+  "rear-transmission",
+  "rear-derailleur",
 ]);
 
 const profileByBike = new Map(
@@ -81,8 +87,8 @@ assert(
   "P21 needs one compatibility profile per current bike.",
 );
 assert(
-  reference.parts.length >= 48,
-  "P22 should retain the expanded cross-bike reference part library.",
+  reference.parts.length >= 71,
+  "P23 should retain the advanced cross-bike reference part library.",
 );
 assert(
   new Set(reference.parts.map((part) => part.id)).size ===
@@ -104,9 +110,11 @@ for (const bike of bikes) {
     profile.source === "bike-atlas-reference",
     `Compatibility profile must be marked reference data: ${bike.id}`,
   );
+  const expectedSlotCount =
+    bike.id === "bike.urban.u1" ? 17 : 18;
   assert(
-    profile.slots.length === validSlots.size,
-    `Each P22 host must retain all twelve build slots: ${bike.id}`,
+    profile.slots.length === expectedSlotCount,
+    `Unexpected P23 build-slot count for ${bike.id}: ${profile.slots.length}`,
   );
   assert(
     new Set(profile.slots.map((slot) => slot.id)).size ===
@@ -117,7 +125,7 @@ for (const bike of bikes) {
   for (const slot of profile.slots) {
     assert(
       validSlots.has(slot.id),
-      `Unknown P22 build slot: ${bike.id}/${slot.id}`,
+      `Unknown P23 build slot: ${bike.id}/${slot.id}`,
     );
     assert(
       bike.componentIds.has(slot.hostComponentId),
@@ -170,7 +178,7 @@ for (const bike of bikes) {
       const status = evaluate(slot, part);
       assert(
         status !== "unknown",
-        `Authored P22 candidate lacks interface data: ${bike.id}/${slot.id} <- ${part.id}`,
+        `Authored P23 candidate lacks interface data: ${bike.id}/${slot.id} <- ${part.id}`,
       );
     }
   }
@@ -270,6 +278,51 @@ assert(
     "compatible",
   "Road R1 and Urban U1 stems should share the modeled clamp interfaces.",
 );
+assert(
+  status("bike.road.r1", "front-caliper", "part.gravel.front-caliper") ===
+    "compatible",
+  "Road R1 and Gravel G1 front calipers should share the modeled flat-mount hydraulic interface.",
+);
+assert(
+  status("bike.mtb.m1", "front-caliper", "part.road.front-caliper") ===
+    "incompatible",
+  "MTB M1 must reject the modeled flat-mount Road caliper.",
+);
+assert(
+  status("bike.gravel.g1", "fork", "part.road.fork") ===
+    "compatible",
+  "Gravel G1 should accept the modeled Road R1 fork inside its authored axle-to-crown envelope.",
+);
+assert(
+  status("bike.road.r1", "fork", "part.gravel.fork") ===
+    "incompatible",
+  "Road R1 must reject the taller modeled Gravel G1 fork outside its authored axle-to-crown envelope.",
+);
+assert(
+  status("bike.road.r1", "crankset", "part.gravel.crankset") ===
+    "compatible",
+  "Road R1 should physically accept the modeled Gravel crankset interfaces before system consequences are evaluated.",
+);
+assert(
+  status("bike.road.r1", "rear-transmission", "part.gravel.rear-transmission") ===
+    "compatible",
+  "Road R1 should physically accept the modeled Gravel rear transmission carrier and chain family.",
+);
+assert(
+  status("bike.road.r1", "rear-derailleur", "part.gravel.rear-derailleur") ===
+    "compatible",
+  "Road R1 should physically accept the modeled Gravel rear derailleur interface.",
+);
+assert(
+  status("bike.mtb.m1", "rear-transmission", "part.road.rear-transmission") ===
+    "incompatible",
+  "MTB M1 must reject the Road rear-transmission carrier/chain family.",
+);
+assert(
+  status("bike.urban.u1", "rear-transmission", "part.road.rear-transmission") ===
+    "incompatible",
+  "Urban U1 must reject an external Road cassette at its internal-gear transmission slot.",
+);
 
 for (const saddlePart of reference.parts.filter(
   (part) => part.slotId === "saddle",
@@ -310,8 +363,8 @@ assert(
   panelText.includes("Does it actually fit?") &&
     panelText.includes("Compatibility explanation") &&
     panelText.includes("Use in draft") &&
-    panelText.includes("P22 renders normalized donor proxy geometry"),
-  "Build Lab must retain explanations, gated draft application and the P22 visual-model boundary.",
+    panelText.includes("P23 also evaluates cross-component dependencies"),
+  "Build Lab must retain explanations, gated slot application and the P23 system-analysis boundary.",
 );
 
 const viewerText = await readFile(
@@ -337,5 +390,5 @@ if (errors.length) {
 }
 
 console.log(
-  `✓ P22 compatibility valid: ${reference.profiles.length} hosts, ${validSlots.size} slots per host, ${reference.parts.length} reference parts.`,
+  `✓ P23 compatibility valid: ${reference.profiles.length} hosts, ${reference.parts.length} reference parts, asymmetric 18/17-slot profiles.`,
 );
