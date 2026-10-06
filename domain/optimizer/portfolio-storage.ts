@@ -4,6 +4,19 @@ export const PORTFOLIO_STORAGE_KEY =
   "bike-atlas:p27-portfolio:v1";
 export const MAX_PORTFOLIO_BUILDS_PER_BIKE = 8;
 
+function capPerBike(entries: readonly SavedBuild[]) {
+  const counts = new Map<string, number>();
+
+  return [...entries]
+    .sort((a, b) => a.savedAt - b.savedAt)
+    .filter((entry) => {
+      const count = counts.get(entry.bikeId) ?? 0;
+      if (count >= MAX_PORTFOLIO_BUILDS_PER_BIKE) return false;
+      counts.set(entry.bikeId, count + 1);
+      return true;
+    });
+}
+
 function isSavedBuild(value: unknown): value is SavedBuild {
   if (!value || typeof value !== "object") return false;
   const entry = value as Partial<SavedBuild>;
@@ -33,12 +46,14 @@ export function loadSavedBuilds(): SavedBuild[] {
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
 
-    return parsed
-      .filter(isSavedBuild)
-      .map((entry) => ({
-        ...entry,
-        name: entry.name.slice(0, 48),
-      }));
+    return capPerBike(
+      parsed
+        .filter(isSavedBuild)
+        .map((entry) => ({
+          ...entry,
+          name: entry.name.slice(0, 48),
+        })),
+    );
   } catch {
     return [];
   }
@@ -52,7 +67,7 @@ export function persistSavedBuilds(
   try {
     window.localStorage.setItem(
       PORTFOLIO_STORAGE_KEY,
-      JSON.stringify(entries),
+      JSON.stringify(capPerBike(entries)),
     );
   } catch {
     // Browser storage can be unavailable or full. The in-memory
