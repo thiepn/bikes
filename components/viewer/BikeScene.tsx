@@ -105,7 +105,11 @@ export function BikeScene(props: BikeSceneProps) {
         enableDamping
         dampingFactor={0.055}
       />
-      <CameraRig selectedId={props.selectedId} />
+      <CameraRig
+        selectedId={props.selectedId}
+        mode={props.mode}
+        explosionAmount={props.explosionAmount}
+      />
 
       <AdaptiveDpr />
     </>
