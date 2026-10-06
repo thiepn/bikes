@@ -38,6 +38,7 @@ const XRAY_SHELL_SLUGS = new Set([
   "chain-guard",
   "front-fender",
   "rear-fender",
+  "downtube-protector",
 ]);
 
 const EXPLOSION_VECTORS_BY_SLUG: Record<string, Vector3Tuple> = {
@@ -92,6 +93,12 @@ const EXPLOSION_VECTORS_BY_SLUG: Record<string, Vector3Tuple> = {
   bell: [-0.2, 0.12, 0.08],
   "front-axle": [0.34, 0, 0.28],
   "rear-axle": [0.34, 0, -0.28],
+
+  "left-shifter": [-0.24, 0.12, 0.12],
+  "right-shifter": [0.24, 0.12, 0.12],
+  "frame-mounts": [0.16, 0.08, 0.03],
+  "fork-mounts": [0.16, 0.06, 0.2],
+  "downtube-protector": [0.12, -0.05, 0.08],
 };
 
 export function getSystemColor(componentId: string) {
