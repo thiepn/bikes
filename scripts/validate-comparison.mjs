@@ -1,9 +1,11 @@
 import road from "../content/bikes/road-r1.json" with { type: "json" };
 import mtb from "../content/bikes/mtb-m1.json" with { type: "json" };
 import urban from "../content/bikes/urban-u1.json" with { type: "json" };
+import gravel from "../content/bikes/gravel-g1.json" with { type: "json" };
 import roadGeometry from "../content/geometry/road-r1.json" with { type: "json" };
 import mtbGeometry from "../content/geometry/mtb-m1.json" with { type: "json" };
 import urbanGeometry from "../content/geometry/urban-u1.json" with { type: "json" };
+import gravelGeometry from "../content/geometry/gravel-g1.json" with { type: "json" };
 
 const errors = [];
 function assert(condition, message) {
@@ -14,6 +16,7 @@ const entries = [
   [road, roadGeometry],
   [mtb, mtbGeometry],
   [urban, urbanGeometry],
+  [gravel, gravelGeometry],
 ];
 
 const numericFields = [
@@ -133,6 +136,31 @@ assert(
 assert(
   urbanGeometry.stackMm > roadGeometry.stackMm,
   "Urban U1 reference stack should remain more upright than Road R1.",
+);
+assert(
+  gravelGeometry.frontTravelMm === 0 &&
+    gravelGeometry.rearTravelMm === 0,
+  "Gravel G1 reference must remain rigid.",
+);
+assert(
+  gravelGeometry.tireWidthMm > roadGeometry.tireWidthMm &&
+    gravelGeometry.tireWidthMm < mtbGeometry.tireWidthMm,
+  "Gravel G1 tire width must remain between Road R1 and MTB M1.",
+);
+assert(
+  gravelGeometry.wheelbaseMm > roadGeometry.wheelbaseMm &&
+    gravelGeometry.wheelbaseMm < urbanGeometry.wheelbaseMm,
+  "Gravel G1 wheelbase must remain between Road R1 and Urban U1 references.",
+);
+assert(
+  gravelGeometry.headAngleDeg < roadGeometry.headAngleDeg &&
+    gravelGeometry.headAngleDeg > mtbGeometry.headAngleDeg,
+  "Gravel G1 head angle must remain between Road R1 and MTB M1 references.",
+);
+assert(
+  gravelGeometry.stackMm > roadGeometry.stackMm &&
+    gravelGeometry.stackMm < urbanGeometry.stackMm,
+  "Gravel G1 stack must remain between Road R1 and Urban U1 references.",
 );
 
 if (errors.length) {
