@@ -167,13 +167,13 @@ export function BuildLabPanel({
       <header className="build-header">
         <div>
           <span className="build-kicker">
-            Build Lab · compatibility foundation
+            Build Lab · compatibility + 3D assembly
           </span>
           <h2>Does it actually fit?</h2>
           <p>
-            Build a compatibility-checked draft and preview donor geometry
-            directly on the host bike. Every decision still shows why it
-            passes or fails.
+            Build a compatibility-checked draft and see normalized donor
+            geometry assembled directly onto the host bike. Every decision
+            still shows why it passes or fails.
           </p>
         </div>
         <button
