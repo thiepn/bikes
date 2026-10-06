@@ -1,0 +1,84 @@
+{
+  "id": "mtb-trail-tires",
+  "bikeId": "bike.mtb.m1",
+  "title": "Trail tires, grip and pressure",
+  "summary": "Understand tire volume, tread, casing and pressure as a connected grip-and-support system rather than a single magic number.",
+  "systemId": "tires",
+  "difficulty": "beginner",
+  "durationMinutes": 5,
+  "prerequisiteLessonIds": [],
+  "steps": [
+    {
+      "id": "contact",
+      "eyebrow": "01 · Contact",
+      "title": "The tire is the bicycle’s contact with the trail.",
+      "body": "Tire deformation creates a contact patch that transmits braking, cornering and drive forces. Tire construction, load, surface and pressure all influence how that contact behaves.",
+      "keyFact": "Grip cannot be predicted from tread pattern or pressure alone; terrain, compound, casing, load and technique also matter.",
+      "focusComponentId": "bike.mtb.m1.front-tire",
+      "highlightComponentIds": [
+        "bike.mtb.m1.front-tire",
+        "bike.mtb.m1.front-wheel"
+      ],
+      "inspectionMode": "normal"
+    },
+    {
+      "id": "tread",
+      "eyebrow": "02 · Tread",
+      "title": "Knobs interact with loose and uneven surfaces.",
+      "body": "Trail tires use tread blocks with different shapes and spacing to balance rolling resistance, braking support, cornering grip and clearing of loose material.",
+      "keyFact": "Front and rear tires can prioritize different jobs; matched tread is not mandatory.",
+      "focusComponentId": "bike.mtb.m1.rear-tire",
+      "highlightComponentIds": [
+        "bike.mtb.m1.front-tire",
+        "bike.mtb.m1.rear-tire"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "casing-rim",
+      "eyebrow": "03 · Support",
+      "title": "Casing, air and rim share the load.",
+      "body": "The tire casing contains pressure and deforms around terrain while the rim supports the tire bead. Too little or too much pressure can both create problems depending on the system and rider.",
+      "keyFact": "Use tire, rim and bicycle/component guidance to define safe limits, then tune within those limits for rider mass, terrain and riding style.",
+      "focusComponentId": "bike.mtb.m1.front-rim",
+      "highlightComponentIds": [
+        "bike.mtb.m1.front-rim",
+        "bike.mtb.m1.front-tire"
+      ],
+      "inspectionMode": "xray"
+    },
+    {
+      "id": "pressure-tradeoff",
+      "eyebrow": "04 · Pressure",
+      "title": "There is no universal best MTB tire pressure.",
+      "body": "Lower pressure can increase compliance and change grip, while higher pressure can increase support and reduce some impact risks. The useful setting depends on the complete wheel-and-rider system.",
+      "keyFact": "Never treat a single pressure value as universally correct.",
+      "focusComponentId": "bike.mtb.m1.rear-tire",
+      "highlightComponentIds": [
+        "bike.mtb.m1.rear-tire",
+        "bike.mtb.m1.rear-rim"
+      ],
+      "inspectionMode": "normal",
+      "challenge": {
+        "type": "multiple-choice",
+        "prompt": "Which statement about MTB tire pressure is most accurate?",
+        "options": [
+          {
+            "id": "lowest",
+            "label": "The lowest pressure that still rolls is always fastest and grippiest"
+          },
+          {
+            "id": "fixed",
+            "label": "Every rider on the same tire should use the same pressure"
+          },
+          {
+            "id": "system",
+            "label": "Useful pressure depends on rider, tire, rim, terrain and safe system limits"
+          }
+        ],
+        "correctOptionId": "system",
+        "explanation": "Pressure is a system setup variable. Rider load, casing, rim, terrain, riding style and component limits all matter."
+      }
+    }
+  ]
+}
