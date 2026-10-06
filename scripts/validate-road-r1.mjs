@@ -160,6 +160,10 @@ const calibrationIds = new Set(
 );
 
 for (const lesson of lessons) {
+  assert(
+    lesson.bikeId === bike.id,
+    `Road lesson has wrong bike owner: ${lesson.id}`,
+  );
   assert(lesson.steps.length >= 4, `${lesson.id} must contain at least four steps.`);
   assert(new Set(lesson.steps.map((step) => step.id)).size === lesson.steps.length, `Lesson step IDs must be unique in ${lesson.id}.`);
 
@@ -234,6 +238,10 @@ assert(
 );
 
 for (const procedure of procedures) {
+  assert(
+    procedure.bikeId === bike.id,
+    `Road Workshop procedure has wrong bike owner: ${procedure.id}`,
+  );
   assert(
     procedure.steps.length >= 4,
     `${procedure.id} must contain at least four workshop steps.`,
