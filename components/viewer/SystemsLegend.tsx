@@ -18,6 +18,9 @@ const VISIBLE_SYSTEMS: Array<[BikeSystemId, string]> = [
   ["braking", "Braking"],
   ["saddle-seatpost", "Saddle"],
   ["pedals", "Pedals"],
+  ["lighting", "Lighting"],
+  ["cargo-utility", "Cargo & utility"],
+  ["accessories", "Accessories"],
 ];
 
 export function SystemsLegend({ bikeId }: { bikeId: string }) {
