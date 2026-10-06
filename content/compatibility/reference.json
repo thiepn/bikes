@@ -1,9 +1,9 @@
 {
   "version": 1,
   "notes": [
-    "P21 compatibility values are Bike Atlas reference interfaces for the fictional archetypes, not manufacturer specifications.",
-    "A compatible result means the interfaces modeled here match. It does not certify unmodeled clearance, fastener, strength, legal or warranty requirements.",
-    "Drivetrain generations, suspension, brake adapters/rotor sizing, bottom brackets and headset swaps are intentionally outside the P21 Build Lab."
+    "Compatibility values are Bike Atlas reference interfaces for fictional archetypes, not manufacturer specifications.",
+    "A compatible slot result means the interfaces modeled for that mounting point match; P23 separately evaluates system dependencies between selected parts.",
+    "P23 advanced drivetrain, brake and fork data is intentionally limited to authored reference relationships and is not installation certification."
   ],
   "profiles": [
     {
@@ -255,6 +255,167 @@
               "min": 140,
               "max": 160,
               "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "fork",
+          "label": "Fork",
+          "hostComponentId": "bike.road.r1.fork",
+          "description": "Steerer, wheel/axle, brake mount and reference axle-to-crown envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "steererClamp",
+              "label": "Steerer clamp",
+              "expected": 28.6,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "wheelFormat",
+              "label": "Wheel format",
+              "expected": "622"
+            },
+            {
+              "kind": "exact",
+              "key": "frontAxle",
+              "label": "Front axle",
+              "expected": "12x100-thru"
+            },
+            {
+              "kind": "exact",
+              "key": "brakeMount",
+              "label": "Brake mount",
+              "expected": "flat-mount"
+            },
+            {
+              "kind": "range",
+              "key": "axleToCrown",
+              "label": "Axle-to-crown",
+              "min": 365,
+              "max": 395,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "front-caliper",
+          "label": "Front caliper",
+          "hostComponentId": "bike.road.r1.front-caliper",
+          "description": "Front brake actuation and caliper mount interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "brakeActuation",
+              "label": "Brake actuation",
+              "expected": "hydraulic"
+            },
+            {
+              "kind": "exact",
+              "key": "caliperMount",
+              "label": "Caliper mount",
+              "expected": "flat-mount"
+            }
+          ]
+        },
+        {
+          "id": "rear-caliper",
+          "label": "Rear caliper",
+          "hostComponentId": "bike.road.r1.rear-caliper",
+          "description": "Rear brake actuation and caliper mount interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "brakeActuation",
+              "label": "Brake actuation",
+              "expected": "hydraulic"
+            },
+            {
+              "kind": "exact",
+              "key": "caliperMount",
+              "label": "Caliper mount",
+              "expected": "flat-mount"
+            }
+          ]
+        },
+        {
+          "id": "crankset",
+          "label": "Crankset",
+          "hostComponentId": "bike.road.r1.crankset",
+          "description": "Bottom-bracket spindle, reference chainline envelope and chain family.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "spindleFamily",
+              "label": "Spindle / bottom bracket family",
+              "expected": "ba-road-24"
+            },
+            {
+              "kind": "range",
+              "key": "chainline",
+              "label": "Reference chainline",
+              "min": 42,
+              "max": 48,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "chainFamily",
+              "label": "Chain family",
+              "expected": "ba-12-road"
+            }
+          ]
+        },
+        {
+          "id": "rear-transmission",
+          "label": "Rear transmission",
+          "hostComponentId": "bike.road.r1.cassette",
+          "description": "Rear gearing architecture, carrier and chain family.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "transmissionArchitecture",
+              "label": "Transmission architecture",
+              "expected": "external-cassette"
+            },
+            {
+              "kind": "exact",
+              "key": "carrierFamily",
+              "label": "Carrier / hub family",
+              "expected": "ba-road-gravel"
+            },
+            {
+              "kind": "exact",
+              "key": "chainFamily",
+              "label": "Chain family",
+              "expected": "ba-12-road"
+            }
+          ]
+        },
+        {
+          "id": "rear-derailleur",
+          "label": "Rear derailleur",
+          "hostComponentId": "bike.road.r1.rear-derailleur",
+          "description": "Shift actuation, hanger and chain family. Sprocket clearance/capacity is evaluated as a system dependency.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "actuationFamily",
+              "label": "Shift actuation",
+              "expected": "ba-drop-12"
+            },
+            {
+              "kind": "exact",
+              "key": "hangerFamily",
+              "label": "Hanger family",
+              "expected": "ba-standard-rd"
+            },
+            {
+              "kind": "exact",
+              "key": "chainFamily",
+              "label": "Chain family",
+              "expected": "ba-12-road"
             }
           ]
         }
@@ -511,6 +672,167 @@
               "unit": "mm"
             }
           ]
+        },
+        {
+          "id": "fork",
+          "label": "Fork",
+          "hostComponentId": "bike.gravel.g1.fork",
+          "description": "Steerer, wheel/axle, brake mount and reference axle-to-crown envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "steererClamp",
+              "label": "Steerer clamp",
+              "expected": 28.6,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "wheelFormat",
+              "label": "Wheel format",
+              "expected": "622"
+            },
+            {
+              "kind": "exact",
+              "key": "frontAxle",
+              "label": "Front axle",
+              "expected": "12x100-thru"
+            },
+            {
+              "kind": "exact",
+              "key": "brakeMount",
+              "label": "Brake mount",
+              "expected": "flat-mount"
+            },
+            {
+              "kind": "range",
+              "key": "axleToCrown",
+              "label": "Axle-to-crown",
+              "min": 375,
+              "max": 430,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "front-caliper",
+          "label": "Front caliper",
+          "hostComponentId": "bike.gravel.g1.front-caliper",
+          "description": "Front brake actuation and caliper mount interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "brakeActuation",
+              "label": "Brake actuation",
+              "expected": "hydraulic"
+            },
+            {
+              "kind": "exact",
+              "key": "caliperMount",
+              "label": "Caliper mount",
+              "expected": "flat-mount"
+            }
+          ]
+        },
+        {
+          "id": "rear-caliper",
+          "label": "Rear caliper",
+          "hostComponentId": "bike.gravel.g1.rear-caliper",
+          "description": "Rear brake actuation and caliper mount interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "brakeActuation",
+              "label": "Brake actuation",
+              "expected": "hydraulic"
+            },
+            {
+              "kind": "exact",
+              "key": "caliperMount",
+              "label": "Caliper mount",
+              "expected": "flat-mount"
+            }
+          ]
+        },
+        {
+          "id": "crankset",
+          "label": "Crankset",
+          "hostComponentId": "bike.gravel.g1.crankset",
+          "description": "Bottom-bracket spindle, reference chainline envelope and chain family.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "spindleFamily",
+              "label": "Spindle / bottom bracket family",
+              "expected": "ba-road-24"
+            },
+            {
+              "kind": "range",
+              "key": "chainline",
+              "label": "Reference chainline",
+              "min": 44.5,
+              "max": 50.5,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "chainFamily",
+              "label": "Chain family",
+              "expected": "ba-12-road"
+            }
+          ]
+        },
+        {
+          "id": "rear-transmission",
+          "label": "Rear transmission",
+          "hostComponentId": "bike.gravel.g1.cassette",
+          "description": "Rear gearing architecture, carrier and chain family.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "transmissionArchitecture",
+              "label": "Transmission architecture",
+              "expected": "external-cassette"
+            },
+            {
+              "kind": "exact",
+              "key": "carrierFamily",
+              "label": "Carrier / hub family",
+              "expected": "ba-road-gravel"
+            },
+            {
+              "kind": "exact",
+              "key": "chainFamily",
+              "label": "Chain family",
+              "expected": "ba-12-road"
+            }
+          ]
+        },
+        {
+          "id": "rear-derailleur",
+          "label": "Rear derailleur",
+          "hostComponentId": "bike.gravel.g1.rear-derailleur",
+          "description": "Shift actuation, hanger and chain family. Sprocket clearance/capacity is evaluated as a system dependency.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "actuationFamily",
+              "label": "Shift actuation",
+              "expected": "ba-drop-12"
+            },
+            {
+              "kind": "exact",
+              "key": "hangerFamily",
+              "label": "Hanger family",
+              "expected": "ba-standard-rd"
+            },
+            {
+              "kind": "exact",
+              "key": "chainFamily",
+              "label": "Chain family",
+              "expected": "ba-12-road"
+            }
+          ]
         }
       ]
     },
@@ -765,6 +1087,167 @@
               "unit": "mm"
             }
           ]
+        },
+        {
+          "id": "fork",
+          "label": "Fork",
+          "hostComponentId": "bike.mtb.m1.fork",
+          "description": "Steerer, wheel/axle, brake mount and reference axle-to-crown envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "steererClamp",
+              "label": "Steerer clamp",
+              "expected": 28.6,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "wheelFormat",
+              "label": "Wheel format",
+              "expected": "622"
+            },
+            {
+              "kind": "exact",
+              "key": "frontAxle",
+              "label": "Front axle",
+              "expected": "15x110-thru"
+            },
+            {
+              "kind": "exact",
+              "key": "brakeMount",
+              "label": "Brake mount",
+              "expected": "post-mount"
+            },
+            {
+              "kind": "range",
+              "key": "axleToCrown",
+              "label": "Axle-to-crown",
+              "min": 500,
+              "max": 560,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "front-caliper",
+          "label": "Front caliper",
+          "hostComponentId": "bike.mtb.m1.front-caliper",
+          "description": "Front brake actuation and caliper mount interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "brakeActuation",
+              "label": "Brake actuation",
+              "expected": "hydraulic"
+            },
+            {
+              "kind": "exact",
+              "key": "caliperMount",
+              "label": "Caliper mount",
+              "expected": "post-mount"
+            }
+          ]
+        },
+        {
+          "id": "rear-caliper",
+          "label": "Rear caliper",
+          "hostComponentId": "bike.mtb.m1.rear-caliper",
+          "description": "Rear brake actuation and caliper mount interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "brakeActuation",
+              "label": "Brake actuation",
+              "expected": "hydraulic"
+            },
+            {
+              "kind": "exact",
+              "key": "caliperMount",
+              "label": "Caliper mount",
+              "expected": "post-mount"
+            }
+          ]
+        },
+        {
+          "id": "crankset",
+          "label": "Crankset",
+          "hostComponentId": "bike.mtb.m1.crankset",
+          "description": "Bottom-bracket spindle, reference chainline envelope and chain family.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "spindleFamily",
+              "label": "Spindle / bottom bracket family",
+              "expected": "ba-mtb-24"
+            },
+            {
+              "kind": "range",
+              "key": "chainline",
+              "label": "Reference chainline",
+              "min": 49,
+              "max": 55,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "chainFamily",
+              "label": "Chain family",
+              "expected": "ba-12-mtb"
+            }
+          ]
+        },
+        {
+          "id": "rear-transmission",
+          "label": "Rear transmission",
+          "hostComponentId": "bike.mtb.m1.cassette",
+          "description": "Rear gearing architecture, carrier and chain family.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "transmissionArchitecture",
+              "label": "Transmission architecture",
+              "expected": "external-cassette"
+            },
+            {
+              "kind": "exact",
+              "key": "carrierFamily",
+              "label": "Carrier / hub family",
+              "expected": "ba-wide-1x"
+            },
+            {
+              "kind": "exact",
+              "key": "chainFamily",
+              "label": "Chain family",
+              "expected": "ba-12-mtb"
+            }
+          ]
+        },
+        {
+          "id": "rear-derailleur",
+          "label": "Rear derailleur",
+          "hostComponentId": "bike.mtb.m1.rear-derailleur",
+          "description": "Shift actuation, hanger and chain family. Sprocket clearance/capacity is evaluated as a system dependency.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "actuationFamily",
+              "label": "Shift actuation",
+              "expected": "ba-flat-12"
+            },
+            {
+              "kind": "exact",
+              "key": "hangerFamily",
+              "label": "Hanger family",
+              "expected": "ba-standard-rd"
+            },
+            {
+              "kind": "exact",
+              "key": "chainFamily",
+              "label": "Chain family",
+              "expected": "ba-12-mtb"
+            }
+          ]
         }
       ]
     },
@@ -1017,6 +1500,141 @@
               "min": 160,
               "max": 180,
               "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "fork",
+          "label": "Fork",
+          "hostComponentId": "bike.urban.u1.fork",
+          "description": "Steerer, wheel/axle, brake mount and reference axle-to-crown envelope.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "steererClamp",
+              "label": "Steerer clamp",
+              "expected": 28.6,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "wheelFormat",
+              "label": "Wheel format",
+              "expected": "622"
+            },
+            {
+              "kind": "exact",
+              "key": "frontAxle",
+              "label": "Front axle",
+              "expected": "9x100-qr"
+            },
+            {
+              "kind": "exact",
+              "key": "brakeMount",
+              "label": "Brake mount",
+              "expected": "flat-mount"
+            },
+            {
+              "kind": "range",
+              "key": "axleToCrown",
+              "label": "Axle-to-crown",
+              "min": 390,
+              "max": 430,
+              "unit": "mm"
+            }
+          ]
+        },
+        {
+          "id": "front-caliper",
+          "label": "Front caliper",
+          "hostComponentId": "bike.urban.u1.front-caliper",
+          "description": "Front brake actuation and caliper mount interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "brakeActuation",
+              "label": "Brake actuation",
+              "expected": "hydraulic"
+            },
+            {
+              "kind": "exact",
+              "key": "caliperMount",
+              "label": "Caliper mount",
+              "expected": "flat-mount"
+            }
+          ]
+        },
+        {
+          "id": "rear-caliper",
+          "label": "Rear caliper",
+          "hostComponentId": "bike.urban.u1.rear-caliper",
+          "description": "Rear brake actuation and caliper mount interface.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "brakeActuation",
+              "label": "Brake actuation",
+              "expected": "hydraulic"
+            },
+            {
+              "kind": "exact",
+              "key": "caliperMount",
+              "label": "Caliper mount",
+              "expected": "flat-mount"
+            }
+          ]
+        },
+        {
+          "id": "crankset",
+          "label": "Crankset",
+          "hostComponentId": "bike.urban.u1.crankset",
+          "description": "Bottom-bracket spindle, reference chainline envelope and chain family.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "spindleFamily",
+              "label": "Spindle / bottom bracket family",
+              "expected": "ba-square"
+            },
+            {
+              "kind": "range",
+              "key": "chainline",
+              "label": "Reference chainline",
+              "min": 44,
+              "max": 50,
+              "unit": "mm"
+            },
+            {
+              "kind": "exact",
+              "key": "chainFamily",
+              "label": "Chain family",
+              "expected": "ba-single-igh"
+            }
+          ]
+        },
+        {
+          "id": "rear-transmission",
+          "label": "Rear transmission",
+          "hostComponentId": "bike.urban.u1.rear-sprocket",
+          "description": "Rear gearing architecture, carrier and chain family.",
+          "requirements": [
+            {
+              "kind": "exact",
+              "key": "transmissionArchitecture",
+              "label": "Transmission architecture",
+              "expected": "internal-gear"
+            },
+            {
+              "kind": "exact",
+              "key": "carrierFamily",
+              "label": "Carrier / hub family",
+              "expected": "internal-gear-hub"
+            },
+            {
+              "kind": "exact",
+              "key": "chainFamily",
+              "label": "Chain family",
+              "expected": "ba-single-igh"
             }
           ]
         }
@@ -1690,6 +2308,406 @@
       },
       "notes": [
         "Bike Atlas reference 160 mm center-lock rotor. Adapter/caliper/frame brake limits beyond the authored host diameter envelope remain unmodeled."
+      ]
+    },
+    {
+      "id": "part.road.fork",
+      "label": "Road R1 fork",
+      "slotId": "fork",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.fork",
+      "interfaces": {
+        "steererClamp": 28.6,
+        "wheelFormat": "622",
+        "frontAxle": "12x100-thru",
+        "brakeMount": "flat-mount",
+        "axleToCrown": 385,
+        "suspensionTravel": 0,
+        "maxRotorDiameter": 160
+      },
+      "notes": [
+        "Bike Atlas reference rigid fork; geometry limits are authored reference envelopes."
+      ]
+    },
+    {
+      "id": "part.road.front-caliper",
+      "label": "Road R1 front caliper",
+      "slotId": "front-caliper",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.front-caliper",
+      "interfaces": {
+        "brakeActuation": "hydraulic",
+        "caliperMount": "flat-mount",
+        "rotorMinDiameter": 140,
+        "rotorMaxDiameter": 160
+      },
+      "notes": [
+        "Reference flat-mount hydraulic front caliper; rotor range is an authored Bike Atlas dependency."
+      ]
+    },
+    {
+      "id": "part.road.rear-caliper",
+      "label": "Road R1 rear caliper",
+      "slotId": "rear-caliper",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.rear-caliper",
+      "interfaces": {
+        "brakeActuation": "hydraulic",
+        "caliperMount": "flat-mount",
+        "rotorMinDiameter": 140,
+        "rotorMaxDiameter": 160
+      },
+      "notes": [
+        "Reference flat-mount hydraulic rear caliper; rotor range is an authored Bike Atlas dependency."
+      ]
+    },
+    {
+      "id": "part.road.crankset",
+      "label": "Road R1 crankset",
+      "slotId": "crankset",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.crankset",
+      "interfaces": {
+        "spindleFamily": "ba-road-24",
+        "chainline": 45,
+        "chainFamily": "ba-12-road",
+        "ringCount": 2,
+        "frontSmallTeeth": 34,
+        "frontLargeTeeth": 50
+      },
+      "notes": [
+        "Reference 2× crankset. Ring topology can create companion-control consequences beyond physical mounting."
+      ]
+    },
+    {
+      "id": "part.road.rear-transmission",
+      "label": "Road R1 rear transmission",
+      "slotId": "rear-transmission",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.cassette",
+      "interfaces": {
+        "transmissionArchitecture": "external-cassette",
+        "carrierFamily": "ba-road-gravel",
+        "chainFamily": "ba-12-road",
+        "gearCount": 12,
+        "rearSmallTeeth": 11,
+        "rearLargeTeeth": 34
+      },
+      "notes": [
+        "Reference external cassette; derailleur clearance and capacity are evaluated separately."
+      ]
+    },
+    {
+      "id": "part.road.rear-derailleur",
+      "label": "Road R1 rear derailleur",
+      "slotId": "rear-derailleur",
+      "sourceBikeId": "bike.road.r1",
+      "sourceComponentId": "bike.road.r1.rear-derailleur",
+      "interfaces": {
+        "actuationFamily": "ba-drop-12",
+        "hangerFamily": "ba-standard-rd",
+        "chainFamily": "ba-12-road",
+        "maxSprocketTeeth": 36,
+        "totalCapacityTeeth": 39
+      },
+      "notes": [
+        "Reference rear derailleur. Largest-sprocket clearance and total capacity are evaluated against the effective crankset and rear transmission."
+      ]
+    },
+    {
+      "id": "part.gravel.fork",
+      "label": "Gravel G1 fork",
+      "slotId": "fork",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.fork",
+      "interfaces": {
+        "steererClamp": 28.6,
+        "wheelFormat": "622",
+        "frontAxle": "12x100-thru",
+        "brakeMount": "flat-mount",
+        "axleToCrown": 410,
+        "suspensionTravel": 0,
+        "maxRotorDiameter": 180
+      },
+      "notes": [
+        "Bike Atlas reference rigid fork; geometry limits are authored reference envelopes."
+      ]
+    },
+    {
+      "id": "part.gravel.front-caliper",
+      "label": "Gravel G1 front caliper",
+      "slotId": "front-caliper",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.front-caliper",
+      "interfaces": {
+        "brakeActuation": "hydraulic",
+        "caliperMount": "flat-mount",
+        "rotorMinDiameter": 160,
+        "rotorMaxDiameter": 180
+      },
+      "notes": [
+        "Reference flat-mount hydraulic front caliper; rotor range is an authored Bike Atlas dependency."
+      ]
+    },
+    {
+      "id": "part.gravel.rear-caliper",
+      "label": "Gravel G1 rear caliper",
+      "slotId": "rear-caliper",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.rear-caliper",
+      "interfaces": {
+        "brakeActuation": "hydraulic",
+        "caliperMount": "flat-mount",
+        "rotorMinDiameter": 160,
+        "rotorMaxDiameter": 180
+      },
+      "notes": [
+        "Reference flat-mount hydraulic rear caliper; rotor range is an authored Bike Atlas dependency."
+      ]
+    },
+    {
+      "id": "part.gravel.crankset",
+      "label": "Gravel G1 crankset",
+      "slotId": "crankset",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.crankset",
+      "interfaces": {
+        "spindleFamily": "ba-road-24",
+        "chainline": 47.5,
+        "chainFamily": "ba-12-road",
+        "ringCount": 1,
+        "frontSmallTeeth": 42,
+        "frontLargeTeeth": 42
+      },
+      "notes": [
+        "Reference 1× crankset. Ring topology can create companion-control consequences beyond physical mounting."
+      ]
+    },
+    {
+      "id": "part.gravel.rear-transmission",
+      "label": "Gravel G1 rear transmission",
+      "slotId": "rear-transmission",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.cassette",
+      "interfaces": {
+        "transmissionArchitecture": "external-cassette",
+        "carrierFamily": "ba-road-gravel",
+        "chainFamily": "ba-12-road",
+        "gearCount": 12,
+        "rearSmallTeeth": 10,
+        "rearLargeTeeth": 44
+      },
+      "notes": [
+        "Reference external cassette; derailleur clearance and capacity are evaluated separately."
+      ]
+    },
+    {
+      "id": "part.gravel.rear-derailleur",
+      "label": "Gravel G1 rear derailleur",
+      "slotId": "rear-derailleur",
+      "sourceBikeId": "bike.gravel.g1",
+      "sourceComponentId": "bike.gravel.g1.rear-derailleur",
+      "interfaces": {
+        "actuationFamily": "ba-drop-12",
+        "hangerFamily": "ba-standard-rd",
+        "chainFamily": "ba-12-road",
+        "maxSprocketTeeth": 46,
+        "totalCapacityTeeth": 44
+      },
+      "notes": [
+        "Reference rear derailleur. Largest-sprocket clearance and total capacity are evaluated against the effective crankset and rear transmission."
+      ]
+    },
+    {
+      "id": "part.mtb.fork",
+      "label": "MTB M1 fork",
+      "slotId": "fork",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.fork",
+      "interfaces": {
+        "steererClamp": 28.6,
+        "wheelFormat": "622",
+        "frontAxle": "15x110-thru",
+        "brakeMount": "post-mount",
+        "axleToCrown": 530,
+        "suspensionTravel": 130,
+        "maxRotorDiameter": 203
+      },
+      "notes": [
+        "Bike Atlas reference 130 mm suspension fork; geometry limits are authored reference envelopes."
+      ]
+    },
+    {
+      "id": "part.mtb.front-caliper",
+      "label": "MTB M1 front caliper",
+      "slotId": "front-caliper",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.front-caliper",
+      "interfaces": {
+        "brakeActuation": "hydraulic",
+        "caliperMount": "post-mount",
+        "rotorMinDiameter": 180,
+        "rotorMaxDiameter": 203
+      },
+      "notes": [
+        "Reference post-mount hydraulic front caliper; rotor range is an authored Bike Atlas dependency."
+      ]
+    },
+    {
+      "id": "part.mtb.rear-caliper",
+      "label": "MTB M1 rear caliper",
+      "slotId": "rear-caliper",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.rear-caliper",
+      "interfaces": {
+        "brakeActuation": "hydraulic",
+        "caliperMount": "post-mount",
+        "rotorMinDiameter": 180,
+        "rotorMaxDiameter": 203
+      },
+      "notes": [
+        "Reference post-mount hydraulic rear caliper; rotor range is an authored Bike Atlas dependency."
+      ]
+    },
+    {
+      "id": "part.mtb.crankset",
+      "label": "MTB M1 crankset",
+      "slotId": "crankset",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.crankset",
+      "interfaces": {
+        "spindleFamily": "ba-mtb-24",
+        "chainline": 52,
+        "chainFamily": "ba-12-mtb",
+        "ringCount": 1,
+        "frontSmallTeeth": 32,
+        "frontLargeTeeth": 32
+      },
+      "notes": [
+        "Reference 1× crankset. Ring topology can create companion-control consequences beyond physical mounting."
+      ]
+    },
+    {
+      "id": "part.mtb.rear-transmission",
+      "label": "MTB M1 rear transmission",
+      "slotId": "rear-transmission",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.cassette",
+      "interfaces": {
+        "transmissionArchitecture": "external-cassette",
+        "carrierFamily": "ba-wide-1x",
+        "chainFamily": "ba-12-mtb",
+        "gearCount": 12,
+        "rearSmallTeeth": 10,
+        "rearLargeTeeth": 51
+      },
+      "notes": [
+        "Reference external cassette; derailleur clearance and capacity are evaluated separately."
+      ]
+    },
+    {
+      "id": "part.mtb.rear-derailleur",
+      "label": "MTB M1 rear derailleur",
+      "slotId": "rear-derailleur",
+      "sourceBikeId": "bike.mtb.m1",
+      "sourceComponentId": "bike.mtb.m1.rear-derailleur",
+      "interfaces": {
+        "actuationFamily": "ba-flat-12",
+        "hangerFamily": "ba-standard-rd",
+        "chainFamily": "ba-12-mtb",
+        "maxSprocketTeeth": 52,
+        "totalCapacityTeeth": 42
+      },
+      "notes": [
+        "Reference rear derailleur. Largest-sprocket clearance and total capacity are evaluated against the effective crankset and rear transmission."
+      ]
+    },
+    {
+      "id": "part.urban.fork",
+      "label": "Urban U1 fork",
+      "slotId": "fork",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.fork",
+      "interfaces": {
+        "steererClamp": 28.6,
+        "wheelFormat": "622",
+        "frontAxle": "9x100-qr",
+        "brakeMount": "flat-mount",
+        "axleToCrown": 410,
+        "suspensionTravel": 0,
+        "maxRotorDiameter": 180
+      },
+      "notes": [
+        "Bike Atlas reference rigid fork; geometry limits are authored reference envelopes."
+      ]
+    },
+    {
+      "id": "part.urban.front-caliper",
+      "label": "Urban U1 front caliper",
+      "slotId": "front-caliper",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.front-caliper",
+      "interfaces": {
+        "brakeActuation": "hydraulic",
+        "caliperMount": "flat-mount",
+        "rotorMinDiameter": 160,
+        "rotorMaxDiameter": 180
+      },
+      "notes": [
+        "Reference flat-mount hydraulic front caliper; rotor range is an authored Bike Atlas dependency."
+      ]
+    },
+    {
+      "id": "part.urban.rear-caliper",
+      "label": "Urban U1 rear caliper",
+      "slotId": "rear-caliper",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.rear-caliper",
+      "interfaces": {
+        "brakeActuation": "hydraulic",
+        "caliperMount": "flat-mount",
+        "rotorMinDiameter": 160,
+        "rotorMaxDiameter": 180
+      },
+      "notes": [
+        "Reference flat-mount hydraulic rear caliper; rotor range is an authored Bike Atlas dependency."
+      ]
+    },
+    {
+      "id": "part.urban.crankset",
+      "label": "Urban U1 crankset",
+      "slotId": "crankset",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.crankset",
+      "interfaces": {
+        "spindleFamily": "ba-square",
+        "chainline": 47,
+        "chainFamily": "ba-single-igh",
+        "ringCount": 1,
+        "frontSmallTeeth": 42,
+        "frontLargeTeeth": 42
+      },
+      "notes": [
+        "Reference 1× crankset. Ring topology can create companion-control consequences beyond physical mounting."
+      ]
+    },
+    {
+      "id": "part.urban.rear-transmission",
+      "label": "Urban U1 rear transmission",
+      "slotId": "rear-transmission",
+      "sourceBikeId": "bike.urban.u1",
+      "sourceComponentId": "bike.urban.u1.rear-sprocket",
+      "interfaces": {
+        "transmissionArchitecture": "internal-gear",
+        "carrierFamily": "internal-gear-hub",
+        "chainFamily": "ba-single-igh",
+        "gearCount": 8,
+        "rearSmallTeeth": 20,
+        "rearLargeTeeth": 20,
+        "internalRangePercent": 307
+      },
+      "notes": [
+        "Reference internal-hub transmission represented by its external sprocket interface."
       ]
     }
   ]
