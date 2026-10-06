@@ -35,6 +35,9 @@ const XRAY_SHELL_SLUGS = new Set([
   "saddle",
   "seatpost",
   "dropper-post",
+  "chain-guard",
+  "front-fender",
+  "rear-fender",
 ]);
 
 const EXPLOSION_VECTORS_BY_SLUG: Record<string, Vector3Tuple> = {
