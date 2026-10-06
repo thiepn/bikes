@@ -61,9 +61,51 @@ const MTB_M1_INTERACTIVE = new Set([
   "bike.mtb.m1.rear-thru-axle",
 ]);
 
+const URBAN_U1_INTERACTIVE = new Set([
+  "bike.urban.u1.frame",
+  "bike.urban.u1.fork",
+  "bike.urban.u1.headset",
+  "bike.urban.u1.handlebar",
+  "bike.urban.u1.stem",
+  "bike.urban.u1.left-grip",
+  "bike.urban.u1.right-grip",
+  "bike.urban.u1.front-wheel",
+  "bike.urban.u1.rear-wheel",
+  "bike.urban.u1.front-tire",
+  "bike.urban.u1.rear-tire",
+  "bike.urban.u1.front-rim",
+  "bike.urban.u1.rear-rim",
+  "bike.urban.u1.front-hub",
+  "bike.urban.u1.rear-hub",
+  "bike.urban.u1.front-rotor",
+  "bike.urban.u1.rear-rotor",
+  "bike.urban.u1.front-caliper",
+  "bike.urban.u1.rear-caliper",
+  "bike.urban.u1.crankset",
+  "bike.urban.u1.chainring",
+  "bike.urban.u1.chain",
+  "bike.urban.u1.rear-sprocket",
+  "bike.urban.u1.chain-guard",
+  "bike.urban.u1.saddle",
+  "bike.urban.u1.seatpost",
+  "bike.urban.u1.left-pedal",
+  "bike.urban.u1.right-pedal",
+  "bike.urban.u1.front-fender",
+  "bike.urban.u1.rear-fender",
+  "bike.urban.u1.rear-rack",
+  "bike.urban.u1.front-light",
+  "bike.urban.u1.rear-light",
+  "bike.urban.u1.kickstand",
+  "bike.urban.u1.frame-lock",
+  "bike.urban.u1.bell",
+  "bike.urban.u1.front-axle",
+  "bike.urban.u1.rear-axle",
+]);
+
 const BY_BIKE = new Map<string, ReadonlySet<string>>([
   ["bike.road.r1", ROAD_R1_INTERACTIVE],
   ["bike.mtb.m1", MTB_M1_INTERACTIVE],
+  ["bike.urban.u1", URBAN_U1_INTERACTIVE],
 ]);
 
 export function getInteractiveComponentIds(bikeId: string) {
