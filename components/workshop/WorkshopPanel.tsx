@@ -1,6 +1,6 @@
 "use client";
 
-import { ROAD_R1_COMPONENTS_BY_ID } from "@/domain/bike/road-r1";
+import { getBikeComponentById } from "@/domain/bike/catalog";
 import type { WorkshopProcedure } from "@/engine/workshop/types";
 
 type WorkshopPanelProps = {
@@ -89,7 +89,7 @@ export function WorkshopPanel({
             Step {stepIndex + 1} / {procedure.steps.length}
           </span>
           <span>
-            {ROAD_R1_COMPONENTS_BY_ID.get(step.focusComponentId)?.name ??
+            {getBikeComponentById(step.focusComponentId)?.name ??
               step.focusComponentId}
           </span>
         </div>
