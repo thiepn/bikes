@@ -5,7 +5,9 @@
   "systemId": "braking",
   "difficulty": "beginner",
   "durationMinutes": 4,
-  "prerequisiteLessonIds": ["wheels-hubs-basics"],
+  "prerequisiteLessonIds": [
+    "wheels-hubs-basics"
+  ],
   "steps": [
     {
       "id": "rotor-wheel",
@@ -14,7 +16,11 @@
       "body": "The brake rotor is attached to the hub. Because it rotates with the wheel, slowing the rotor slows the wheel too.",
       "keyFact": "A disc brake works on a rotor connected to the wheel, not directly on the tire.",
       "focusComponentId": "bike.road.r1.front-rotor",
-      "highlightComponentIds": ["bike.road.r1.front-rotor","bike.road.r1.front-hub","bike.road.r1.front-wheel"],
+      "highlightComponentIds": [
+        "bike.road.r1.front-rotor",
+        "bike.road.r1.front-hub",
+        "bike.road.r1.front-wheel"
+      ],
       "inspectionMode": "systems"
     },
     {
@@ -24,7 +30,10 @@
       "body": "Brake pads inside the caliper squeeze both sides of the rotating rotor. Friction converts the bicycle's kinetic energy primarily into heat.",
       "keyFact": "The caliper stays with the frame or fork while the rotor moves through it.",
       "focusComponentId": "bike.road.r1.front-caliper",
-      "highlightComponentIds": ["bike.road.r1.front-caliper","bike.road.r1.front-rotor"],
+      "highlightComponentIds": [
+        "bike.road.r1.front-caliper",
+        "bike.road.r1.front-rotor"
+      ],
       "inspectionMode": "systems"
     },
     {
@@ -34,7 +43,10 @@
       "body": "Hard or prolonged braking raises rotor and pad temperatures. Rotor size, airflow, pad material and braking technique affect thermal performance.",
       "keyFact": "More braking power does not eliminate heat; it changes how quickly energy can be converted and managed.",
       "focusComponentId": "bike.road.r1.front-rotor",
-      "highlightComponentIds": ["bike.road.r1.front-rotor","bike.road.r1.front-caliper"],
+      "highlightComponentIds": [
+        "bike.road.r1.front-rotor",
+        "bike.road.r1.front-caliper"
+      ],
       "inspectionMode": "normal"
     },
     {
@@ -49,11 +61,18 @@
       "challenge": {
         "type": "select-component",
         "prompt": "Which part rotates through the brake caliper?",
-        "candidateComponentIds": ["bike.road.r1.front-hub","bike.road.r1.front-rotor","bike.road.r1.front-caliper"],
-        "correctComponentIds": ["bike.road.r1.front-rotor"],
+        "candidateComponentIds": [
+          "bike.road.r1.front-hub",
+          "bike.road.r1.front-rotor",
+          "bike.road.r1.front-caliper"
+        ],
+        "correctComponentIds": [
+          "bike.road.r1.front-rotor"
+        ],
         "successText": "Correct. The rotor is fixed to the hub and rotates through the caliper.",
         "retryText": "Not that one. Look for the thin circular braking surface attached to the wheel."
       }
     }
-  ]
+  ],
+  "bikeId": "bike.road.r1"
 }
