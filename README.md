@@ -1,126 +1,158 @@
 # Bike Atlas
 
-Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning, maintenance, history and use-case fit.
+Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning, maintenance, history, physics and use-case fit.
 
 ## Current phase
 
-**P19 — Cross-Bike Knowledge Graph, Concept Pages & Global Search**
+**P20 — Bicycle Physics Lab & Performance Simulation**
 
-Bike Atlas now has one global knowledge surface spanning:
+Bike Atlas now includes an interactive steady-state Physics Lab.
+
+The model uses explicit:
 
 ```text
-Concepts
-Bikes
-Components
-Learn
-Workshop
-History
+rider power
+rider + bike + cargo mass
+grade
+wind
+air density
+CdA
+rolling resistance
+drivetrain efficiency
+surface
 ```
 
-The previous bike-local Encyclopedia search has been promoted into a global **Search** workspace.
+to estimate sustainable steady speed.
 
-## Engineering concept graph
-
-P19 introduces nine cross-bike engineering concepts:
+Gearing is modeled separately:
 
 ```text
-Braking systems
-Tire volume, pressure & contact
-Chain drive & power transmission
-Gearing, range & shifting
-Steering, geometry & control
-Suspension & compliance
-Wheels, hubs & axles
-Cargo, mounts & utility hardware
-Frame architecture & rider position
+cadence
+× overall drive ratio
+× wheel circumference
+→ kinematic speed
 ```
 
-Each concept can connect:
+This prevents Bike Atlas from treating gearing as if it creates speed independently of rider power and resistance.
+
+## Four reference profiles
 
 ```text
-concept
-├─ modern 3D components
-├─ multiple bike families
-├─ Learn lessons
-├─ Workshop procedures
-└─ History milestones
+Road R1
+MTB M1
+Urban U1
+Gravel G1
 ```
 
-Component encyclopedia pages also contain reverse links back into relevant concepts.
+each has editable Bike Atlas reference assumptions for:
 
-This creates navigable flows such as:
+- bicycle mass;
+- CdA;
+- drivetrain efficiency;
+- surface-dependent Crr;
+- wheel circumference;
+- default drive ratio.
+
+These are educational simulation inputs, **not manufacturer measurements**.
+
+## Surfaces
 
 ```text
-Urban U1 internal-gear hub
-        ↓
-Gearing, range & shifting
-        ↓
-Road cassette
-MTB cassette
-Gravel cassette
-        ↓
-Learn / Workshop / History
+Smooth asphalt
+Rough asphalt
+Hardpack gravel
+Loose gravel
+Trail
 ```
 
-## Global Search
+## Physics Lab
 
-Search now derives results from the canonical Bike Atlas catalogs instead of maintaining duplicate search content.
+The UI provides:
 
-Indexed entity types:
+- rider/environment controls;
+- quick Flat / Climb / Gravel / Headwind presets;
+- editable model assumptions;
+- steady-state speed;
+- aero / gravity / rolling power breakdown;
+- four-bike comparison under the same scenario;
+- cadence-selected speed;
+- power required at the cadence-selected speed;
+- equilibrium cadence for the selected ratio;
+- model-boundary disclosure.
+
+## Reference sanity output
+
+At:
 
 ```text
-Concept
-Bike
-Component
-Learn
-Workshop
-History
+250 W
+75 kg rider
+0 kg cargo
+0%
+0 km/h wind
+smooth asphalt
 ```
 
-Example searches:
+the current reference model gives approximately:
 
 ```text
-brakes
-pressure
-creaking
-cassette
-internal gear
-Repack
+Road R1    36.9 km/h
+Gravel G1  34.4 km/h
+MTB M1     29.5 km/h
+Urban U1   28.2 km/h
+```
+
+These are model sanity values, not fixed bicycle performance claims.
+
+## Shareable Physics scenarios
+
+Physics deep links use:
+
+```text
+/?physics=1
+```
+
+with optional values such as:
+
+```text
+pwr
+rider
 cargo
-tubeless
-suspension
-head angle
+grade
+wind
+rho
+surface
+cad
+ratio
+bm
+cda
+eta
+crr
 ```
 
-Search is deterministic, local and does not require an AI API.
-
-## Concept deep links
+Example:
 
 ```text
-/?concept=braking-systems
-/?concept=tire-volume-pressure
-/?concept=chain-drive-power
-/?concept=gearing-range-shifting
-/?concept=steering-geometry-control
-/?concept=suspension-compliance
-/?concept=wheels-hubs-axles
-/?concept=cargo-mounting-utility
-/?concept=frame-architecture-rider-position
+/?bike=gravel-g1&physics=1&pwr=250&grade=7&wind=10&surface=hardpack-gravel&cargo=5
 ```
 
-## Current authored graph
+Closing Physics or entering another incompatible mode clears Physics URL state.
 
-```text
-9 engineering concepts
-36 component links
-25 lesson links
-22 Workshop links
-19 History links
-4 / 4 bike families covered
-0 broken graph references
-```
+## Model boundary
 
-The global derived index additionally contains all current bikes, searchable encyclopedia components, lessons, Workshop procedures and History milestones.
+P20 is a transparent educational steady-state model.
+
+It does not claim to predict:
+
+- acceleration;
+- sprinting;
+- cornering;
+- braking;
+- fatigue;
+- changing posture;
+- detailed suspension/terrain dynamics;
+- exact real-world tire losses;
+- manufacturer performance.
 
 Run all domain checks with:
 
@@ -128,4 +160,4 @@ Run all domain checks with:
 npm run validate:domain
 ```
 
-See `docs/P1.md` through `docs/P19.md`.
+See `docs/P1.md` through `docs/P20.md`.
