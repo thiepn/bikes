@@ -252,7 +252,7 @@ function featureValues(metrics: OptimizationMetrics) {
   } satisfies Record<OptimizationFeatureId, number>;
 }
 
-function rawGoalScore(
+export function scoreOptimizationMetrics(
   goal: OptimizationGoalProfile,
   metrics: OptimizationMetrics,
 ) {
@@ -568,7 +568,7 @@ export function optimizeBuild(
     }
 
     const analysis = analyzeBuild(bikeId, selections);
-    const goalScore = rawGoalScore(goal, metrics);
+    const goalScore = scoreOptimizationMetrics(goal, metrics);
     const warningPenalty =
       analysis.health === "attention" ? 1.5 : 0;
     const changePenalty = changedSlots.length * 1.25;
