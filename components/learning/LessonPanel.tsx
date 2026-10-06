@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { ROAD_R1_COMPONENTS_BY_ID } from "@/domain/bike/road-r1";
+import { getBikeComponentById } from "@/domain/bike/catalog";
 import {
   getDrivetrainKinematics,
   ROAD_R1_DEMO_SPROCKET_TEETH,
@@ -231,7 +231,7 @@ export function LessonPanel({
                   {step.challenge.candidateComponentIds.map(
                     (componentId) => {
                       const component =
-                        ROAD_R1_COMPONENTS_BY_ID.get(componentId);
+                        getBikeComponentById(componentId);
                       return (
                         <button
                           key={componentId}
