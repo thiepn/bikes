@@ -1,0 +1,111 @@
+{
+  "id": "mtb-suspension-basics",
+  "bikeId": "bike.mtb.m1",
+  "title": "How mountain-bike suspension works",
+  "summary": "Follow impacts through the fork, rear shock and linkage, then understand travel, sag and damping without treating setup numbers as universal.",
+  "systemId": "rear-suspension",
+  "difficulty": "beginner",
+  "durationMinutes": 7,
+  "prerequisiteLessonIds": [],
+  "steps": [
+    {
+      "id": "front-travel",
+      "eyebrow": "01 · Front suspension",
+      "title": "The fork lets the front wheel move.",
+      "body": "A suspension fork allows controlled wheel movement relative to the frame. That movement helps the tire follow uneven terrain while reducing how much of each impact is transmitted directly to the rider.",
+      "keyFact": "Suspension travel is available wheel/fork movement. More travel is not automatically better; the useful amount depends on the bike’s intended use and geometry.",
+      "focusComponentId": "bike.mtb.m1.fork",
+      "highlightComponentIds": [
+        "bike.mtb.m1.fork",
+        "bike.mtb.m1.front-wheel",
+        "bike.mtb.m1.frame"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "rear-system",
+      "eyebrow": "02 · Rear suspension",
+      "title": "The shock and linkage work as one system.",
+      "body": "The rear wheel moves through a linkage connected to the frame and rear shock. The linkage controls the relationship between wheel movement and shock movement while the shock provides spring and damping functions.",
+      "keyFact": "The rear shock alone does not define rear-wheel motion; frame pivots and linkage geometry matter too.",
+      "focusComponentId": "bike.mtb.m1.rear-shock",
+      "highlightComponentIds": [
+        "bike.mtb.m1.rear-shock",
+        "bike.mtb.m1.suspension-linkage",
+        "bike.mtb.m1.frame",
+        "bike.mtb.m1.rear-wheel"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "sag-concept",
+      "eyebrow": "03 · Sag",
+      "title": "Suspension should settle under rider weight.",
+      "body": "Sag is the amount the suspension compresses from fully extended when the rider is on the bike in a defined riding position. It gives the suspension room to extend into depressions as well as compress over impacts.",
+      "keyFact": "A useful sag target is not universal. Follow the frame, fork and shock manufacturer’s setup guidance for the specific bike and rider.",
+      "focusComponentId": "bike.mtb.m1.rear-shock",
+      "highlightComponentIds": [
+        "bike.mtb.m1.rear-shock",
+        "bike.mtb.m1.suspension-linkage"
+      ],
+      "inspectionMode": "xray"
+    },
+    {
+      "id": "damping",
+      "eyebrow": "04 · Damping",
+      "title": "Damping controls how suspension moves.",
+      "body": "The spring supports the rider and stores energy. Damping controls the rate of motion. Compression damping influences movement while the suspension compresses; rebound damping influences the return after compression.",
+      "keyFact": "Too much or too little damping can both reduce control. Setup should be changed deliberately, one variable at a time, and within manufacturer guidance.",
+      "focusComponentId": "bike.mtb.m1.fork",
+      "highlightComponentIds": [
+        "bike.mtb.m1.fork",
+        "bike.mtb.m1.rear-shock"
+      ],
+      "inspectionMode": "xray",
+      "challenge": {
+        "type": "multiple-choice",
+        "prompt": "Which damping adjustment primarily controls how quickly suspension returns after being compressed?",
+        "options": [
+          {
+            "id": "rebound",
+            "label": "Rebound damping"
+          },
+          {
+            "id": "compression",
+            "label": "Compression damping"
+          },
+          {
+            "id": "pressure",
+            "label": "Tire pressure"
+          }
+        ],
+        "correctOptionId": "rebound",
+        "explanation": "Rebound damping primarily controls the return motion after the suspension has compressed."
+      }
+    },
+    {
+      "id": "identify-linkage",
+      "eyebrow": "05 · Identify",
+      "title": "Find the rear-suspension linkage.",
+      "body": "Identify the structure that connects rear-wheel movement to the shock and frame pivots.",
+      "keyFact": "Linkage geometry determines how rear-wheel travel is translated into shock movement.",
+      "focusComponentId": "bike.mtb.m1.rear-shock",
+      "highlightComponentIds": [],
+      "inspectionMode": "normal",
+      "challenge": {
+        "type": "select-component",
+        "prompt": "Which component transfers rear-wheel motion through the suspension pivots?",
+        "candidateComponentIds": [
+          "bike.mtb.m1.suspension-linkage",
+          "bike.mtb.m1.rear-shock",
+          "bike.mtb.m1.frame"
+        ],
+        "correctComponentIds": [
+          "bike.mtb.m1.suspension-linkage"
+        ],
+        "successText": "Correct. The suspension linkage connects pivoting frame members and transfers wheel motion toward the shock.",
+        "retryText": "That component is part of the rear suspension, but it is not the linkage itself."
+      }
+    }
+  ]
+}
