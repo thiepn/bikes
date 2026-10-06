@@ -14,7 +14,8 @@ export function BikeViewer() {
   const [isolated, setIsolated] = useState(false);
 
   const selectedComponent = useMemo(
-    () => ROAD_R1.components.find((component) => component.id === selectedId) ?? null,
+    () =>
+      ROAD_R1.components.find((component) => component.id === selectedId) ?? null,
     [selectedId],
   );
 
@@ -22,7 +23,9 @@ export function BikeViewer() {
     if (typeof window === "undefined") return;
 
     const url = new URL(window.location.href);
-    const component = ROAD_R1.components.find((item) => item.id === componentId);
+    const component = ROAD_R1.components.find(
+      (item) => item.id === componentId,
+    );
 
     if (component) url.searchParams.set("part", component.slug);
     else url.searchParams.delete("part");
@@ -92,7 +95,11 @@ export function BikeViewer() {
         dpr={[1, 1.8]}
         shadows
         camera={{ position: [1.85, 1.15, 2.2], fov: 34, near: 0.05, far: 60 }}
-        gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
+        gl={{
+          antialias: true,
+          alpha: false,
+          powerPreference: "high-performance",
+        }}
         onPointerMissed={() => select(null)}
         onCreated={({ gl }) => {
           gl.outputColorSpace = SRGBColorSpace;
@@ -114,16 +121,28 @@ export function BikeViewer() {
         selectedId={selectedId}
         isolated={isolated}
         onSelect={select}
+        onHover={setHoveredId}
         onToggleIsolate={() => setIsolated((value) => !value)}
       />
 
-      <div className={selectedComponent ? "selection-caption is-active" : "selection-caption"}>
-        <span>{selectedComponent ? selectedComponent.systemId.replaceAll("-", " ") : "Road R1"}</span>
+      <div
+        className={
+          selectedComponent
+            ? "selection-caption is-active"
+            : "selection-caption"
+        }
+      >
+        <span>
+          {selectedComponent
+            ? selectedComponent.systemId.replaceAll("-", " ")
+            : "Road R1"}
+        </span>
         <strong>{selectedComponent?.name ?? "Select a component"}</strong>
       </div>
 
       <div className="viewer-hint" aria-hidden="true">
-        <span>Drag</span> rotate · <span>Scroll</span> zoom · <span>Esc</span> reset · <span>I</span> isolate
+        <span>Drag</span> rotate · <span>Scroll</span> zoom ·{" "}
+        <span>Esc</span> reset · <span>I</span> isolate
       </div>
     </section>
   );
