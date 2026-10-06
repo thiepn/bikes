@@ -1,6 +1,7 @@
 import roadJson from "@/content/geometry/road-r1.json";
 import mtbJson from "@/content/geometry/mtb-m1.json";
 import urbanJson from "@/content/geometry/urban-u1.json";
+import gravelJson from "@/content/geometry/gravel-g1.json";
 import { getBikeById } from "@/domain/bike/catalog";
 import type {
   BikeGeometryReference,
@@ -11,6 +12,7 @@ const GEOMETRY = new Map<string, BikeGeometryReference>([
   ["bike.road.r1", roadJson as BikeGeometryReference],
   ["bike.mtb.m1", mtbJson as BikeGeometryReference],
   ["bike.urban.u1", urbanJson as BikeGeometryReference],
+  ["bike.gravel.g1", gravelJson as BikeGeometryReference],
 ]);
 
 export const GEOMETRY_METRICS = [
