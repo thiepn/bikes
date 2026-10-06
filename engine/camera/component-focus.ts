@@ -57,6 +57,11 @@ const FOCUS_BY_SLUG: Record<string, CameraFocus> = {
   bell: { position: [0.45, 1.12, 0.47], target: [-0.2, 1.02, 0.28], fov: 16 },
   "front-axle": { position: [0.48, 0.42, 0.86], target: [0, 0.37, 0.62], fov: 17 },
   "rear-axle": { position: [0.48, 0.42, -0.86], target: [0, 0.37, -0.62], fov: 17 },
+  "left-shifter": { position: [-0.48, 1.0, 0.69], target: [-0.25, 0.85, 0.45], fov: 17 },
+  "right-shifter": { position: [0.48, 1.0, 0.69], target: [0.25, 0.85, 0.45], fov: 17 },
+  "frame-mounts": { position: [0.58, 0.68, 0.35], target: [0, 0.53, 0.07], fov: 18 },
+  "fork-mounts": { position: [0.52, 0.66, 0.86], target: [0, 0.47, 0.54], fov: 18 },
+  "downtube-protector": { position: [0.6, 0.58, 0.48], target: [0, 0.43, 0.18], fov: 19 },
 };
 
 export function getComponentFocus(componentId: string | null): CameraFocus {
