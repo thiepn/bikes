@@ -1,158 +1,131 @@
 # Bike Atlas
 
-Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning, maintenance, history, physics and use-case fit.
+Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning, maintenance, history, physics, compatibility and use-case fit.
 
 ## Current phase
 
-**P20 — Bicycle Physics Lab & Performance Simulation**
+**P21 — Compatibility Engine & Build Lab Foundation**
 
-Bike Atlas now includes an interactive steady-state Physics Lab.
+Bike Atlas now has an explicit compatibility engine and the first Build Lab.
 
-The model uses explicit:
+## Compatibility engine
 
-```text
-rider power
-rider + bike + cargo mass
-grade
-wind
-air density
-CdA
-rolling resistance
-drivetrain efficiency
-surface
-```
+Compatibility is evaluated from authored interface requirements rather than visual similarity.
 
-to estimate sustainable steady speed.
-
-Gearing is modeled separately:
+Results use three states:
 
 ```text
-cadence
-× overall drive ratio
-× wheel circumference
-→ kinematic speed
+compatible
+incompatible
+unknown
 ```
 
-This prevents Bike Atlas from treating gearing as if it creates speed independently of rider power and resistance.
+A missing specification therefore never becomes an assumed fit.
 
-## Four reference profiles
+Current requirement types:
 
 ```text
-Road R1
-MTB M1
-Urban U1
-Gravel G1
+exact interface match
+numeric range
 ```
 
-each has editable Bike Atlas reference assumptions for:
+## Build scope
 
-- bicycle mass;
-- CdA;
-- drivetrain efficiency;
-- surface-dependent Crr;
-- wheel circumference;
-- default drive ratio.
-
-These are educational simulation inputs, **not manufacturer measurements**.
-
-## Surfaces
+P21 exposes nine safe foundation slots per current bike:
 
 ```text
-Smooth asphalt
-Rough asphalt
-Hardpack gravel
-Loose gravel
-Trail
+Front wheel
+Rear wheel
+Front tire
+Rear tire
+Handlebar
+Seatpost
+Saddle
+Left pedal
+Right pedal
 ```
 
-## Physics Lab
+More complex drivetrain, suspension, brake and headset compatibility remains intentionally deferred until the required interface data is explicit.
 
-The UI provides:
-
-- rider/environment controls;
-- quick Flat / Climb / Gravel / Headwind presets;
-- editable model assumptions;
-- steady-state speed;
-- aero / gravity / rolling power breakdown;
-- four-bike comparison under the same scenario;
-- cadence-selected speed;
-- power required at the cadence-selected speed;
-- equilibrium cadence for the selected ratio;
-- model-boundary disclosure.
-
-## Reference sanity output
-
-At:
+## Current reference library
 
 ```text
-250 W
-75 kg rider
-0 kg cargo
-0%
-0 km/h wind
-smooth asphalt
+4 host bikes
+9 slots per bike
+36 donor/reference parts
+144 evaluated host/candidate combinations
+
+90 compatible
+54 incompatible
+0 unknown
 ```
 
-the current reference model gives approximately:
+All donor and host references resolve to existing semantic Bike Atlas components.
 
-```text
-Road R1    36.9 km/h
-Gravel G1  34.4 km/h
-MTB M1     29.5 km/h
-Urban U1   28.2 km/h
-```
+## Explainable decisions
 
-These are model sanity values, not fixed bicycle performance claims.
-
-## Shareable Physics scenarios
-
-Physics deep links use:
-
-```text
-/?physics=1
-```
-
-with optional values such as:
-
-```text
-pwr
-rider
-cargo
-grade
-wind
-rho
-surface
-cad
-ratio
-bm
-cda
-eta
-crr
-```
+The Build Lab shows every requirement behind a result.
 
 Example:
 
 ```text
-/?bike=gravel-g1&physics=1&pwr=250&grade=7&wind=10&surface=hardpack-gravel&cargo=5
+Road R1 host
+Gravel G1 front wheel
+
+622 wheel format      match
+12x100 thru axle      match
+center-lock disc      match
+
+→ compatible
 ```
 
-Closing Physics or entering another incompatible mode clears Physics URL state.
+while:
 
-## Model boundary
+```text
+Road R1 host
+MTB M1 front wheel
 
-P20 is a transparent educational steady-state model.
+622 wheel format      match
+12x100 vs 15x110      mismatch
+center-lock vs 6-bolt mismatch
 
-It does not claim to predict:
+→ incompatible
+```
 
-- acceleration;
-- sprinting;
-- cornering;
-- braking;
-- fatigue;
-- changing posture;
-- detailed suspension/terrain dynamics;
-- exact real-world tire losses;
-- manufacturer performance.
+## Logical build drafts
+
+Only fully compatible candidates can be added to a draft.
+
+Users can:
+
+- change a slot;
+- inspect why a part fits/fails;
+- restore a slot;
+- reset the whole build;
+- jump between modified slots.
+
+Selecting a slot highlights its host component on the existing 3D bike.
+
+P21 intentionally does **not** transplant donor meshes yet.
+
+## Shareable builds
+
+```text
+build=1
+buildParts=...
+```
+
+store Build Lab state in the URL.
+
+Loaded selections are always re-evaluated; hand-editing the URL cannot force an incompatible candidate into the logical draft.
+
+## Compatibility boundary
+
+A P21 compatible result means only:
+
+> all currently modeled Bike Atlas interfaces match.
+
+It is not an installation certification and does not imply that unmodeled clearance, fastener, structural, routing, adapter, manufacturer, warranty or legal constraints are satisfied.
 
 Run all domain checks with:
 
@@ -160,4 +133,4 @@ Run all domain checks with:
 npm run validate:domain
 ```
 
-See `docs/P1.md` through `docs/P20.md`.
+See `docs/P1.md` through `docs/P21.md`.
