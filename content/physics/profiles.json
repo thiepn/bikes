@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "surfaces": [
+    {
+      "id": "smooth-asphalt",
+      "name": "Smooth asphalt",
+      "description": "Clean, relatively smooth paved surface."
+    },
+    {
+      "id": "rough-asphalt",
+      "name": "Rough asphalt",
+      "description": "Coarse or imperfect paved surface with higher rolling losses."
+    },
+    {
+      "id": "hardpack-gravel",
+      "name": "Hardpack gravel",
+      "description": "Firm unsealed surface with small loose material."
+    },
+    {
+      "id": "loose-gravel",
+      "name": "Loose gravel",
+      "description": "Deeper or less consolidated aggregate where rolling losses rise."
+    },
+    {
+      "id": "trail",
+      "name": "Trail",
+      "description": "Irregular off-road surface represented with an effective rolling coefficient."
+    }
+  ],
+  "profiles": [
+    {
+      "bikeId": "bike.road.r1",
+      "source": "bike-atlas-reference",
+      "bikeMassKg": 8.5,
+      "cdaM2": 0.32,
+      "drivetrainEfficiency": 0.975,
+      "wheelCircumferenceM": 2.11,
+      "defaultDriveRatio": 2.8,
+      "rollingResistance": {
+        "smooth-asphalt": 0.004,
+        "rough-asphalt": 0.006,
+        "hardpack-gravel": 0.012,
+        "loose-gravel": 0.022,
+        "trail": 0.032
+      },
+      "notes": [
+        "Reference performance assumptions for Bike Atlas simulation, not measurements of a manufacturer bicycle.",
+        "CdA includes a representative rider position and therefore is not a property of the frame alone.",
+        "Surface coefficients are educational effective values, not measured data for a specific tire."
+      ]
+    },
+    {
+      "bikeId": "bike.mtb.m1",
+      "source": "bike-atlas-reference",
+      "bikeMassKg": 14.5,
+      "cdaM2": 0.5,
+      "drivetrainEfficiency": 0.965,
+      "wheelCircumferenceM": 2.31,
+      "defaultDriveRatio": 1.35,
+      "rollingResistance": {
+        "smooth-asphalt": 0.01,
+        "rough-asphalt": 0.012,
+        "hardpack-gravel": 0.014,
+        "loose-gravel": 0.019,
+        "trail": 0.02
+      },
+      "notes": [
+        "Reference trail-bike assumptions for educational comparison only.",
+        "Effective trail rolling resistance compresses many terrain and suspension losses into one simple coefficient.",
+        "Actual MTB aerodynamic drag varies strongly with rider posture, clothing and speed."
+      ]
+    },
+    {
+      "bikeId": "bike.urban.u1",
+      "source": "bike-atlas-reference",
+      "bikeMassKg": 18,
+      "cdaM2": 0.66,
+      "drivetrainEfficiency": 0.95,
+      "wheelCircumferenceM": 2.16,
+      "defaultDriveRatio": 2,
+      "rollingResistance": {
+        "smooth-asphalt": 0.006,
+        "rough-asphalt": 0.008,
+        "hardpack-gravel": 0.013,
+        "loose-gravel": 0.022,
+        "trail": 0.03
+      },
+      "notes": [
+        "Reference upright utility-bike assumptions, not a claim about all city bicycles.",
+        "The relatively large CdA represents an upright rider posture, not frame drag alone.",
+        "Drivetrain efficiency is a simple aggregate reference and does not model individual internal-gear hub ratios."
+      ]
+    },
+    {
+      "bikeId": "bike.gravel.g1",
+      "source": "bike-atlas-reference",
+      "bikeMassKg": 10,
+      "cdaM2": 0.38,
+      "drivetrainEfficiency": 0.97,
+      "wheelCircumferenceM": 2.18,
+      "defaultDriveRatio": 2.2,
+      "rollingResistance": {
+        "smooth-asphalt": 0.005,
+        "rough-asphalt": 0.007,
+        "hardpack-gravel": 0.01,
+        "loose-gravel": 0.017,
+        "trail": 0.025
+      },
+      "notes": [
+        "Reference all-road assumptions for Bike Atlas simulation, not manufacturer test data.",
+        "The gravel surface coefficients represent an effective mixed-surface model rather than one real tire.",
+        "CdA remains strongly rider-position dependent."
+      ]
+    }
+  ]
+}
