@@ -507,7 +507,7 @@ export function BuildLabPanel({
           )}
 
           <section className="build-boundary">
-            <strong>What “compatible” means in P21</strong>
+            <strong>What “compatible” means</strong>
             <p>
               Every modeled interface for this slot matches. Bike Atlas
               does not yet certify interfaces it has not modeled—such as
