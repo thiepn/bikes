@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "notes": [
+    "P27 scenarios are fictional Bike Atlas comparison presets, not rider-specific predictions.",
+    "Scenario scores combine build-aware steady-state speed with cadence/gearing feasibility.",
+    "All saved builds are re-evaluated through current compatibility, Physics, geometry and gearing models."
+  ],
+  "scenarios": [
+    {
+      "id": "fast-flat",
+      "name": "Fast Flat",
+      "shortName": "Flat",
+      "description": "Sustained smooth-asphalt effort with no grade or wind.",
+      "scenario": {
+        "riderPowerW": 250,
+        "riderMassKg": 75,
+        "cargoMassKg": 0,
+        "gradePercent": 0,
+        "windSpeedKph": 0,
+        "airDensityKgM3": 1.225,
+        "surfaceId": "smooth-asphalt",
+        "cadenceRpm": 90,
+        "driveRatio": 1
+      },
+      "speedRangeKph": [
+        25,
+        50
+      ]
+    },
+    {
+      "id": "long-climb",
+      "name": "Long Climb",
+      "shortName": "Climb",
+      "description": "Steady 8% asphalt climb at the same 250 W reference effort.",
+      "scenario": {
+        "riderPowerW": 250,
+        "riderMassKg": 75,
+        "cargoMassKg": 0,
+        "gradePercent": 8,
+        "windSpeedKph": 0,
+        "airDensityKgM3": 1.225,
+        "surfaceId": "smooth-asphalt",
+        "cadenceRpm": 85,
+        "driveRatio": 1
+      },
+      "speedRangeKph": [
+        5,
+        18
+      ]
+    },
+    {
+      "id": "rough-mixed",
+      "name": "Rough Mixed",
+      "shortName": "Mixed",
+      "description": "Hardpack-gravel efficiency at a slightly lower sustained power.",
+      "scenario": {
+        "riderPowerW": 220,
+        "riderMassKg": 75,
+        "cargoMassKg": 0,
+        "gradePercent": 0,
+        "windSpeedKph": 0,
+        "airDensityKgM3": 1.225,
+        "surfaceId": "hardpack-gravel",
+        "cadenceRpm": 85,
+        "driveRatio": 1
+      },
+      "speedRangeKph": [
+        12,
+        36
+      ]
+    },
+    {
+      "id": "headwind",
+      "name": "Headwind",
+      "shortName": "Wind",
+      "description": "Flat smooth asphalt into a 20 km/h reference headwind.",
+      "scenario": {
+        "riderPowerW": 220,
+        "riderMassKg": 75,
+        "cargoMassKg": 0,
+        "gradePercent": 0,
+        "windSpeedKph": 20,
+        "airDensityKgM3": 1.225,
+        "surfaceId": "smooth-asphalt",
+        "cadenceRpm": 90,
+        "driveRatio": 1
+      },
+      "speedRangeKph": [
+        14,
+        34
+      ]
+    },
+    {
+      "id": "loaded-utility",
+      "name": "Loaded Utility",
+      "shortName": "Load",
+      "description": "Moderate power with 15 kg cargo, 2% grade and light headwind.",
+      "scenario": {
+        "riderPowerW": 180,
+        "riderMassKg": 75,
+        "cargoMassKg": 15,
+        "gradePercent": 2,
+        "windSpeedKph": 5,
+        "airDensityKgM3": 1.225,
+        "surfaceId": "rough-asphalt",
+        "cadenceRpm": 75,
+        "driveRatio": 1
+      },
+      "speedRangeKph": [
+        8,
+        25
+      ]
+    }
+  ]
+}
