@@ -181,6 +181,7 @@ export function MtbPrototypeBike(props: Props) {
     explosionAmount: props.explosionAmount,
     highlightedIds: props.highlightedIds,
     removedIds: props.removedIds,
+    ghost: props.ghost,
   };
   const handlers: ViewerInteractionHandlers = {
     onSelect: props.onSelect,
