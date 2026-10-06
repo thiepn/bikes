@@ -22,6 +22,12 @@ const VALID_SLOT_IDS = new Set<CompatibilitySlotId>([
   "saddle",
   "left-pedal",
   "right-pedal",
+  "fork",
+  "front-caliper",
+  "rear-caliper",
+  "crankset",
+  "rear-transmission",
+  "rear-derailleur",
 ]);
 
 export function encodeBuildSelections(
