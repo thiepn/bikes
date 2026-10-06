@@ -1,0 +1,343 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "id": "surface",
+      "title": "Where will you ride?",
+      "prompt": "Choose the surface that best represents most of your riding.",
+      "options": [
+        {
+          "id": "paved",
+          "label": "Mostly paved",
+          "description": "Roads, cycle paths and smooth urban surfaces.",
+          "effects": {
+            "pavedEfficiency": {
+              "demand": 1,
+              "weight": 5
+            },
+            "distanceEfficiency": {
+              "demand": 0.75,
+              "weight": 2
+            }
+          }
+        },
+        {
+          "id": "mixed",
+          "label": "Mixed surfaces",
+          "description": "Pavement plus gravel, rough paths or light off-road.",
+          "effects": {
+            "mixedSurface": {
+              "demand": 0.9,
+              "weight": 5
+            },
+            "comfortControl": {
+              "demand": 0.65,
+              "weight": 2
+            },
+            "pavedEfficiency": {
+              "demand": 0.55,
+              "weight": 2
+            }
+          }
+        },
+        {
+          "id": "trail",
+          "label": "Trail",
+          "description": "Roots, rocks, loose surfaces and sustained off-road riding.",
+          "effects": {
+            "technicalTerrain": {
+              "demand": 0.78,
+              "weight": 5
+            },
+            "suspensionCapability": {
+              "demand": 0.8,
+              "weight": 4
+            },
+            "comfortControl": {
+              "demand": 0.78,
+              "weight": 3
+            }
+          }
+        },
+        {
+          "id": "technical",
+          "label": "Technical trail",
+          "description": "Steep, rough or obstacle-heavy terrain where control dominates.",
+          "effects": {
+            "technicalTerrain": {
+              "demand": 1,
+              "weight": 6
+            },
+            "suspensionCapability": {
+              "demand": 1,
+              "weight": 5
+            },
+            "comfortControl": {
+              "demand": 0.95,
+              "weight": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "priority",
+      "title": "What matters most?",
+      "prompt": "Pick the quality you would notice most if the bike got it wrong.",
+      "options": [
+        {
+          "id": "speed",
+          "label": "Speed & efficiency",
+          "description": "Cover distance quickly with low energy loss.",
+          "effects": {
+            "pavedEfficiency": {
+              "demand": 1,
+              "weight": 5
+            },
+            "distanceEfficiency": {
+              "demand": 0.9,
+              "weight": 4
+            }
+          }
+        },
+        {
+          "id": "balanced",
+          "label": "Balanced versatility",
+          "description": "A mix of efficiency, comfort and changing surfaces.",
+          "effects": {
+            "pavedEfficiency": {
+              "demand": 0.6,
+              "weight": 2
+            },
+            "mixedSurface": {
+              "demand": 0.65,
+              "weight": 3
+            },
+            "comfortControl": {
+              "demand": 0.65,
+              "weight": 3
+            }
+          }
+        },
+        {
+          "id": "control",
+          "label": "Control & capability",
+          "description": "Confidence and traction matter more than outright speed.",
+          "effects": {
+            "comfortControl": {
+              "demand": 1,
+              "weight": 5
+            },
+            "technicalTerrain": {
+              "demand": 0.8,
+              "weight": 4
+            },
+            "suspensionCapability": {
+              "demand": 0.72,
+              "weight": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "distance",
+      "title": "How long are typical rides?",
+      "prompt": "Use your normal ride, not the rare longest day.",
+      "options": [
+        {
+          "id": "short",
+          "label": "Under 15 km",
+          "description": "Short rides where long-distance efficiency is secondary.",
+          "effects": {
+            "distanceEfficiency": {
+              "demand": 0.3,
+              "weight": 1
+            }
+          }
+        },
+        {
+          "id": "medium",
+          "label": "15–50 km",
+          "description": "Efficiency matters, but not at all costs.",
+          "effects": {
+            "distanceEfficiency": {
+              "demand": 0.65,
+              "weight": 3
+            }
+          }
+        },
+        {
+          "id": "long",
+          "label": "50+ km",
+          "description": "Sustained efficiency becomes a major requirement.",
+          "effects": {
+            "distanceEfficiency": {
+              "demand": 1,
+              "weight": 5
+            },
+            "pavedEfficiency": {
+              "demand": 0.72,
+              "weight": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "climbing",
+      "title": "How much climbing?",
+      "prompt": "Think about how often long or steep climbs shape the ride.",
+      "options": [
+        {
+          "id": "low",
+          "label": "Little",
+          "description": "Mostly flat or gentle terrain.",
+          "effects": {
+            "climbingCapability": {
+              "demand": 0.3,
+              "weight": 1
+            }
+          }
+        },
+        {
+          "id": "rolling",
+          "label": "Regular",
+          "description": "Rolling terrain with meaningful climbs.",
+          "effects": {
+            "climbingCapability": {
+              "demand": 0.65,
+              "weight": 3
+            }
+          }
+        },
+        {
+          "id": "high",
+          "label": "A lot / steep",
+          "description": "Climbing performance matters on many rides.",
+          "effects": {
+            "climbingCapability": {
+              "demand": 0.9,
+              "weight": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "cargo",
+      "title": "How much do you need to carry?",
+      "prompt": "This helps Bike Atlas detect when the current catalog lacks the right utility bike.",
+      "options": [
+        {
+          "id": "none",
+          "label": "Almost none",
+          "description": "Bottle, phone and small essentials.",
+          "effects": {}
+        },
+        {
+          "id": "light",
+          "label": "Light luggage",
+          "description": "Small backpack or occasional compact bag.",
+          "effects": {
+            "cargoUtility": {
+              "demand": 0.4,
+              "weight": 2
+            }
+          }
+        },
+        {
+          "id": "significant",
+          "label": "Regular cargo",
+          "description": "Groceries, work loads, child/cargo duties or substantial panniers.",
+          "effects": {
+            "cargoUtility": {
+              "demand": 1,
+              "weight": 6
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "maintenance",
+      "title": "How much complexity will you tolerate?",
+      "prompt": "More capability can bring more service points and setup.",
+      "options": [
+        {
+          "id": "low",
+          "label": "Keep it simple",
+          "description": "Low maintenance burden is important.",
+          "effects": {
+            "maintenanceSimplicity": {
+              "demand": 1,
+              "weight": 5
+            }
+          }
+        },
+        {
+          "id": "normal",
+          "label": "Normal upkeep",
+          "description": "Routine bicycle maintenance is fine.",
+          "effects": {
+            "maintenanceSimplicity": {
+              "demand": 0.6,
+              "weight": 2
+            }
+          }
+        },
+        {
+          "id": "high",
+          "label": "Complexity is fine",
+          "description": "Extra setup and service are acceptable for capability.",
+          "effects": {
+            "maintenanceSimplicity": {
+              "demand": 0.25,
+              "weight": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "weather",
+      "title": "What conditions?",
+      "prompt": "How much must the bike tolerate imperfect weather and surfaces?",
+      "options": [
+        {
+          "id": "fair",
+          "label": "Mostly fair",
+          "description": "Bad weather is occasional.",
+          "effects": {
+            "allWeather": {
+              "demand": 0.3,
+              "weight": 1
+            }
+          }
+        },
+        {
+          "id": "mixed",
+          "label": "Mixed conditions",
+          "description": "Rain, dirt and changing conditions are normal.",
+          "effects": {
+            "allWeather": {
+              "demand": 0.65,
+              "weight": 3
+            }
+          }
+        },
+        {
+          "id": "all",
+          "label": "All-weather priority",
+          "description": "Reliable use in poor conditions matters strongly.",
+          "effects": {
+            "allWeather": {
+              "demand": 0.9,
+              "weight": 4
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
