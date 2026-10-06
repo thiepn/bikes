@@ -5595,3 +5595,163 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* P23 build consequence analysis */
+.build-consequences {
+  margin-top: 18px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.016);
+}
+
+.build-consequences.is-ready {
+  border-color: rgba(185, 216, 121, 0.14);
+}
+
+.build-consequences.is-attention {
+  border-color: rgba(209, 191, 130, 0.16);
+}
+
+.build-consequences.is-blocked {
+  border-color: rgba(226, 160, 135, 0.18);
+}
+
+.build-consequences__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: start;
+}
+
+.build-consequences__head > div {
+  display: grid;
+  gap: 3px;
+}
+
+.build-consequences__head span {
+  color: #66736c;
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.build-consequences__head strong {
+  color: #dde5df;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.build-consequences__head > b {
+  color: #77847c;
+  font-size: 7px;
+  font-weight: 680;
+}
+
+.build-consequence-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.build-consequence-metrics article {
+  display: grid;
+  gap: 2px;
+  padding: 7px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.build-consequence-metrics span {
+  color: #69766f;
+  font-size: 6px;
+}
+
+.build-consequence-metrics strong {
+  color: #bcc8c0;
+  font-size: 9px;
+  font-weight: 660;
+}
+
+.build-consequences__clear {
+  margin: 9px 0 0;
+  padding: 8px;
+  border-radius: 8px;
+  color: #9db777;
+  background: rgba(185, 216, 121, 0.035);
+  font-size: 7px;
+}
+
+.build-issues {
+  display: grid;
+  gap: 5px;
+  margin-top: 9px;
+}
+
+.build-issues button {
+  display: grid;
+  gap: 3px;
+  padding: 8px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.017);
+  cursor: pointer;
+  text-align: left;
+}
+
+.build-issues button.is-blocking {
+  border-color: rgba(226, 160, 135, 0.12);
+  background: rgba(226, 160, 135, 0.025);
+}
+
+.build-issues button.is-warning {
+  border-color: rgba(209, 191, 130, 0.11);
+  background: rgba(209, 191, 130, 0.024);
+}
+
+.build-issues button > span {
+  color: #69766f;
+  font-size: 6px;
+  font-weight: 760;
+  text-transform: uppercase;
+}
+
+.build-issues button.is-blocking > span {
+  color: #d89c85;
+}
+
+.build-issues button.is-warning > span {
+  color: #c8b679;
+}
+
+.build-issues button > strong {
+  color: #cfd8d2;
+  font-size: 8px;
+  font-weight: 680;
+}
+
+.build-issues button > p {
+  margin: 0;
+  color: #748078;
+  font-size: 7px;
+  line-height: 1.42;
+}
+
+.build-issues button:focus-visible {
+  outline: 2px solid #d8ff67;
+  outline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  .build-consequence-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .build-consequences__head {
+    display: grid;
+  }
+}
