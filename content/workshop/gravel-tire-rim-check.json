@@ -1,0 +1,108 @@
+{
+  "id": "gravel-tire-rim-check",
+  "bikeId": "bike.gravel.g1",
+  "title": "Inspect gravel tires, rims and tubeless condition",
+  "summary": "Evaluate the tire/rim system before adjusting pressure or troubleshooting a tubeless setup.",
+  "systemId": "tires",
+  "difficulty": "beginner",
+  "durationMinutes": 7,
+  "prerequisiteProcedureIds": [],
+  "assumedOperationIds": [],
+  "tools": [
+    {
+      "id": "pressure-gauge",
+      "name": "Accurate tire-pressure gauge",
+      "required": true
+    },
+    {
+      "id": "inspection-light",
+      "name": "Inspection light",
+      "required": true
+    },
+    {
+      "id": "manufacturer-info",
+      "name": "Tire/rim compatibility information",
+      "required": true
+    }
+  ],
+  "steps": [
+    {
+      "id": "compatibility",
+      "title": "Confirm the real tire and rim system",
+      "instruction": "Identify the tire size/construction, rim dimensions and whether both components are approved for the intended tube or tubeless configuration.",
+      "why": "Visual similarity does not prove tire/rim/tubeless compatibility.",
+      "focusComponentId": "bike.gravel.g1.front-rim",
+      "highlightComponentIds": [
+        "bike.gravel.g1.front-rim",
+        "bike.gravel.g1.front-tire"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.15,
+      "tools": [
+        "manufacturer-info"
+      ],
+      "warning": "Do not assume tubeless compatibility unless the actual tire and rim system supports it.",
+      "check": "The intended tire/rim configuration is supported by the actual component information.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "casing-bead",
+      "title": "Inspect casing, tread and bead seating",
+      "instruction": "Look around the complete tire for cuts, abrasion, exposed casing, bulges or uneven bead seating. Inspect the visible rim for dents, cracks or damage.",
+      "why": "Pressure adjustment cannot compensate for structural tire or rim damage.",
+      "focusComponentId": "bike.gravel.g1.front-tire",
+      "highlightComponentIds": [
+        "bike.gravel.g1.front-tire",
+        "bike.gravel.g1.front-rim"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0.08,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "Do not continue riding a structurally damaged tire or rim until it is correctly assessed.",
+      "check": "No obvious structural tire/rim damage is visible.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "pressure",
+      "title": "Set pressure from the real system and conditions",
+      "instruction": "Measure current pressure and adjust only within the tire/rim limits, accounting for rider/bike load, surface, tire volume and setup. Recheck after adjustment.",
+      "why": "Useful gravel pressure depends on more variables than nominal tire width.",
+      "focusComponentId": "bike.gravel.g1.rear-tire",
+      "highlightComponentIds": [
+        "bike.gravel.g1.front-tire",
+        "bike.gravel.g1.rear-tire"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0,
+      "tools": [
+        "pressure-gauge",
+        "manufacturer-info"
+      ],
+      "warning": "Never exceed the lowest applicable tire or rim pressure limit.",
+      "check": "Both tires are within documented limits and appropriate for the intended setup/conditions.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "tubeless-symptoms",
+      "title": "Treat air loss as a symptom, not a sealant recipe",
+      "instruction": "If a tubeless system loses pressure abnormally, inspect for punctures, bead/rim-tape issues, valve problems or other visible leakage. Follow the actual tire/rim/sealant instructions for repair or sealant quantity.",
+      "why": "Different tubeless systems use different rim tape, valves, sealants and maintenance intervals.",
+      "focusComponentId": "bike.gravel.g1.rear-rim",
+      "highlightComponentIds": [
+        "bike.gravel.g1.rear-rim",
+        "bike.gravel.g1.rear-tire"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.12,
+      "tools": [
+        "inspection-light",
+        "manufacturer-info"
+      ],
+      "warning": "Bike Atlas does not provide a universal sealant quantity or maintenance interval.",
+      "check": "Any abnormal pressure loss has been routed to the correct component-specific troubleshooting procedure.",
+      "removedComponentIds": []
+    }
+  ]
+}
