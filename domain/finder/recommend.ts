@@ -128,6 +128,7 @@ function scoreBike(
       capability,
       shortfall,
       reason: profile.traitReasons[need.traitId],
+      importance: need.weight,
     };
   });
 
@@ -141,7 +142,10 @@ function scoreBike(
     .filter((factor) => factor.demand >= 0.35 && factor.capability >= 0.45)
     .sort((a, b) => b.score - a.score)
     .slice(0, 4)
-    .map(({ shortfall: _shortfall, ...factor }) => factor);
+    .map(
+      ({ shortfall: _shortfall, importance: _importance, ...factor }) =>
+        factor,
+    );
 
   const unmetFactors = factors
     .filter(
@@ -151,10 +155,14 @@ function scoreBike(
     )
     .sort(
       (a, b) =>
-        b.shortfall * b.score - a.shortfall * a.score,
+        b.shortfall * b.importance -
+        a.shortfall * a.importance,
     )
     .slice(0, 4)
-    .map(({ shortfall: _shortfall, ...factor }) => factor);
+    .map(
+      ({ shortfall: _shortfall, importance: _importance, ...factor }) =>
+        factor,
+    );
 
   return {
     bikeId: profile.bikeId,
