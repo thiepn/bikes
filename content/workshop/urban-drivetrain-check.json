@@ -1,0 +1,100 @@
+{
+  "id": "urban-drivetrain-check",
+  "bikeId": "bike.urban.u1",
+  "title": "Inspect the protected utility drivetrain",
+  "summary": "Check chain guard clearance, the visible chain/sprocket path and internal-hub shifting without opening the hub.",
+  "systemId": "transmission",
+  "difficulty": "beginner",
+  "durationMinutes": 7,
+  "prerequisiteProcedureIds": [],
+  "assumedOperationIds": [],
+  "tools": [
+    {
+      "id": "inspection-light",
+      "name": "Inspection light",
+      "required": true
+    },
+    {
+      "id": "clean-cloth",
+      "name": "Clean cloth",
+      "required": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "guard-clearance",
+      "title": "Inspect the chain guard first",
+      "instruction": "Check the chain guard for cracks, loose mounts, rubbing or deformation that could contact the crank, chainring, chain or rear wheel.",
+      "why": "The guard is protective only while it remains clear of the moving drivetrain.",
+      "focusComponentId": "bike.urban.u1.chain-guard",
+      "highlightComponentIds": [
+        "bike.urban.u1.chain-guard",
+        "bike.urban.u1.chainring",
+        "bike.urban.u1.chain"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.18,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "Do not ride if the chain guard is loose enough to contact the drivetrain or wheel.",
+      "check": "The guard appears secure and clear of moving parts.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "external-drive",
+      "title": "Inspect the visible chain and sprocket path",
+      "instruction": "Where visible and accessible without disassembly, look for obvious rust, damaged links, severe contamination, damaged sprocket teeth or abnormal chain alignment.",
+      "why": "Internal gearing reduces exposed shifting hardware, but the external chain drive still wears and needs inspection.",
+      "focusComponentId": "bike.urban.u1.chain",
+      "highlightComponentIds": [
+        "bike.urban.u1.chain",
+        "bike.urban.u1.chainring",
+        "bike.urban.u1.rear-sprocket"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.16,
+      "tools": [
+        "inspection-light",
+        "clean-cloth"
+      ],
+      "warning": "Keep fingers, cloth and loose clothing away from the drivetrain while the cranks or wheel are moving.",
+      "check": "No obvious external drivetrain damage or unsafe interference is visible.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "shift-check",
+      "title": "Check gear selection through the available range",
+      "instruction": "Using the hub manufacturer's permitted shifting method, operate the shifter through the available gears during a controlled check and note missed engagement, unusual resistance or persistent noise.",
+      "why": "Shift behavior can reveal cable/control adjustment or hub-system problems without opening the mechanism.",
+      "focusComponentId": "bike.urban.u1.rear-hub",
+      "highlightComponentIds": [
+        "bike.urban.u1.rear-hub",
+        "bike.urban.u1.rear-sprocket",
+        "bike.urban.u1.chain"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0.08,
+      "tools": [],
+      "warning": "Different internal-gear hubs have different rules for shifting under load or while stationary. Follow the actual hub instructions.",
+      "check": "The hub selects gears predictably according to its own operating instructions.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "service-boundary",
+      "title": "Stop at the internal-service boundary",
+      "instruction": "If symptoms point inside the hub, use the exact hub model's service documentation or qualified service rather than applying a generic Bike Atlas teardown.",
+      "why": "Internal-gear hubs differ in lubrication, adjustment, tooling and service intervals.",
+      "focusComponentId": "bike.urban.u1.rear-hub",
+      "highlightComponentIds": [
+        "bike.urban.u1.rear-hub"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.12,
+      "tools": [],
+      "warning": "Do not open, flush, lubricate or adjust the hub internally using instructions for a different hub design.",
+      "check": "Any unresolved internal symptom is routed to the correct model-specific service procedure.",
+      "removedComponentIds": []
+    }
+  ]
+}
