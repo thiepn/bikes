@@ -1,62 +1,59 @@
 # Bike Atlas
 
-Bike Atlas is an interactive 3D bicycle knowledge platform for exploring multiple bicycle archetypes, their components, systems, lessons, maintenance workflows and technical relationships.
+Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle archetypes, components, engineering, learning and maintenance.
 
 ## Current phase
 
-**P11 — MTB M1 Knowledge, Suspension Learning & MTB Workshop Expansion**
+**P12 — Bike Comparison, Geometry & Cross-Archetype Engineering Views**
 
-Bike Atlas now has two real content families.
+Bike Atlas currently contains two complete content families:
 
-### Road R1
+- **Road R1** — performance-road reference archetype.
+- **MTB M1** — full-suspension trail reference archetype.
 
-- 35 semantic components
-- full encyclopedia
-- interactive Learn catalog
-- guided Workshop procedures
-- mechanical operation dependencies
+P12 adds a dedicated **Compare** workspace with:
 
-### MTB M1
+- Bike Atlas reference geometry;
+- Road ↔ MTB signed dimension deltas;
+- component-architecture differences;
+- bike swapping;
+- comparison deep links;
+- an optional synchronized translucent 3D ghost overlay.
 
-- 37 semantic components
-- 30 interactive prototype parts
-- full 37-component encyclopedia
-- 4 MTB-specific interactive lessons
-- 4 MTB-specific Workshop procedures
-- full-suspension, dropper and 1× drivetrain concepts
-
-MTB Learn currently covers:
-
-- suspension fundamentals;
-- dropper-post operation;
-- 1× drivetrain architecture;
-- trail tire grip/pressure concepts.
-
-MTB Workshop currently covers:
-
-- suspension pre-ride inspection;
-- manufacturer-guided sag baseline measurement;
-- dropper-post function checking;
-- trail-tire pre-ride inspection.
-
-Lessons and Workshop procedures are bike-owned. Switching or deep-linking into content restores the correct bike rather than reusing Road content on MTB M1.
-
-Example links:
+Current reference differences from Road R1 to MTB M1 include:
 
 ```text
-/?bike=mtb-m1&part=rear-shock
-/?bike=mtb-m1&lesson=mtb-suspension-basics
-/?bike=mtb-m1&lesson=mtb-one-by-drivetrain
-/?bike=mtb-m1&workshop=mtb-sag-baseline
-/?bike=mtb-m1&workshop=mtb-trail-tire-check
+wheelbase       +243 mm
+reach            +80 mm
+stack            +70 mm
+head angle        -8.7°
+seat angle        +3.5°
+chainstay         +30 mm
+BB drop           -37 mm
+tire width        +31 mm
+handlebar        +360 mm
+front travel     +150 mm
+rear travel      +140 mm
 ```
 
-Bike Atlas deliberately does not invent universal suspension pressure, sag, damping, tire-pressure or torque values. Component-specific setup remains tied to the real frame/component manufacturer guidance.
+These values describe Bike Atlas's generic fictional reference archetypes. They are not manufacturer sizing, fit advice or measurements from the temporary procedural meshes.
 
-Run domain validation with:
+Example comparison links:
+
+```text
+/?compare=mtb-m1&overlay=1
+/?bike=mtb-m1&compare=road-r1&overlay=1
+/?compare=mtb-m1&overlay=0
+```
+
+The ghost model shares the same 3D camera but is translucent and non-interactive, so the primary bike retains normal semantic selection.
+
+P12 also fixes the P10 bike-switch URL cleanup bug.
+
+Run all domain checks with:
 
 ```bash
 npm run validate:domain
 ```
 
-See `docs/P1.md` through `docs/P11.md`.
+See `docs/P1.md` through `docs/P12.md`.
