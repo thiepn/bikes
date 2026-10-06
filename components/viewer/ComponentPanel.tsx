@@ -263,11 +263,11 @@ export function ComponentPanel({
 
           {bike.capabilities.encyclopedia === "foundation" && (
             <section className="knowledge-section knowledge-section--foundation">
-              <h3>MTB M1 foundation</h3>
+              <h3>{bike.name} foundation</h3>
               <p>
-                This entry proves cross-bike semantics and graph navigation.
-                Full standards, symptoms and MTB-specific teaching content
-                will be authored in a later content phase.
+                This archetype has semantic, assembly and searchable
+                encyclopedia coverage. Deeper standards, symptoms, lessons
+                and Workshop material will be authored in a later content phase.
               </p>
             </section>
           )}
