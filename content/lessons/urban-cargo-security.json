@@ -1,0 +1,91 @@
+{
+  "id": "urban-cargo-security",
+  "bikeId": "bike.urban.u1",
+  "title": "Cargo, parking and everyday security",
+  "summary": "Learn how the rack, kickstand, frame lock and bell support ordinary city use without confusing convenience hardware with unlimited capacity or complete theft protection.",
+  "systemId": "cargo-utility",
+  "difficulty": "beginner",
+  "durationMinutes": 5,
+  "prerequisiteLessonIds": [],
+  "steps": [
+    {
+      "id": "rack-load-path",
+      "eyebrow": "01 · Cargo",
+      "title": "The rack transfers luggage load into the frame.",
+      "body": "A rear rack supports compatible bags or cargo and sends those forces through its mounts into the bicycle structure.",
+      "keyFact": "The allowable load is defined by the actual rack, frame, bicycle and accessory system—not by a universal Bike Atlas number.",
+      "focusComponentId": "bike.urban.u1.rear-rack",
+      "highlightComponentIds": [
+        "bike.urban.u1.rear-rack",
+        "bike.urban.u1.frame",
+        "bike.urban.u1.rear-wheel"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "kickstand",
+      "eyebrow": "02 · Parking",
+      "title": "The kickstand supports a stationary bike, not every loading situation.",
+      "body": "A kickstand makes ordinary parking and light loading more convenient. Stability depends on surface, bicycle orientation, cargo distribution and the stand's own design.",
+      "keyFact": "A deployed kickstand is not a guarantee that a loaded bicycle cannot tip.",
+      "focusComponentId": "bike.urban.u1.kickstand",
+      "highlightComponentIds": [
+        "bike.urban.u1.kickstand",
+        "bike.urban.u1.frame",
+        "bike.urban.u1.rear-rack"
+      ],
+      "inspectionMode": "normal"
+    },
+    {
+      "id": "frame-lock",
+      "eyebrow": "03 · Security",
+      "title": "A frame lock immobilizes a wheel.",
+      "body": "The frame-mounted lock can block wheel rotation and is convenient for short stops or as one layer of security. It does not anchor the whole bicycle to an immovable object.",
+      "keyFact": "Immobilizing a wheel and securing a bicycle against removal are different security functions.",
+      "focusComponentId": "bike.urban.u1.frame-lock",
+      "highlightComponentIds": [
+        "bike.urban.u1.frame-lock",
+        "bike.urban.u1.rear-wheel",
+        "bike.urban.u1.frame"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "bell",
+      "eyebrow": "04 · Communication",
+      "title": "The bell is a communication device.",
+      "body": "A bell gives the rider a simple audible way to signal presence. Its use should complement observation, appropriate speed and yielding behavior rather than replace them.",
+      "keyFact": "Audible warning is one part of awareness, not a substitute for safe riding decisions.",
+      "focusComponentId": "bike.urban.u1.bell",
+      "highlightComponentIds": [
+        "bike.urban.u1.bell",
+        "bike.urban.u1.handlebar"
+      ],
+      "inspectionMode": "normal"
+    },
+    {
+      "id": "identify-cargo",
+      "eyebrow": "05 · Identify",
+      "title": "Find the structure designed to carry everyday luggage.",
+      "body": "Identify the load-carrying structure over the rear wheel.",
+      "keyFact": "The rack is the dedicated cargo support; the fender is not a load platform.",
+      "focusComponentId": "bike.urban.u1.rear-fender",
+      "highlightComponentIds": [],
+      "inspectionMode": "normal",
+      "challenge": {
+        "type": "select-component",
+        "prompt": "Which component is designed to support compatible luggage?",
+        "candidateComponentIds": [
+          "bike.urban.u1.rear-rack",
+          "bike.urban.u1.rear-fender",
+          "bike.urban.u1.frame-lock"
+        ],
+        "correctComponentIds": [
+          "bike.urban.u1.rear-rack"
+        ],
+        "successText": "Correct. The rear rack is the dedicated cargo-support structure.",
+        "retryText": "That part supports utility use, but it is not the cargo platform."
+      }
+    }
+  ]
+}
