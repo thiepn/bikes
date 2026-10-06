@@ -28,6 +28,11 @@ import { HistoryPanel } from "@/components/history/HistoryPanel";
 import { PhysicsLabPanel } from "@/components/physics/PhysicsLabPanel";
 import { BuildLabPanel } from "@/components/build/BuildLabPanel";
 import {
+  decodeBuildSelections,
+  encodeBuildSelections,
+  sanitizeBuildSelections,
+} from "@/domain/compatibility/build-state";
+import {
   HISTORY_EVENTS,
   getHistoryEvent,
 } from "@/domain/history/catalog";
@@ -113,6 +118,7 @@ export function BikeViewer() {
   const [historyOpen, setHistoryOpen] = useState(false);
   const [physicsOpen, setPhysicsOpen] = useState(false);
   const [buildOpen, setBuildOpen] = useState(false);
+  const [buildSelections, setBuildSelections] = useState<Record<string, string>>({});
   const [activeHistoryEventId, setActiveHistoryEventId] = useState(
     HISTORY_EVENTS[0].id,
   );
@@ -155,6 +161,10 @@ export function BikeViewer() {
   } = useWorkshopProgress();
 
   const activeBike = getBikeById(activeBikeId) ?? ROAD_R1;
+  const effectiveBuildSelections = useMemo(
+    () => sanitizeBuildSelections(activeBike.id, buildSelections),
+    [activeBike.id, buildSelections],
+  );
 
   const lesson =
     getLessonById(activeLessonId) ?? LESSON_CATALOG[0];
@@ -333,6 +343,7 @@ export function BikeViewer() {
     setHistoryOpen(false);
       setPhysicsOpen(false);
       setBuildOpen(false);
+    setBuildSelections({});
     setExperienceMode("explore");
 
     if (typeof window !== "undefined") {
@@ -835,6 +846,10 @@ export function BikeViewer() {
       url.searchParams.get("physics") === "1";
     const requestedBuild =
       url.searchParams.get("build") === "1";
+    const requestedBuildSelections = sanitizeBuildSelections(
+      requestedBike.id,
+      decodeBuildSelections(url.searchParams.get("buildParts")),
+    );
     const slug = url.searchParams.get("part");
     const view = url.searchParams.get("view") as InspectionMode | null;
     const explode = Number(url.searchParams.get("explode"));
@@ -908,6 +923,7 @@ export function BikeViewer() {
       setFinderOpen(false);
       setComparisonOpen(false);
     } else if (requestedBuild) {
+      setBuildSelections(requestedBuildSelections);
       setBuildOpen(true);
       setPhysicsOpen(false);
       setHistoryOpen(false);
@@ -1131,6 +1147,14 @@ export function BikeViewer() {
 
     if (buildOpen) {
       url.searchParams.set("build", "1");
+      const encodedBuild = encodeBuildSelections(
+        effectiveBuildSelections,
+      );
+      if (encodedBuild) {
+        url.searchParams.set("buildParts", encodedBuild);
+      } else {
+        url.searchParams.delete("buildParts");
+      }
     } else {
       for (const key of BUILD_QUERY_KEYS) {
         url.searchParams.delete(key);
@@ -1152,6 +1176,7 @@ export function BikeViewer() {
     activeConceptId,
     physicsOpen,
     buildOpen,
+    effectiveBuildSelections,
     experienceMode,
     mode,
     explosionAmount,
@@ -1515,6 +1540,9 @@ export function BikeViewer() {
           explosionAmount={sceneExplosion}
           highlightedIds={sceneHighlightedIds}
           removedIds={sceneRemovedIds}
+          buildSelections={
+            buildOpen ? effectiveBuildSelections : undefined
+          }
           drivetrainDemo={drivetrainDemo}
           onSelect={
             experienceMode === "explore"
@@ -1567,6 +1595,12 @@ export function BikeViewer() {
       ) : buildOpen ? (
         <BuildLabPanel
           bikeId={activeBike.id}
+          selections={effectiveBuildSelections}
+          onSelectionsChange={(next) =>
+            setBuildSelections(
+              sanitizeBuildSelections(activeBike.id, next),
+            )
+          }
           onPreviewComponent={(componentId) => {
             setSelectedId(componentId);
             setHoveredId(null);
