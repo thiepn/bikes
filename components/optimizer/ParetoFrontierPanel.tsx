@@ -180,6 +180,14 @@ export function ParetoFrontierPanel({
   const [pinnedId, setPinnedId] = useState<string | null>(null);
   const hasMountedAxes = useRef(false);
 
+  useEffect(() => {
+    if (xGoalId !== yGoalId) return;
+    setYGoalId(
+      OPTIMIZATION_GOALS.find((goal) => goal.id !== xGoalId)?.id ??
+        "comfort",
+    );
+  }, [xGoalId, yGoalId]);
+
   const xGoal = getOptimizationGoal(xGoalId);
   const yGoal = getOptimizationGoal(yGoalId);
 
