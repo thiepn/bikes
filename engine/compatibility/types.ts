@@ -15,7 +15,13 @@ export type CompatibilitySlotId =
   | "seatpost"
   | "saddle"
   | "left-pedal"
-  | "right-pedal";
+  | "right-pedal"
+  | "fork"
+  | "front-caliper"
+  | "rear-caliper"
+  | "crankset"
+  | "rear-transmission"
+  | "rear-derailleur";
 
 export type InterfaceValue = string | number | boolean;
 
