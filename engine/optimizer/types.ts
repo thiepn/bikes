@@ -95,3 +95,27 @@ export interface OptimizationResult {
   rejectedByGeometry: number;
   results: OptimizedBuild[];
 }
+
+
+export interface ParetoPoint {
+  id: string;
+  selections: Record<string, string>;
+  changedSlots: CompatibilitySlotId[];
+  metrics: OptimizationMetrics;
+  xScore: number;
+  yScore: number;
+  health: "ready" | "attention";
+  sourceWeights: number[];
+  isCurrent: boolean;
+}
+
+export interface ParetoFrontierResult {
+  bikeId: string;
+  xGoal: OptimizationGoalProfile;
+  yGoal: OptimizationGoalProfile;
+  constraints: OptimizationConstraints;
+  sampledSearches: number;
+  sampledCandidates: number;
+  frontier: ParetoPoint[];
+  current: ParetoPoint;
+}
