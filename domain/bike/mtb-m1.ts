@@ -8,9 +8,9 @@ export const MTB_M1 = normalizeBikeDefinition(
   mtbM1 as RawBikeDefinition,
   {
     model: "prototype",
-    encyclopedia: "foundation",
-    lessons: false,
-    workshop: false,
+    encyclopedia: "full",
+    lessons: true,
+    workshop: true,
   },
 );
 
