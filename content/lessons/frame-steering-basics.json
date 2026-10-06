@@ -14,7 +14,9 @@
       "body": "The frame holds the wheels, crank, saddle and steering assembly in defined geometric relationships while carrying rider and road loads.",
       "keyFact": "Frame geometry changes handling because it changes where those systems are positioned relative to each other.",
       "focusComponentId": "bike.road.r1.frame",
-      "highlightComponentIds": ["bike.road.r1.frame"],
+      "highlightComponentIds": [
+        "bike.road.r1.frame"
+      ],
       "inspectionMode": "normal"
     },
     {
@@ -24,7 +26,10 @@
       "body": "The fork connects the front wheel to the steering axis. Turning the handlebar rotates the fork around that axis.",
       "keyFact": "The fork is both a structural wheel support and part of the steering mechanism.",
       "focusComponentId": "bike.road.r1.fork",
-      "highlightComponentIds": ["bike.road.r1.fork","bike.road.r1.front-wheel"],
+      "highlightComponentIds": [
+        "bike.road.r1.fork",
+        "bike.road.r1.front-wheel"
+      ],
       "inspectionMode": "systems"
     },
     {
@@ -34,7 +39,11 @@
       "body": "The headset is a bearing assembly around the steering axis. It carries steering loads while allowing smooth rotation between fork and frame.",
       "keyFact": "Too loose produces play; too tight or damaged bearings make steering rough.",
       "focusComponentId": "bike.road.r1.headset",
-      "highlightComponentIds": ["bike.road.r1.headset","bike.road.r1.fork","bike.road.r1.stem"],
+      "highlightComponentIds": [
+        "bike.road.r1.headset",
+        "bike.road.r1.fork",
+        "bike.road.r1.stem"
+      ],
       "inspectionMode": "xray"
     },
     {
@@ -49,11 +58,18 @@
       "challenge": {
         "type": "select-component",
         "prompt": "Which component is the steering bearing assembly?",
-        "candidateComponentIds": ["bike.road.r1.stem","bike.road.r1.headset","bike.road.r1.fork"],
-        "correctComponentIds": ["bike.road.r1.headset"],
+        "candidateComponentIds": [
+          "bike.road.r1.stem",
+          "bike.road.r1.headset",
+          "bike.road.r1.fork"
+        ],
+        "correctComponentIds": [
+          "bike.road.r1.headset"
+        ],
         "successText": "Correct. The headset is the bearing system between frame and fork.",
         "retryText": "That component is part of steering, but it is not the bearing assembly."
       }
     }
-  ]
+  ],
+  "bikeId": "bike.road.r1"
 }
