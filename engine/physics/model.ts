@@ -173,13 +173,10 @@ export function solveSteadySpeedMps(
   return root ?? maxSpeedMps;
 }
 
-export function simulateBike(
-  bikeId: string,
+export function simulateProfile(
+  profile: BikePhysicsProfile,
   scenario: PhysicsScenario,
-): PhysicsBikeResult | null {
-  const profile = getBikePhysicsProfile(bikeId);
-  if (!profile) return null;
-
+): PhysicsBikeResult {
   const speedMps = solveSteadySpeedMps(profile, scenario);
   const breakdown = calculatePhysicsBreakdown(
     speedMps,
@@ -188,11 +185,20 @@ export function simulateBike(
   );
 
   return {
-    bikeId,
+    bikeId: profile.bikeId,
     crr: profile.rollingResistance[scenario.surfaceId],
     profile,
     ...breakdown,
   };
+}
+
+export function simulateBike(
+  bikeId: string,
+  scenario: PhysicsScenario,
+): PhysicsBikeResult | null {
+  const profile = getBikePhysicsProfile(bikeId);
+  if (!profile) return null;
+  return simulateProfile(profile, scenario);
 }
 
 export function cadenceSpeed(
