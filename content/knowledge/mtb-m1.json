@@ -1,0 +1,1028 @@
+{
+  "bikeId": "bike.mtb.m1",
+  "profiles": [
+    {
+      "componentId": "bike.mtb.m1.frame",
+      "summary": "The structural chassis of the full-suspension trail bike.",
+      "function": "Locates the steering, drivetrain, suspension pivots, wheels and rider contact points while carrying riding and impact loads.",
+      "materials": [
+        "carbon-fiber composite",
+        "paint / clear coat",
+        "metal inserts and pivot hardware"
+      ],
+      "standards": [
+        "frame size and geometry are model-specific",
+        "shock fit, pivot hardware and seatpost interfaces are frame-specific"
+      ],
+      "commonSymptoms": [
+        "cracks or impact marks",
+        "pivot-area play or noise",
+        "damaged threads or inserts"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.fork",
+        "bike.mtb.m1.rear-shock",
+        "bike.mtb.m1.suspension-linkage",
+        "bike.mtb.m1.dropper-post",
+        "bike.mtb.m1.bottom-bracket"
+      ],
+      "aliases": [
+        "chassis",
+        "frameset",
+        "trail frame"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.fork",
+      "summary": "Front suspension and steering assembly.",
+      "function": "Supports the front wheel, rotates with steering input and provides controlled suspension travel over terrain.",
+      "materials": [
+        "aluminium stanchions",
+        "magnesium or aluminium lowers",
+        "steel/aluminium internal hardware"
+      ],
+      "standards": [
+        "wheel/axle format, steerer, travel and offset must suit the frame",
+        "air pressure, spring and damper setup are model-specific"
+      ],
+      "commonSymptoms": [
+        "oil residue or leakage",
+        "scratched stanchions",
+        "binding",
+        "abnormal top-out/bottom-out noise",
+        "bushing or steering play"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.frame",
+        "bike.mtb.m1.headset",
+        "bike.mtb.m1.front-wheel",
+        "bike.mtb.m1.front-caliper"
+      ],
+      "aliases": [
+        "suspension fork",
+        "front suspension"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.rear-shock",
+      "summary": "Spring-and-damper unit controlling rear suspension.",
+      "function": "Supports rider/bike load through the rear suspension and controls compression and return motion as the linkage moves.",
+      "materials": [
+        "aluminium body",
+        "steel/aluminium hardware",
+        "elastomer seals"
+      ],
+      "standards": [
+        "eye-to-eye length, stroke and mounting hardware are frame-specific",
+        "pressure and damping ranges are shock-specific"
+      ],
+      "commonSymptoms": [
+        "air loss",
+        "oil leakage",
+        "stiction",
+        "abnormal noise",
+        "inconsistent damping"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.frame",
+        "bike.mtb.m1.suspension-linkage"
+      ],
+      "aliases": [
+        "shock",
+        "rear suspension damper"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.suspension-linkage",
+      "summary": "Pivoting structure that relates rear-wheel motion to shock motion.",
+      "function": "Guides the rear wheel through the frame's suspension path and creates the leverage relationship acting on the rear shock.",
+      "materials": [
+        "aluminium links",
+        "steel bearings/hardware"
+      ],
+      "standards": [
+        "link geometry and pivot hardware are frame-specific",
+        "bearing sizes and torque values are frame-specific"
+      ],
+      "commonSymptoms": [
+        "pivot play",
+        "creaking",
+        "rough movement",
+        "loose hardware",
+        "bearing wear"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.frame",
+        "bike.mtb.m1.rear-shock",
+        "bike.mtb.m1.rear-wheel"
+      ],
+      "aliases": [
+        "linkage",
+        "rocker",
+        "pivot"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.headset",
+      "summary": "Steering bearing assembly between frame and fork.",
+      "function": "Supports the fork steerer while allowing smooth rotation around the steering axis.",
+      "materials": [
+        "steel bearings",
+        "aluminium cups/covers"
+      ],
+      "standards": [
+        "bearing geometry and steerer/head-tube interfaces must match"
+      ],
+      "commonSymptoms": [
+        "play",
+        "notchy steering",
+        "creaking",
+        "rough rotation"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.frame",
+        "bike.mtb.m1.fork",
+        "bike.mtb.m1.stem"
+      ],
+      "aliases": [
+        "steering bearings"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.handlebar",
+      "summary": "Wide flat/riser steering and control bar.",
+      "function": "Gives steering leverage and supports grips, brake levers, shifter and dropper remote.",
+      "materials": [
+        "aluminium alloy"
+      ],
+      "standards": [
+        "clamp diameter, width and rise/sweep are bar/stem/rider specific"
+      ],
+      "commonSymptoms": [
+        "bending or crash damage",
+        "cracks",
+        "slipping controls"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.stem",
+        "bike.mtb.m1.left-grip",
+        "bike.mtb.m1.right-grip",
+        "bike.mtb.m1.left-brake-lever",
+        "bike.mtb.m1.right-brake-lever",
+        "bike.mtb.m1.right-shifter",
+        "bike.mtb.m1.dropper-remote"
+      ],
+      "aliases": [
+        "flat bar",
+        "riser bar"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.stem",
+      "summary": "Clamp connecting handlebar to fork steerer.",
+      "function": "Transfers steering input from handlebar to fork and helps set cockpit reach and height.",
+      "materials": [
+        "aluminium alloy",
+        "steel fasteners"
+      ],
+      "standards": [
+        "bar clamp and steerer clamp dimensions must match",
+        "fastener torque is stem-specific"
+      ],
+      "commonSymptoms": [
+        "slipping",
+        "loose fasteners",
+        "cracks",
+        "damaged clamp surfaces"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.handlebar",
+        "bike.mtb.m1.headset",
+        "bike.mtb.m1.fork"
+      ],
+      "aliases": [
+        "handlebar stem"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.left-grip",
+      "summary": "Left-hand contact surface on the handlebar.",
+      "function": "Provides traction, cushioning and control between the rider's left hand and handlebar.",
+      "materials": [
+        "rubber compound",
+        "polymer or alloy lock rings"
+      ],
+      "standards": [
+        "inner diameter and lock-on/clamp design must match the handlebar"
+      ],
+      "commonSymptoms": [
+        "rotation",
+        "tearing",
+        "worn texture",
+        "loose lock ring"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.handlebar",
+        "bike.mtb.m1.left-brake-lever"
+      ],
+      "aliases": [
+        "grip"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.right-grip",
+      "summary": "Right-hand contact surface on the handlebar.",
+      "function": "Provides traction, cushioning and control between the rider's right hand and handlebar.",
+      "materials": [
+        "rubber compound",
+        "polymer or alloy lock rings"
+      ],
+      "standards": [
+        "inner diameter and lock-on/clamp design must match the handlebar"
+      ],
+      "commonSymptoms": [
+        "rotation",
+        "tearing",
+        "worn texture",
+        "loose lock ring"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.handlebar",
+        "bike.mtb.m1.right-brake-lever",
+        "bike.mtb.m1.right-shifter"
+      ],
+      "aliases": [
+        "grip"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.left-brake-lever",
+      "summary": "Left handlebar control for one hydraulic brake.",
+      "function": "Converts hand input into hydraulic pressure or other brake actuation for its paired caliper.",
+      "materials": [
+        "aluminium lever/body",
+        "polymer seals"
+      ],
+      "standards": [
+        "lever and caliper must use a compatible brake system and fluid specification"
+      ],
+      "commonSymptoms": [
+        "spongy or inconsistent feel",
+        "leaks",
+        "sticky return",
+        "crash damage"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.handlebar",
+        "bike.mtb.m1.front-caliper",
+        "bike.mtb.m1.rear-caliper"
+      ],
+      "aliases": [
+        "brake lever"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.right-brake-lever",
+      "summary": "Right handlebar control for one hydraulic brake.",
+      "function": "Converts hand input into brake-system pressure/actuation for its paired caliper.",
+      "materials": [
+        "aluminium lever/body",
+        "polymer seals"
+      ],
+      "standards": [
+        "lever and caliper must use a compatible brake system and fluid specification"
+      ],
+      "commonSymptoms": [
+        "spongy or inconsistent feel",
+        "leaks",
+        "sticky return",
+        "crash damage"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.handlebar",
+        "bike.mtb.m1.front-caliper",
+        "bike.mtb.m1.rear-caliper",
+        "bike.mtb.m1.right-shifter"
+      ],
+      "aliases": [
+        "brake lever"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.right-shifter",
+      "summary": "Handlebar control for the rear derailleur.",
+      "function": "Sends indexed shift commands that move the rear derailleur across the cassette.",
+      "materials": [
+        "polymer housing",
+        "aluminium/steel mechanism"
+      ],
+      "standards": [
+        "shifter actuation and gear count must be compatible with derailleur/cassette"
+      ],
+      "commonSymptoms": [
+        "missed shifts",
+        "sticky paddle",
+        "excess play",
+        "damaged cable/electronic connection"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.handlebar",
+        "bike.mtb.m1.rear-derailleur",
+        "bike.mtb.m1.cassette"
+      ],
+      "aliases": [
+        "shift lever",
+        "rear shifter"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.dropper-remote",
+      "summary": "Handlebar control for the dropper seatpost.",
+      "function": "Releases or commands the dropper mechanism so saddle height can change while riding.",
+      "materials": [
+        "aluminium or polymer body",
+        "steel cable hardware where applicable"
+      ],
+      "standards": [
+        "remote actuation must match the dropper's cable, hydraulic or electronic system"
+      ],
+      "commonSymptoms": [
+        "sticky return",
+        "high lever force",
+        "inconsistent actuation",
+        "damaged cable/hose"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.handlebar",
+        "bike.mtb.m1.dropper-post"
+      ],
+      "aliases": [
+        "dropper lever",
+        "seatpost remote"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.front-wheel",
+      "summary": "Front rotating wheel assembly.",
+      "function": "Carries the front tire and rotor while rotating around the front hub and tracking terrain through the fork.",
+      "materials": [
+        "aluminium rim",
+        "steel spokes",
+        "aluminium hub"
+      ],
+      "standards": [
+        "wheel diameter, axle width/format and rotor interface must match the fork/brake system"
+      ],
+      "commonSymptoms": [
+        "loose spokes",
+        "rim damage",
+        "bearing play",
+        "wheel out of true"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.front-tire",
+        "bike.mtb.m1.front-rim",
+        "bike.mtb.m1.front-hub",
+        "bike.mtb.m1.front-rotor",
+        "bike.mtb.m1.front-thru-axle"
+      ],
+      "aliases": [
+        "front wheel",
+        "wheelset"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.rear-wheel",
+      "summary": "Rear rotating and driven wheel assembly.",
+      "function": "Carries tire, rotor and cassette/freehub while transmitting drivetrain torque to the trail.",
+      "materials": [
+        "aluminium rim",
+        "steel spokes",
+        "aluminium hub"
+      ],
+      "standards": [
+        "wheel diameter, axle format, freehub and rotor interface must match the bike"
+      ],
+      "commonSymptoms": [
+        "loose spokes",
+        "rim damage",
+        "bearing play",
+        "freehub problems",
+        "wheel out of true"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.rear-tire",
+        "bike.mtb.m1.rear-rim",
+        "bike.mtb.m1.rear-hub",
+        "bike.mtb.m1.rear-rotor",
+        "bike.mtb.m1.cassette",
+        "bike.mtb.m1.rear-thru-axle"
+      ],
+      "aliases": [
+        "rear wheel",
+        "wheelset"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.front-tire",
+      "summary": "Front high-volume trail tire.",
+      "function": "Creates the front contact patch for steering and braking while deforming around terrain.",
+      "materials": [
+        "rubber compounds",
+        "textile casing",
+        "bead material"
+      ],
+      "standards": [
+        "diameter and width must suit rim/frame/fork",
+        "pressure limits and tubeless compatibility are tire/rim-specific"
+      ],
+      "commonSymptoms": [
+        "cuts",
+        "sidewall damage",
+        "knob tearing",
+        "pressure loss",
+        "uneven seating"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.front-wheel",
+        "bike.mtb.m1.front-rim"
+      ],
+      "aliases": [
+        "front tyre",
+        "knobby tire"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.rear-tire",
+      "summary": "Rear high-volume trail tire.",
+      "function": "Creates rear traction for drive and braking while absorbing small terrain features and impacts.",
+      "materials": [
+        "rubber compounds",
+        "textile casing",
+        "bead material"
+      ],
+      "standards": [
+        "diameter and width must suit rim/frame",
+        "pressure limits and tubeless compatibility are tire/rim-specific"
+      ],
+      "commonSymptoms": [
+        "cuts",
+        "sidewall damage",
+        "knob wear",
+        "pressure loss",
+        "uneven seating"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.rear-wheel",
+        "bike.mtb.m1.rear-rim"
+      ],
+      "aliases": [
+        "rear tyre",
+        "knobby tire"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.front-rim",
+      "summary": "Structural hoop of the front wheel.",
+      "function": "Supports the tire bead and distributes spoke loads while resisting trail impacts.",
+      "materials": [
+        "aluminium alloy"
+      ],
+      "standards": [
+        "diameter, internal width, bead design and pressure limits must suit the tire"
+      ],
+      "commonSymptoms": [
+        "dents",
+        "cracks",
+        "bead-seat damage",
+        "out-of-true condition"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.front-wheel",
+        "bike.mtb.m1.front-tire",
+        "bike.mtb.m1.front-hub"
+      ],
+      "aliases": [
+        "front rim",
+        "wheel rim"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.rear-rim",
+      "summary": "Structural hoop of the rear wheel.",
+      "function": "Supports the rear tire and distributes spoke/impact loads in the driven wheel.",
+      "materials": [
+        "aluminium alloy"
+      ],
+      "standards": [
+        "diameter, internal width, bead design and pressure limits must suit the tire"
+      ],
+      "commonSymptoms": [
+        "dents",
+        "cracks",
+        "bead-seat damage",
+        "out-of-true condition"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.rear-wheel",
+        "bike.mtb.m1.rear-tire",
+        "bike.mtb.m1.rear-hub"
+      ],
+      "aliases": [
+        "rear rim",
+        "wheel rim"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.front-hub",
+      "summary": "Bearing-supported center of the front wheel.",
+      "function": "Allows wheel rotation around the axle and anchors spokes and brake rotor.",
+      "materials": [
+        "aluminium shell",
+        "steel bearings/axle hardware"
+      ],
+      "standards": [
+        "axle spacing/diameter and rotor interface must match fork and brake"
+      ],
+      "commonSymptoms": [
+        "bearing roughness",
+        "play",
+        "damaged axle or rotor interface"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.front-wheel",
+        "bike.mtb.m1.front-rim",
+        "bike.mtb.m1.front-rotor",
+        "bike.mtb.m1.front-thru-axle"
+      ],
+      "aliases": [
+        "front hub"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.rear-hub",
+      "summary": "Bearing and freehub center of the rear wheel.",
+      "function": "Supports wheel rotation and houses the freehub mechanism carrying the cassette.",
+      "materials": [
+        "aluminium shell",
+        "steel bearings",
+        "freehub internals"
+      ],
+      "standards": [
+        "axle spacing, freehub body and rotor interface must match surrounding parts"
+      ],
+      "commonSymptoms": [
+        "bearing play",
+        "roughness",
+        "freehub skipping",
+        "abnormal engagement noise"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.rear-wheel",
+        "bike.mtb.m1.rear-rim",
+        "bike.mtb.m1.rear-rotor",
+        "bike.mtb.m1.cassette",
+        "bike.mtb.m1.rear-thru-axle"
+      ],
+      "aliases": [
+        "rear hub",
+        "freehub"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.front-rotor",
+      "summary": "Front disc-brake friction rotor.",
+      "function": "Rotates with the front hub and is clamped by the caliper to create braking torque.",
+      "materials": [
+        "stainless steel"
+      ],
+      "standards": [
+        "mount type, diameter and thickness must be compatible with brake/fork setup"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "warping/runout",
+        "scoring",
+        "contamination",
+        "heat damage"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.front-hub",
+        "bike.mtb.m1.front-caliper",
+        "bike.mtb.m1.front-wheel"
+      ],
+      "aliases": [
+        "front disc",
+        "brake disc"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.rear-rotor",
+      "summary": "Rear disc-brake friction rotor.",
+      "function": "Rotates with the rear hub and provides the friction surface for the rear caliper.",
+      "materials": [
+        "stainless steel"
+      ],
+      "standards": [
+        "mount type, diameter and thickness must be compatible with brake/frame setup"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "warping/runout",
+        "scoring",
+        "contamination",
+        "heat damage"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.rear-hub",
+        "bike.mtb.m1.rear-caliper",
+        "bike.mtb.m1.rear-wheel"
+      ],
+      "aliases": [
+        "rear disc",
+        "brake disc"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.front-caliper",
+      "summary": "Front hydraulic disc-brake caliper.",
+      "function": "Presses brake pads against the front rotor to create braking force.",
+      "materials": [
+        "aluminium body",
+        "steel hardware",
+        "friction pads"
+      ],
+      "standards": [
+        "mount standard, rotor size/thickness and lever/fluid system must be compatible"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "leaks",
+        "uneven pad wear",
+        "sticky pistons",
+        "weak braking"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.front-rotor",
+        "bike.mtb.m1.fork",
+        "bike.mtb.m1.left-brake-lever",
+        "bike.mtb.m1.right-brake-lever"
+      ],
+      "aliases": [
+        "front brake",
+        "brake caliper"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.rear-caliper",
+      "summary": "Rear hydraulic disc-brake caliper.",
+      "function": "Presses pads against the rear rotor to create rear-wheel braking force.",
+      "materials": [
+        "aluminium body",
+        "steel hardware",
+        "friction pads"
+      ],
+      "standards": [
+        "mount standard, rotor size/thickness and lever/fluid system must be compatible"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "leaks",
+        "uneven pad wear",
+        "sticky pistons",
+        "weak braking"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.rear-rotor",
+        "bike.mtb.m1.frame",
+        "bike.mtb.m1.left-brake-lever",
+        "bike.mtb.m1.right-brake-lever"
+      ],
+      "aliases": [
+        "rear brake",
+        "brake caliper"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.crankset",
+      "summary": "Single-ring MTB crank assembly.",
+      "function": "Turns pedal force into chainring torque through the crank arms and spindle.",
+      "materials": [
+        "aluminium alloy",
+        "steel/aluminium spindle and hardware"
+      ],
+      "standards": [
+        "spindle/bottom-bracket and chainring interface must be compatible"
+      ],
+      "commonSymptoms": [
+        "play",
+        "creaking",
+        "loose crank",
+        "impact damage"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.bottom-bracket",
+        "bike.mtb.m1.chainring",
+        "bike.mtb.m1.left-pedal",
+        "bike.mtb.m1.right-pedal"
+      ],
+      "aliases": [
+        "cranks",
+        "1x crankset"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.chainring",
+      "summary": "Single front sprocket in the 1× drivetrain.",
+      "function": "Engages the chain at the crank and defines the front tooth count for every gear ratio.",
+      "materials": [
+        "aluminium alloy or steel"
+      ],
+      "standards": [
+        "mount/direct-mount pattern, chainline and chain compatibility must match drivetrain"
+      ],
+      "commonSymptoms": [
+        "worn or damaged teeth",
+        "chain retention problems",
+        "bending"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.crankset",
+        "bike.mtb.m1.chain",
+        "bike.mtb.m1.cassette"
+      ],
+      "aliases": [
+        "front chainring",
+        "1x ring"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.bottom-bracket",
+      "summary": "Bearing system supporting crank rotation in the frame.",
+      "function": "Locates the crank spindle and allows it to rotate under pedaling and trail loads.",
+      "materials": [
+        "steel bearings",
+        "aluminium/polymer cups"
+      ],
+      "standards": [
+        "frame shell and crank spindle standards must match"
+      ],
+      "commonSymptoms": [
+        "play",
+        "roughness",
+        "creaking",
+        "contamination"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.frame",
+        "bike.mtb.m1.crankset"
+      ],
+      "aliases": [
+        "bb",
+        "crank bearings"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.chain",
+      "summary": "Flexible link carrying drivetrain force.",
+      "function": "Transfers motion from the single chainring to the selected cassette sprocket while passing through the rear derailleur.",
+      "materials": [
+        "hardened steel"
+      ],
+      "standards": [
+        "width/link design must match cassette and drivetrain generation"
+      ],
+      "commonSymptoms": [
+        "wear/elongation",
+        "stiff links",
+        "rust",
+        "noise",
+        "skipping"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.chainring",
+        "bike.mtb.m1.cassette",
+        "bike.mtb.m1.rear-derailleur"
+      ],
+      "aliases": [
+        "drive chain",
+        "bike chain"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.cassette",
+      "summary": "Wide-range stack of rear sprockets.",
+      "function": "Provides selectable rear tooth counts so a 1× drivetrain can cover a broad set of gear ratios.",
+      "materials": [
+        "steel sprockets",
+        "aluminium carrier or selected sprockets"
+      ],
+      "standards": [
+        "freehub body, sprocket count/range and chain/derailleur compatibility must match"
+      ],
+      "commonSymptoms": [
+        "worn teeth",
+        "skipping",
+        "loose lock interface",
+        "damaged sprockets"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.chain",
+        "bike.mtb.m1.rear-hub",
+        "bike.mtb.m1.rear-derailleur",
+        "bike.mtb.m1.chainring"
+      ],
+      "aliases": [
+        "rear cogs",
+        "wide range cassette"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.rear-derailleur",
+      "summary": "Rear shifting and chain-management mechanism.",
+      "function": "Moves the chain across cassette sprockets and controls chain tension through changing gears and rough terrain.",
+      "materials": [
+        "aluminium body/cage",
+        "steel springs/hardware"
+      ],
+      "standards": [
+        "shifter actuation, cassette range, chain capacity and hanger/frame interface must match"
+      ],
+      "commonSymptoms": [
+        "poor indexing",
+        "impact/bent-hanger symptoms",
+        "sluggish movement",
+        "excess pulley play"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.chain",
+        "bike.mtb.m1.cassette",
+        "bike.mtb.m1.right-shifter"
+      ],
+      "aliases": [
+        "rear mech",
+        "derailleur"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.saddle",
+      "summary": "Seated rider contact point.",
+      "function": "Supports the rider for seated pedaling and moves vertically with the dropper post.",
+      "materials": [
+        "synthetic cover",
+        "foam",
+        "metal/composite rails"
+      ],
+      "standards": [
+        "rail dimensions and dropper clamp must be compatible"
+      ],
+      "commonSymptoms": [
+        "damaged rails",
+        "loose shell",
+        "torn cover",
+        "unwanted movement"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.dropper-post",
+        "bike.mtb.m1.frame"
+      ],
+      "aliases": [
+        "seat",
+        "bike saddle"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.dropper-post",
+      "summary": "Telescoping seatpost for on-bike saddle-height changes.",
+      "function": "Allows the rider to lower or raise the saddle using a handlebar remote, creating clearance for dynamic body movement.",
+      "materials": [
+        "aluminium body/stanchion",
+        "steel/aluminium internals",
+        "seals"
+      ],
+      "standards": [
+        "seatpost diameter, insertion depth, travel, saddle clamp and remote actuation must suit the frame/rider"
+      ],
+      "commonSymptoms": [
+        "slow return",
+        "sticking",
+        "unexpected sinking",
+        "excess play",
+        "remote actuation problems"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.saddle",
+        "bike.mtb.m1.frame",
+        "bike.mtb.m1.dropper-remote"
+      ],
+      "aliases": [
+        "dropper",
+        "dropper seatpost"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.left-pedal",
+      "summary": "Left flat rider foot platform.",
+      "function": "Transfers left-leg force into the crank while providing shoe grip and rotational bearing support.",
+      "materials": [
+        "aluminium body",
+        "steel axle/bearings/pins"
+      ],
+      "standards": [
+        "pedal thread must match crank; platform/pin setup is rider-specific"
+      ],
+      "commonSymptoms": [
+        "bearing play",
+        "binding",
+        "damaged pins",
+        "bent axle/body"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.crankset"
+      ],
+      "aliases": [
+        "flat pedal",
+        "left pedal"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.right-pedal",
+      "summary": "Right flat rider foot platform.",
+      "function": "Transfers right-leg force into the crank while providing shoe grip and rotational bearing support.",
+      "materials": [
+        "aluminium body",
+        "steel axle/bearings/pins"
+      ],
+      "standards": [
+        "pedal thread must match crank; platform/pin setup is rider-specific"
+      ],
+      "commonSymptoms": [
+        "bearing play",
+        "binding",
+        "damaged pins",
+        "bent axle/body"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.crankset"
+      ],
+      "aliases": [
+        "flat pedal",
+        "right pedal"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.front-thru-axle",
+      "summary": "Removable axle securing the front hub in the fork.",
+      "function": "Passes through fork and hub to locate and clamp the front wheel.",
+      "materials": [
+        "aluminium alloy",
+        "steel insert where applicable"
+      ],
+      "standards": [
+        "diameter, length and thread must match fork/hub"
+      ],
+      "commonSymptoms": [
+        "damaged threads",
+        "bending",
+        "poor engagement",
+        "contamination"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.fork",
+        "bike.mtb.m1.front-hub",
+        "bike.mtb.m1.front-wheel"
+      ],
+      "aliases": [
+        "front axle",
+        "through axle"
+      ]
+    },
+    {
+      "componentId": "bike.mtb.m1.rear-thru-axle",
+      "summary": "Removable axle securing the rear hub in the frame.",
+      "function": "Passes through frame and hub to locate and clamp the rear wheel.",
+      "materials": [
+        "aluminium alloy",
+        "steel insert where applicable"
+      ],
+      "standards": [
+        "diameter, length and thread must match frame/hub"
+      ],
+      "commonSymptoms": [
+        "damaged threads",
+        "bending",
+        "poor engagement",
+        "contamination"
+      ],
+      "relatedComponentIds": [
+        "bike.mtb.m1.frame",
+        "bike.mtb.m1.rear-hub",
+        "bike.mtb.m1.rear-wheel"
+      ],
+      "aliases": [
+        "rear axle",
+        "through axle"
+      ]
+    }
+  ]
+}
