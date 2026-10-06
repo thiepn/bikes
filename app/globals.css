@@ -3199,3 +3199,33 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+
+.finder-tradeoffs {
+  margin-top: 15px;
+}
+
+.finder-tradeoffs h4 {
+  margin: 0 0 7px;
+  color: #6c7882;
+  font-size: 8px;
+  font-weight: 780;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.finder-tradeoffs > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.finder-tradeoffs span {
+  padding: 5px 7px;
+  border: 1px solid rgba(255, 177, 92, 0.1);
+  border-radius: 999px;
+  color: #b99d7e;
+  background: rgba(255, 177, 92, 0.03);
+  font-size: 7px;
+  line-height: 1.25;
+}
