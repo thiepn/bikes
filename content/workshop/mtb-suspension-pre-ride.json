@@ -1,0 +1,102 @@
+{
+  "id": "mtb-suspension-pre-ride",
+  "bikeId": "bike.mtb.m1",
+  "title": "Inspect MTB suspension before a ride",
+  "summary": "Check fork, rear shock and linkage for obvious damage, contamination, leaks and abnormal movement before riding.",
+  "systemId": "rear-suspension",
+  "difficulty": "beginner",
+  "durationMinutes": 6,
+  "prerequisiteProcedureIds": [],
+  "assumedOperationIds": [],
+  "tools": [
+    {
+      "id": "clean-cloth",
+      "name": "Clean lint-free cloth",
+      "required": true
+    },
+    {
+      "id": "inspection-light",
+      "name": "Bright inspection light",
+      "required": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "clean-stanchions",
+      "title": "Start with clean sliding surfaces",
+      "instruction": "Wipe visible fork stanchions and the rear-shock shaft with a clean cloth so dirt does not hide damage or get dragged into seals.",
+      "why": "Clean surfaces make inspection easier and reduce abrasive contamination around suspension seals.",
+      "focusComponentId": "bike.mtb.m1.fork",
+      "highlightComponentIds": [
+        "bike.mtb.m1.fork",
+        "bike.mtb.m1.rear-shock"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0,
+      "tools": [
+        "clean-cloth"
+      ],
+      "warning": "Do not spray general-purpose lubricant or cleaner onto suspension seals unless the component manufacturer specifically permits it.",
+      "check": "Sliding surfaces are clean enough to inspect clearly.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "inspect-fork",
+      "title": "Inspect the suspension fork",
+      "instruction": "Look for scratches, dents, visible oil leakage, damaged seals or loose-looking hardware. Compress the fork gently and note any obviously abnormal binding or noise.",
+      "why": "Damage to sliding surfaces, seals or structural parts can affect both suspension function and safety.",
+      "focusComponentId": "bike.mtb.m1.fork",
+      "highlightComponentIds": [
+        "bike.mtb.m1.fork",
+        "bike.mtb.m1.front-wheel"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.1,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "If you find structural damage, significant leakage or abnormal binding, stop using the bike until the cause is assessed.",
+      "check": "No obvious unsafe damage or major leakage is visible.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "inspect-shock",
+      "title": "Inspect the rear shock",
+      "instruction": "Check the visible shock body and shaft for damage, contamination or leakage, then gently cycle the rear suspension and listen for abnormal knocking or binding.",
+      "why": "The shock controls spring and damping behavior and should move smoothly through its normal range.",
+      "focusComponentId": "bike.mtb.m1.rear-shock",
+      "highlightComponentIds": [
+        "bike.mtb.m1.rear-shock",
+        "bike.mtb.m1.suspension-linkage"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.18,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "Do not open or depressurize an air shock as part of a routine visual check.",
+      "check": "Shock movement appears smooth and no obvious unsafe damage is visible.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "inspect-linkage",
+      "title": "Check linkage and pivots",
+      "instruction": "Observe the linkage while gently loading and unloading the suspension. Look and listen for unusual play, knocking, loose hardware or rough movement.",
+      "why": "Rear-suspension performance depends on pivots and linkage as well as the shock itself.",
+      "focusComponentId": "bike.mtb.m1.suspension-linkage",
+      "highlightComponentIds": [
+        "bike.mtb.m1.suspension-linkage",
+        "bike.mtb.m1.frame",
+        "bike.mtb.m1.rear-shock"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0.12,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "Do not tighten pivot hardware by guesswork. Use the frame manufacturer’s specified procedure and torque values.",
+      "check": "No obvious looseness, knocking or damaged linkage parts are detected.",
+      "removedComponentIds": []
+    }
+  ]
+}
