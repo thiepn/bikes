@@ -92,13 +92,13 @@ export function BikeViewer() {
   }, []);
 
   const enterExplore = useCallback(() => {
-    setExperienceMode("explore");
-    setMode("normal");
-    setExplosionAmount(0);
+    setMode(storyVisual.inspectionMode);
+    setExplosionAmount(storyVisual.explosionAmount);
     setSelectedId(null);
     setHoveredId(null);
     setIsolated(false);
-  }, []);
+    setExperienceMode("explore");
+  }, [storyVisual.explosionAmount, storyVisual.inspectionMode]);
 
   const returnToStory = useCallback(() => {
     setSelectedId(null);
