@@ -102,10 +102,48 @@ const URBAN_U1_INTERACTIVE = new Set([
   "bike.urban.u1.rear-axle",
 ]);
 
+const GRAVEL_G1_INTERACTIVE = new Set([
+  "bike.gravel.g1.frame",
+  "bike.gravel.g1.fork",
+  "bike.gravel.g1.headset",
+  "bike.gravel.g1.handlebar",
+  "bike.gravel.g1.stem",
+  "bike.gravel.g1.left-shifter",
+  "bike.gravel.g1.right-shifter",
+  "bike.gravel.g1.front-wheel",
+  "bike.gravel.g1.rear-wheel",
+  "bike.gravel.g1.front-tire",
+  "bike.gravel.g1.rear-tire",
+  "bike.gravel.g1.front-rim",
+  "bike.gravel.g1.rear-rim",
+  "bike.gravel.g1.front-hub",
+  "bike.gravel.g1.rear-hub",
+  "bike.gravel.g1.front-rotor",
+  "bike.gravel.g1.rear-rotor",
+  "bike.gravel.g1.front-caliper",
+  "bike.gravel.g1.rear-caliper",
+  "bike.gravel.g1.saddle",
+  "bike.gravel.g1.seatpost",
+  "bike.gravel.g1.crankset",
+  "bike.gravel.g1.chainring",
+  "bike.gravel.g1.bottom-bracket",
+  "bike.gravel.g1.chain",
+  "bike.gravel.g1.cassette",
+  "bike.gravel.g1.rear-derailleur",
+  "bike.gravel.g1.left-pedal",
+  "bike.gravel.g1.right-pedal",
+  "bike.gravel.g1.front-thru-axle",
+  "bike.gravel.g1.rear-thru-axle",
+  "bike.gravel.g1.frame-mounts",
+  "bike.gravel.g1.fork-mounts",
+  "bike.gravel.g1.downtube-protector",
+]);
+
 const BY_BIKE = new Map<string, ReadonlySet<string>>([
   ["bike.road.r1", ROAD_R1_INTERACTIVE],
   ["bike.mtb.m1", MTB_M1_INTERACTIVE],
   ["bike.urban.u1", URBAN_U1_INTERACTIVE],
+  ["bike.gravel.g1", GRAVEL_G1_INTERACTIVE],
 ]);
 
 export function getInteractiveComponentIds(bikeId: string) {
