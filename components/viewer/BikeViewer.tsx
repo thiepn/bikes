@@ -26,6 +26,7 @@ import { ComparisonPanel } from "@/components/comparison/ComparisonPanel";
 import { BikeFinderPanel } from "@/components/finder/BikeFinderPanel";
 import { HistoryPanel } from "@/components/history/HistoryPanel";
 import { PhysicsLabPanel } from "@/components/physics/PhysicsLabPanel";
+import { BuildLabPanel } from "@/components/build/BuildLabPanel";
 import {
   HISTORY_EVENTS,
   getHistoryEvent,
@@ -66,6 +67,8 @@ const VALID_MODES = new Set<InspectionMode>([
   "xray",
   "exploded",
 ]);
+
+const BUILD_QUERY_KEYS = ["build", "buildParts"] as const;
 
 const PHYSICS_QUERY_KEYS = [
   "physics",
@@ -109,6 +112,7 @@ export function BikeViewer() {
   const [finderAnswers, setFinderAnswers] = useState<FinderAnswers>({});
   const [historyOpen, setHistoryOpen] = useState(false);
   const [physicsOpen, setPhysicsOpen] = useState(false);
+  const [buildOpen, setBuildOpen] = useState(false);
   const [activeHistoryEventId, setActiveHistoryEventId] = useState(
     HISTORY_EVENTS[0].id,
   );
@@ -328,6 +332,7 @@ export function BikeViewer() {
     setFinderOpen(false);
     setHistoryOpen(false);
       setPhysicsOpen(false);
+      setBuildOpen(false);
     setExperienceMode("explore");
 
     if (typeof window !== "undefined") {
@@ -352,6 +357,7 @@ export function BikeViewer() {
         "history",
         "concept",
         ...PHYSICS_QUERY_KEYS,
+        ...BUILD_QUERY_KEYS,
       ]) {
         url.searchParams.delete(key);
       }
@@ -373,6 +379,7 @@ export function BikeViewer() {
       setFinderOpen(false);
       setHistoryOpen(false);
       setPhysicsOpen(false);
+      setBuildOpen(false);
       setSelectedId(null);
       setHoveredId(null);
       setIsolated(false);
@@ -408,6 +415,7 @@ export function BikeViewer() {
       setExplosionAmount(0);
       setHistoryOpen(false);
       setPhysicsOpen(false);
+      setBuildOpen(false);
       setLearningOpen(false);
       setWorkshopOpen(false);
       setKnowledgeOpen(false);
@@ -541,6 +549,7 @@ export function BikeViewer() {
       setFinderOpen(false);
       setHistoryOpen(false);
       setPhysicsOpen(false);
+      setBuildOpen(false);
       setExperienceMode("lesson");
     },
     [
@@ -657,6 +666,7 @@ export function BikeViewer() {
       setFinderOpen(false);
       setHistoryOpen(false);
       setPhysicsOpen(false);
+      setBuildOpen(false);
       setExperienceMode("workshop");
     },
     [
@@ -774,6 +784,7 @@ export function BikeViewer() {
     setFinderOpen(false);
     setHistoryOpen(false);
       setPhysicsOpen(false);
+      setBuildOpen(false);
     setMode("normal");
     setExplosionAmount(0);
     setStoryProgress(0);
@@ -795,6 +806,7 @@ export function BikeViewer() {
         "history",
         "concept",
         ...PHYSICS_QUERY_KEYS,
+        ...BUILD_QUERY_KEYS,
       ]) {
         url.searchParams.delete(key);
       }
@@ -821,6 +833,8 @@ export function BikeViewer() {
     );
     const requestedPhysics =
       url.searchParams.get("physics") === "1";
+    const requestedBuild =
+      url.searchParams.get("build") === "1";
     const slug = url.searchParams.get("part");
     const view = url.searchParams.get("view") as InspectionMode | null;
     const explode = Number(url.searchParams.get("explode"));
@@ -875,17 +889,27 @@ export function BikeViewer() {
       setKnowledgeOpen(true);
       setHistoryOpen(false);
       setPhysicsOpen(false);
+      setBuildOpen(false);
       setFinderOpen(false);
       setComparisonOpen(false);
     } else if (requestedHistory) {
       setActiveHistoryEventId(requestedHistory.id);
       setHistoryOpen(true);
       setPhysicsOpen(false);
+      setBuildOpen(false);
       setKnowledgeOpen(false);
       setFinderOpen(false);
       setComparisonOpen(false);
     } else if (requestedPhysics) {
       setPhysicsOpen(true);
+      setBuildOpen(false);
+      setHistoryOpen(false);
+      setKnowledgeOpen(false);
+      setFinderOpen(false);
+      setComparisonOpen(false);
+    } else if (requestedBuild) {
+      setBuildOpen(true);
+      setPhysicsOpen(false);
       setHistoryOpen(false);
       setKnowledgeOpen(false);
       setFinderOpen(false);
@@ -910,6 +934,7 @@ export function BikeViewer() {
       requestedHistory ||
       requestedConcept ||
       requestedPhysics ||
+      requestedBuild ||
       Object.keys(requestedFinder).length > 0 ||
       requestedBike.id !== ROAD_R1.id
     ) {
@@ -978,6 +1003,7 @@ export function BikeViewer() {
       url.searchParams.delete("history");
       url.searchParams.delete("concept");
       for (const key of PHYSICS_QUERY_KEYS) url.searchParams.delete(key);
+      for (const key of BUILD_QUERY_KEYS) url.searchParams.delete(key);
       url.searchParams.set("lesson", lesson.id);
       url.searchParams.set(
         "step",
@@ -1000,6 +1026,7 @@ export function BikeViewer() {
       url.searchParams.delete("history");
       url.searchParams.delete("concept");
       for (const key of PHYSICS_QUERY_KEYS) url.searchParams.delete(key);
+      for (const key of BUILD_QUERY_KEYS) url.searchParams.delete(key);
       url.searchParams.set("workshop", procedure.id);
       url.searchParams.set(
         "step",
@@ -1102,6 +1129,14 @@ export function BikeViewer() {
       }
     }
 
+    if (buildOpen) {
+      url.searchParams.set("build", "1");
+    } else {
+      for (const key of BUILD_QUERY_KEYS) {
+        url.searchParams.delete(key);
+      }
+    }
+
     window.history.replaceState({}, "", url);
   }, [
     activeBike.id,
@@ -1116,6 +1151,7 @@ export function BikeViewer() {
     knowledgeOpen,
     activeConceptId,
     physicsOpen,
+    buildOpen,
     experienceMode,
     mode,
     explosionAmount,
@@ -1144,6 +1180,7 @@ export function BikeViewer() {
         else if (finderOpen) setFinderOpen(false);
         else if (historyOpen) setHistoryOpen(false);
         else if (physicsOpen) setPhysicsOpen(false);
+      setBuildOpen(false);
         else select(null);
         return;
       }
@@ -1169,6 +1206,7 @@ export function BikeViewer() {
     finderOpen,
     historyOpen,
     physicsOpen,
+    buildOpen,
     experienceMode,
     knowledgeOpen,
     learningOpen,
@@ -1238,6 +1276,7 @@ export function BikeViewer() {
                   setKnowledgeOpen(false);
                   setHistoryOpen(false);
       setPhysicsOpen(false);
+      setBuildOpen(false);
                 }}
               >
                 Find my bike
@@ -1263,6 +1302,7 @@ export function BikeViewer() {
                     setFinderOpen(false);
                     setHistoryOpen(false);
       setPhysicsOpen(false);
+      setBuildOpen(false);
                   }}
                 >
                   Compare
@@ -1285,6 +1325,7 @@ export function BikeViewer() {
                     setFinderOpen(false);
                     setHistoryOpen(false);
       setPhysicsOpen(false);
+      setBuildOpen(false);
                   }}
                 >
                   Learn
@@ -1307,12 +1348,39 @@ export function BikeViewer() {
                     setFinderOpen(false);
                     setHistoryOpen(false);
       setPhysicsOpen(false);
+      setBuildOpen(false);
                   }}
                 >
                   Workshop
                   <span aria-hidden="true">→</span>
                 </button>
               )}
+              <button
+                type="button"
+                className={
+                  buildOpen
+                    ? "build-launch is-active"
+                    : "build-launch"
+                }
+                onClick={() => {
+                  if (!buildOpen) {
+                    select(null);
+                    changeMode("normal");
+                  }
+                  setBuildOpen((value) => !value);
+                  setLearningOpen(false);
+                  setWorkshopOpen(false);
+                  setKnowledgeOpen(false);
+                  setActiveConceptId(null);
+                  setComparisonOpen(false);
+                  setFinderOpen(false);
+                  setHistoryOpen(false);
+                  setPhysicsOpen(false);
+                }}
+              >
+                Build
+                <span aria-hidden="true">＋</span>
+              </button>
               <button
                 type="button"
                 className={
@@ -1333,6 +1401,7 @@ export function BikeViewer() {
                   setComparisonOpen(false);
                   setFinderOpen(false);
                   setHistoryOpen(false);
+                  setBuildOpen(false);
                 }}
               >
                 Physics
@@ -1357,6 +1426,7 @@ export function BikeViewer() {
                   setComparisonOpen(false);
                   setFinderOpen(false);
                   setPhysicsOpen(false);
+      setBuildOpen(false);
                 }}
               >
                 History
@@ -1379,6 +1449,7 @@ export function BikeViewer() {
                   setFinderOpen(false);
                   setHistoryOpen(false);
       setPhysicsOpen(false);
+      setBuildOpen(false);
                 }}
               >
                 Search
@@ -1493,6 +1564,16 @@ export function BikeViewer() {
           onCompleteCurrent={completeCurrentWorkshopStep}
           onExit={exitWorkshop}
         />
+      ) : buildOpen ? (
+        <BuildLabPanel
+          bikeId={activeBike.id}
+          onPreviewComponent={(componentId) => {
+            setSelectedId(componentId);
+            setHoveredId(null);
+            setIsolated(false);
+          }}
+          onClose={() => setBuildOpen(false)}
+        />
       ) : physicsOpen ? (
         <PhysicsLabPanel
           bikeId={activeBike.id}
@@ -1590,6 +1671,7 @@ export function BikeViewer() {
               setFinderOpen(false);
               setHistoryOpen(false);
       setPhysicsOpen(false);
+      setBuildOpen(false);
             }}
           />
 
