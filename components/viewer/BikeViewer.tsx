@@ -1460,6 +1460,7 @@ export function BikeViewer() {
                   setFinderOpen(false);
                   setHistoryOpen(false);
                   setPhysicsOpen(false);
+                  setGeometryOpen(false);
                 }}
               >
                 Build
