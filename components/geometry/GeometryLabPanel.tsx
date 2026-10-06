@@ -26,9 +26,10 @@ function readInitialTab(): Tab {
 
 function readInitialCadence() {
   if (typeof window === "undefined") return 90;
-  const value = Number(
-    new URL(window.location.href).searchParams.get("gearCad"),
-  );
+  const raw =
+    new URL(window.location.href).searchParams.get("gearCad");
+  if (raw === null) return 90;
+  const value = Number(raw);
   return Number.isFinite(value)
     ? Math.min(130, Math.max(40, value))
     : 90;
