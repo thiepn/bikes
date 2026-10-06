@@ -1,0 +1,89 @@
+{
+  "id": "urban-weather-systems",
+  "bikeId": "bike.urban.u1",
+  "title": "How an all-weather utility bike protects rider and machine",
+  "summary": "Understand what full fenders, chain protection, tires, brakes and integrated lights each contribute—and what they do not guarantee.",
+  "systemId": "cargo-utility",
+  "difficulty": "beginner",
+  "durationMinutes": 5,
+  "prerequisiteLessonIds": [],
+  "steps": [
+    {
+      "id": "fenders",
+      "eyebrow": "01 · Spray control",
+      "title": "Full fenders intercept wheel spray.",
+      "body": "As the tires rotate through water and grit, they throw material tangentially away from the wheel. Full-coverage fenders intercept much of that spray before it reaches the rider and bicycle.",
+      "keyFact": "Fenders reduce spray but do not create dry-road traction or eliminate contamination.",
+      "focusComponentId": "bike.urban.u1.front-fender",
+      "highlightComponentIds": [
+        "bike.urban.u1.front-fender",
+        "bike.urban.u1.rear-fender",
+        "bike.urban.u1.front-tire",
+        "bike.urban.u1.rear-tire"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "chain-guard",
+      "eyebrow": "02 · Drivetrain cover",
+      "title": "The chain guard reduces drivetrain exposure.",
+      "body": "Covering the chain area helps keep clothing away from moving parts and reduces direct exposure to splash and debris during everyday riding.",
+      "keyFact": "Protection reduces contamination; chain condition still needs inspection and appropriate maintenance.",
+      "focusComponentId": "bike.urban.u1.chain-guard",
+      "highlightComponentIds": [
+        "bike.urban.u1.chain-guard",
+        "bike.urban.u1.chain",
+        "bike.urban.u1.chainring"
+      ],
+      "inspectionMode": "xray"
+    },
+    {
+      "id": "lights",
+      "eyebrow": "03 · Lighting",
+      "title": "Integrated lights make visibility part of the bicycle.",
+      "body": "A fixed front and rear lighting system can remain on the bicycle instead of depending on removable accessories. The actual power source, output, mounting and legal requirements depend on the real component and jurisdiction.",
+      "keyFact": "A light can help you see, help others see you, or both; the required performance depends on context and local rules.",
+      "focusComponentId": "bike.urban.u1.front-light",
+      "highlightComponentIds": [
+        "bike.urban.u1.front-light",
+        "bike.urban.u1.rear-light"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "brakes-tires",
+      "eyebrow": "04 · Contact and control",
+      "title": "Weather equipment does not replace tires and brakes.",
+      "body": "The tires still create the road contact and the brake system still creates braking torque. Poor surface conditions can change available grip regardless of how well equipped the utility bike is.",
+      "keyFact": "All-weather equipment improves practicality, not the laws of friction.",
+      "focusComponentId": "bike.urban.u1.front-tire",
+      "highlightComponentIds": [
+        "bike.urban.u1.front-tire",
+        "bike.urban.u1.rear-tire",
+        "bike.urban.u1.front-rotor",
+        "bike.urban.u1.rear-rotor"
+      ],
+      "inspectionMode": "systems",
+      "challenge": {
+        "type": "multiple-choice",
+        "prompt": "What do full fenders primarily change?",
+        "options": [
+          {
+            "id": "spray",
+            "label": "How much wheel spray reaches rider and bike"
+          },
+          {
+            "id": "grip",
+            "label": "The tire's available wet-road grip"
+          },
+          {
+            "id": "braking",
+            "label": "The brake system's mechanical leverage"
+          }
+        ],
+        "correctOptionId": "spray",
+        "explanation": "Fenders primarily intercept spray. Tire grip and brake behavior remain separate systems."
+      }
+    }
+  ]
+}
