@@ -1,0 +1,103 @@
+{
+  "id": "urban-weather-lighting-check",
+  "bikeId": "bike.urban.u1",
+  "title": "Check fenders and integrated lights",
+  "summary": "Inspect the wet-weather hardware that makes an everyday utility bike practical without confusing equipment checks with legal certification.",
+  "systemId": "lighting",
+  "difficulty": "beginner",
+  "durationMinutes": 5,
+  "prerequisiteProcedureIds": [],
+  "assumedOperationIds": [],
+  "tools": [
+    {
+      "id": "clean-cloth",
+      "name": "Clean cloth",
+      "required": true
+    },
+    {
+      "id": "inspection-light",
+      "name": "Inspection light",
+      "required": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "fender-clearance",
+      "title": "Check both fenders for wheel clearance",
+      "instruction": "Spin both wheels and watch the fenders and stays. Look for rubbing, loose mounts, deformation or anything that could contact the tire.",
+      "why": "A fender sits close to a moving wheel, so looseness or deformation can become an interference problem.",
+      "focusComponentId": "bike.urban.u1.front-fender",
+      "highlightComponentIds": [
+        "bike.urban.u1.front-fender",
+        "bike.urban.u1.rear-fender",
+        "bike.urban.u1.front-wheel",
+        "bike.urban.u1.rear-wheel"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0.12,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "Do not ride if a loose or damaged fender can contact or jam a wheel.",
+      "check": "Both fenders remain clear of the tires through wheel rotation.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "clean-lights",
+      "title": "Clean the light lenses",
+      "instruction": "Wipe dirt or water film from the front and rear light lenses and inspect the housings/mounts for obvious damage.",
+      "why": "Integrated lights can only work effectively when their lenses and mounts are in usable condition.",
+      "focusComponentId": "bike.urban.u1.front-light",
+      "highlightComponentIds": [
+        "bike.urban.u1.front-light",
+        "bike.urban.u1.rear-light"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0.08,
+      "tools": [
+        "clean-cloth",
+        "inspection-light"
+      ],
+      "check": "Both lenses are clean enough to inspect and the housings appear secure.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "function-check",
+      "title": "Confirm both lights actually operate",
+      "instruction": "Activate the bicycle's real lighting system and confirm front and rear lights operate consistently through the modes you intend to use.",
+      "why": "Being physically present on the bicycle is not the same as being powered and functional.",
+      "focusComponentId": "bike.urban.u1.rear-light",
+      "highlightComponentIds": [
+        "bike.urban.u1.front-light",
+        "bike.urban.u1.rear-light"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0,
+      "tools": [],
+      "warning": "Required lighting equipment and use rules vary by jurisdiction. This functional check is not a legal-compliance certification.",
+      "check": "The intended front and rear lighting functions operate consistently.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "final-clearance",
+      "title": "Recheck moving-part clearance",
+      "instruction": "With the bicycle stationary and then during a controlled low-speed roll, listen for rubbing and confirm fenders, lights, wiring and mounts cannot enter the wheels or steering path.",
+      "why": "Utility hardware is useful only when it remains safely separated from moving parts.",
+      "focusComponentId": "bike.urban.u1.front-wheel",
+      "highlightComponentIds": [
+        "bike.urban.u1.front-wheel",
+        "bike.urban.u1.rear-wheel",
+        "bike.urban.u1.front-fender",
+        "bike.urban.u1.rear-fender",
+        "bike.urban.u1.front-light",
+        "bike.urban.u1.rear-light"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0,
+      "tools": [],
+      "warning": "Stop if any accessory can interfere with a wheel, steering or braking component.",
+      "check": "The utility hardware remains secure and clear during the controlled check.",
+      "removedComponentIds": []
+    }
+  ]
+}
