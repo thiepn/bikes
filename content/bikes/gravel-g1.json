@@ -1,0 +1,523 @@
+{
+  "id": "bike.gravel.g1",
+  "slug": "gravel-g1",
+  "name": "Gravel G1",
+  "archetype": "gravel-all-road",
+  "status": "prototype",
+  "description": "Generic all-road gravel bicycle balancing paved efficiency, mixed-surface control, long-distance capability and practical mounting options.",
+  "systems": [
+    "frame",
+    "fork-suspension",
+    "steering",
+    "cockpit",
+    "front-wheel",
+    "rear-wheel",
+    "tires",
+    "drivetrain",
+    "transmission",
+    "braking",
+    "saddle-seatpost",
+    "pedals",
+    "accessories"
+  ],
+  "components": [
+    {
+      "id": "bike.gravel.g1.frame",
+      "slug": "frame",
+      "name": "Gravel frame",
+      "systemId": "frame",
+      "modelNode": "COMP__frame",
+      "materialIds": [
+        "mat.carbon.painted"
+      ],
+      "tags": [
+        "structure",
+        "all-road",
+        "gravel",
+        "mounts"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.fork",
+      "slug": "fork",
+      "name": "Rigid gravel fork",
+      "systemId": "fork-suspension",
+      "modelNode": "COMP__fork",
+      "materialIds": [
+        "mat.carbon.painted"
+      ],
+      "tags": [
+        "rigid",
+        "steering",
+        "gravel",
+        "mounts"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.headset",
+      "slug": "headset",
+      "name": "Headset",
+      "systemId": "steering",
+      "modelNode": "COMP__headset",
+      "materialIds": [
+        "mat.steel",
+        "mat.aluminium"
+      ],
+      "tags": [
+        "bearing",
+        "steering"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.handlebar",
+      "slug": "handlebar",
+      "name": "Flared drop handlebar",
+      "systemId": "cockpit",
+      "modelNode": "COMP__handlebar",
+      "materialIds": [
+        "mat.aluminium",
+        "mat.tape"
+      ],
+      "tags": [
+        "cockpit",
+        "drop-bar",
+        "flared"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.stem",
+      "slug": "stem",
+      "name": "Stem",
+      "systemId": "cockpit",
+      "modelNode": "COMP__stem",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "cockpit",
+        "steering"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.left-shifter",
+      "slug": "left-shifter",
+      "name": "Left shift/brake lever",
+      "systemId": "cockpit",
+      "modelNode": "COMP__left_shifter",
+      "materialIds": [
+        "mat.polymer",
+        "mat.aluminium"
+      ],
+      "tags": [
+        "control",
+        "brake",
+        "shift"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.right-shifter",
+      "slug": "right-shifter",
+      "name": "Right shift/brake lever",
+      "systemId": "cockpit",
+      "modelNode": "COMP__right_shifter",
+      "materialIds": [
+        "mat.polymer",
+        "mat.aluminium"
+      ],
+      "tags": [
+        "control",
+        "brake",
+        "shift"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.front-wheel",
+      "slug": "front-wheel",
+      "name": "Front gravel wheel",
+      "systemId": "front-wheel",
+      "modelNode": "COMP__front_wheel",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "wheel",
+        "gravel"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.rear-wheel",
+      "slug": "rear-wheel",
+      "name": "Rear gravel wheel",
+      "systemId": "rear-wheel",
+      "modelNode": "COMP__rear_wheel",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "wheel",
+        "gravel"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.front-tire",
+      "slug": "front-tire",
+      "name": "Front mixed-surface tire",
+      "systemId": "tires",
+      "modelNode": "COMP__front_tire",
+      "materialIds": [
+        "mat.rubber"
+      ],
+      "tags": [
+        "tire",
+        "gravel",
+        "mixed-surface"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.rear-tire",
+      "slug": "rear-tire",
+      "name": "Rear mixed-surface tire",
+      "systemId": "tires",
+      "modelNode": "COMP__rear_tire",
+      "materialIds": [
+        "mat.rubber"
+      ],
+      "tags": [
+        "tire",
+        "gravel",
+        "mixed-surface"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.front-rim",
+      "slug": "front-rim",
+      "name": "Front rim",
+      "systemId": "front-wheel",
+      "modelNode": "COMP__front_rim",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "rim"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.rear-rim",
+      "slug": "rear-rim",
+      "name": "Rear rim",
+      "systemId": "rear-wheel",
+      "modelNode": "COMP__rear_rim",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "rim"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.front-hub",
+      "slug": "front-hub",
+      "name": "Front hub",
+      "systemId": "front-wheel",
+      "modelNode": "COMP__front_hub",
+      "materialIds": [
+        "mat.aluminium",
+        "mat.steel"
+      ],
+      "tags": [
+        "hub",
+        "bearing"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.rear-hub",
+      "slug": "rear-hub",
+      "name": "Rear freehub",
+      "systemId": "rear-wheel",
+      "modelNode": "COMP__rear_hub",
+      "materialIds": [
+        "mat.aluminium",
+        "mat.steel"
+      ],
+      "tags": [
+        "hub",
+        "freehub",
+        "bearing"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.front-rotor",
+      "slug": "front-rotor",
+      "name": "Front brake rotor",
+      "systemId": "braking",
+      "modelNode": "COMP__front_rotor",
+      "materialIds": [
+        "mat.steel"
+      ],
+      "tags": [
+        "brake",
+        "rotor"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.rear-rotor",
+      "slug": "rear-rotor",
+      "name": "Rear brake rotor",
+      "systemId": "braking",
+      "modelNode": "COMP__rear_rotor",
+      "materialIds": [
+        "mat.steel"
+      ],
+      "tags": [
+        "brake",
+        "rotor"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.front-caliper",
+      "slug": "front-caliper",
+      "name": "Front brake caliper",
+      "systemId": "braking",
+      "modelNode": "COMP__front_caliper",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "brake",
+        "hydraulic"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.rear-caliper",
+      "slug": "rear-caliper",
+      "name": "Rear brake caliper",
+      "systemId": "braking",
+      "modelNode": "COMP__rear_caliper",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "brake",
+        "hydraulic"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.saddle",
+      "slug": "saddle",
+      "name": "Gravel saddle",
+      "systemId": "saddle-seatpost",
+      "modelNode": "COMP__saddle",
+      "materialIds": [
+        "mat.saddle.synthetic"
+      ],
+      "tags": [
+        "contact-point"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.seatpost",
+      "slug": "seatpost",
+      "name": "Seatpost",
+      "systemId": "saddle-seatpost",
+      "modelNode": "COMP__seatpost",
+      "materialIds": [
+        "mat.carbon.exposed"
+      ],
+      "tags": [
+        "seatpost",
+        "carbon"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.crankset",
+      "slug": "crankset",
+      "name": "1× gravel crankset",
+      "systemId": "drivetrain",
+      "modelNode": "COMP__crankset",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "drivetrain",
+        "1x"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.chainring",
+      "slug": "chainring",
+      "name": "Single gravel chainring",
+      "systemId": "transmission",
+      "modelNode": "COMP__chainring",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "drivetrain",
+        "gear",
+        "1x"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.bottom-bracket",
+      "slug": "bottom-bracket",
+      "name": "Bottom bracket",
+      "systemId": "drivetrain",
+      "modelNode": "COMP__bottom_bracket",
+      "materialIds": [
+        "mat.steel",
+        "mat.aluminium"
+      ],
+      "tags": [
+        "bearing",
+        "drivetrain"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.chain",
+      "slug": "chain",
+      "name": "Chain",
+      "systemId": "transmission",
+      "modelNode": "COMP__chain",
+      "materialIds": [
+        "mat.steel"
+      ],
+      "tags": [
+        "drivetrain",
+        "transmission"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.cassette",
+      "slug": "cassette",
+      "name": "Wide-range gravel cassette",
+      "systemId": "transmission",
+      "modelNode": "COMP__cassette",
+      "materialIds": [
+        "mat.steel",
+        "mat.aluminium"
+      ],
+      "tags": [
+        "drivetrain",
+        "gear",
+        "wide-range"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.rear-derailleur",
+      "slug": "rear-derailleur",
+      "name": "Rear derailleur",
+      "systemId": "transmission",
+      "modelNode": "COMP__rear_derailleur",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "drivetrain",
+        "shifting",
+        "chain-management"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.left-pedal",
+      "slug": "left-pedal",
+      "name": "Left pedal",
+      "systemId": "pedals",
+      "modelNode": "COMP__left_pedal",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "contact-point"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.right-pedal",
+      "slug": "right-pedal",
+      "name": "Right pedal",
+      "systemId": "pedals",
+      "modelNode": "COMP__right_pedal",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "contact-point"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.front-thru-axle",
+      "slug": "front-thru-axle",
+      "name": "Front thru axle",
+      "systemId": "front-wheel",
+      "modelNode": "COMP__front_thru_axle",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "axle",
+        "fastener"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.rear-thru-axle",
+      "slug": "rear-thru-axle",
+      "name": "Rear thru axle",
+      "systemId": "rear-wheel",
+      "modelNode": "COMP__rear_thru_axle",
+      "materialIds": [
+        "mat.aluminium"
+      ],
+      "tags": [
+        "axle",
+        "fastener"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.frame-mounts",
+      "slug": "frame-mounts",
+      "name": "Frame utility mounts",
+      "systemId": "accessories",
+      "modelNode": "COMP__frame_mounts",
+      "materialIds": [
+        "mat.aluminium",
+        "mat.steel"
+      ],
+      "tags": [
+        "mounts",
+        "bottle",
+        "bag",
+        "utility"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.fork-mounts",
+      "slug": "fork-mounts",
+      "name": "Fork utility mounts",
+      "systemId": "accessories",
+      "modelNode": "COMP__fork_mounts",
+      "materialIds": [
+        "mat.aluminium",
+        "mat.steel"
+      ],
+      "tags": [
+        "mounts",
+        "cargo",
+        "utility"
+      ]
+    },
+    {
+      "id": "bike.gravel.g1.downtube-protector",
+      "slug": "downtube-protector",
+      "name": "Downtube protector",
+      "systemId": "accessories",
+      "modelNode": "COMP__downtube_protector",
+      "materialIds": [
+        "mat.polymer"
+      ],
+      "tags": [
+        "protection",
+        "gravel",
+        "impact"
+      ]
+    }
+  ]
+}
