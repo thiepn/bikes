@@ -1,0 +1,104 @@
+{
+  "id": "gravel-drivetrain-check",
+  "bikeId": "bike.gravel.g1",
+  "title": "Inspect the gravel 1× drivetrain",
+  "summary": "Check the exposed chain, chainring, wide cassette and rear derailleur after mixed-surface riding.",
+  "systemId": "transmission",
+  "difficulty": "beginner",
+  "durationMinutes": 7,
+  "prerequisiteProcedureIds": [],
+  "assumedOperationIds": [],
+  "tools": [
+    {
+      "id": "inspection-light",
+      "name": "Inspection light",
+      "required": true
+    },
+    {
+      "id": "clean-cloth",
+      "name": "Clean cloth",
+      "required": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "chain",
+      "title": "Inspect the chain",
+      "instruction": "Look for obvious rust, stiff or damaged links, severe contamination or abnormal routing before rotating the drivetrain.",
+      "why": "The chain is exposed directly to grit and water on mixed-surface rides.",
+      "focusComponentId": "bike.gravel.g1.chain",
+      "highlightComponentIds": [
+        "bike.gravel.g1.chain",
+        "bike.gravel.g1.chainring",
+        "bike.gravel.g1.cassette"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0.08,
+      "tools": [
+        "inspection-light",
+        "clean-cloth"
+      ],
+      "warning": "Keep hands, cloth and loose clothing clear whenever the drivetrain is moving.",
+      "check": "No obvious chain damage or unsafe routing is visible.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "chainring-cassette",
+      "title": "Inspect the sprockets",
+      "instruction": "Check the chainring and cassette for bent/damaged teeth, debris and signs of abnormal wear or impact.",
+      "why": "Damaged teeth or trapped debris can affect chain retention and shifting.",
+      "focusComponentId": "bike.gravel.g1.cassette",
+      "highlightComponentIds": [
+        "bike.gravel.g1.chainring",
+        "bike.gravel.g1.cassette",
+        "bike.gravel.g1.chain"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.16,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "Do not diagnose replacement solely by tooth appearance; drivetrain wear must be assessed as a system.",
+      "check": "No obvious impact damage or trapped debris is present.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "derailleur",
+      "title": "Inspect derailleur alignment and movement",
+      "instruction": "Look for impact damage, a visibly twisted position, excessive looseness or obstruction, then shift through the available cassette in a controlled check.",
+      "why": "The rear derailleur is exposed to impact and must guide the chain precisely over a wide cassette.",
+      "focusComponentId": "bike.gravel.g1.rear-derailleur",
+      "highlightComponentIds": [
+        "bike.gravel.g1.rear-derailleur",
+        "bike.gravel.g1.cassette",
+        "bike.gravel.g1.chain"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0.1,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "Do not bend the derailleur or hanger by eye as a generic adjustment method.",
+      "check": "The derailleur shows no obvious impact damage and shifts predictably through the intended range.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "service-boundary",
+      "title": "Route persistent shifting faults to the exact drivetrain",
+      "instruction": "If indexing, chain retention or range problems remain, identify the exact shifter, derailleur, cassette, chain and hanger system before adjustment.",
+      "why": "Cable pull/electronic actuation, sprocket count, capacity and adjustment procedures differ between drivetrain families.",
+      "focusComponentId": "bike.gravel.g1.right-shifter",
+      "highlightComponentIds": [
+        "bike.gravel.g1.right-shifter",
+        "bike.gravel.g1.rear-derailleur",
+        "bike.gravel.g1.cassette"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0,
+      "tools": [],
+      "warning": "Do not apply adjustment instructions from an unrelated drivetrain generation.",
+      "check": "Any unresolved shift fault is matched to the correct drivetrain-specific procedure.",
+      "removedComponentIds": []
+    }
+  ]
+}
