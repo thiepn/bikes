@@ -1,0 +1,106 @@
+{
+  "bikeId": "bike.gravel.g1",
+  "connections": [
+    {
+      "from": "bike.gravel.g1.frame",
+      "to": "bike.gravel.g1.headset",
+      "type": "bearing"
+    },
+    {
+      "from": "bike.gravel.g1.headset",
+      "to": "bike.gravel.g1.fork",
+      "type": "bearing"
+    },
+    {
+      "from": "bike.gravel.g1.frame",
+      "to": "bike.gravel.g1.bottom-bracket",
+      "type": "pressed"
+    },
+    {
+      "from": "bike.gravel.g1.bottom-bracket",
+      "to": "bike.gravel.g1.crankset",
+      "type": "bearing"
+    },
+    {
+      "from": "bike.gravel.g1.crankset",
+      "to": "bike.gravel.g1.chainring",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.gravel.g1.chainring",
+      "to": "bike.gravel.g1.chain",
+      "type": "chain"
+    },
+    {
+      "from": "bike.gravel.g1.chain",
+      "to": "bike.gravel.g1.cassette",
+      "type": "chain"
+    },
+    {
+      "from": "bike.gravel.g1.cassette",
+      "to": "bike.gravel.g1.rear-hub",
+      "type": "freehub"
+    },
+    {
+      "from": "bike.gravel.g1.rear-derailleur",
+      "to": "bike.gravel.g1.chain",
+      "type": "chain"
+    },
+    {
+      "from": "bike.gravel.g1.frame",
+      "to": "bike.gravel.g1.seatpost",
+      "type": "clamped"
+    },
+    {
+      "from": "bike.gravel.g1.seatpost",
+      "to": "bike.gravel.g1.saddle",
+      "type": "clamped"
+    },
+    {
+      "from": "bike.gravel.g1.fork",
+      "to": "bike.gravel.g1.front-caliper",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.gravel.g1.frame",
+      "to": "bike.gravel.g1.rear-caliper",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.gravel.g1.front-wheel",
+      "to": "bike.gravel.g1.front-thru-axle",
+      "type": "axle"
+    },
+    {
+      "from": "bike.gravel.g1.rear-wheel",
+      "to": "bike.gravel.g1.rear-thru-axle",
+      "type": "axle"
+    },
+    {
+      "from": "bike.gravel.g1.front-rotor",
+      "to": "bike.gravel.g1.front-hub",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.gravel.g1.rear-rotor",
+      "to": "bike.gravel.g1.rear-hub",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.gravel.g1.frame",
+      "to": "bike.gravel.g1.frame-mounts",
+      "type": "mounted"
+    },
+    {
+      "from": "bike.gravel.g1.fork",
+      "to": "bike.gravel.g1.fork-mounts",
+      "type": "mounted"
+    },
+    {
+      "from": "bike.gravel.g1.frame",
+      "to": "bike.gravel.g1.downtube-protector",
+      "type": "mounted"
+    }
+  ],
+  "operations": []
+}
