@@ -459,27 +459,32 @@ export function ParetoFrontierPanel({
                 const isPinned = point.id === pinnedId;
 
                 return (
-                  <g key={point.id}>
-                    <button
-                      type="button"
-                      className="frontier-svg-button"
-                      onClick={() => setSelectedIndex(index)}
-                      aria-label={
-                        "Select frontier point " + (index + 1)
+                  <circle
+                    key={point.id}
+                    cx={position.x}
+                    cy={position.y}
+                    r={isSelected ? 8 : isPinned ? 7 : 5}
+                    className={[
+                      "frontier-point",
+                      isSelected ? "is-selected" : "",
+                      isPinned ? "is-pinned" : "",
+                    ].join(" ")}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={
+                      "Select frontier point " + (index + 1)
+                    }
+                    onClick={() => setSelectedIndex(index)}
+                    onKeyDown={(event) => {
+                      if (
+                        event.key === "Enter" ||
+                        event.key === " "
+                      ) {
+                        event.preventDefault();
+                        setSelectedIndex(index);
                       }
-                    >
-                      <circle
-                        cx={position.x}
-                        cy={position.y}
-                        r={isSelected ? 8 : isPinned ? 7 : 5}
-                        className={[
-                          "frontier-point",
-                          isSelected ? "is-selected" : "",
-                          isPinned ? "is-pinned" : "",
-                        ].join(" ")}
-                      />
-                    </button>
-                  </g>
+                    }}
+                  />
                 );
               })}
             </svg>
