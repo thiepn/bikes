@@ -232,31 +232,23 @@ function AssumptionField({
 }
 
 export function PhysicsLabPanel({ bikeId, onClose }: Props) {
-  const bike = getBikeById(bikeId);
-  const reference = getBikePhysicsProfile(bikeId);
+  const bike = getBikeById(bikeId) ?? BIKE_CATALOG[0];
+  const reference =
+    getBikePhysicsProfile(bike.id) ??
+    getBikePhysicsProfile(BIKE_CATALOG[0].id)!;
 
   const initial = useMemo(
-    () => (reference ? initialState(reference) : null),
+    () => initialState(reference),
     [reference],
   );
 
   const [scenario, setScenario] = useState<PhysicsScenario>(
-    initial?.scenario ?? {
-      ...DEFAULTS,
-      driveRatio: 2,
-    },
+    initial.scenario,
   );
   const [overrides, setOverrides] = useState<Overrides>(
-    initial?.overrides ?? {
-      bikeMassKg: null,
-      cdaM2: null,
-      drivetrainEfficiency: null,
-      crr: null,
-    },
+    initial.overrides,
   );
   const [showAssumptions, setShowAssumptions] = useState(false);
-
-  if (!bike || !reference) return null;
 
   const effectiveProfile = useMemo<BikePhysicsProfile>(() => {
     const rollingResistance = {
@@ -819,7 +811,7 @@ export function PhysicsLabPanel({ bikeId, onClose }: Props) {
                     <article
                       key={result.bikeId}
                       className={
-                        result.bikeId === bikeId ? "is-primary" : ""
+                        result.bikeId === bike.id ? "is-primary" : ""
                       }
                     >
                       <div>
