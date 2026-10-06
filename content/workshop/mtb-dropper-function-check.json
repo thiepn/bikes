@@ -1,0 +1,98 @@
+{
+  "id": "mtb-dropper-function-check",
+  "bikeId": "bike.mtb.m1",
+  "title": "Check dropper-post function",
+  "summary": "Inspect the dropper post, cycle it through its travel and verify predictable remote operation without disassembling the post.",
+  "systemId": "saddle-seatpost",
+  "difficulty": "beginner",
+  "durationMinutes": 5,
+  "prerequisiteProcedureIds": [],
+  "assumedOperationIds": [],
+  "tools": [
+    {
+      "id": "clean-cloth",
+      "name": "Clean lint-free cloth",
+      "required": true
+    },
+    {
+      "id": "inspection-light",
+      "name": "Inspection light",
+      "required": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "inspect-post",
+      "title": "Inspect the post and saddle",
+      "instruction": "Check the exposed post, saddle connection and visible frame interface for damage, heavy contamination or obvious looseness.",
+      "why": "A functional test should start with a visual check for problems that should not be ignored.",
+      "focusComponentId": "bike.mtb.m1.dropper-post",
+      "highlightComponentIds": [
+        "bike.mtb.m1.dropper-post",
+        "bike.mtb.m1.saddle",
+        "bike.mtb.m1.frame"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0.08,
+      "tools": [
+        "clean-cloth",
+        "inspection-light"
+      ],
+      "warning": "Do not apply unapproved lubricants to the post shaft or seals.",
+      "check": "No obvious damage or unsafe looseness is visible.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "cycle-post",
+      "title": "Cycle the post through its travel",
+      "instruction": "Operate the remote and move the saddle through the post’s usable travel several times. Observe whether extension and lowering are smooth and repeatable.",
+      "why": "Intermittent sticking, incomplete return or unexpected movement can indicate a control, pressure or service issue.",
+      "focusComponentId": "bike.mtb.m1.dropper-post",
+      "highlightComponentIds": [
+        "bike.mtb.m1.dropper-post",
+        "bike.mtb.m1.saddle",
+        "bike.mtb.m1.dropper-remote"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0.1,
+      "tools": [],
+      "check": "The post moves predictably through its usable travel.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "remote-return",
+      "title": "Check remote response",
+      "instruction": "Confirm that the remote moves freely, returns normally and consistently releases the post mechanism when operated.",
+      "why": "A sticky or poorly returning remote can make an otherwise healthy post behave inconsistently.",
+      "focusComponentId": "bike.mtb.m1.dropper-post",
+      "highlightComponentIds": [
+        "bike.mtb.m1.dropper-remote",
+        "bike.mtb.m1.handlebar",
+        "bike.mtb.m1.dropper-post"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0,
+      "tools": [],
+      "warning": "Cable tension, hydraulic controls and electronic systems use different service procedures; follow the actual remote/post manufacturer guidance.",
+      "check": "Remote actuation is consistent and returns normally.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "load-check",
+      "title": "Confirm the saddle stays where commanded",
+      "instruction": "With the post extended and then at a lower position, apply normal controlled rider load and confirm it does not unexpectedly sink or extend.",
+      "why": "The post should hold its selected position until deliberately released.",
+      "focusComponentId": "bike.mtb.m1.saddle",
+      "highlightComponentIds": [
+        "bike.mtb.m1.saddle",
+        "bike.mtb.m1.dropper-post"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0,
+      "tools": [],
+      "warning": "If the post moves unexpectedly under normal load, stop relying on it until the cause is identified or serviced.",
+      "check": "The saddle position remains stable until the remote is deliberately operated.",
+      "removedComponentIds": []
+    }
+  ]
+}
