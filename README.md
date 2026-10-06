@@ -1,36 +1,42 @@
 # Bike Atlas
 
-Bike Atlas is an interactive 3D bicycle knowledge platform: explore bicycles, inspect components, understand systems, learn how they work, and practice guided maintenance workflows.
+Bike Atlas is an interactive 3D bicycle knowledge platform: explore bicycles, inspect components, understand systems, learn how they work, practice maintenance, and navigate a cross-linked bicycle encyclopedia.
 
 ## Current phase
 
-**P8 — Workshop Procedures, Tool Guidance & Step-by-Step Repair Simulation**
+**P9 — Component Encyclopedia, Search, Cross-Linking & Knowledge Graph**
 
-Bike Atlas now has two structured knowledge modes on top of the same persistent Road R1 scene:
+Every one of the 35 Road R1 semantic components now has an encyclopedia profile.
 
-- **Learn** — interactive conceptual lessons and assessments.
-- **Workshop** — prerequisite-aware maintenance procedures with tools, warnings and 3D-guided steps.
+Explore includes three knowledge modes:
 
-Current Workshop procedures:
+- **Learn** — interactive lessons and assessment.
+- **Workshop** — prerequisite-aware maintenance procedures.
+- **Encyclopedia** — search and component knowledge graph.
 
-- Remove and reinstall the rear wheel
-- Remove a cassette
-- Replace a derailleur chain
-- Inspect a disc brake
+Component profiles cover:
 
-Workshop uses the Road R1 assembly graph to enforce mechanical operation prerequisites.
+- function;
+- materials;
+- compatibility/standards;
+- common symptoms;
+- connected/related parts;
+- related lessons;
+- related Workshop procedures.
 
-Direct Workshop links:
+Search spans names, aliases, systems, tags, materials, standards and symptoms.
+
+The knowledge graph derives mechanical links from the assembly graph and instructional links from Learn/Workshop data instead of duplicating those relationships.
+
+Component deep links work for all Road R1 semantic components, including components whose detailed calibration mesh is still pending:
 
 ```text
-/?workshop=rear-wheel-removal&step=2
-/?workshop=cassette-removal&step=3
-/?workshop=chain-replacement&step=1
-/?workshop=disc-brake-inspection&step=2
+/?part=cassette
+/?part=headset
+/?part=bottom-bracket
+/?part=front-derailleur
 ```
 
-Learn and Workshop progress are local-only for now; no account/backend is required.
+The temporary calibration bike currently exposes 27 of the 35 components in 3D. The production Road R1 GLB remains the path to full-detail visual coverage.
 
-The temporary calibration bike remains until the production Road R1 GLB completes the P2B Blender asset-authoring pipeline.
-
-See `docs/P1.md` through `docs/P8.md` and `docs/ASSET_PIPELINE.md`.
+See `docs/P1.md` through `docs/P9.md` and `docs/ASSET_PIPELINE.md`.

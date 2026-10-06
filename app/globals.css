@@ -2154,3 +2154,11 @@ body {
     font-size: 30px;
   }
 }
+
+
+/* P9 mobile topbar density */
+@media (max-width: 760px) {
+  .viewer--explore .topbar-actions .phase-label {
+    display: none;
+  }
+}

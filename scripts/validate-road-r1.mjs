@@ -12,6 +12,7 @@ import rearWheelProcedure from "../content/workshop/rear-wheel-removal.json" wit
 import cassetteProcedure from "../content/workshop/cassette-removal.json" with { type: "json" };
 import chainProcedure from "../content/workshop/chain-replacement.json" with { type: "json" };
 import brakeProcedure from "../content/workshop/disc-brake-inspection.json" with { type: "json" };
+import knowledge from "../content/knowledge/road-r1.json" with { type: "json" };
 
 const errors = [];
 const lessons = [drivetrain, wheels, brakes, steering];
@@ -32,6 +33,67 @@ assert(new Set(bike.components.map((item) => item.id)).size === bike.components.
 assert(new Set(bike.components.map((item) => item.modelNode)).size === bike.components.length, "Component modelNode values must be unique.");
 
 const componentIds = new Set(bike.components.map((component) => component.id));
+
+assert(
+  knowledge.bikeId === bike.id,
+  "Knowledge base must target Road R1.",
+);
+assert(
+  knowledge.profiles.length === bike.components.length,
+  "Every Road R1 component must have exactly one knowledge profile.",
+);
+const knowledgeProfileIds = new Set(
+  knowledge.profiles.map((profile) => profile.componentId),
+);
+assert(
+  knowledgeProfileIds.size === knowledge.profiles.length,
+  "Knowledge component IDs must be unique.",
+);
+
+for (const component of bike.components) {
+  assert(
+    knowledgeProfileIds.has(component.id),
+    `Missing knowledge profile: ${component.id}`,
+  );
+}
+
+for (const profile of knowledge.profiles) {
+  assert(
+    componentIds.has(profile.componentId),
+    `Knowledge profile references unknown component: ${profile.componentId}`,
+  );
+  assert(
+    profile.summary.trim().length > 0,
+    `Knowledge summary missing: ${profile.componentId}`,
+  );
+  assert(
+    profile.function.trim().length > 0,
+    `Knowledge function missing: ${profile.componentId}`,
+  );
+  assert(
+    profile.materials.length > 0,
+    `Knowledge materials missing: ${profile.componentId}`,
+  );
+  assert(
+    profile.standards.length > 0,
+    `Knowledge standards missing: ${profile.componentId}`,
+  );
+  assert(
+    profile.commonSymptoms.length > 0,
+    `Knowledge symptoms missing: ${profile.componentId}`,
+  );
+
+  for (const relatedId of profile.relatedComponentIds) {
+    assert(
+      componentIds.has(relatedId),
+      `Knowledge relation references unknown component: ${profile.componentId} -> ${relatedId}`,
+    );
+    assert(
+      relatedId !== profile.componentId,
+      `Knowledge profile cannot relate to itself: ${profile.componentId}`,
+    );
+  }
+}
 
 for (const component of bike.components) {
   assert(component.id.startsWith("bike.road.r1."), `Invalid stable ID: ${component.id}`);
@@ -315,5 +377,5 @@ if (errors.length) {
 }
 
 console.log(
-  `✓ Road R1 valid: ${bike.components.length} components, ${assembly.connections.length} assembly connections, ${assembly.operations.length} operations, ${lessons.length} lessons, ${procedures.length} workshop procedures.`,
+  `✓ Road R1 valid: ${bike.components.length} components, ${knowledge.profiles.length} encyclopedia profiles, ${assembly.connections.length} assembly connections, ${assembly.operations.length} operations, ${lessons.length} lessons, ${procedures.length} workshop procedures.`,
 );

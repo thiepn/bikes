@@ -16,7 +16,7 @@ import {
   WORKSHOP_CATALOG,
   getWorkshopProcedure,
 } from "@/domain/workshop/catalog";
-import { isCalibrationComponent } from "@/engine/interaction/calibration-components";
+import { KnowledgeSearch } from "@/components/knowledge/KnowledgeSearch";
 import type { InspectionMode } from "@/engine/inspection/types";
 import {
   calculateLessonScore,
@@ -64,6 +64,7 @@ export function BikeViewer() {
   const [explosionAmount, setExplosionAmount] = useState(0);
   const [learningOpen, setLearningOpen] = useState(false);
   const [workshopOpen, setWorkshopOpen] = useState(false);
+  const [knowledgeOpen, setKnowledgeOpen] = useState(false);
 
   const [activeLessonId, setActiveLessonId] = useState(
     LESSON_CATALOG[0].id,
@@ -297,6 +298,7 @@ export function BikeViewer() {
       markStarted(nextLesson.id, requestedStep);
       setLearningOpen(false);
       setWorkshopOpen(false);
+      setKnowledgeOpen(false);
       setExperienceMode("lesson");
     },
     [
@@ -406,6 +408,7 @@ export function BikeViewer() {
       persistProcedureStart(nextProcedure.id, requestedStep);
       setLearningOpen(false);
       setWorkshopOpen(false);
+      setKnowledgeOpen(false);
       setExperienceMode("workshop");
     },
     [
@@ -516,6 +519,7 @@ export function BikeViewer() {
     setIsolated(false);
     setLearningOpen(false);
     setWorkshopOpen(false);
+    setKnowledgeOpen(false);
     setMode("normal");
     setExplosionAmount(0);
     setStoryProgress(0);
@@ -588,8 +592,7 @@ export function BikeViewer() {
 
     if (slug) {
       const component = ROAD_R1.components.find(
-        (item) =>
-          item.slug === slug && isCalibrationComponent(item.id),
+        (item) => item.slug === slug,
       );
       if (component) setSelectedId(component.id);
     }
@@ -722,6 +725,7 @@ export function BikeViewer() {
       if (event.key === "Escape") {
         if (learningOpen) setLearningOpen(false);
         else if (workshopOpen) setWorkshopOpen(false);
+        else if (knowledgeOpen) setKnowledgeOpen(false);
         else select(null);
         return;
       }
@@ -744,6 +748,7 @@ export function BikeViewer() {
   }, [
     changeMode,
     experienceMode,
+    knowledgeOpen,
     learningOpen,
     select,
     selectedId,
@@ -798,6 +803,7 @@ export function BikeViewer() {
                 onClick={() => {
                   setLearningOpen((value) => !value);
                   setWorkshopOpen(false);
+                  setKnowledgeOpen(false);
                 }}
               >
                 Learn
@@ -813,10 +819,27 @@ export function BikeViewer() {
                 onClick={() => {
                   setWorkshopOpen((value) => !value);
                   setLearningOpen(false);
+                  setKnowledgeOpen(false);
                 }}
               >
                 Workshop
                 <span aria-hidden="true">→</span>
+              </button>
+              <button
+                type="button"
+                className={
+                  knowledgeOpen
+                    ? "knowledge-launch is-active"
+                    : "knowledge-launch"
+                }
+                onClick={() => {
+                  setKnowledgeOpen((value) => !value);
+                  setLearningOpen(false);
+                  setWorkshopOpen(false);
+                }}
+              >
+                Encyclopedia
+                <span aria-hidden="true">⌕</span>
               </button>
             </>
           )}
@@ -933,6 +956,15 @@ export function BikeViewer() {
           onStartProcedure={startWorkshopProcedure}
           onClose={() => setWorkshopOpen(false)}
         />
+      ) : knowledgeOpen ? (
+        <KnowledgeSearch
+          selectedId={selectedId}
+          onSelect={(componentId) => {
+            select(componentId);
+            setKnowledgeOpen(false);
+          }}
+          onClose={() => setKnowledgeOpen(false)}
+        />
       ) : (
         <>
           <InspectionToolbar
@@ -952,6 +984,8 @@ export function BikeViewer() {
             onToggleIsolate={() =>
               setIsolated((value) => !value)
             }
+            onOpenLesson={startLesson}
+            onOpenWorkshop={startWorkshopProcedure}
           />
 
           <div

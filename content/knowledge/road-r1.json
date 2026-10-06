@@ -1,0 +1,962 @@
+{
+  "bikeId": "bike.road.r1",
+  "profiles": [
+    {
+      "componentId": "bike.road.r1.frame",
+      "summary": "The bicycle’s primary structural chassis.",
+      "function": "Locates the steering, drivetrain, wheels and rider contact points while carrying pedaling, braking and road loads.",
+      "materials": [
+        "carbon-fiber composite",
+        "paint / clear coat"
+      ],
+      "standards": [
+        "frame size and geometry are model-specific"
+      ],
+      "commonSymptoms": [
+        "cracks or impact damage",
+        "delamination or paint changes after impact",
+        "damaged threads or interfaces"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.fork",
+        "bike.road.r1.headset",
+        "bike.road.r1.seatpost",
+        "bike.road.r1.bottom-bracket"
+      ],
+      "aliases": [
+        "chassis",
+        "frameset",
+        "carbon frame"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.fork",
+      "summary": "Supports and steers the front wheel.",
+      "function": "Connects the front axle to the steering axis and transfers steering, braking and road loads into the frame.",
+      "materials": [
+        "carbon-fiber composite",
+        "aluminium hardware"
+      ],
+      "standards": [
+        "steerer and axle dimensions are component-specific"
+      ],
+      "commonSymptoms": [
+        "impact damage",
+        "steerer damage",
+        "dropout or axle-interface damage"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.frame",
+        "bike.road.r1.headset",
+        "bike.road.r1.front-wheel",
+        "bike.road.r1.front-thru-axle",
+        "bike.road.r1.front-caliper"
+      ],
+      "aliases": [
+        "road fork",
+        "steerer"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.front-wheel",
+      "summary": "Front rotating wheel assembly.",
+      "function": "Carries the front tire and braking rotor while rotating around the front hub bearings.",
+      "materials": [
+        "carbon-fiber composite",
+        "aluminium",
+        "steel spokes"
+      ],
+      "standards": [
+        "wheel diameter and axle format must match the bicycle"
+      ],
+      "commonSymptoms": [
+        "loose spokes",
+        "rim damage",
+        "bearing play",
+        "wheel out of true"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.front-tire",
+        "bike.road.r1.front-rim",
+        "bike.road.r1.front-hub",
+        "bike.road.r1.front-rotor",
+        "bike.road.r1.front-thru-axle"
+      ],
+      "aliases": [
+        "wheelset",
+        "front wheel"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.rear-wheel",
+      "summary": "Rear rotating wheel assembly.",
+      "function": "Carries the rear tire, brake rotor and cassette/freehub system while transmitting drive torque to the road.",
+      "materials": [
+        "carbon-fiber composite",
+        "aluminium",
+        "steel spokes"
+      ],
+      "standards": [
+        "wheel diameter, axle and freehub format must match"
+      ],
+      "commonSymptoms": [
+        "loose spokes",
+        "rim damage",
+        "bearing play",
+        "freehub problems",
+        "wheel out of true"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.rear-tire",
+        "bike.road.r1.rear-rim",
+        "bike.road.r1.rear-hub",
+        "bike.road.r1.rear-rotor",
+        "bike.road.r1.cassette",
+        "bike.road.r1.rear-thru-axle"
+      ],
+      "aliases": [
+        "wheelset",
+        "rear wheel"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.front-tire",
+      "summary": "Front road-contact tire.",
+      "function": "Provides traction, cushioning and the front contact patch used for steering and braking.",
+      "materials": [
+        "rubber compound",
+        "casing fabric"
+      ],
+      "standards": [
+        "rim fit, width and pressure limits are tire/rim-specific"
+      ],
+      "commonSymptoms": [
+        "cuts",
+        "punctures",
+        "sidewall damage",
+        "wear",
+        "pressure loss"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.front-wheel",
+        "bike.road.r1.front-rim"
+      ],
+      "aliases": [
+        "tyre",
+        "front tyre"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.rear-tire",
+      "summary": "Rear road-contact tire.",
+      "function": "Provides traction and transmits much of the bicycle’s drive force to the road.",
+      "materials": [
+        "rubber compound",
+        "casing fabric"
+      ],
+      "standards": [
+        "rim fit, width and pressure limits are tire/rim-specific"
+      ],
+      "commonSymptoms": [
+        "cuts",
+        "punctures",
+        "sidewall damage",
+        "wear",
+        "pressure loss"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.rear-wheel",
+        "bike.road.r1.rear-rim"
+      ],
+      "aliases": [
+        "tyre",
+        "rear tyre"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.front-rim",
+      "summary": "Structural hoop of the front wheel.",
+      "function": "Supports the tire and provides the outer anchor structure for spokes.",
+      "materials": [
+        "carbon-fiber composite"
+      ],
+      "standards": [
+        "tire compatibility and maximum pressure depend on the rim"
+      ],
+      "commonSymptoms": [
+        "cracks",
+        "impact damage",
+        "spoke-bed damage",
+        "out-of-true condition"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.front-wheel",
+        "bike.road.r1.front-tire",
+        "bike.road.r1.front-hub"
+      ],
+      "aliases": [
+        "wheel rim",
+        "front rim"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.rear-rim",
+      "summary": "Structural hoop of the rear wheel.",
+      "function": "Supports the rear tire and distributes spoke loads around the driven wheel.",
+      "materials": [
+        "carbon-fiber composite"
+      ],
+      "standards": [
+        "tire compatibility and maximum pressure depend on the rim"
+      ],
+      "commonSymptoms": [
+        "cracks",
+        "impact damage",
+        "spoke-bed damage",
+        "out-of-true condition"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.rear-wheel",
+        "bike.road.r1.rear-tire",
+        "bike.road.r1.rear-hub"
+      ],
+      "aliases": [
+        "wheel rim",
+        "rear rim"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.front-hub",
+      "summary": "Bearing-supported center of the front wheel.",
+      "function": "Allows the front wheel to rotate around the axle and anchors the spokes and brake rotor.",
+      "materials": [
+        "anodized aluminium",
+        "steel bearings"
+      ],
+      "standards": [
+        "axle and rotor interfaces must match the fork and brake system"
+      ],
+      "commonSymptoms": [
+        "bearing roughness",
+        "bearing play",
+        "damaged axle interface"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.front-wheel",
+        "bike.road.r1.front-rim",
+        "bike.road.r1.front-rotor",
+        "bike.road.r1.front-thru-axle"
+      ],
+      "aliases": [
+        "hub",
+        "front bearing"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.rear-hub",
+      "summary": "Bearing and freehub center of the rear wheel.",
+      "function": "Supports wheel rotation and houses the freehub mechanism that carries the cassette.",
+      "materials": [
+        "anodized aluminium",
+        "steel bearings"
+      ],
+      "standards": [
+        "axle, freehub and rotor interfaces must match surrounding components"
+      ],
+      "commonSymptoms": [
+        "bearing roughness",
+        "bearing play",
+        "freehub skipping or noise"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.rear-wheel",
+        "bike.road.r1.rear-rim",
+        "bike.road.r1.rear-rotor",
+        "bike.road.r1.cassette",
+        "bike.road.r1.rear-thru-axle"
+      ],
+      "aliases": [
+        "hub",
+        "freehub",
+        "rear bearing"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.front-rotor",
+      "summary": "Front disc-brake friction rotor.",
+      "function": "Rotates with the front hub and passes through the stationary caliper so pad friction can slow the wheel.",
+      "materials": [
+        "stainless steel"
+      ],
+      "standards": [
+        "rotor mount, diameter and thickness must match the brake system"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "warping or runout",
+        "scoring",
+        "contamination",
+        "overheating"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.front-hub",
+        "bike.road.r1.front-caliper",
+        "bike.road.r1.front-wheel"
+      ],
+      "aliases": [
+        "disc",
+        "brake disc",
+        "front disc"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.rear-rotor",
+      "summary": "Rear disc-brake friction rotor.",
+      "function": "Rotates with the rear hub and provides the friction surface for the rear brake caliper.",
+      "materials": [
+        "stainless steel"
+      ],
+      "standards": [
+        "rotor mount, diameter and thickness must match the brake system"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "warping or runout",
+        "scoring",
+        "contamination",
+        "overheating"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.rear-hub",
+        "bike.road.r1.rear-caliper",
+        "bike.road.r1.rear-wheel"
+      ],
+      "aliases": [
+        "disc",
+        "brake disc",
+        "rear disc"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.front-caliper",
+      "summary": "Front disc-brake caliper.",
+      "function": "Holds brake pads and clamps the front rotor to generate braking friction.",
+      "materials": [
+        "anodized aluminium",
+        "steel hardware"
+      ],
+      "standards": [
+        "mount format, rotor size and hydraulic/mechanical system must be compatible"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "leaks",
+        "uneven pad wear",
+        "sticking pistons",
+        "poor braking"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.front-rotor",
+        "bike.road.r1.fork",
+        "bike.road.r1.front-wheel"
+      ],
+      "aliases": [
+        "brake caliper",
+        "front brake"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.rear-caliper",
+      "summary": "Rear disc-brake caliper.",
+      "function": "Holds brake pads and clamps the rear rotor to generate rear-wheel braking friction.",
+      "materials": [
+        "anodized aluminium",
+        "steel hardware"
+      ],
+      "standards": [
+        "mount format, rotor size and hydraulic/mechanical system must be compatible"
+      ],
+      "commonSymptoms": [
+        "rubbing",
+        "leaks",
+        "uneven pad wear",
+        "sticking pistons",
+        "poor braking"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.rear-rotor",
+        "bike.road.r1.frame",
+        "bike.road.r1.rear-wheel"
+      ],
+      "aliases": [
+        "brake caliper",
+        "rear brake"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.handlebar",
+      "summary": "Primary steering and hand-contact control bar.",
+      "function": "Gives the rider leverage over steering and supports controls and hand positions.",
+      "materials": [
+        "carbon-fiber composite",
+        "bar tape"
+      ],
+      "standards": [
+        "diameter, reach and control compatibility are model-specific"
+      ],
+      "commonSymptoms": [
+        "cracks",
+        "impact damage",
+        "slipping controls",
+        "damaged tape"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.stem",
+        "bike.road.r1.left-shifter",
+        "bike.road.r1.right-shifter",
+        "bike.road.r1.fork"
+      ],
+      "aliases": [
+        "drop bar",
+        "bars",
+        "cockpit"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.stem",
+      "summary": "Clamp linking handlebar to the steering assembly.",
+      "function": "Sets handlebar position and transfers steering input into the steerer/fork.",
+      "materials": [
+        "anodized aluminium"
+      ],
+      "standards": [
+        "bar clamp and steerer clamp diameters must match"
+      ],
+      "commonSymptoms": [
+        "slipping",
+        "cracks",
+        "loose fasteners",
+        "damaged clamp surfaces"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.handlebar",
+        "bike.road.r1.headset",
+        "bike.road.r1.fork"
+      ],
+      "aliases": [
+        "cockpit stem",
+        "handlebar stem"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.left-shifter",
+      "summary": "Left integrated road shift/brake control.",
+      "function": "Provides a hand control for braking and, depending on drivetrain layout, shifting.",
+      "materials": [
+        "polymer",
+        "aluminium"
+      ],
+      "standards": [
+        "control protocol and brake actuation must match the drivetrain/brake system"
+      ],
+      "commonSymptoms": [
+        "sticky lever",
+        "poor shifting",
+        "brake-control problems",
+        "crash damage"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.handlebar",
+        "bike.road.r1.front-derailleur",
+        "bike.road.r1.front-caliper"
+      ],
+      "aliases": [
+        "brifter",
+        "left lever",
+        "shift brake lever"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.right-shifter",
+      "summary": "Right integrated road shift/brake control.",
+      "function": "Provides braking and commonly rear-derailleur shifting from the handlebar.",
+      "materials": [
+        "polymer",
+        "aluminium"
+      ],
+      "standards": [
+        "control protocol and brake actuation must match the drivetrain/brake system"
+      ],
+      "commonSymptoms": [
+        "sticky lever",
+        "poor shifting",
+        "brake-control problems",
+        "crash damage"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.handlebar",
+        "bike.road.r1.rear-derailleur",
+        "bike.road.r1.rear-caliper"
+      ],
+      "aliases": [
+        "brifter",
+        "right lever",
+        "shift brake lever"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.saddle",
+      "summary": "Primary seated rider contact point.",
+      "function": "Supports the rider and allows weight distribution around the pelvis while pedaling.",
+      "materials": [
+        "synthetic cover",
+        "foam",
+        "metal or composite rails"
+      ],
+      "standards": [
+        "rail and seatpost clamp compatibility must match"
+      ],
+      "commonSymptoms": [
+        "damaged rails",
+        "loose shell",
+        "torn cover",
+        "persistent unwanted movement"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.seatpost",
+        "bike.road.r1.frame"
+      ],
+      "aliases": [
+        "seat",
+        "bike saddle"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.seatpost",
+      "summary": "Post connecting saddle to frame.",
+      "function": "Sets saddle height and supports rider weight while clamped inside the frame.",
+      "materials": [
+        "carbon-fiber composite"
+      ],
+      "standards": [
+        "seatpost diameter and saddle-rail clamp compatibility must match"
+      ],
+      "commonSymptoms": [
+        "slipping",
+        "cracks",
+        "clamp damage",
+        "seized interface"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.saddle",
+        "bike.road.r1.frame"
+      ],
+      "aliases": [
+        "seat post"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.crankset",
+      "summary": "Rotating crank and spindle/chainring assembly.",
+      "function": "Turns rider pedal force into chainring torque at the front of the drivetrain.",
+      "materials": [
+        "carbon-fiber composite",
+        "aluminium"
+      ],
+      "standards": [
+        "bottom-bracket/spindle and chainring configuration must be compatible"
+      ],
+      "commonSymptoms": [
+        "creaking",
+        "play",
+        "crank damage",
+        "loose interfaces"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.left-crank",
+        "bike.road.r1.right-crank",
+        "bike.road.r1.large-chainring",
+        "bike.road.r1.small-chainring",
+        "bike.road.r1.bottom-bracket",
+        "bike.road.r1.left-pedal",
+        "bike.road.r1.right-pedal"
+      ],
+      "aliases": [
+        "cranks",
+        "chainset"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.left-crank",
+      "summary": "Left crank arm.",
+      "function": "Connects the left pedal to the crank spindle so rider force contributes to crank rotation.",
+      "materials": [
+        "carbon-fiber composite"
+      ],
+      "standards": [
+        "pedal thread and crank/spindle interface must match"
+      ],
+      "commonSymptoms": [
+        "cracks",
+        "loose crank",
+        "damaged pedal thread"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.crankset",
+        "bike.road.r1.left-pedal",
+        "bike.road.r1.bottom-bracket"
+      ],
+      "aliases": [
+        "left crank arm"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.right-crank",
+      "summary": "Right crank arm.",
+      "function": "Connects the right pedal to the crank and commonly supports or integrates the chainring assembly.",
+      "materials": [
+        "carbon-fiber composite"
+      ],
+      "standards": [
+        "pedal thread and crank/chainring interfaces must match"
+      ],
+      "commonSymptoms": [
+        "cracks",
+        "loose crank",
+        "damaged pedal thread"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.crankset",
+        "bike.road.r1.right-pedal",
+        "bike.road.r1.large-chainring",
+        "bike.road.r1.small-chainring"
+      ],
+      "aliases": [
+        "right crank arm"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.large-chainring",
+      "summary": "Larger front drivetrain sprocket.",
+      "function": "Engages the chain and creates a higher gear ratio than the smaller chainring for a given rear sprocket.",
+      "materials": [
+        "aluminium alloy"
+      ],
+      "standards": [
+        "bolt/direct-mount pattern and chain/drivetrain speed must be compatible"
+      ],
+      "commonSymptoms": [
+        "worn teeth",
+        "bent teeth",
+        "poor front shifting"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.crankset",
+        "bike.road.r1.chain",
+        "bike.road.r1.small-chainring",
+        "bike.road.r1.front-derailleur"
+      ],
+      "aliases": [
+        "big ring",
+        "outer chainring"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.small-chainring",
+      "summary": "Smaller front drivetrain sprocket.",
+      "function": "Engages the chain with a lower front tooth count, producing easier ratios for climbing or lower speeds.",
+      "materials": [
+        "aluminium alloy"
+      ],
+      "standards": [
+        "bolt/direct-mount pattern and chain/drivetrain speed must be compatible"
+      ],
+      "commonSymptoms": [
+        "worn teeth",
+        "bent teeth",
+        "poor front shifting"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.crankset",
+        "bike.road.r1.chain",
+        "bike.road.r1.large-chainring",
+        "bike.road.r1.front-derailleur"
+      ],
+      "aliases": [
+        "inner ring",
+        "small ring"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.bottom-bracket",
+      "summary": "Bearing system supporting crank rotation in the frame.",
+      "function": "Allows the crank spindle to rotate under pedaling loads while locating it in the frame.",
+      "materials": [
+        "steel bearings",
+        "aluminium or polymer cups"
+      ],
+      "standards": [
+        "shell and spindle standards must match"
+      ],
+      "commonSymptoms": [
+        "play",
+        "roughness",
+        "creaking",
+        "contamination"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.frame",
+        "bike.road.r1.crankset",
+        "bike.road.r1.left-crank",
+        "bike.road.r1.right-crank"
+      ],
+      "aliases": [
+        "bb",
+        "crank bearings"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.chain",
+      "summary": "Flexible toothed drivetrain link.",
+      "function": "Transfers motion and force from the front chainring to the selected rear cassette sprocket.",
+      "materials": [
+        "hardened steel"
+      ],
+      "standards": [
+        "width and link design must match drivetrain speed and sprockets"
+      ],
+      "commonSymptoms": [
+        "elongation/wear",
+        "stiff links",
+        "rust",
+        "noise",
+        "skipping"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.large-chainring",
+        "bike.road.r1.small-chainring",
+        "bike.road.r1.cassette",
+        "bike.road.r1.rear-derailleur",
+        "bike.road.r1.front-derailleur"
+      ],
+      "aliases": [
+        "bike chain",
+        "drive chain"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.cassette",
+      "summary": "Stack of rear sprockets.",
+      "function": "Provides multiple rear tooth counts so the rider can change gear ratio while the cassette drives the freehub.",
+      "materials": [
+        "steel",
+        "aluminium"
+      ],
+      "standards": [
+        "freehub body, sprocket count and drivetrain compatibility must match"
+      ],
+      "commonSymptoms": [
+        "worn teeth",
+        "skipping under load",
+        "loose lockring",
+        "damaged sprockets"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.chain",
+        "bike.road.r1.rear-hub",
+        "bike.road.r1.rear-derailleur"
+      ],
+      "aliases": [
+        "rear cogs",
+        "sprocket cluster"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.rear-derailleur",
+      "summary": "Rear chain-guiding and tensioning mechanism.",
+      "function": "Moves the chain laterally across cassette sprockets and maintains chain tension as sprocket size changes.",
+      "materials": [
+        "aluminium",
+        "carbon-fiber composite",
+        "steel springs"
+      ],
+      "standards": [
+        "shifter protocol, cassette range and chain capacity must be compatible"
+      ],
+      "commonSymptoms": [
+        "poor indexing",
+        "bent hanger symptoms",
+        "sluggish movement",
+        "excess pulley play"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.chain",
+        "bike.road.r1.cassette",
+        "bike.road.r1.right-shifter",
+        "bike.road.r1.rear-wheel"
+      ],
+      "aliases": [
+        "rear mech",
+        "derailleur",
+        "rear derailleur"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.front-derailleur",
+      "summary": "Front chain guide for multi-chainring drivetrains.",
+      "function": "Moves the chain between front chainrings while controlling lateral chain position.",
+      "materials": [
+        "aluminium",
+        "steel"
+      ],
+      "standards": [
+        "mount, chainring size and shifter/control system must match"
+      ],
+      "commonSymptoms": [
+        "chain rub",
+        "slow shift",
+        "chain drop",
+        "poor alignment"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.chain",
+        "bike.road.r1.large-chainring",
+        "bike.road.r1.small-chainring",
+        "bike.road.r1.left-shifter"
+      ],
+      "aliases": [
+        "front mech",
+        "front derailleur"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.left-pedal",
+      "summary": "Left rider foot interface.",
+      "function": "Provides a rotating platform or retention mechanism for transferring left-leg force into the crank.",
+      "materials": [
+        "aluminium"
+      ],
+      "standards": [
+        "pedal thread and shoe/cleat interface must match"
+      ],
+      "commonSymptoms": [
+        "bearing play",
+        "binding",
+        "damaged body",
+        "retention wear"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.left-crank",
+        "bike.road.r1.crankset"
+      ],
+      "aliases": [
+        "pedal"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.right-pedal",
+      "summary": "Right rider foot interface.",
+      "function": "Provides a rotating platform or retention mechanism for transferring right-leg force into the crank.",
+      "materials": [
+        "aluminium"
+      ],
+      "standards": [
+        "pedal thread and shoe/cleat interface must match"
+      ],
+      "commonSymptoms": [
+        "bearing play",
+        "binding",
+        "damaged body",
+        "retention wear"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.right-crank",
+        "bike.road.r1.crankset"
+      ],
+      "aliases": [
+        "pedal"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.front-thru-axle",
+      "summary": "Removable axle securing the front hub to the fork.",
+      "function": "Passes through the fork and hub to locate and clamp the front wheel assembly.",
+      "materials": [
+        "aluminium alloy"
+      ],
+      "standards": [
+        "diameter, length and thread must match the fork/hub system"
+      ],
+      "commonSymptoms": [
+        "damaged threads",
+        "bending",
+        "poor engagement",
+        "contamination"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.fork",
+        "bike.road.r1.front-hub",
+        "bike.road.r1.front-wheel"
+      ],
+      "aliases": [
+        "front axle",
+        "thru axle",
+        "through axle"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.rear-thru-axle",
+      "summary": "Removable axle securing the rear hub to the frame.",
+      "function": "Passes through frame dropouts and rear hub to locate and clamp the rear wheel.",
+      "materials": [
+        "aluminium alloy"
+      ],
+      "standards": [
+        "diameter, length and thread must match the frame/hub system"
+      ],
+      "commonSymptoms": [
+        "damaged threads",
+        "bending",
+        "poor engagement",
+        "contamination"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.frame",
+        "bike.road.r1.rear-hub",
+        "bike.road.r1.rear-wheel"
+      ],
+      "aliases": [
+        "rear axle",
+        "thru axle",
+        "through axle"
+      ]
+    },
+    {
+      "componentId": "bike.road.r1.headset",
+      "summary": "Steering bearing assembly between frame and fork.",
+      "function": "Supports the fork steerer in the frame while allowing smooth rotation about the steering axis.",
+      "materials": [
+        "steel bearings",
+        "aluminium"
+      ],
+      "standards": [
+        "bearing geometry and steerer/head-tube interfaces must match"
+      ],
+      "commonSymptoms": [
+        "play",
+        "rough steering",
+        "notchy bearings",
+        "creaking"
+      ],
+      "relatedComponentIds": [
+        "bike.road.r1.frame",
+        "bike.road.r1.fork",
+        "bike.road.r1.stem"
+      ],
+      "aliases": [
+        "steering bearings",
+        "head set"
+      ]
+    }
+  ]
+}
