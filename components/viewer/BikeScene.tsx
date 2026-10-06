@@ -107,7 +107,14 @@ export function BikeScene(props: BikeSceneProps) {
         (props.comparisonBikeId === "bike.mtb.m1" ? (
           <MtbPrototypeBike {...ghostProps} />
         ) : (
-          <PrototypeBike {...ghostProps} />
+          <PrototypeBike
+            {...ghostProps}
+            drivetrainDemo={{
+              running: false,
+              cadenceRpm: 0,
+              gearIndex: 2,
+            }}
+          />
         ))}
 
       {props.bikeId === "bike.mtb.m1" ? (
