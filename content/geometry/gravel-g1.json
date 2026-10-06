@@ -1,0 +1,21 @@
+{
+  "bikeId": "bike.gravel.g1",
+  "source": "bike-atlas-reference",
+  "sizeLabel": "Reference M/L",
+  "wheelFormat": "700C",
+  "wheelbaseMm": 1045,
+  "reachMm": 402,
+  "stackMm": 590,
+  "headAngleDeg": 71,
+  "seatAngleDeg": 73.5,
+  "chainstayMm": 425,
+  "bottomBracketDropMm": 70,
+  "tireWidthMm": 45,
+  "handlebarWidthMm": 460,
+  "frontTravelMm": 0,
+  "rearTravelMm": 0,
+  "notes": [
+    "Bike Atlas reference geometry for the generic Gravel G1 all-road archetype.",
+    "Not a manufacturer size chart, fit recommendation or claim about every gravel bicycle."
+  ]
+}
