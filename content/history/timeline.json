@@ -1,0 +1,612 @@
+{
+  "version": 1,
+  "eras": [
+    {
+      "id": "origins",
+      "label": "Origins",
+      "startYear": 1817,
+      "endYear": 1862
+    },
+    {
+      "id": "mechanical-bicycle",
+      "label": "Mechanical bicycle",
+      "startYear": 1863,
+      "endYear": 1884
+    },
+    {
+      "id": "modern-layout",
+      "label": "Modern layout",
+      "startYear": 1885,
+      "endYear": 1901
+    },
+    {
+      "id": "gearing",
+      "label": "Gearing & utility",
+      "startYear": 1902,
+      "endYear": 1969
+    },
+    {
+      "id": "off-road",
+      "label": "Off-road evolution",
+      "startYear": 1970,
+      "endYear": 1999
+    },
+    {
+      "id": "specialization",
+      "label": "Modern specialization",
+      "startYear": 2000
+    }
+  ],
+  "events": [
+    {
+      "id": "1817-draisine-steering",
+      "startYear": 1817,
+      "yearLabel": "1817",
+      "dateKind": "year",
+      "title": "The steerable two-wheeler",
+      "subtitle": "Karl Drais's running machine establishes the balance-and-steer layout.",
+      "summary": "The draisine had no pedals, chain or pneumatic tires, but its steerable front wheel and in-line two-wheel layout established the core control problem every later bicycle would solve: balance while steering a single-track vehicle.",
+      "engineeringShift": [
+        "Two in-line wheels become a practical steerable vehicle layout.",
+        "The front wheel becomes the rider's directional control.",
+        "Rider balance becomes fundamental to the machine rather than being supplied by extra wheels."
+      ],
+      "categoryIds": [
+        "steering",
+        "architecture"
+      ],
+      "lineageTargets": [
+        {
+          "bikeId": "bike.road.r1",
+          "componentId": "bike.road.r1.fork",
+          "label": "Road R1 fork"
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.fork",
+          "label": "MTB M1 fork"
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.handlebar",
+          "label": "Urban U1 steering"
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.headset",
+          "label": "Gravel G1 headset"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Draisine",
+          "organization": "Smithsonian Institution",
+          "url": "https://www.si.edu/collections/snapshot/draisine"
+        },
+        {
+          "title": "The Development of the Velocipede",
+          "organization": "Smithsonian Institution",
+          "url": "https://www.si.edu/spotlight/si-bikes/si-bikes-velocipede"
+        }
+      ]
+    },
+    {
+      "id": "1863-pedal-velocipede",
+      "startYear": 1863,
+      "yearLabel": "c. 1863",
+      "dateKind": "approximate",
+      "title": "Pedals turn the rider into the engine",
+      "subtitle": "Pedals are added directly to the front axle of the velocipede.",
+      "summary": "Adding pedals created a continuously human-powered two-wheeler. The pedals drove the steering wheel directly, so propulsion and steering were still mechanically coupled in a way modern bicycles later abandoned.",
+      "engineeringShift": [
+        "Rotary pedaling replaces ground-pushing as the normal propulsion method.",
+        "Cranks and pedals create a repeatable human-to-machine power interface.",
+        "Direct front-wheel drive exposes the need to separate steering geometry from gear ratio."
+      ],
+      "categoryIds": [
+        "propulsion",
+        "architecture"
+      ],
+      "lineageTargets": [
+        {
+          "bikeId": "bike.road.r1",
+          "componentId": "bike.road.r1.crankset",
+          "label": "Road R1 crankset"
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.crankset",
+          "label": "Urban U1 crankset"
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.left-pedal",
+          "label": "Gravel G1 pedal"
+        }
+      ],
+      "caveat": "Smithsonian notes that credit for adding pedals in the Michaux workshop cannot be assigned with certainty between Pierre Michaux and Pierre Lallement.",
+      "sources": [
+        {
+          "title": "The Development of the Velocipede",
+          "organization": "Smithsonian Institution",
+          "url": "https://www.si.edu/spotlight/si-bikes/si-bikes-velocipede"
+        }
+      ]
+    },
+    {
+      "id": "1871-ordinary-wire-wheel",
+      "startYear": 1871,
+      "yearLabel": "1871",
+      "dateKind": "year",
+      "title": "The high-wheel search for speed",
+      "subtitle": "James Starley's Ariel represents the wire-spoked Ordinary era.",
+      "summary": "With pedals still driving the front wheel directly, increasing wheel diameter increased distance traveled per pedal revolution. Wire-spoked high wheels became lighter and faster, but placed the rider high above and only slightly behind the front axle.",
+      "engineeringShift": [
+        "Tensioned wire spokes reduce wheel mass compared with heavier earlier wheel construction.",
+        "Large driven-wheel diameter acts as a mechanical route to higher speed.",
+        "The high center of gravity makes forward crashes a major design weakness."
+      ],
+      "categoryIds": [
+        "wheels-tires",
+        "architecture",
+        "propulsion"
+      ],
+      "lineageTargets": [
+        {
+          "bikeId": "bike.road.r1",
+          "componentId": "bike.road.r1.front-wheel",
+          "label": "Road R1 front wheel"
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.front-wheel",
+          "label": "MTB M1 front wheel"
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.front-rim",
+          "label": "Gravel G1 rim"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Rise of the Ordinary",
+          "organization": "Smithsonian Institution",
+          "url": "https://www.si.edu/spotlight/si-bikes/si-bikes-ordinary"
+        }
+      ]
+    },
+    {
+      "id": "1880s-safety-bicycle",
+      "startYear": 1885,
+      "endYear": 1889,
+      "yearLabel": "1880s",
+      "dateKind": "period",
+      "title": "The safety bicycle converges on the modern layout",
+      "subtitle": "Equal-sized wheels, rear chain drive and gearing replace the high-wheel architecture.",
+      "summary": "Safety bicycles moved the rider lower between similarly sized wheels and used chain drive to decouple pedal gearing from wheel diameter. This architecture is recognizably ancestral to all four modern Bike Atlas bikes.",
+      "engineeringShift": [
+        "Chain drive moves propulsion to the rear wheel.",
+        "Gear ratio no longer depends directly on driven-wheel diameter.",
+        "Equal-sized wheels and a lower rider position improve practical control relative to the Ordinary."
+      ],
+      "categoryIds": [
+        "architecture",
+        "drivetrain",
+        "propulsion"
+      ],
+      "lineageTargets": [
+        {
+          "bikeId": "bike.road.r1",
+          "componentId": "bike.road.r1.chain",
+          "label": "Road R1 chain drive"
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.frame",
+          "label": "MTB M1 frame layout"
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.chain",
+          "label": "Urban U1 chain drive"
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.frame",
+          "label": "Gravel G1 frame layout"
+        }
+      ],
+      "caveat": "The modern bicycle layout emerged through multiple designs and manufacturers rather than from one clean invention date; the timeline uses the 1880s as the convergence period.",
+      "sources": [
+        {
+          "title": "The Safety Bicycle and Beyond",
+          "organization": "Smithsonian Institution",
+          "url": "https://www.si.edu/spotlight/si-bikes/si-bikes-safety"
+        },
+        {
+          "title": "Rise of the Ordinary",
+          "organization": "Smithsonian Institution",
+          "url": "https://www.si.edu/spotlight/si-bikes/si-bikes-ordinary"
+        }
+      ]
+    },
+    {
+      "id": "1888-pneumatic-tire",
+      "startYear": 1888,
+      "yearLabel": "1888",
+      "dateKind": "year",
+      "title": "Air becomes part of the suspension system",
+      "subtitle": "John Boyd Dunlop develops a practical pneumatic bicycle tire.",
+      "summary": "Pneumatic tires transformed rolling comfort and efficiency by putting an air spring between wheel and road. Tire volume and pressure remain central engineering variables from narrow road tires to high-volume mountain and gravel setups.",
+      "engineeringShift": [
+        "An inflated tire deforms around surface irregularities instead of transmitting every impact through a solid tire.",
+        "Pressure becomes a tunable support variable.",
+        "Tire construction becomes a major contributor to comfort, rolling behavior and traction."
+      ],
+      "categoryIds": [
+        "wheels-tires"
+      ],
+      "lineageTargets": [
+        {
+          "bikeId": "bike.road.r1",
+          "componentId": "bike.road.r1.front-tire",
+          "label": "Road R1 tire"
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.front-tire",
+          "label": "MTB M1 tire"
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.front-tire",
+          "label": "Urban U1 tire"
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.front-tire",
+          "label": "Gravel G1 tire"
+        }
+      ],
+      "caveat": "Dunlop's 1888 work made the pneumatic tire practical for bicycles, but Robert William Thomson had patented an earlier pneumatic tire concept in the 1840s.",
+      "sources": [
+        {
+          "title": "The Dunlop tyre: Air apparent",
+          "organization": "National Museums Scotland",
+          "url": "https://www.nms.ac.uk/discover-catalogue/dunlop-tyre-air-apparent"
+        },
+        {
+          "title": "The Safety Bicycle and Beyond",
+          "organization": "Smithsonian Institution",
+          "url": "https://www.si.edu/spotlight/si-bikes/si-bikes-safety"
+        }
+      ]
+    },
+    {
+      "id": "1890s-bicycle-transport-boom",
+      "startYear": 1890,
+      "endYear": 1899,
+      "yearLabel": "1890s",
+      "dateKind": "period",
+      "title": "The bicycle becomes everyday transport",
+      "subtitle": "The safety layout, pneumatic tires and improving brakes drive a major mobility boom.",
+      "summary": "By the 1890s the bicycle was not merely a sporting experiment. It became practical individual transportation for commuting, deliveries, recreation and sport, establishing the utility lineage that remains visible in city bicycles.",
+      "engineeringShift": [
+        "Reliability and comfort turn bicycle technology into practical daily mobility.",
+        "Brake development becomes increasingly important as speeds and usage grow.",
+        "The bicycle becomes a platform that can be specialized for work, transport and sport."
+      ],
+      "categoryIds": [
+        "utility",
+        "sport",
+        "architecture"
+      ],
+      "lineageTargets": [
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.frame",
+          "label": "Urban U1 utility chassis"
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.front-caliper",
+          "label": "Urban U1 braking"
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.rear-rack",
+          "label": "Urban U1 cargo system"
+        }
+      ],
+      "sources": [
+        {
+          "title": "The Safety Bicycle and Beyond",
+          "organization": "Smithsonian Institution",
+          "url": "https://www.si.edu/spotlight/si-bikes/si-bikes-safety"
+        }
+      ]
+    },
+    {
+      "id": "1902-internal-gear-hub",
+      "startYear": 1902,
+      "yearLabel": "1902",
+      "dateKind": "year",
+      "title": "Multiple gears move inside the hub",
+      "subtitle": "Sturmey-Archer develops its first three-speed gear hub.",
+      "summary": "Internal gearing offered multiple ratios while keeping the main gear mechanism inside the rear hub shell. That protected architecture remains a major utility-bike alternative to exposed derailleur systems.",
+      "engineeringShift": [
+        "Selectable ratios can be packaged inside the wheel hub.",
+        "The external chain can remain on one rear sprocket.",
+        "Shifting architecture can prioritize enclosure and everyday durability rather than exposed multi-sprocket mechanisms."
+      ],
+      "categoryIds": [
+        "drivetrain",
+        "utility"
+      ],
+      "lineageTargets": [
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.rear-hub",
+          "label": "Urban U1 internal-gear hub"
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.right-shifter",
+          "label": "Urban U1 hub shifter"
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.rear-sprocket",
+          "label": "Urban U1 single sprocket"
+        }
+      ],
+      "sources": [
+        {
+          "title": "About — Over a Century of Innovation",
+          "organization": "Sturmey-Archer",
+          "url": "https://sturmey-archer.com/about/"
+        }
+      ]
+    },
+    {
+      "id": "1937-derailleur-tour",
+      "startYear": 1937,
+      "yearLabel": "1937",
+      "dateKind": "year",
+      "title": "Derailleur gearing enters cycling's biggest stage",
+      "subtitle": "The Tour de France permits derailleur systems.",
+      "summary": "Derailleurs had existed in multiple forms before 1937, but their acceptance in the Tour is a useful marker of the technology's maturation. Moving the chain across multiple sprockets became the dominant exposed multi-ratio architecture for performance bicycles.",
+      "engineeringShift": [
+        "Gear changes no longer require wheel reversal or stopping to alter a fixed ratio.",
+        "Multiple rear sprockets provide selectable ratios in a light external system.",
+        "The rear derailleur combines lateral chain guidance with chain-length management."
+      ],
+      "categoryIds": [
+        "drivetrain",
+        "sport"
+      ],
+      "lineageTargets": [
+        {
+          "bikeId": "bike.road.r1",
+          "componentId": "bike.road.r1.rear-derailleur",
+          "label": "Road R1 rear derailleur"
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.rear-derailleur",
+          "label": "MTB M1 rear derailleur"
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.rear-derailleur",
+          "label": "Gravel G1 rear derailleur"
+        }
+      ],
+      "caveat": "1937 marks Tour de France acceptance, not the invention of the derailleur; derailleur mechanisms existed decades earlier.",
+      "sources": [
+        {
+          "title": "Le Tour de France — exposition virtuelle",
+          "organization": "Conservatoire national des arts et métiers",
+          "url": "https://cnum.cnam.fr/expo_virtuelle/velo/tour_de_france.html"
+        }
+      ]
+    },
+    {
+      "id": "1970s-mountain-bike-emergence",
+      "startYear": 1970,
+      "endYear": 1979,
+      "yearLabel": "1970s",
+      "dateKind": "period",
+      "title": "Off-road riders turn modification into a new bicycle family",
+      "subtitle": "Riders in several U.S. communities adapt fat-tire bicycles for rough terrain; Marin's Repack becomes a crucial development hub.",
+      "summary": "Early mountain biking was an evolving enthusiast movement rather than a single invention. Riders combined robust frames, wide tires, stronger brakes and multi-speed drivetrains, and the repeated experimentation around Marin County's Repack scene accelerated purpose-built off-road bicycle development.",
+      "engineeringShift": [
+        "Wide tires and robust frames are combined with modern gearing and braking for sustained off-road use.",
+        "Component durability, descending control and climbing range become first-order design requirements.",
+        "Purpose-built off-road geometry begins to diverge from road and utility bicycles."
+      ],
+      "categoryIds": [
+        "off-road",
+        "drivetrain",
+        "wheels-tires"
+      ],
+      "lineageTargets": [
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.frame",
+          "label": "MTB M1 trail frame"
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.front-tire",
+          "label": "MTB M1 trail tire"
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.rear-derailleur",
+          "label": "MTB M1 wide-range drivetrain"
+        }
+      ],
+      "caveat": "Mountain biking did not originate from one person or one location. Marin's Repack is represented because it was a documented focal point for experimentation and organized competition.",
+      "sources": [
+        {
+          "title": "History",
+          "organization": "Marin Museum of Bicycling / Mountain Bike Hall of Fame",
+          "url": "https://mmbhof.org/mtn-bike-hall-of-fame/history/"
+        },
+        {
+          "title": "Repack History",
+          "organization": "Marin Museum of Bicycling / Mountain Bike Hall of Fame",
+          "url": "https://mmbhof.org/mtn-bike-hall-of-fame/history/repack-history/"
+        }
+      ]
+    },
+    {
+      "id": "1976-repack-race",
+      "startYear": 1976,
+      "yearLabel": "1976",
+      "dateKind": "year",
+      "title": "Repack makes off-road development repeatable",
+      "subtitle": "The first Repack time trial gives riders a shared test course and competitive feedback loop.",
+      "summary": "The first Repack race was held on 21 October 1976. Repeated races brought riders together around the same demanding descent, creating a visible test environment where brake, frame and component ideas could be compared and refined.",
+      "engineeringShift": [
+        "A repeated course turns component experimentation into comparative feedback.",
+        "Brake heat and control expose the limits of repurposed cruiser hardware.",
+        "Off-road riding begins to generate its own design priorities rather than borrowing unchanged road technology."
+      ],
+      "categoryIds": [
+        "off-road",
+        "sport"
+      ],
+      "lineageTargets": [
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.front-caliper",
+          "label": "MTB M1 braking"
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.fork",
+          "label": "MTB M1 suspension fork"
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.rear-shock",
+          "label": "MTB M1 rear suspension"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Repack History",
+          "organization": "Marin Museum of Bicycling / Mountain Bike Hall of Fame",
+          "url": "https://mmbhof.org/mtn-bike-hall-of-fame/history/repack-history/"
+        }
+      ]
+    },
+    {
+      "id": "1990s-mtb-mainstream",
+      "startYear": 1990,
+      "endYear": 1996,
+      "yearLabel": "1990–1996",
+      "dateKind": "period",
+      "title": "Mountain biking becomes an international discipline",
+      "subtitle": "UCI World Championships begin in 1990; mountain bike joins the Olympics in 1996.",
+      "summary": "By the 1990s mountain biking had grown from regional experimentation into a globally standardized competitive discipline. That maturity encouraged increasingly specialized frames, suspension, brakes, tires and race formats.",
+      "engineeringShift": [
+        "Dedicated off-road equipment becomes a mature global product category.",
+        "Suspension and purpose-built geometry develop around distinct off-road disciplines.",
+        "Mountain-bike component systems diverge further from road bicycle requirements."
+      ],
+      "categoryIds": [
+        "off-road",
+        "sport"
+      ],
+      "lineageTargets": [
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.fork",
+          "label": "MTB M1 suspension fork"
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.rear-shock",
+          "label": "MTB M1 rear shock"
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.dropper-post",
+          "label": "MTB M1 modern trail specialization"
+        }
+      ],
+      "sources": [
+        {
+          "title": "UCI Mountain Bike World Championships: history",
+          "organization": "Union Cycliste Internationale",
+          "url": "https://www.uci.org/article/uci-mountain-bike-world-championships-the-history-the-formats-and-the-legends/5xzmwV5qEpY2gvEQWNUKru"
+        },
+        {
+          "title": "Cycling at the Olympic Games",
+          "organization": "Union Cycliste Internationale",
+          "url": "https://www.uci.org/article/cycling-at-the-olympic-games-an-ode-to-the-cultural-diversity-of-the-bicycle/e51X5qw3QcAJFIIf19JC7"
+        }
+      ]
+    },
+    {
+      "id": "today-specialized-branches",
+      "startYear": 2000,
+      "yearLabel": "Today",
+      "dateKind": "present",
+      "title": "One architecture, many specialized branches",
+      "subtitle": "Modern bicycles share nineteenth-century fundamentals while optimizing for radically different jobs.",
+      "summary": "The four Bike Atlas archetypes demonstrate how a common safety-bicycle lineage can branch into performance road, technical mountain, utility-city and gravel/all-road machines. The differences come from geometry, tires, controls, gearing, suspension, accessories and intended environment—not from abandoning the basic two-wheel chain-driven architecture.",
+      "engineeringShift": [
+        "Road bikes optimize low-loss paved speed and distance.",
+        "Mountain bikes optimize terrain control, suspension and traction.",
+        "Urban bikes optimize access, weather protection, cargo and low-maintenance utility.",
+        "Gravel bikes combine drop-bar efficiency with larger tires, wide gearing and mixed-surface adaptability."
+      ],
+      "categoryIds": [
+        "architecture",
+        "utility",
+        "off-road",
+        "sport"
+      ],
+      "lineageTargets": [
+        {
+          "bikeId": "bike.road.r1",
+          "componentId": "bike.road.r1.frame",
+          "label": "Road R1"
+        },
+        {
+          "bikeId": "bike.mtb.m1",
+          "componentId": "bike.mtb.m1.frame",
+          "label": "MTB M1"
+        },
+        {
+          "bikeId": "bike.urban.u1",
+          "componentId": "bike.urban.u1.frame",
+          "label": "Urban U1"
+        },
+        {
+          "bikeId": "bike.gravel.g1",
+          "componentId": "bike.gravel.g1.frame",
+          "label": "Gravel G1"
+        }
+      ],
+      "caveat": "This final event is Bike Atlas's engineering interpretation of modern specialization, not a claim that the four categories appeared at one specific historical moment.",
+      "sources": [
+        {
+          "title": "The Safety Bicycle and Beyond",
+          "organization": "Smithsonian Institution",
+          "url": "https://www.si.edu/spotlight/si-bikes/si-bikes-safety"
+        },
+        {
+          "title": "History",
+          "organization": "Marin Museum of Bicycling / Mountain Bike Hall of Fame",
+          "url": "https://mmbhof.org/mtn-bike-hall-of-fame/history/"
+        }
+      ]
+    }
+  ]
+}
