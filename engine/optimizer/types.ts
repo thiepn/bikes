@@ -89,6 +89,7 @@ export interface OptimizationResult {
   goal: OptimizationGoalProfile;
   constraints: OptimizationConstraints;
   baselineMetrics: OptimizationMetrics;
+  baselineScore: number;
   searchedStates: number;
   coherentStates: number;
   rejectedByGeometry: number;
