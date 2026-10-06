@@ -24,6 +24,11 @@ import {
 import { KnowledgeSearch } from "@/components/knowledge/KnowledgeSearch";
 import { ComparisonPanel } from "@/components/comparison/ComparisonPanel";
 import { BikeFinderPanel } from "@/components/finder/BikeFinderPanel";
+import { HistoryPanel } from "@/components/history/HistoryPanel";
+import {
+  HISTORY_EVENTS,
+  getHistoryEvent,
+} from "@/domain/history/catalog";
 import {
   decodeFinderAnswers,
   encodeFinderAnswers,
@@ -82,6 +87,10 @@ export function BikeViewer() {
   const [comparisonOpen, setComparisonOpen] = useState(false);
   const [finderOpen, setFinderOpen] = useState(false);
   const [finderAnswers, setFinderAnswers] = useState<FinderAnswers>({});
+  const [historyOpen, setHistoryOpen] = useState(false);
+  const [activeHistoryEventId, setActiveHistoryEventId] = useState(
+    HISTORY_EVENTS[0].id,
+  );
   const [comparisonBikeId, setComparisonBikeId] = useState(
     BIKE_CATALOG.find((bike) => bike.id !== ROAD_R1.id)?.id ?? ROAD_R1.id,
   );
@@ -295,6 +304,7 @@ export function BikeViewer() {
     setKnowledgeOpen(false);
     setComparisonOpen(false);
     setFinderOpen(false);
+    setHistoryOpen(false);
     setExperienceMode("explore");
 
     if (typeof window !== "undefined") {
@@ -316,6 +326,7 @@ export function BikeViewer() {
         "compare",
         "overlay",
         "finder",
+        "history",
       ]) {
         url.searchParams.delete(key);
       }
@@ -335,6 +346,7 @@ export function BikeViewer() {
       setComparisonOverlay(true);
       setComparisonOpen(true);
       setFinderOpen(false);
+      setHistoryOpen(false);
       setSelectedId(null);
       setHoveredId(null);
       setIsolated(false);
@@ -344,6 +356,57 @@ export function BikeViewer() {
       setWorkshopOpen(false);
       setKnowledgeOpen(false);
       setExperienceMode("explore");
+    },
+    [],
+  );
+
+  const openHistoryTarget = useCallback(
+    (bikeId: string, componentId: string) => {
+      const bike = getBikeById(bikeId);
+      const component = bike?.components.find(
+        (item) => item.id === componentId,
+      );
+      if (!bike || !component) return;
+
+      setActiveBikeId(bike.id);
+      setComparisonBikeId((current) =>
+        current === bike.id
+          ? (BIKE_CATALOG.find((item) => item.id !== bike.id)?.id ?? current)
+          : current,
+      );
+      setSelectedId(component.id);
+      setHoveredId(null);
+      setIsolated(false);
+      setMode("normal");
+      setExplosionAmount(0);
+      setHistoryOpen(false);
+      setLearningOpen(false);
+      setWorkshopOpen(false);
+      setKnowledgeOpen(false);
+      setComparisonOpen(false);
+      setFinderOpen(false);
+      setExperienceMode("explore");
+
+      if (typeof window !== "undefined") {
+        const url = new URL(window.location.href);
+        if (bike.id === ROAD_R1.id) url.searchParams.delete("bike");
+        else url.searchParams.set("bike", bike.slug);
+        url.searchParams.set("part", component.slug);
+        for (const key of [
+          "view",
+          "explode",
+          "lesson",
+          "workshop",
+          "step",
+          "compare",
+          "overlay",
+          "finder",
+          "history",
+        ]) {
+          url.searchParams.delete(key);
+        }
+        window.history.replaceState({}, "", url);
+      }
     },
     [],
   );
@@ -425,6 +488,7 @@ export function BikeViewer() {
       setKnowledgeOpen(false);
       setComparisonOpen(false);
       setFinderOpen(false);
+      setHistoryOpen(false);
       setExperienceMode("lesson");
     },
     [
@@ -538,6 +602,7 @@ export function BikeViewer() {
       setKnowledgeOpen(false);
       setComparisonOpen(false);
       setFinderOpen(false);
+      setHistoryOpen(false);
       setExperienceMode("workshop");
     },
     [
@@ -652,6 +717,7 @@ export function BikeViewer() {
     setKnowledgeOpen(false);
     setComparisonOpen(false);
     setFinderOpen(false);
+    setHistoryOpen(false);
     setMode("normal");
     setExplosionAmount(0);
     setStoryProgress(0);
@@ -669,6 +735,8 @@ export function BikeViewer() {
         "step",
         "compare",
         "overlay",
+        "finder",
+        "history",
       ]) {
         url.searchParams.delete(key);
       }
@@ -686,6 +754,9 @@ export function BikeViewer() {
     const requestedOverlay = url.searchParams.get("overlay");
     const requestedFinder = decodeFinderAnswers(
       url.searchParams.get("finder"),
+    );
+    const requestedHistory = getHistoryEvent(
+      url.searchParams.get("history"),
     );
     const slug = url.searchParams.get("part");
     const view = url.searchParams.get("view") as InspectionMode | null;
@@ -736,7 +807,12 @@ export function BikeViewer() {
 
     setActiveBikeId(requestedBike.id);
 
-    if (Object.keys(requestedFinder).length > 0) {
+    if (requestedHistory) {
+      setActiveHistoryEventId(requestedHistory.id);
+      setHistoryOpen(true);
+      setFinderOpen(false);
+      setComparisonOpen(false);
+    } else if (Object.keys(requestedFinder).length > 0) {
       setFinderAnswers(requestedFinder);
       setFinderOpen(true);
       setComparisonOpen(false);
@@ -753,6 +829,7 @@ export function BikeViewer() {
       slug ||
       view ||
       requestedCompare ||
+      requestedHistory ||
       Object.keys(requestedFinder).length > 0 ||
       requestedBike.id !== ROAD_R1.id
     ) {
@@ -818,6 +895,7 @@ export function BikeViewer() {
       url.searchParams.delete("compare");
       url.searchParams.delete("overlay");
       url.searchParams.delete("finder");
+      url.searchParams.delete("history");
       url.searchParams.set("lesson", lesson.id);
       url.searchParams.set(
         "step",
@@ -837,6 +915,7 @@ export function BikeViewer() {
       url.searchParams.delete("compare");
       url.searchParams.delete("overlay");
       url.searchParams.delete("finder");
+      url.searchParams.delete("history");
       url.searchParams.set("workshop", procedure.id);
       url.searchParams.set(
         "step",
@@ -919,6 +998,12 @@ export function BikeViewer() {
       url.searchParams.delete("finder");
     }
 
+    if (historyOpen) {
+      url.searchParams.set("history", activeHistoryEventId);
+    } else {
+      url.searchParams.delete("history");
+    }
+
     window.history.replaceState({}, "", url);
   }, [
     activeBike.id,
@@ -928,6 +1013,8 @@ export function BikeViewer() {
     comparisonOverlay,
     finderAnswers,
     finderOpen,
+    historyOpen,
+    activeHistoryEventId,
     experienceMode,
     mode,
     explosionAmount,
@@ -954,6 +1041,7 @@ export function BikeViewer() {
         else if (knowledgeOpen) setKnowledgeOpen(false);
         else if (comparisonOpen) setComparisonOpen(false);
         else if (finderOpen) setFinderOpen(false);
+        else if (historyOpen) setHistoryOpen(false);
         else select(null);
         return;
       }
@@ -977,6 +1065,7 @@ export function BikeViewer() {
     changeMode,
     comparisonOpen,
     finderOpen,
+    historyOpen,
     experienceMode,
     knowledgeOpen,
     learningOpen,
@@ -1044,6 +1133,7 @@ export function BikeViewer() {
                   setLearningOpen(false);
                   setWorkshopOpen(false);
                   setKnowledgeOpen(false);
+                  setHistoryOpen(false);
                 }}
               >
                 Find my bike
@@ -1067,6 +1157,7 @@ export function BikeViewer() {
                     setWorkshopOpen(false);
                     setKnowledgeOpen(false);
                     setFinderOpen(false);
+                    setHistoryOpen(false);
                   }}
                 >
                   Compare
@@ -1087,6 +1178,7 @@ export function BikeViewer() {
                     setKnowledgeOpen(false);
                     setComparisonOpen(false);
                     setFinderOpen(false);
+                    setHistoryOpen(false);
                   }}
                 >
                   Learn
@@ -1107,12 +1199,36 @@ export function BikeViewer() {
                     setKnowledgeOpen(false);
                     setComparisonOpen(false);
                     setFinderOpen(false);
+                    setHistoryOpen(false);
                   }}
                 >
                   Workshop
                   <span aria-hidden="true">→</span>
                 </button>
               )}
+              <button
+                type="button"
+                className={
+                  historyOpen
+                    ? "history-launch is-active"
+                    : "history-launch"
+                }
+                onClick={() => {
+                  if (!historyOpen) {
+                    select(null);
+                    changeMode("normal");
+                  }
+                  setHistoryOpen((value) => !value);
+                  setLearningOpen(false);
+                  setWorkshopOpen(false);
+                  setKnowledgeOpen(false);
+                  setComparisonOpen(false);
+                  setFinderOpen(false);
+                }}
+              >
+                History
+                <span aria-hidden="true">↗</span>
+              </button>
               {activeBike.capabilities.encyclopedia !== "none" && (
                 <button
                   type="button"
@@ -1127,6 +1243,7 @@ export function BikeViewer() {
                     setWorkshopOpen(false);
                     setComparisonOpen(false);
                     setFinderOpen(false);
+                    setHistoryOpen(false);
                   }}
                 >
                   Encyclopedia
@@ -1241,6 +1358,13 @@ export function BikeViewer() {
           onStepChange={changeWorkshopStep}
           onCompleteCurrent={completeCurrentWorkshopStep}
           onExit={exitWorkshop}
+        />
+      ) : historyOpen ? (
+        <HistoryPanel
+          eventId={activeHistoryEventId}
+          onEventChange={setActiveHistoryEventId}
+          onOpenComponent={openHistoryTarget}
+          onClose={() => setHistoryOpen(false)}
         />
       ) : finderOpen ? (
         <BikeFinderPanel
