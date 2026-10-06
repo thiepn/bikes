@@ -23,7 +23,7 @@ export type CompatibilitySlotId =
   | "rear-transmission"
   | "rear-derailleur";
 
-export type InterfaceValue = string | number | boolean;
+export type InterfaceValue = string | number | boolean | number[];
 
 export interface ExactInterfaceRequirement {
   kind: "exact";
