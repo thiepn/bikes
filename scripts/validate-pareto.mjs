@@ -170,7 +170,7 @@ const optimizerPanelText = await readFile(
 );
 
 for (const token of [
-  'type OptimizerView = "ranked" | "frontier"',
+  'type OptimizerView = "ranked" | "frontier" | "portfolio"',
   "optimizer-view-tabs",
   "Pareto trade-offs",
   'view === "ranked"',
@@ -183,7 +183,7 @@ for (const token of [
   'url.searchParams.delete("optX")',
   'url.searchParams.delete("optY")',
   'url.searchParams.delete("optPoint")',
-  "P25–P26 model boundary",
+  "P25–P27 model boundary",
 ]) {
   assert(
     optimizerPanelText.includes(token),
