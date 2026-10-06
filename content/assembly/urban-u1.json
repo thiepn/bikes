@@ -39,7 +39,7 @@
     {
       "from": "bike.urban.u1.rear-sprocket",
       "to": "bike.urban.u1.rear-hub",
-      "type": "drivetrain"
+      "type": "splined"
     },
     {
       "from": "bike.urban.u1.frame",
