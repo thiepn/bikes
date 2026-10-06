@@ -1,0 +1,110 @@
+{
+  "id": "gravel-tire-volume-pressure",
+  "bikeId": "bike.gravel.g1",
+  "title": "Why gravel tires use more volume",
+  "summary": "Understand how tire width, air volume, pressure and surface interact without reducing gravel setup to one universal PSI number.",
+  "systemId": "tires",
+  "difficulty": "beginner",
+  "durationMinutes": 6,
+  "prerequisiteLessonIds": [],
+  "steps": [
+    {
+      "id": "volume",
+      "eyebrow": "01 · Tire volume",
+      "title": "More tire volume creates a wider setup window.",
+      "body": "Gravel G1 uses substantially more tire volume than Road R1. More air volume can allow lower operating pressure while still supporting the rider and bicycle, which can improve compliance and control on rough surfaces.",
+      "keyFact": "Tire width is only one part of usable pressure; rider load, rim width, casing, surface and tire construction also matter.",
+      "focusComponentId": "bike.gravel.g1.front-tire",
+      "highlightComponentIds": [
+        "bike.gravel.g1.front-tire",
+        "bike.gravel.g1.rear-tire",
+        "bike.gravel.g1.front-rim",
+        "bike.gravel.g1.rear-rim"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "pressure-tradeoff",
+      "eyebrow": "02 · Pressure",
+      "title": "Pressure changes both support and surface behavior.",
+      "body": "Higher pressure increases tire support but can make the bicycle deflect more over rough surfaces. Lower pressure can improve compliance and traction until support becomes insufficient and the tire begins to squirm, bottom out or risk rim/tire damage.",
+      "keyFact": "The useful pressure is a range bounded by the real tire, rim, load and riding conditions—not a Bike Atlas universal value.",
+      "focusComponentId": "bike.gravel.g1.front-tire",
+      "highlightComponentIds": [
+        "bike.gravel.g1.front-tire",
+        "bike.gravel.g1.front-rim"
+      ],
+      "inspectionMode": "xray"
+    },
+    {
+      "id": "surface",
+      "eyebrow": "03 · Surface",
+      "title": "The fastest pressure depends on the surface.",
+      "body": "A pressure that feels efficient on smooth pavement may bounce and lose control on coarse gravel, while a very low pressure that works on rough ground can feel vague or inefficient elsewhere.",
+      "keyFact": "Mixed-surface setup is a compromise between rolling behavior, grip, support, comfort and protection.",
+      "focusComponentId": "bike.gravel.g1.rear-tire",
+      "highlightComponentIds": [
+        "bike.gravel.g1.front-tire",
+        "bike.gravel.g1.rear-tire"
+      ],
+      "inspectionMode": "normal"
+    },
+    {
+      "id": "tubeless-boundary",
+      "eyebrow": "04 · Tubeless",
+      "title": "Tubeless changes the system, not the physics.",
+      "body": "A tubeless-compatible tire and rim can operate without an inner tube when correctly prepared with the required sealing system. It may expand the practical low-pressure range and can self-seal some small punctures, but compatibility and setup are component-specific.",
+      "keyFact": "Do not assume a tire or rim is tubeless-compatible because it looks like another gravel component.",
+      "focusComponentId": "bike.gravel.g1.front-rim",
+      "highlightComponentIds": [
+        "bike.gravel.g1.front-rim",
+        "bike.gravel.g1.front-tire"
+      ],
+      "inspectionMode": "xray",
+      "challenge": {
+        "type": "multiple-choice",
+        "prompt": "Which statement about gravel tire pressure is most accurate?",
+        "options": [
+          {
+            "id": "fixed",
+            "label": "Every 45 mm gravel tire should use the same pressure"
+          },
+          {
+            "id": "system",
+            "label": "Pressure depends on the tire, rim, load and riding conditions"
+          },
+          {
+            "id": "lowest",
+            "label": "The lowest possible pressure is always fastest"
+          }
+        ],
+        "correctOptionId": "system",
+        "explanation": "Pressure is a system setting. Width alone cannot define the correct value."
+      }
+    },
+    {
+      "id": "identify-contact",
+      "eyebrow": "05 · Identify",
+      "title": "Find the component that directly creates the ground contact patch.",
+      "body": "Select the front component whose casing, tread and pressure directly shape contact with the surface.",
+      "keyFact": "The rim supports and locates the tire, but the tire is the component contacting the ground.",
+      "focusComponentId": "bike.gravel.g1.front-rim",
+      "highlightComponentIds": [],
+      "inspectionMode": "normal",
+      "challenge": {
+        "type": "select-component",
+        "prompt": "Which component directly contacts the riding surface?",
+        "candidateComponentIds": [
+          "bike.gravel.g1.front-tire",
+          "bike.gravel.g1.front-rim",
+          "bike.gravel.g1.front-wheel"
+        ],
+        "correctComponentIds": [
+          "bike.gravel.g1.front-tire"
+        ],
+        "successText": "Correct. The tire creates the contact patch.",
+        "retryText": "That part belongs to the wheel system, but it does not directly create the ground contact patch."
+      }
+    }
+  ]
+}
