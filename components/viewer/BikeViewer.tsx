@@ -28,6 +28,7 @@ import { HistoryPanel } from "@/components/history/HistoryPanel";
 import { PhysicsLabPanel } from "@/components/physics/PhysicsLabPanel";
 import { BuildLabPanel } from "@/components/build/BuildLabPanel";
 import { GeometryLabPanel } from "@/components/geometry/GeometryLabPanel";
+import { BuildOptimizerPanel } from "@/components/optimizer/BuildOptimizerPanel";
 import {
   decodeBuildSelections,
   encodeBuildSelections,
@@ -80,6 +81,13 @@ const GEOMETRY_QUERY_KEYS = [
   "geometryTab",
   "gearCad",
 ] as const;
+const OPTIMIZER_QUERY_KEYS = [
+  "optimize",
+  "optGoal",
+  "optChanges",
+  "optGuard",
+  "optPreserve",
+] as const;
 
 const PHYSICS_QUERY_KEYS = [
   "physics",
@@ -124,6 +132,7 @@ export function BikeViewer() {
   const [historyOpen, setHistoryOpen] = useState(false);
   const [physicsOpen, setPhysicsOpen] = useState(false);
   const [geometryOpen, setGeometryOpen] = useState(false);
+  const [optimizerOpen, setOptimizerOpen] = useState(false);
   const [buildOpen, setBuildOpen] = useState(false);
   const [buildSelections, setBuildSelections] = useState<Record<string, string>>({});
   const [activeHistoryEventId, setActiveHistoryEventId] = useState(
@@ -357,6 +366,7 @@ export function BikeViewer() {
       setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
     setBuildSelections({});
     setExperienceMode("explore");
 
@@ -383,6 +393,7 @@ export function BikeViewer() {
         "concept",
         ...PHYSICS_QUERY_KEYS,
         ...GEOMETRY_QUERY_KEYS,
+        ...OPTIMIZER_QUERY_KEYS,
         ...BUILD_QUERY_KEYS,
       ]) {
         url.searchParams.delete(key);
@@ -407,6 +418,7 @@ export function BikeViewer() {
       setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
       setBuildSelections({});
       setSelectedId(null);
       setHoveredId(null);
@@ -445,6 +457,7 @@ export function BikeViewer() {
       setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
       setBuildSelections({});
       setLearningOpen(false);
       setWorkshopOpen(false);
@@ -583,6 +596,7 @@ export function BikeViewer() {
       setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
       setExperienceMode("lesson");
     },
     [
@@ -702,6 +716,7 @@ export function BikeViewer() {
       setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
       setExperienceMode("workshop");
     },
     [
@@ -822,6 +837,7 @@ export function BikeViewer() {
       setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
     setMode("normal");
     setExplosionAmount(0);
     setStoryProgress(0);
@@ -844,6 +860,7 @@ export function BikeViewer() {
         "concept",
         ...PHYSICS_QUERY_KEYS,
         ...GEOMETRY_QUERY_KEYS,
+        ...OPTIMIZER_QUERY_KEYS,
         ...BUILD_QUERY_KEYS,
       ]) {
         url.searchParams.delete(key);
@@ -873,6 +890,8 @@ export function BikeViewer() {
       url.searchParams.get("physics") === "1";
     const requestedGeometry =
       url.searchParams.get("geometry") === "1";
+    const requestedOptimize =
+      url.searchParams.get("optimize") === "1";
     const requestedBuild =
       url.searchParams.get("build") === "1";
     const requestedBuildSelections = sanitizeBuildSelections(
@@ -936,6 +955,7 @@ export function BikeViewer() {
       setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
       setFinderOpen(false);
       setComparisonOpen(false);
     } else if (requestedHistory) {
@@ -944,6 +964,7 @@ export function BikeViewer() {
       setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
       setKnowledgeOpen(false);
       setFinderOpen(false);
       setComparisonOpen(false);
@@ -951,12 +972,23 @@ export function BikeViewer() {
       setPhysicsOpen(true);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
       setHistoryOpen(false);
       setKnowledgeOpen(false);
       setFinderOpen(false);
       setComparisonOpen(false);
     } else if (requestedBuild) {
       setBuildOpen(true);
+      setGeometryOpen(false);
+      setOptimizerOpen(false);
+      setPhysicsOpen(false);
+      setHistoryOpen(false);
+      setKnowledgeOpen(false);
+      setFinderOpen(false);
+      setComparisonOpen(false);
+    } else if (requestedOptimize) {
+      setOptimizerOpen(true);
+      setBuildOpen(false);
       setGeometryOpen(false);
       setPhysicsOpen(false);
       setHistoryOpen(false);
@@ -993,6 +1025,7 @@ export function BikeViewer() {
       requestedPhysics ||
       requestedBuild ||
       requestedGeometry ||
+      requestedOptimize ||
       Object.keys(requestedBuildSelections).length > 0 ||
       Object.keys(requestedFinder).length > 0 ||
       requestedBike.id !== ROAD_R1.id
@@ -1063,6 +1096,7 @@ export function BikeViewer() {
       url.searchParams.delete("concept");
       for (const key of PHYSICS_QUERY_KEYS) url.searchParams.delete(key);
       for (const key of GEOMETRY_QUERY_KEYS) url.searchParams.delete(key);
+      for (const key of OPTIMIZER_QUERY_KEYS) url.searchParams.delete(key);
       for (const key of BUILD_QUERY_KEYS) url.searchParams.delete(key);
       url.searchParams.set("lesson", lesson.id);
       url.searchParams.set(
@@ -1087,6 +1121,7 @@ export function BikeViewer() {
       url.searchParams.delete("concept");
       for (const key of PHYSICS_QUERY_KEYS) url.searchParams.delete(key);
       for (const key of GEOMETRY_QUERY_KEYS) url.searchParams.delete(key);
+      for (const key of OPTIMIZER_QUERY_KEYS) url.searchParams.delete(key);
       for (const key of BUILD_QUERY_KEYS) url.searchParams.delete(key);
       url.searchParams.set("workshop", procedure.id);
       url.searchParams.set(
@@ -1198,6 +1233,14 @@ export function BikeViewer() {
       }
     }
 
+    if (optimizerOpen) {
+      url.searchParams.set("optimize", "1");
+    } else {
+      for (const key of OPTIMIZER_QUERY_KEYS) {
+        url.searchParams.delete(key);
+      }
+    }
+
     if (buildOpen) {
       url.searchParams.set("build", "1");
     } else {
@@ -1228,6 +1271,7 @@ export function BikeViewer() {
     activeConceptId,
     physicsOpen,
     geometryOpen,
+    optimizerOpen,
     buildOpen,
     effectiveBuildSelections,
     experienceMode,
@@ -1257,6 +1301,7 @@ export function BikeViewer() {
         else if (comparisonOpen) setComparisonOpen(false);
         else if (finderOpen) setFinderOpen(false);
         else if (historyOpen) setHistoryOpen(false);
+        else if (optimizerOpen) setOptimizerOpen(false);
         else if (geometryOpen) setGeometryOpen(false);
         else if (physicsOpen) setPhysicsOpen(false);
         else if (buildOpen) setBuildOpen(false);
@@ -1286,6 +1331,7 @@ export function BikeViewer() {
     historyOpen,
     physicsOpen,
     geometryOpen,
+    optimizerOpen,
     buildOpen,
     experienceMode,
     knowledgeOpen,
@@ -1358,6 +1404,7 @@ export function BikeViewer() {
       setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
                 }}
               >
                 Find my bike
@@ -1385,6 +1432,7 @@ export function BikeViewer() {
       setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
                   }}
                 >
                   Compare
@@ -1409,6 +1457,7 @@ export function BikeViewer() {
       setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
                   }}
                 >
                   Learn
@@ -1433,6 +1482,7 @@ export function BikeViewer() {
       setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
                   }}
                 >
                   Workshop
@@ -1461,10 +1511,39 @@ export function BikeViewer() {
                   setHistoryOpen(false);
                   setPhysicsOpen(false);
                   setGeometryOpen(false);
+      setOptimizerOpen(false);
                 }}
               >
                 Build
                 <span aria-hidden="true">＋</span>
+              </button>
+              <button
+                type="button"
+                className={
+                  optimizerOpen
+                    ? "optimizer-launch is-active"
+                    : "optimizer-launch"
+                }
+                onClick={() => {
+                  if (!optimizerOpen) {
+                    select(null);
+                    changeMode("normal");
+                  }
+                  setOptimizerOpen((value) => !value);
+                  setLearningOpen(false);
+                  setWorkshopOpen(false);
+                  setKnowledgeOpen(false);
+                  setActiveConceptId(null);
+                  setComparisonOpen(false);
+                  setFinderOpen(false);
+                  setHistoryOpen(false);
+                  setPhysicsOpen(false);
+                  setBuildOpen(false);
+                  setGeometryOpen(false);
+                }}
+              >
+                Optimize
+                <span aria-hidden="true">◇</span>
               </button>
               <button
                 type="button"
@@ -1515,6 +1594,7 @@ export function BikeViewer() {
                   setHistoryOpen(false);
                   setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
                 }}
               >
                 Physics
@@ -1541,6 +1621,7 @@ export function BikeViewer() {
                   setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
                 }}
               >
                 History
@@ -1565,6 +1646,7 @@ export function BikeViewer() {
       setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
                 }}
               >
                 Search
@@ -1696,6 +1778,24 @@ export function BikeViewer() {
           onPreviewComponent={previewBuildComponent}
           onClose={() => setBuildOpen(false)}
         />
+      ) : optimizerOpen ? (
+        <BuildOptimizerPanel
+          bikeId={activeBike.id}
+          buildSelections={effectiveBuildSelections}
+          onApplySelections={(next) =>
+            setBuildSelections(
+              sanitizeBuildSelections(activeBike.id, next),
+            )
+          }
+          onOpenBuild={(next) => {
+            setBuildSelections(
+              sanitizeBuildSelections(activeBike.id, next),
+            );
+            setOptimizerOpen(false);
+            setBuildOpen(true);
+          }}
+          onClose={() => setOptimizerOpen(false)}
+        />
       ) : geometryOpen ? (
         <GeometryLabPanel
           bikeId={activeBike.id}
@@ -1802,6 +1902,7 @@ export function BikeViewer() {
       setPhysicsOpen(false);
       setBuildOpen(false);
       setGeometryOpen(false);
+      setOptimizerOpen(false);
             }}
           />
 
