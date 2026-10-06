@@ -1,0 +1,87 @@
+{
+  "id": "gravel-flared-drop-control",
+  "bikeId": "bike.gravel.g1",
+  "title": "Why gravel bikes use flared drop bars",
+  "summary": "See how drop-bar hand positions, flare, tire volume and geometry balance efficiency with control on mixed surfaces.",
+  "systemId": "cockpit",
+  "difficulty": "beginner",
+  "durationMinutes": 5,
+  "prerequisiteLessonIds": [],
+  "steps": [
+    {
+      "id": "multiple-positions",
+      "eyebrow": "01 · Hand positions",
+      "title": "Drop bars provide multiple useful hand positions.",
+      "body": "The tops, control hoods and drops each change hand location and body posture. That variety can reduce the need to hold one position throughout a long mixed-surface ride.",
+      "keyFact": "A drop bar is a posture and control system, not only an aerodynamic device.",
+      "focusComponentId": "bike.gravel.g1.handlebar",
+      "highlightComponentIds": [
+        "bike.gravel.g1.handlebar",
+        "bike.gravel.g1.left-shifter",
+        "bike.gravel.g1.right-shifter"
+      ],
+      "inspectionMode": "normal"
+    },
+    {
+      "id": "flare",
+      "eyebrow": "02 · Flare",
+      "title": "The lower drops widen outward.",
+      "body": "Flare places the hands farther apart in the drops than at the hood position. That can increase steering leverage and clearance when descending or controlling the bike on loose ground.",
+      "keyFact": "More flare is not automatically better; width, flare and reach are rider- and component-specific choices.",
+      "focusComponentId": "bike.gravel.g1.handlebar",
+      "highlightComponentIds": [
+        "bike.gravel.g1.handlebar"
+      ],
+      "inspectionMode": "xray"
+    },
+    {
+      "id": "controls",
+      "eyebrow": "03 · Controls",
+      "title": "Braking and shifting remain available from the primary riding position.",
+      "body": "Integrated controls keep brake and shift commands near the rider's hands. Exact lever ergonomics and actuation depend on the actual control/brake/drivetrain system.",
+      "keyFact": "Cockpit fit and control reach must work for the rider; bar shape alone does not guarantee good fit.",
+      "focusComponentId": "bike.gravel.g1.right-shifter",
+      "highlightComponentIds": [
+        "bike.gravel.g1.left-shifter",
+        "bike.gravel.g1.right-shifter",
+        "bike.gravel.g1.handlebar"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "whole-bike",
+      "eyebrow": "04 · System",
+      "title": "Control comes from the whole bicycle.",
+      "body": "Flared bars contribute steering leverage, but tire grip, wheelbase, steering geometry, rider position and braking all influence mixed-surface control.",
+      "keyFact": "Bike handling should not be attributed to a single component in isolation.",
+      "focusComponentId": "bike.gravel.g1.frame",
+      "highlightComponentIds": [
+        "bike.gravel.g1.frame",
+        "bike.gravel.g1.handlebar",
+        "bike.gravel.g1.front-tire",
+        "bike.gravel.g1.rear-tire"
+      ],
+      "inspectionMode": "systems",
+      "challenge": {
+        "type": "multiple-choice",
+        "prompt": "What does handlebar flare primarily change?",
+        "options": [
+          {
+            "id": "lower-width",
+            "label": "The width/leverage of the lower drop position"
+          },
+          {
+            "id": "tire",
+            "label": "The tire contact patch"
+          },
+          {
+            "id": "gearing",
+            "label": "The drivetrain gear range"
+          }
+        ],
+        "correctOptionId": "lower-width",
+        "explanation": "Flare widens the lower drop position and changes hand placement/leverage."
+      }
+    }
+  ]
+}
