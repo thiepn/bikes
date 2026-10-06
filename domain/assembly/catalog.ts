@@ -1,6 +1,7 @@
 import { ROAD_R1_ASSEMBLY_GRAPH } from "./road-r1";
 import mtbGraphJson from "@/content/assembly/mtb-m1.json";
 import urbanGraphJson from "@/content/assembly/urban-u1.json";
+import gravelGraphJson from "@/content/assembly/gravel-g1.json";
 import type {
   AssemblyGraph,
   AssemblyOperation,
@@ -12,10 +13,14 @@ export const MTB_M1_ASSEMBLY_GRAPH =
 export const URBAN_U1_ASSEMBLY_GRAPH =
   urbanGraphJson as AssemblyGraph;
 
+export const GRAVEL_G1_ASSEMBLY_GRAPH =
+  gravelGraphJson as AssemblyGraph;
+
 const GRAPHS = new Map<string, AssemblyGraph>([
   [ROAD_R1_ASSEMBLY_GRAPH.bikeId, ROAD_R1_ASSEMBLY_GRAPH],
   [MTB_M1_ASSEMBLY_GRAPH.bikeId, MTB_M1_ASSEMBLY_GRAPH],
   [URBAN_U1_ASSEMBLY_GRAPH.bikeId, URBAN_U1_ASSEMBLY_GRAPH],
+  [GRAVEL_G1_ASSEMBLY_GRAPH.bikeId, GRAVEL_G1_ASSEMBLY_GRAPH],
 ]);
 
 export function getAssemblyGraphForBike(bikeId: string) {
