@@ -29,12 +29,19 @@ function appearance(
   baseColor: ColorRepresentation,
   componentId: string,
   state: ViewerInteractionState,
+  parentIds: string[] = [],
 ): Appearance {
-  const highlighted =
-    state.selectedId === componentId || state.hoveredId === componentId;
-  const dimmed = Boolean(
-    state.isolated && state.selectedId && state.selectedId !== componentId,
-  );
+  const semanticIds = [componentId, ...parentIds];
+  const selected = state.selectedId
+    ? semanticIds.includes(state.selectedId)
+    : false;
+  const hovered = state.hoveredId
+    ? semanticIds.includes(state.hoveredId)
+    : false;
+  const highlighted = selected || hovered;
+  const survivesIsolation =
+    !state.selectedId || semanticIds.includes(state.selectedId);
+  const dimmed = Boolean(state.isolated && !survivesIsolation);
 
   return {
     color: highlighted ? "#d9ff67" : baseColor,
@@ -137,30 +144,52 @@ function Wheel({
     ] as const;
   });
 
-  const tireMaterial = appearance("#12171d", tireId, state);
-  const rimMaterial = appearance("#59636e", rimId, state);
-  const hubMaterial = appearance("#aeb7c1", hubId, state);
+  const tireMaterial = appearance("#12171d", tireId, state, [wheelId]);
+  const rimMaterial = appearance("#59636e", rimId, state, [wheelId]);
+  const hubMaterial = appearance("#aeb7c1", hubId, state, [wheelId]);
 
   return (
     <group>
       <SemanticPart {...semanticProps(tireId, state, handlers)}>
-        <mesh castShadow receiveShadow position={center} rotation={[0, Math.PI / 2, 0]}>
+        <mesh
+          castShadow
+          receiveShadow
+          position={center}
+          rotation={[0, Math.PI / 2, 0]}
+        >
           <torusGeometry args={[radius, 0.026, 16, 96]} />
-          <meshStandardMaterial {...tireMaterial} metalness={0.05} roughness={0.72} />
+          <meshStandardMaterial
+            {...tireMaterial}
+            metalness={0.05}
+            roughness={0.72}
+          />
         </mesh>
       </SemanticPart>
 
       <SemanticPart {...semanticProps(rimId, state, handlers)}>
-        <mesh castShadow receiveShadow position={center} rotation={[0, Math.PI / 2, 0]}>
+        <mesh
+          castShadow
+          receiveShadow
+          position={center}
+          rotation={[0, Math.PI / 2, 0]}
+        >
           <torusGeometry args={[radius - 0.036, 0.009, 12, 96]} />
-          <meshStandardMaterial {...rimMaterial} metalness={0.62} roughness={0.24} />
+          <meshStandardMaterial
+            {...rimMaterial}
+            metalness={0.62}
+            roughness={0.24}
+          />
         </mesh>
       </SemanticPart>
 
       <SemanticPart {...semanticProps(hubId, state, handlers)}>
         <mesh position={center} rotation={[0, 0, Math.PI / 2]} castShadow>
           <cylinderGeometry args={[0.026, 0.026, 0.12, 24]} />
-          <meshStandardMaterial {...hubMaterial} metalness={0.88} roughness={0.2} />
+          <meshStandardMaterial
+            {...hubMaterial}
+            metalness={0.88}
+            roughness={0.2}
+          />
         </mesh>
       </SemanticPart>
 
@@ -240,78 +269,177 @@ export function PrototypeBike(props: PrototypeBikeProps) {
 
       <SemanticPart {...semanticProps(forkId, state, handlers)}>
         <group>
-          <Tube from={[-0.038, 0.59, 0.39]} to={[-0.048, 0.36, 0.58]} radius={0.013} color={frameColor} part={forkId} state={state} />
-          <Tube from={[0.038, 0.59, 0.39]} to={[0.048, 0.36, 0.58]} radius={0.013} color={frameColor} part={forkId} state={state} />
+          <Tube
+            from={[-0.038, 0.59, 0.39]}
+            to={[-0.048, 0.36, 0.58]}
+            radius={0.013}
+            color={frameColor}
+            part={forkId}
+            state={state}
+          />
+          <Tube
+            from={[0.038, 0.59, 0.39]}
+            to={[0.048, 0.36, 0.58]}
+            radius={0.013}
+            color={frameColor}
+            part={forkId}
+            state={state}
+          />
         </group>
       </SemanticPart>
 
-      <SemanticPart {...semanticProps("bike.road.r1.seatpost", state, handlers)}>
-        <Tube from={[0, 0.79, -0.22]} to={[0, 0.86, -0.235]} radius={0.013} color="#313943" metalness={0.42} roughness={0.3} part="bike.road.r1.seatpost" state={state} />
+      <SemanticPart
+        {...semanticProps("bike.road.r1.seatpost", state, handlers)}
+      >
+        <Tube
+          from={[0, 0.79, -0.22]}
+          to={[0, 0.86, -0.235]}
+          radius={0.013}
+          color="#313943"
+          metalness={0.42}
+          roughness={0.3}
+          part="bike.road.r1.seatpost"
+          state={state}
+        />
       </SemanticPart>
 
       <SemanticPart {...semanticProps("bike.road.r1.stem", state, handlers)}>
-        <Tube from={[0, 0.76, 0.34]} to={[0, 0.89, 0.39]} radius={0.014} color="#abb4be" metalness={0.88} part="bike.road.r1.stem" state={state} />
+        <Tube
+          from={[0, 0.76, 0.34]}
+          to={[0, 0.89, 0.39]}
+          radius={0.014}
+          color="#abb4be"
+          metalness={0.88}
+          part="bike.road.r1.stem"
+          state={state}
+        />
       </SemanticPart>
 
-      <SemanticPart {...semanticProps("bike.road.r1.handlebar", state, handlers)}>
-        <Tube from={[-0.23, 0.9, 0.405]} to={[0.23, 0.9, 0.405]} radius={0.011} color="#20262d" metalness={0.2} roughness={0.5} part="bike.road.r1.handlebar" state={state} />
+      <SemanticPart
+        {...semanticProps("bike.road.r1.handlebar", state, handlers)}
+      >
+        <Tube
+          from={[-0.23, 0.9, 0.405]}
+          to={[0.23, 0.9, 0.405]}
+          radius={0.011}
+          color="#20262d"
+          metalness={0.2}
+          roughness={0.5}
+          part="bike.road.r1.handlebar"
+          state={state}
+        />
       </SemanticPart>
 
       <SemanticPart {...semanticProps("bike.road.r1.saddle", state, handlers)}>
         <mesh castShadow position={[0, 0.875, -0.25]} rotation={[0.03, 0, 0]}>
           <boxGeometry args={[0.115, 0.035, 0.25]} />
-          <meshStandardMaterial {...appearance("#151a20", "bike.road.r1.saddle", state)} roughness={0.58} />
+          <meshStandardMaterial
+            {...appearance("#151a20", "bike.road.r1.saddle", state)}
+            roughness={0.58}
+          />
         </mesh>
       </SemanticPart>
 
-      <SemanticPart {...semanticProps("bike.road.r1.crankset", state, handlers)}>
+      <SemanticPart
+        {...semanticProps("bike.road.r1.crankset", state, handlers)}
+      >
         <mesh castShadow position={crank} rotation={[0, 0, Math.PI / 2]}>
           <cylinderGeometry args={[0.09, 0.09, 0.022, 40]} />
-          <meshStandardMaterial {...appearance("#20262d", "bike.road.r1.crankset", state)} metalness={0.9} roughness={0.2} />
+          <meshStandardMaterial
+            {...appearance("#20262d", "bike.road.r1.crankset", state)}
+            metalness={0.9}
+            roughness={0.2}
+          />
         </mesh>
       </SemanticPart>
 
-      <SemanticPart {...semanticProps("bike.road.r1.left-pedal", state, handlers)}>
+      <SemanticPart
+        {...semanticProps("bike.road.r1.left-pedal", state, handlers)}
+      >
         <mesh position={[-0.15, 0.39, -0.1]}>
           <boxGeometry args={[0.07, 0.018, 0.105]} />
-          <meshStandardMaterial {...appearance("#151a20", "bike.road.r1.left-pedal", state)} roughness={0.58} />
+          <meshStandardMaterial
+            {...appearance("#151a20", "bike.road.r1.left-pedal", state)}
+            roughness={0.58}
+          />
         </mesh>
       </SemanticPart>
 
-      <SemanticPart {...semanticProps("bike.road.r1.right-pedal", state, handlers)}>
+      <SemanticPart
+        {...semanticProps("bike.road.r1.right-pedal", state, handlers)}
+      >
         <mesh position={[0.15, 0.39, -0.1]}>
           <boxGeometry args={[0.07, 0.018, 0.105]} />
-          <meshStandardMaterial {...appearance("#151a20", "bike.road.r1.right-pedal", state)} roughness={0.58} />
+          <meshStandardMaterial
+            {...appearance("#151a20", "bike.road.r1.right-pedal", state)}
+            roughness={0.58}
+          />
         </mesh>
       </SemanticPart>
 
-      <SemanticPart {...semanticProps("bike.road.r1.large-chainring", state, handlers)}>
+      <SemanticPart
+        {...semanticProps("bike.road.r1.large-chainring", state, handlers)}
+      >
         <mesh position={[0.02, 0.39, -0.1]} rotation={[0, Math.PI / 2, 0]}>
           <torusGeometry args={[0.102, 0.005, 8, 48]} />
-          <meshStandardMaterial {...appearance("#aeb8c1", "bike.road.r1.large-chainring", state)} metalness={0.92} roughness={0.16} />
+          <meshStandardMaterial
+            {...appearance("#aeb8c1", "bike.road.r1.large-chainring", state)}
+            metalness={0.92}
+            roughness={0.16}
+          />
         </mesh>
       </SemanticPart>
 
-      <SemanticPart {...semanticProps("bike.road.r1.cassette", state, handlers)}>
-        <group position={[0.045, 0.36, -0.58]} rotation={[0, Math.PI / 2, 0]}>
+      <SemanticPart
+        {...semanticProps("bike.road.r1.cassette", state, handlers)}
+      >
+        <group
+          position={[0.045, 0.36, -0.58]}
+          rotation={[0, Math.PI / 2, 0]}
+        >
           {[0.035, 0.044, 0.053, 0.062, 0.071].map((radius, index) => (
             <mesh key={radius} position={[0, 0, index * 0.006 - 0.012]}>
               <torusGeometry args={[radius, 0.004, 8, 36]} />
-              <meshStandardMaterial {...appearance("#a7b0b9", "bike.road.r1.cassette", state)} metalness={0.94} roughness={0.18} />
+              <meshStandardMaterial
+                {...appearance("#a7b0b9", "bike.road.r1.cassette", state)}
+                metalness={0.94}
+                roughness={0.18}
+              />
             </mesh>
           ))}
         </group>
       </SemanticPart>
 
-      <SemanticPart {...semanticProps("bike.road.r1.rear-derailleur", state, handlers)}>
+      <SemanticPart
+        {...semanticProps("bike.road.r1.rear-derailleur", state, handlers)}
+      >
         <group position={[0.075, 0.27, -0.53]}>
           <mesh rotation={[0.2, 0, 0.15]} castShadow>
             <boxGeometry args={[0.055, 0.12, 0.035]} />
-            <meshStandardMaterial {...appearance("#2a3138", "bike.road.r1.rear-derailleur", state)} metalness={0.7} roughness={0.28} />
+            <meshStandardMaterial
+              {...appearance(
+                "#2a3138",
+                "bike.road.r1.rear-derailleur",
+                state,
+              )}
+              metalness={0.7}
+              roughness={0.28}
+            />
           </mesh>
-          <mesh position={[0, -0.085, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <mesh
+            position={[0, -0.085, 0]}
+            rotation={[Math.PI / 2, 0, 0]}
+          >
             <torusGeometry args={[0.027, 0.006, 10, 32]} />
-            <meshStandardMaterial {...appearance("#88929c", "bike.road.r1.rear-derailleur", state)} metalness={0.9} roughness={0.2} />
+            <meshStandardMaterial
+              {...appearance(
+                "#88929c",
+                "bike.road.r1.rear-derailleur",
+                state,
+              )}
+              metalness={0.9}
+              roughness={0.2}
+            />
           </mesh>
         </group>
       </SemanticPart>
@@ -319,11 +447,20 @@ export function PrototypeBike(props: PrototypeBikeProps) {
       {(["front", "rear"] as const).map((side) => {
         const position = side === "front" ? front : rear;
         const id = `bike.road.r1.${side}-rotor`;
+
         return (
           <SemanticPart key={id} {...semanticProps(id, state, handlers)}>
-            <mesh position={[0.065, position[1], position[2]]} rotation={[0, Math.PI / 2, 0]}>
+            <mesh
+              position={[0.065, position[1], position[2]]}
+              rotation={[0, Math.PI / 2, 0]}
+            >
               <circleGeometry args={[0.105, 48]} />
-              <meshStandardMaterial {...appearance("#939da6", id, state)} metalness={0.92} roughness={0.2} side={DoubleSide} />
+              <meshStandardMaterial
+                {...appearance("#939da6", id, state)}
+                metalness={0.92}
+                roughness={0.2}
+                side={DoubleSide}
+              />
             </mesh>
           </SemanticPart>
         );
