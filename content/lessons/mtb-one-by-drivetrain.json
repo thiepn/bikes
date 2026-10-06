@@ -1,0 +1,92 @@
+{
+  "id": "mtb-one-by-drivetrain",
+  "bikeId": "bike.mtb.m1",
+  "title": "How a 1× mountain-bike drivetrain works",
+  "summary": "Understand why MTB M1 uses one front chainring, a wide-range cassette and a rear derailleur instead of front shifting.",
+  "systemId": "transmission",
+  "difficulty": "beginner",
+  "durationMinutes": 6,
+  "prerequisiteLessonIds": [],
+  "steps": [
+    {
+      "id": "single-ring",
+      "eyebrow": "01 · 1×",
+      "title": "There is only one front chainring.",
+      "body": "A 1× drivetrain removes front shifting and uses one chainring at the crank. All selectable gear changes happen across the rear cassette.",
+      "keyFact": "1× means one chainring at the front, not one gear overall.",
+      "focusComponentId": "bike.mtb.m1.chainring",
+      "highlightComponentIds": [
+        "bike.mtb.m1.chainring",
+        "bike.mtb.m1.crankset",
+        "bike.mtb.m1.chain"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "wide-cassette",
+      "eyebrow": "02 · Range",
+      "title": "A wide-range cassette supplies the spread.",
+      "body": "Because there is no second front chainring, the cassette spans substantially different sprocket sizes so the drivetrain can offer easier climbing gears and harder faster gears from the rear.",
+      "keyFact": "Gear range comes from the relationship between the single front chainring and the available rear sprockets.",
+      "focusComponentId": "bike.mtb.m1.cassette",
+      "highlightComponentIds": [
+        "bike.mtb.m1.chainring",
+        "bike.mtb.m1.chain",
+        "bike.mtb.m1.cassette"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "rear-shifting",
+      "eyebrow": "03 · Shifting",
+      "title": "The rear derailleur handles every shift.",
+      "body": "The rear derailleur moves the chain across cassette sprockets and manages chain length as effective sprocket diameter changes.",
+      "keyFact": "On this 1× layout, there is no front derailleur to coordinate.",
+      "focusComponentId": "bike.mtb.m1.rear-derailleur",
+      "highlightComponentIds": [
+        "bike.mtb.m1.rear-derailleur",
+        "bike.mtb.m1.chain",
+        "bike.mtb.m1.cassette"
+      ],
+      "inspectionMode": "systems"
+    },
+    {
+      "id": "trail-retention",
+      "eyebrow": "04 · Retention",
+      "title": "Chain control matters on rough terrain.",
+      "body": "Rough terrain accelerates the bike and drivetrain vertically. Modern MTB drivetrains use component geometry and derailleur chain management to help keep the chain controlled while still allowing shifting.",
+      "keyFact": "Chain retention is a system property involving chainring, chain, derailleur and chainline—not one magic component.",
+      "focusComponentId": "bike.mtb.m1.chain",
+      "highlightComponentIds": [
+        "bike.mtb.m1.chainring",
+        "bike.mtb.m1.chain",
+        "bike.mtb.m1.rear-derailleur"
+      ],
+      "inspectionMode": "xray"
+    },
+    {
+      "id": "identify-range",
+      "eyebrow": "05 · Identify",
+      "title": "Find the component that provides rear gear choices.",
+      "body": "Identify the stack of rear sprockets that supplies the selectable ratios in a 1× drivetrain.",
+      "keyFact": "The cassette contains the rear sprockets.",
+      "focusComponentId": "bike.mtb.m1.rear-wheel",
+      "highlightComponentIds": [],
+      "inspectionMode": "normal",
+      "challenge": {
+        "type": "select-component",
+        "prompt": "Which component provides the selectable rear sprockets?",
+        "candidateComponentIds": [
+          "bike.mtb.m1.cassette",
+          "bike.mtb.m1.rear-hub",
+          "bike.mtb.m1.rear-derailleur"
+        ],
+        "correctComponentIds": [
+          "bike.mtb.m1.cassette"
+        ],
+        "successText": "Correct. The cassette is the stack of rear sprockets.",
+        "retryText": "That component participates in shifting, but it is not the sprocket stack."
+      }
+    }
+  ]
+}
