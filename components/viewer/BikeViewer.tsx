@@ -997,6 +997,7 @@ export function BikeViewer() {
       setComparisonOpen(false);
     } else if (requestedGeometry) {
       setGeometryOpen(true);
+      setOptimizerOpen(false);
       setBuildOpen(false);
       setPhysicsOpen(false);
       setHistoryOpen(false);
@@ -1567,6 +1568,7 @@ export function BikeViewer() {
                   setHistoryOpen(false);
                   setPhysicsOpen(false);
                   setBuildOpen(false);
+                  setOptimizerOpen(false);
                 }}
               >
                 Geometry
