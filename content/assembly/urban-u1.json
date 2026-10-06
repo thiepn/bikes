@@ -1,0 +1,111 @@
+{
+  "bikeId": "bike.urban.u1",
+  "connections": [
+    {
+      "from": "bike.urban.u1.frame",
+      "to": "bike.urban.u1.headset",
+      "type": "bearing"
+    },
+    {
+      "from": "bike.urban.u1.headset",
+      "to": "bike.urban.u1.fork",
+      "type": "bearing"
+    },
+    {
+      "from": "bike.urban.u1.frame",
+      "to": "bike.urban.u1.bottom-bracket",
+      "type": "pressed"
+    },
+    {
+      "from": "bike.urban.u1.bottom-bracket",
+      "to": "bike.urban.u1.crankset",
+      "type": "bearing"
+    },
+    {
+      "from": "bike.urban.u1.crankset",
+      "to": "bike.urban.u1.chainring",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.urban.u1.chainring",
+      "to": "bike.urban.u1.chain",
+      "type": "chain"
+    },
+    {
+      "from": "bike.urban.u1.chain",
+      "to": "bike.urban.u1.rear-sprocket",
+      "type": "chain"
+    },
+    {
+      "from": "bike.urban.u1.rear-sprocket",
+      "to": "bike.urban.u1.rear-hub",
+      "type": "drivetrain"
+    },
+    {
+      "from": "bike.urban.u1.frame",
+      "to": "bike.urban.u1.seatpost",
+      "type": "clamped"
+    },
+    {
+      "from": "bike.urban.u1.seatpost",
+      "to": "bike.urban.u1.saddle",
+      "type": "clamped"
+    },
+    {
+      "from": "bike.urban.u1.frame",
+      "to": "bike.urban.u1.rear-rack",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.urban.u1.frame",
+      "to": "bike.urban.u1.rear-fender",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.urban.u1.fork",
+      "to": "bike.urban.u1.front-fender",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.urban.u1.fork",
+      "to": "bike.urban.u1.front-caliper",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.urban.u1.frame",
+      "to": "bike.urban.u1.rear-caliper",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.urban.u1.front-wheel",
+      "to": "bike.urban.u1.front-axle",
+      "type": "axle"
+    },
+    {
+      "from": "bike.urban.u1.rear-wheel",
+      "to": "bike.urban.u1.rear-axle",
+      "type": "axle"
+    },
+    {
+      "from": "bike.urban.u1.frame",
+      "to": "bike.urban.u1.kickstand",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.urban.u1.frame",
+      "to": "bike.urban.u1.frame-lock",
+      "type": "bolted"
+    },
+    {
+      "from": "bike.urban.u1.front-light",
+      "to": "bike.urban.u1.fork",
+      "type": "mounted"
+    },
+    {
+      "from": "bike.urban.u1.rear-light",
+      "to": "bike.urban.u1.rear-rack",
+      "type": "mounted"
+    }
+  ],
+  "operations": []
+}
