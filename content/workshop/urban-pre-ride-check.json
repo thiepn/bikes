@@ -1,0 +1,109 @@
+{
+  "id": "urban-pre-ride-check",
+  "bikeId": "bike.urban.u1",
+  "title": "Everyday Urban U1 pre-ride check",
+  "summary": "A compact check of tires, wheels, brakes, cockpit and utility hardware before daily riding.",
+  "systemId": "frame",
+  "difficulty": "beginner",
+  "durationMinutes": 6,
+  "prerequisiteProcedureIds": [],
+  "assumedOperationIds": [],
+  "tools": [
+    {
+      "id": "pressure-gauge",
+      "name": "Accurate tire-pressure gauge",
+      "required": true
+    },
+    {
+      "id": "inspection-light",
+      "name": "Inspection light",
+      "required": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "tires-wheels",
+      "title": "Inspect tires and wheels",
+      "instruction": "Check both tires for visible damage and measure pressure against the actual tire/rim/bicycle guidance. Spin each wheel and look for obvious wobble, rubbing or poor seating.",
+      "why": "The tires and wheels carry the bicycle and create the contact patches used for steering and braking.",
+      "focusComponentId": "bike.urban.u1.front-tire",
+      "highlightComponentIds": [
+        "bike.urban.u1.front-tire",
+        "bike.urban.u1.rear-tire",
+        "bike.urban.u1.front-wheel",
+        "bike.urban.u1.rear-wheel"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0,
+      "tools": [
+        "pressure-gauge"
+      ],
+      "warning": "Do not ride a tire with structural casing damage, an unexplained bulge or visibly unsafe seating.",
+      "check": "Both tires and wheels appear serviceable and pressures are within the actual system limits.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "brakes",
+      "title": "Check braking response",
+      "instruction": "Operate both brakes while stationary, then verify during a controlled low-speed roll that braking feels predictable and neither wheel shows abnormal rubbing or brake behavior.",
+      "why": "Daily utility equipment is only useful if the bicycle can be controlled and stopped predictably.",
+      "focusComponentId": "bike.urban.u1.front-rotor",
+      "highlightComponentIds": [
+        "bike.urban.u1.front-rotor",
+        "bike.urban.u1.rear-rotor",
+        "bike.urban.u1.front-caliper",
+        "bike.urban.u1.rear-caliper"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0.06,
+      "tools": [],
+      "warning": "If braking is weak, inconsistent, leaking, heavily rubbing or otherwise abnormal, stop and identify the cause before normal riding.",
+      "check": "Both brakes respond predictably in a controlled check.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "cockpit",
+      "title": "Confirm steering and contact points",
+      "instruction": "Check that the handlebar, grips, saddle and pedals do not show obvious looseness, damage or unintended movement.",
+      "why": "Loose rider-control components can turn a normal city maneuver into a loss of control.",
+      "focusComponentId": "bike.urban.u1.handlebar",
+      "highlightComponentIds": [
+        "bike.urban.u1.handlebar",
+        "bike.urban.u1.left-grip",
+        "bike.urban.u1.right-grip",
+        "bike.urban.u1.saddle"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "Do not tighten cockpit or seat hardware by guesswork; use the component-specific procedure and torque specification.",
+      "check": "Visible control/contact components appear secure and undamaged.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "utility-hardware",
+      "title": "Check the hardware you rely on today",
+      "instruction": "Inspect the rack, fenders, lights and kickstand for obvious looseness, interference or damage. Confirm the lights you intend to use operate normally.",
+      "why": "Utility accessories sit close to moving wheels and are used repeatedly, so looseness or interference deserves attention before riding.",
+      "focusComponentId": "bike.urban.u1.rear-rack",
+      "highlightComponentIds": [
+        "bike.urban.u1.rear-rack",
+        "bike.urban.u1.front-fender",
+        "bike.urban.u1.rear-fender",
+        "bike.urban.u1.front-light",
+        "bike.urban.u1.rear-light",
+        "bike.urban.u1.kickstand"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0.1,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "If a rack, fender or stand can contact a wheel or interfere with controls, do not ride until the fault is corrected.",
+      "check": "Required utility hardware is secure enough for the intended ride and does not interfere with moving parts.",
+      "removedComponentIds": []
+    }
+  ]
+}
