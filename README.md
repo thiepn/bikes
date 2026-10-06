@@ -4,86 +4,123 @@ Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle
 
 ## Current phase
 
-**P18 — Bicycle History, Evolution Timeline & Engineering Lineage**
+**P19 — Cross-Bike Knowledge Graph, Concept Pages & Global Search**
 
-Bike Atlas now contains a global sourced History workspace connecting historical bicycle development directly to the four modern interactive archetypes.
-
-Current History foundation:
+Bike Atlas now has one global knowledge surface spanning:
 
 ```text
-12 historical milestones
-6 eras
-8 engineering/history categories
-40 modern-component lineage links
-18 source references
+Concepts
+Bikes
+Components
+Learn
+Workshop
+History
 ```
 
-The timeline currently spans:
+The previous bike-local Encyclopedia search has been promoted into a global **Search** workspace.
+
+## Engineering concept graph
+
+P19 introduces nine cross-bike engineering concepts:
 
 ```text
-1817  steerable draisine
-1863  pedal velocipede
-1871  wire-spoked high-wheel Ordinary
-1880s safety-bicycle convergence
-1888  practical pneumatic bicycle tire
-1890s bicycle transport boom
-1902  internal-gear hub
-1937  derailleur Tour adoption
-1970s mountain-bike emergence
-1976  Repack
-1990–1996 global MTB institutionalization
-Today modern specialization
+Braking systems
+Tire volume, pressure & contact
+Chain drive & power transmission
+Gearing, range & shifting
+Steering, geometry & control
+Suspension & compliance
+Wheels, hubs & axles
+Cargo, mounts & utility hardware
+Frame architecture & rider position
 ```
 
-P18 deliberately preserves historical uncertainty instead of inventing clean origin stories:
-
-- pedal attribution in the Michaux workshop is treated as disputed;
-- Dunlop's practical 1888 pneumatic tire is shown alongside Thomson's earlier pneumatic-tire work;
-- 1937 is treated as derailleur adoption in the Tour, not derailleur invention;
-- mountain biking is treated as an evolving movement rather than the creation of one person.
-
-### Trace it into Bike Atlas
-
-Every milestone links into current semantic 3D components.
-
-For example:
+Each concept can connect:
 
 ```text
-1888 pneumatic tire
-├─ Road R1 tire
-├─ MTB M1 tire
-├─ Urban U1 tire
-└─ Gravel G1 tire
+concept
+├─ modern 3D components
+├─ multiple bike families
+├─ Learn lessons
+├─ Workshop procedures
+└─ History milestones
 ```
 
-Selecting a lineage target exits History directly into that bike/component in the normal 3D Explore viewer.
+Component encyclopedia pages also contain reverse links back into relevant concepts.
 
-### History deep links
+This creates navigable flows such as:
 
 ```text
-/?history=1817-draisine-steering
-/?history=1888-pneumatic-tire
-/?history=1902-internal-gear-hub
-/?history=1976-repack-race
-/?history=today-specialized-branches
+Urban U1 internal-gear hub
+        ↓
+Gearing, range & shifting
+        ↓
+Road cassette
+MTB cassette
+Gravel cassette
+        ↓
+Learn / Workshop / History
 ```
 
-History is global and mutually exclusive with Finder, Compare, Learn, Workshop and Encyclopedia.
+## Global Search
 
-### Source families
+Search now derives results from the canonical Bike Atlas catalogs instead of maintaining duplicate search content.
 
-Milestone evidence currently comes from:
+Indexed entity types:
 
 ```text
-Smithsonian Institution
-National Museums Scotland
-Sturmey-Archer
-Conservatoire national des arts et métiers
-Marin Museum of Bicycling / Mountain Bike Hall of Fame
-Union Cycliste Internationale
+Concept
+Bike
+Component
+Learn
+Workshop
+History
 ```
 
-Each milestone stores its own source links.
+Example searches:
+
+```text
+brakes
+pressure
+creaking
+cassette
+internal gear
+Repack
+cargo
+tubeless
+suspension
+head angle
+```
+
+Search is deterministic, local and does not require an AI API.
+
+## Concept deep links
+
+```text
+/?concept=braking-systems
+/?concept=tire-volume-pressure
+/?concept=chain-drive-power
+/?concept=gearing-range-shifting
+/?concept=steering-geometry-control
+/?concept=suspension-compliance
+/?concept=wheels-hubs-axles
+/?concept=cargo-mounting-utility
+/?concept=frame-architecture-rider-position
+```
+
+## Current authored graph
+
+```text
+9 engineering concepts
+36 component links
+25 lesson links
+22 Workshop links
+19 History links
+4 / 4 bike families covered
+0 broken graph references
+```
+
+The global derived index additionally contains all current bikes, searchable encyclopedia components, lessons, Workshop procedures and History milestones.
 
 Run all domain checks with:
 
@@ -91,4 +128,4 @@ Run all domain checks with:
 npm run validate:domain
 ```
 
-See `docs/P1.md` through `docs/P18.md`.
+See `docs/P1.md` through `docs/P19.md`.
