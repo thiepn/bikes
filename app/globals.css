@@ -5818,3 +5818,536 @@ body {
     display: grid;
   }
 }
+
+
+/* P24 Geometry Lab */
+.geometry-launch {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  gap: 7px;
+  padding: 0 11px;
+  border: 1px solid rgba(101, 227, 255, 0.14);
+  border-radius: 999px;
+  color: #a9dce6;
+  background: rgba(101, 227, 255, 0.035);
+  cursor: pointer;
+  font-size: 9px;
+  font-weight: 720;
+  letter-spacing: 0.04em;
+}
+
+.geometry-launch:hover,
+.geometry-launch.is-active {
+  border-color: rgba(101, 227, 255, 0.28);
+  color: #d6f7ff;
+  background: rgba(101, 227, 255, 0.075);
+}
+
+.geometry-panel {
+  position: absolute;
+  z-index: 10;
+  top: 82px;
+  right: clamp(16px, 2.5vw, 38px);
+  bottom: 22px;
+  width: min(1040px, calc(100vw - 32px));
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 78% -10%, rgba(101, 227, 255, 0.07), transparent 34%),
+    rgba(8, 11, 13, 0.97);
+  box-shadow: 0 34px 120px rgba(0, 0, 0, 0.52);
+  backdrop-filter: blur(30px);
+}
+
+.geometry-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.geometry-header > div > span {
+  color: #79cadb;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.geometry-header h2 {
+  margin: 6px 0 0;
+  color: #eef4f3;
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 515;
+  letter-spacing: -0.05em;
+  line-height: 0.96;
+}
+
+.geometry-header p {
+  max-width: 650px;
+  margin: 9px 0 0;
+  color: #7c8984;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.geometry-tabs {
+  display: flex;
+  gap: 5px;
+  padding: 9px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.geometry-tabs button {
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #75827c;
+  background: transparent;
+  cursor: pointer;
+  font-size: 7px;
+  font-weight: 700;
+}
+
+.geometry-tabs button:hover,
+.geometry-tabs button.is-active {
+  border-color: rgba(101, 227, 255, 0.12);
+  color: #b7dfe7;
+  background: rgba(101, 227, 255, 0.035);
+}
+
+.geometry-body {
+  height: calc(100% - 162px);
+  overflow-y: auto;
+  padding: 16px 18px 22px;
+  scrollbar-width: thin;
+}
+
+.geometry-hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: end;
+}
+
+.geometry-hero > div:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.geometry-hero span,
+.geometry-section-title span,
+.gearing-controls span,
+.gearing-summary span,
+.gearing-inspector > span {
+  color: #66746d;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.geometry-hero strong {
+  color: #dce6e2;
+  font-size: 16px;
+  font-weight: 620;
+}
+
+.geometry-legend {
+  display: flex;
+  gap: 11px;
+}
+
+.geometry-legend span {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  color: #758078;
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.geometry-legend i {
+  display: block;
+  width: 15px;
+  height: 2px;
+  border-radius: 999px;
+}
+
+.geometry-legend i.is-reference {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.geometry-legend i.is-current {
+  background: #65e3ff;
+}
+
+.geometry-diagram {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 14px;
+  background:
+    linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px),
+    rgba(255, 255, 255, 0.012);
+  background-size: 28px 28px;
+}
+
+.geometry-ground {
+  stroke: rgba(255, 255, 255, 0.09);
+  stroke-width: 2;
+}
+
+.geometry-reference-shape {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 4;
+}
+
+.geometry-reference-shape circle {
+  fill: rgba(255,255,255,0.025);
+}
+
+.geometry-current-shape {
+  fill: none;
+  stroke: #65e3ff;
+  stroke-width: 4;
+}
+
+.geometry-current-shape circle {
+  fill: rgba(101, 227, 255, 0.05);
+}
+
+.geometry-reference-shape .geometry-fit-line,
+.geometry-current-shape .geometry-fit-line {
+  stroke-dasharray: 8 7;
+  stroke-width: 2;
+}
+
+.geometry-metrics,
+.geometry-fit-grid,
+.gearing-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.geometry-metrics article,
+.geometry-fit-grid article,
+.gearing-summary article {
+  display: grid;
+  gap: 3px;
+  padding: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.045);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.016);
+}
+
+.geometry-metrics article.is-changed {
+  border-color: rgba(101, 227, 255, 0.11);
+  background: rgba(101, 227, 255, 0.022);
+}
+
+.geometry-metrics span,
+.geometry-fit-grid span {
+  color: #68756e;
+  font-size: 6px;
+}
+
+.geometry-metrics strong,
+.geometry-fit-grid strong,
+.gearing-summary strong {
+  color: #c3cec8;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.geometry-metrics small,
+.geometry-fit-grid small,
+.gearing-summary small {
+  color: #748078;
+  font-size: 6px;
+}
+
+.geometry-metrics article.is-changed small {
+  color: #78cbdc;
+}
+
+.geometry-fit,
+.geometry-interpretation,
+.geometry-boundary,
+.gearing-layout,
+.gearing-system-state {
+  margin-top: 16px;
+}
+
+.geometry-section-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.geometry-section-title strong {
+  color: #75827b;
+  font-size: 7px;
+  font-weight: 620;
+}
+
+.geometry-interpretation {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.geometry-interpretation article {
+  display: grid;
+  gap: 4px;
+  padding: 9px 10px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.016);
+}
+
+.geometry-interpretation span {
+  color: #66736c;
+  font-size: 6px;
+  font-weight: 780;
+  text-transform: uppercase;
+}
+
+.geometry-interpretation strong {
+  color: #aebbb4;
+  font-size: 8px;
+  font-weight: 620;
+}
+
+.gearing-controls {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 10px 11px;
+  border: 1px solid rgba(101, 227, 255, 0.08);
+  border-radius: 10px;
+  background: rgba(101, 227, 255, 0.018);
+}
+
+.gearing-controls > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.gearing-controls strong {
+  color: #bddde3;
+  font-size: 12px;
+  font-weight: 680;
+}
+
+.gearing-controls input {
+  width: 100%;
+  accent-color: #65e3ff;
+}
+
+.gearing-summary {
+  margin-top: 10px;
+}
+
+.gearing-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(240px, 0.55fr);
+  gap: 12px;
+}
+
+.gearing-map {
+  display: grid;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.gearing-map button {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr) 78px;
+  gap: 8px;
+  align-items: center;
+  min-height: 29px;
+  padding: 0 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 7px;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.012);
+  cursor: pointer;
+  text-align: left;
+}
+
+.gearing-map button:hover,
+.gearing-map button.is-selected {
+  border-color: rgba(101, 227, 255, 0.12);
+  background: rgba(101, 227, 255, 0.025);
+}
+
+.gearing-map span {
+  color: #86928b;
+  font-size: 7px;
+  font-weight: 650;
+}
+
+.gearing-map i {
+  display: block;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(101, 227, 255, 0.42);
+}
+
+.gearing-map strong {
+  color: #a9b8b1;
+  font-size: 7px;
+  font-weight: 680;
+  text-align: right;
+}
+
+.gearing-inspector {
+  align-self: start;
+  padding: 12px;
+  border: 1px solid rgba(101, 227, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(101, 227, 255, 0.018);
+}
+
+.gearing-inspector h3 {
+  margin: 4px 0 10px;
+  color: #dce7e3;
+  font-size: 22px;
+  font-weight: 560;
+  letter-spacing: -0.025em;
+}
+
+.gearing-inspector > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.gearing-inspector article {
+  display: grid;
+  gap: 2px;
+  padding: 7px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.gearing-inspector article span {
+  color: #68766e;
+  font-size: 6px;
+}
+
+.gearing-inspector article strong {
+  color: #b8c6bf;
+  font-size: 9px;
+  font-weight: 670;
+}
+
+.gearing-inspector p,
+.gearing-system-state p,
+.geometry-boundary p {
+  margin: 8px 0 0;
+  color: #738079;
+  font-size: 7px;
+  line-height: 1.48;
+}
+
+.gearing-system-state,
+.geometry-boundary {
+  padding: 10px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.014);
+}
+
+.gearing-system-state.is-blocked {
+  border-color: rgba(226, 160, 135, 0.14);
+}
+
+.gearing-system-state.is-attention {
+  border-color: rgba(209, 191, 130, 0.13);
+}
+
+.gearing-system-state strong,
+.geometry-boundary strong {
+  color: #738078;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.geometry-launch:focus-visible,
+.geometry-tabs button:focus-visible,
+.gearing-map button:focus-visible {
+  outline: 2px solid #65e3ff;
+  outline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  .geometry-launch {
+    min-height: 27px;
+    padding: 0 6px;
+    font-size: 7px;
+  }
+
+  .geometry-launch span {
+    display: none;
+  }
+
+  .geometry-panel {
+    top: 72px;
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    width: auto;
+    border-radius: 18px;
+  }
+
+  .geometry-header {
+    padding: 14px;
+  }
+
+  .geometry-header h2 {
+    font-size: 29px;
+  }
+
+  .geometry-body {
+    height: calc(100% - 151px);
+    padding: 12px;
+  }
+
+  .geometry-metrics,
+  .geometry-fit-grid,
+  .gearing-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .geometry-interpretation,
+  .gearing-layout,
+  .gearing-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .geometry-diagram {
+    min-height: 260px;
+  }
+
+  .gearing-map button {
+    grid-template-columns: 65px minmax(0, 1fr) 70px;
+  }
+}
