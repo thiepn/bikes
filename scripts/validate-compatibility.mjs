@@ -80,7 +80,7 @@ function evaluate(slot, part) {
 
 assert(
   reference.version === 1,
-  "P21 compatibility schema version must remain 1.",
+  "P23 compatibility schema version must remain 1.",
 );
 assert(
   reference.profiles.length === bikes.length,
@@ -376,15 +376,15 @@ assert(
     viewerText.includes('searchParams.get("build")') &&
     viewerText.includes("BUILD_QUERY_KEYS") &&
     viewerText.includes("buildOpen"),
-  "BikeViewer must retain P21 Build Lab routing and URL lifecycle.",
+  "BikeViewer must retain P23 Build Lab routing and URL lifecycle.",
 );
 assert(
   viewerText.includes("else if (buildOpen) setBuildOpen(false);"),
-  "Escape must close the P21 Build Lab.",
+  "Escape must close the P23 Build Lab.",
 );
 
 if (errors.length) {
-  console.error("\nP21 compatibility validation failed:");
+  console.error("\nP23 compatibility validation failed:");
   for (const error of errors) console.error(`- ${error}`);
   process.exit(1);
 }
