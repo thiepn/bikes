@@ -1,0 +1,21 @@
+{
+  "bikeId": "bike.urban.u1",
+  "source": "bike-atlas-reference",
+  "sizeLabel": "Reference M",
+  "wheelFormat": "700C / 28-inch",
+  "wheelbaseMm": 1115,
+  "reachMm": 365,
+  "stackMm": 640,
+  "headAngleDeg": 69.5,
+  "seatAngleDeg": 72,
+  "chainstayMm": 475,
+  "bottomBracketDropMm": 65,
+  "tireWidthMm": 47,
+  "handlebarWidthMm": 620,
+  "frontTravelMm": 0,
+  "rearTravelMm": 0,
+  "notes": [
+    "Bike Atlas reference geometry for the generic Urban U1 Dutch-style utility archetype.",
+    "Not a manufacturer size chart, fit recommendation or legal equipment specification."
+  ]
+}
