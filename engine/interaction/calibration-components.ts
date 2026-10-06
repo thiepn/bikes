@@ -17,6 +17,7 @@ export const CALIBRATION_COMPONENT_IDS = new Set([
   "bike.road.r1.seatpost",
   "bike.road.r1.crankset",
   "bike.road.r1.large-chainring",
+  "bike.road.r1.chain",
   "bike.road.r1.cassette",
   "bike.road.r1.rear-derailleur",
   "bike.road.r1.left-pedal",

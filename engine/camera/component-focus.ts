@@ -31,6 +31,7 @@ const FOCUS_BY_SLUG: Record<string, CameraFocus> = {
   seatpost: { position: [0.68, 0.92, -0.45], target: [0, 0.75, -0.22], fov: 21 },
   crankset: { position: [0.68, 0.55, 0.1], target: [0, 0.39, -0.1], fov: 20 },
   "large-chainring": { position: [0.55, 0.5, 0.03], target: [0, 0.39, -0.1], fov: 18 },
+  chain: { position: [0.7, 0.52, -0.28], target: [0.04, 0.37, -0.33], fov: 20 },
   cassette: { position: [0.56, 0.46, -0.9], target: [0.04, 0.36, -0.58], fov: 18 },
   "rear-derailleur": { position: [0.58, 0.45, -0.92], target: [0.06, 0.27, -0.55], fov: 18 },
   "left-pedal": { position: [-0.55, 0.48, -0.02], target: [-0.14, 0.39, -0.1], fov: 20 },

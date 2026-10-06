@@ -1,4 +1,4 @@
-export type ExperienceMode = "story" | "explore";
+export type ExperienceMode = "story" | "explore" | "lesson";
 
 export interface StoryVisualState {
   inspectionMode: "normal" | "systems" | "xray" | "exploded";

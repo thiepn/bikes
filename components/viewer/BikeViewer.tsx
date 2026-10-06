@@ -4,13 +4,13 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { ACESFilmicToneMapping, SRGBColorSpace } from "three";
 import { ROAD_R1 } from "@/domain/bike/road-r1";
+import { DRIVETRAIN_BASICS_LESSON } from "@/domain/learning/drivetrain-basics";
 import { isCalibrationComponent } from "@/engine/interaction/calibration-components";
 import type { InspectionMode } from "@/engine/inspection/types";
-import {
-  getStoryVisualState,
-} from "@/engine/story/config";
+import { getStoryVisualState } from "@/engine/story/config";
 import type { ExperienceMode } from "@/engine/story/types";
 import { CinematicStory } from "@/components/story/CinematicStory";
+import { LessonPanel } from "@/components/learning/LessonPanel";
 import { BikeScene } from "./BikeScene";
 import { ComponentPanel } from "./ComponentPanel";
 import { InspectionToolbar } from "./InspectionToolbar";
@@ -23,6 +23,12 @@ const VALID_MODES = new Set<InspectionMode>([
   "exploded",
 ]);
 
+const EMPTY_DEMO = {
+  running: false,
+  cadenceRpm: 0,
+  gearIndex: 2,
+};
+
 export function BikeViewer() {
   const [experienceMode, setExperienceMode] =
     useState<ExperienceMode>("story");
@@ -33,13 +39,44 @@ export function BikeViewer() {
   const [mode, setMode] = useState<InspectionMode>("normal");
   const [explosionAmount, setExplosionAmount] = useState(0);
 
+  const [lessonStepIndex, setLessonStepIndex] = useState(0);
+  const [lessonRunning, setLessonRunning] = useState(true);
+  const [lessonGearIndex, setLessonGearIndex] = useState(2);
+
+  const lesson = DRIVETRAIN_BASICS_LESSON;
+  const lessonStep = lesson.steps[lessonStepIndex];
   const storyVisual = getStoryVisualState(storyProgress);
+
   const sceneMode =
-    experienceMode === "story" ? storyVisual.inspectionMode : mode;
+    experienceMode === "story"
+      ? storyVisual.inspectionMode
+      : experienceMode === "lesson"
+        ? lessonStep.inspectionMode
+        : mode;
   const sceneExplosion =
     experienceMode === "story"
       ? storyVisual.explosionAmount
-      : explosionAmount;
+      : experienceMode === "lesson"
+        ? 0
+        : explosionAmount;
+  const sceneSelectedId =
+    experienceMode === "story"
+      ? null
+      : experienceMode === "lesson"
+        ? lessonStep.focusComponentId
+        : selectedId;
+  const sceneHighlightedIds =
+    experienceMode === "lesson"
+      ? lessonStep.highlightComponentIds
+      : [];
+  const drivetrainDemo =
+    experienceMode === "lesson"
+      ? {
+          running: lessonRunning,
+          cadenceRpm: lessonStep.demo.cadenceRpm,
+          gearIndex: lessonGearIndex,
+        }
+      : EMPTY_DEMO;
 
   const selectedComponent = useMemo(
     () =>
@@ -91,6 +128,33 @@ export function BikeViewer() {
     }
   }, []);
 
+  const changeLessonStep = useCallback((nextIndex: number) => {
+    const index = Math.min(
+      lesson.steps.length - 1,
+      Math.max(0, nextIndex),
+    );
+    const step = lesson.steps[index];
+
+    setLessonStepIndex(index);
+    setLessonRunning(step.demo.running);
+    setLessonGearIndex(step.demo.gearIndex);
+  }, [lesson.steps]);
+
+  const startLesson = useCallback(() => {
+    setSelectedId(null);
+    setHoveredId(null);
+    setIsolated(false);
+    changeLessonStep(0);
+    setExperienceMode("lesson");
+  }, [changeLessonStep]);
+
+  const exitLesson = useCallback(() => {
+    setExperienceMode("explore");
+    setSelectedId(null);
+    setHoveredId(null);
+    setIsolated(false);
+  }, []);
+
   const enterExplore = useCallback(() => {
     setMode(storyVisual.inspectionMode);
     setExplosionAmount(storyVisual.explosionAmount);
@@ -114,6 +178,8 @@ export function BikeViewer() {
       url.searchParams.delete("part");
       url.searchParams.delete("view");
       url.searchParams.delete("explode");
+      url.searchParams.delete("lesson");
+      url.searchParams.delete("step");
       window.history.replaceState({}, "", url);
     }
   }, []);
@@ -123,9 +189,26 @@ export function BikeViewer() {
     const slug = url.searchParams.get("part");
     const view = url.searchParams.get("view") as InspectionMode | null;
     const explode = Number(url.searchParams.get("explode"));
-    const hasDeepLink = Boolean(slug || view);
+    const lessonId = url.searchParams.get("lesson");
+    const requestedStep = Number(url.searchParams.get("step"));
+    const lessonDeepLink = lessonId === lesson.id;
+    const hasDeepLink = Boolean(slug || view || lessonDeepLink);
 
-    if (hasDeepLink) setExperienceMode("explore");
+    if (hasDeepLink) {
+      setExperienceMode(lessonDeepLink ? "lesson" : "explore");
+    }
+
+    if (lessonDeepLink) {
+      const index =
+        Number.isFinite(requestedStep) && requestedStep >= 1
+          ? Math.min(lesson.steps.length - 1, requestedStep - 1)
+          : 0;
+      const step = lesson.steps[index];
+      setLessonStepIndex(index);
+      setLessonRunning(step.demo.running);
+      setLessonGearIndex(step.demo.gearIndex);
+      return;
+    }
 
     if (slug) {
       const component = ROAD_R1.components.find(
@@ -145,7 +228,24 @@ export function BikeViewer() {
         );
       }
     }
-  }, []);
+  }, [lesson.id, lesson.steps]);
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+
+    if (experienceMode === "lesson") {
+      url.searchParams.delete("part");
+      url.searchParams.delete("view");
+      url.searchParams.delete("explode");
+      url.searchParams.set("lesson", lesson.id);
+      url.searchParams.set("step", String(lessonStepIndex + 1));
+    } else {
+      url.searchParams.delete("lesson");
+      url.searchParams.delete("step");
+    }
+
+    window.history.replaceState({}, "", url);
+  }, [experienceMode, lesson.id, lessonStepIndex]);
 
   useEffect(() => {
     if (experienceMode !== "explore") return;
@@ -209,7 +309,9 @@ export function BikeViewer() {
       className={
         experienceMode === "story"
           ? "viewer viewer--story"
-          : "viewer viewer--explore"
+          : experienceMode === "lesson"
+            ? "viewer viewer--lesson"
+            : "viewer viewer--explore"
       }
       aria-label="Interactive Bike Atlas 3D viewer"
     >
@@ -227,8 +329,25 @@ export function BikeViewer() {
           <strong>BIKE ATLAS</strong>
           <span>Interactive bicycle laboratory</span>
         </button>
-        <div className="phase-label">
-          {experienceMode === "story" ? "Cinematic introduction" : "Explore"}
+
+        <div className="topbar-actions">
+          {experienceMode === "explore" && (
+            <button
+              type="button"
+              className="learn-launch"
+              onClick={startLesson}
+            >
+              Learn drivetrain
+              <span aria-hidden="true">→</span>
+            </button>
+          )}
+          <div className="phase-label">
+            {experienceMode === "story"
+              ? "Cinematic introduction"
+              : experienceMode === "lesson"
+                ? "Lesson · drivetrain"
+                : "Explore"}
+          </div>
         </div>
       </div>
 
@@ -259,19 +378,25 @@ export function BikeViewer() {
         <BikeScene
           experienceMode={experienceMode}
           storyProgress={storyProgress}
-          selectedId={experienceMode === "story" ? null : selectedId}
-          hoveredId={experienceMode === "story" ? null : hoveredId}
-          isolated={experienceMode === "story" ? false : isolated}
+          selectedId={sceneSelectedId}
+          hoveredId={
+            experienceMode === "explore" ? hoveredId : null
+          }
+          isolated={
+            experienceMode === "explore" ? isolated : false
+          }
           mode={sceneMode}
           explosionAmount={sceneExplosion}
+          highlightedIds={sceneHighlightedIds}
+          drivetrainDemo={drivetrainDemo}
           onSelect={
-            experienceMode === "story" ? () => {} : select
+            experienceMode === "explore" ? select : () => {}
           }
           onHover={
-            experienceMode === "story" ? () => {} : setHoveredId
+            experienceMode === "explore" ? setHoveredId : () => {}
           }
           onIsolate={
-            experienceMode === "story" ? () => {} : isolate
+            experienceMode === "explore" ? isolate : () => {}
           }
         />
       </Canvas>
@@ -281,6 +406,17 @@ export function BikeViewer() {
           progress={storyProgress}
           onProgress={setStoryProgress}
           onEnterExplore={enterExplore}
+        />
+      ) : experienceMode === "lesson" ? (
+        <LessonPanel
+          stepIndex={lessonStepIndex}
+          running={lessonRunning}
+          cadenceRpm={lessonStep.demo.cadenceRpm}
+          gearIndex={lessonGearIndex}
+          onStepChange={changeLessonStep}
+          onRunningChange={setLessonRunning}
+          onGearChange={setLessonGearIndex}
+          onExit={exitLesson}
         />
       ) : (
         <>

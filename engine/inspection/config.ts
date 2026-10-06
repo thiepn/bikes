@@ -58,6 +58,7 @@ const EXPLOSION_VECTORS: Record<string, Vector3Tuple> = {
 
   "bike.road.r1.crankset": [0.22, 0, 0],
   "bike.road.r1.large-chainring": [0.29, 0, 0],
+  "bike.road.r1.chain": [0.18, -0.04, -0.02],
   "bike.road.r1.cassette": [0.3, 0, -0.06],
   "bike.road.r1.rear-derailleur": [0.23, -0.12, -0.15],
   "bike.road.r1.left-pedal": [-0.3, 0, 0],

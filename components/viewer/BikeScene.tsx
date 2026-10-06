@@ -16,6 +16,7 @@ import type {
   ViewerInteractionHandlers,
   ViewerInteractionState,
 } from "@/engine/interaction/types";
+import type { DrivetrainDemoState } from "@/engine/learning/types";
 import type { ExperienceMode } from "@/engine/story/types";
 
 enableBvhRaycasting();
@@ -24,6 +25,7 @@ type BikeSceneProps = ViewerInteractionState &
   ViewerInteractionHandlers & {
     experienceMode: ExperienceMode;
     storyProgress: number;
+    drivetrainDemo: DrivetrainDemoState;
   };
 
 export function BikeScene(props: BikeSceneProps) {
@@ -51,9 +53,7 @@ export function BikeScene(props: BikeSceneProps) {
       />
       <spotLight
         color="#d9ff67"
-        intensity={
-          props.mode === "systems" ? 8 : cinematic ? 22 : 18
-        }
+        intensity={props.mode === "systems" ? 8 : cinematic ? 22 : 18}
         angle={0.42}
         penumbra={0.9}
         position={[-2.6, 2.8, -1.8]}

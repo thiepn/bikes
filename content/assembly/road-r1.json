@@ -1,0 +1,62 @@
+{
+  "bikeId": "bike.road.r1",
+  "connections": [
+    {"from":"bike.road.r1.frame","to":"bike.road.r1.bottom-bracket","type":"threaded"},
+    {"from":"bike.road.r1.bottom-bracket","to":"bike.road.r1.crankset","type":"bearing"},
+    {"from":"bike.road.r1.crankset","to":"bike.road.r1.large-chainring","type":"bolted"},
+    {"from":"bike.road.r1.large-chainring","to":"bike.road.r1.chain","type":"chain"},
+    {"from":"bike.road.r1.chain","to":"bike.road.r1.cassette","type":"chain"},
+    {"from":"bike.road.r1.cassette","to":"bike.road.r1.rear-hub","type":"freehub"},
+    {"from":"bike.road.r1.rear-hub","to":"bike.road.r1.rear-wheel","type":"bearing"},
+    {"from":"bike.road.r1.rear-wheel","to":"bike.road.r1.rear-thru-axle","type":"axle"},
+    {"from":"bike.road.r1.rear-derailleur","to":"bike.road.r1.chain","type":"chain"}
+  ],
+  "operations": [
+    {
+      "id": "release-rear-thru-axle",
+      "targetId": "bike.road.r1.rear-thru-axle",
+      "action": "loosen",
+      "prerequisites": [],
+      "tools": ["hex-key"],
+      "note": "Release the axle before the rear wheel can leave the frame."
+    },
+    {
+      "id": "remove-rear-wheel",
+      "targetId": "bike.road.r1.rear-wheel",
+      "action": "remove",
+      "prerequisites": ["release-rear-thru-axle"],
+      "tools": [],
+      "note": "Move the derailleur clear as the wheel leaves the dropouts."
+    },
+    {
+      "id": "disconnect-chain",
+      "targetId": "bike.road.r1.chain",
+      "action": "disconnect",
+      "prerequisites": [],
+      "tools": ["quick-link-pliers"],
+      "note": "A reusable quick link is assumed for this generic Road R1 operation."
+    },
+    {
+      "id": "remove-cassette",
+      "targetId": "bike.road.r1.cassette",
+      "action": "remove",
+      "prerequisites": ["remove-rear-wheel"],
+      "tools": ["cassette-lockring-tool", "chain-whip"],
+      "note": "The cassette remains on the freehub until its lockring is released."
+    },
+    {
+      "id": "remove-rear-derailleur",
+      "targetId": "bike.road.r1.rear-derailleur",
+      "action": "remove",
+      "prerequisites": ["disconnect-chain"],
+      "tools": ["hex-key"]
+    },
+    {
+      "id": "remove-crankset",
+      "targetId": "bike.road.r1.crankset",
+      "action": "remove",
+      "prerequisites": ["disconnect-chain"],
+      "tools": ["hex-key"]
+    }
+  ]
+}

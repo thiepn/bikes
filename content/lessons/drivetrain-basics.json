@@ -1,0 +1,100 @@
+{
+  "id": "drivetrain-basics",
+  "title": "How a derailleur drivetrain works",
+  "summary": "Follow rider input from the crank through the chain and cassette, then change gears and see what the derailleur actually changes.",
+  "steps": [
+    {
+      "id": "power-input",
+      "eyebrow": "01 · Input",
+      "title": "Your legs turn the crank.",
+      "body": "Pedal force creates torque at the crank. The crankset rotates the front chainring, turning rider cadence into chain motion.",
+      "keyFact": "Cadence is crank revolutions per minute. It describes how fast you pedal, not how fast the bicycle is moving.",
+      "focusComponentId": "bike.road.r1.crankset",
+      "highlightComponentIds": [
+        "bike.road.r1.crankset",
+        "bike.road.r1.large-chainring",
+        "bike.road.r1.left-pedal",
+        "bike.road.r1.right-pedal"
+      ],
+      "inspectionMode": "systems",
+      "demo": {"running": true, "cadenceRpm": 60, "gearIndex": 2}
+    },
+    {
+      "id": "chain-transfer",
+      "eyebrow": "02 · Transfer",
+      "title": "The chain carries motion rearward.",
+      "body": "Each chain link engages the chainring teeth and carries that motion to a sprocket on the cassette. The chain is the mechanical connection between your crank and the rear wheel.",
+      "keyFact": "The chain's linear speed is the same on the upper and lower runs; the sprocket sizes determine rotational speed.",
+      "focusComponentId": "bike.road.r1.chain",
+      "highlightComponentIds": [
+        "bike.road.r1.large-chainring",
+        "bike.road.r1.chain",
+        "bike.road.r1.cassette"
+      ],
+      "inspectionMode": "systems",
+      "demo": {"running": true, "cadenceRpm": 75, "gearIndex": 2}
+    },
+    {
+      "id": "gear-ratio",
+      "eyebrow": "03 · Ratio",
+      "title": "Tooth counts set the ratio.",
+      "body": "With the 50-tooth demonstration chainring, a smaller rear sprocket makes the rear wheel rotate more times per crank revolution. A larger rear sprocket reduces that ratio.",
+      "keyFact": "Gear ratio = front chainring teeth ÷ rear sprocket teeth.",
+      "focusComponentId": "bike.road.r1.cassette",
+      "highlightComponentIds": [
+        "bike.road.r1.large-chainring",
+        "bike.road.r1.chain",
+        "bike.road.r1.cassette"
+      ],
+      "inspectionMode": "normal",
+      "demo": {"running": true, "cadenceRpm": 90, "gearIndex": 2},
+      "showRatio": true,
+      "allowGearControl": true
+    },
+    {
+      "id": "derailleur-shift",
+      "eyebrow": "04 · Shift",
+      "title": "The derailleur moves the chain sideways.",
+      "body": "A shift changes which cassette sprocket the chain engages. The rear derailleur guides that lateral move and maintains chain tension as the effective sprocket diameter changes.",
+      "keyFact": "The derailleur does not create the gear ratio; it moves the chain to the sprocket that creates it.",
+      "focusComponentId": "bike.road.r1.rear-derailleur",
+      "highlightComponentIds": [
+        "bike.road.r1.rear-derailleur",
+        "bike.road.r1.chain",
+        "bike.road.r1.cassette"
+      ],
+      "inspectionMode": "systems",
+      "demo": {"running": true, "cadenceRpm": 75, "gearIndex": 3},
+      "showRatio": true,
+      "allowGearControl": true
+    },
+    {
+      "id": "tradeoff",
+      "eyebrow": "05 · Trade-off",
+      "title": "Easy gear or high wheel speed.",
+      "body": "At the same cadence, a larger rear sprocket produces fewer wheel revolutions per crank revolution. That lowers kinematic speed but gives a mechanically easier gear for climbing or acceleration.",
+      "keyFact": "There is no universally best gear. The useful gear depends on speed, gradient, rider power and desired cadence.",
+      "focusComponentId": "bike.road.r1.rear-wheel",
+      "highlightComponentIds": [
+        "bike.road.r1.large-chainring",
+        "bike.road.r1.chain",
+        "bike.road.r1.cassette",
+        "bike.road.r1.rear-wheel"
+      ],
+      "inspectionMode": "systems",
+      "demo": {"running": true, "cadenceRpm": 90, "gearIndex": 4},
+      "showRatio": true,
+      "allowGearControl": true,
+      "quiz": {
+        "question": "At the same front chainring and cadence, which change makes the gear mechanically easier?",
+        "options": [
+          {"id":"larger","label":"Move to a larger rear sprocket"},
+          {"id":"smaller","label":"Move to a smaller rear sprocket"},
+          {"id":"same","label":"Rear sprocket size makes no difference"}
+        ],
+        "correctOptionId": "larger",
+        "explanation": "A larger rear sprocket lowers the front-to-rear tooth ratio, so the wheel turns fewer times for each crank revolution."
+      }
+    }
+  ]
+}

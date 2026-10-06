@@ -8,6 +8,9 @@ import {
   type ColorRepresentation,
 } from "three";
 import { SemanticPart } from "./SemanticPart";
+import { DrivetrainMotion } from "./DrivetrainMotion";
+import { getPartAppearance } from "@/engine/interaction/appearance";
+import type { DrivetrainDemoState } from "@/engine/learning/types";
 import {
   getExplosionOffset,
   getSystemColor,
@@ -19,52 +22,10 @@ import type {
 } from "@/engine/interaction/types";
 
 type Point = [number, number, number];
-type PrototypeBikeProps = ViewerInteractionState & ViewerInteractionHandlers;
-
-type Appearance = {
-  color: ColorRepresentation;
-  emissive: ColorRepresentation;
-  emissiveIntensity: number;
-  opacity: number;
-  transparent: boolean;
-  depthWrite: boolean;
-};
-
-function appearance(
-  baseColor: ColorRepresentation,
-  componentId: string,
-  state: ViewerInteractionState,
-  parentIds: string[] = [],
-): Appearance {
-  const semanticIds = [componentId, ...parentIds];
-  const selected = state.selectedId
-    ? semanticIds.includes(state.selectedId)
-    : false;
-  const hovered = state.hoveredId
-    ? semanticIds.includes(state.hoveredId)
-    : false;
-  const highlighted = selected || hovered;
-  const survivesIsolation =
-    !state.selectedId || semanticIds.includes(state.selectedId);
-  const dimmed = Boolean(state.isolated && !survivesIsolation);
-  const systemColor =
-    state.mode === "systems" ? getSystemColor(componentId) : baseColor;
-  const xrayShell =
-    state.mode === "xray" &&
-    semanticIds.some((id) => isXrayShell(id)) &&
-    !highlighted;
-
-  const opacity = dimmed ? 0.045 : xrayShell ? 0.14 : 1;
-
-  return {
-    color: highlighted ? "#d9ff67" : systemColor,
-    emissive: highlighted ? "#26370b" : "#000000",
-    emissiveIntensity: highlighted ? 1.3 : 0,
-    opacity,
-    transparent: opacity < 1,
-    depthWrite: opacity >= 0.95,
+type PrototypeBikeProps = ViewerInteractionState &
+  ViewerInteractionHandlers & {
+    drivetrainDemo: DrivetrainDemoState;
   };
-}
 
 function Tube({
   from,
@@ -100,7 +61,7 @@ function Tube({
     };
   }, [from, to]);
 
-  const material = appearance(color, part, state);
+  const material = getPartAppearance(color, part, state);
 
   return (
     <mesh
@@ -165,9 +126,9 @@ function Wheel({
     ] as const;
   });
 
-  const tireMaterial = appearance("#12171d", tireId, state, [wheelId]);
-  const rimMaterial = appearance("#59636e", rimId, state, [wheelId]);
-  const hubMaterial = appearance("#aeb7c1", hubId, state, [wheelId]);
+  const tireMaterial = getPartAppearance("#12171d", tireId, state, [wheelId]);
+  const rimMaterial = getPartAppearance("#59636e", rimId, state, [wheelId]);
+  const hubMaterial = getPartAppearance("#aeb7c1", hubId, state, [wheelId]);
 
   return (
     <group>
@@ -242,6 +203,7 @@ export function PrototypeBike(props: PrototypeBikeProps) {
     isolated: props.isolated,
     mode: props.mode,
     explosionAmount: props.explosionAmount,
+    highlightedIds: props.highlightedIds,
   };
   const handlers: ViewerInteractionHandlers = {
     onSelect: props.onSelect,
@@ -357,7 +319,7 @@ export function PrototypeBike(props: PrototypeBikeProps) {
         <mesh castShadow position={[0, 0.875, -0.25]} rotation={[0.03, 0, 0]}>
           <boxGeometry args={[0.115, 0.035, 0.25]} />
           <meshStandardMaterial
-            {...appearance("#151a20", "bike.road.r1.saddle", state)}
+            {...getPartAppearance("#151a20", "bike.road.r1.saddle", state)}
             roughness={0.58}
           />
         </mesh>
@@ -369,7 +331,7 @@ export function PrototypeBike(props: PrototypeBikeProps) {
         <mesh castShadow position={crank} rotation={[0, 0, Math.PI / 2]}>
           <cylinderGeometry args={[0.09, 0.09, 0.022, 40]} />
           <meshStandardMaterial
-            {...appearance("#20262d", "bike.road.r1.crankset", state)}
+            {...getPartAppearance("#20262d", "bike.road.r1.crankset", state)}
             metalness={0.9}
             roughness={0.2}
           />
@@ -382,7 +344,7 @@ export function PrototypeBike(props: PrototypeBikeProps) {
         <mesh position={[-0.15, 0.39, -0.1]}>
           <boxGeometry args={[0.07, 0.018, 0.105]} />
           <meshStandardMaterial
-            {...appearance("#151a20", "bike.road.r1.left-pedal", state)}
+            {...getPartAppearance("#151a20", "bike.road.r1.left-pedal", state)}
             roughness={0.58}
           />
         </mesh>
@@ -394,7 +356,7 @@ export function PrototypeBike(props: PrototypeBikeProps) {
         <mesh position={[0.15, 0.39, -0.1]}>
           <boxGeometry args={[0.07, 0.018, 0.105]} />
           <meshStandardMaterial
-            {...appearance("#151a20", "bike.road.r1.right-pedal", state)}
+            {...getPartAppearance("#151a20", "bike.road.r1.right-pedal", state)}
             roughness={0.58}
           />
         </mesh>
@@ -406,7 +368,7 @@ export function PrototypeBike(props: PrototypeBikeProps) {
         <mesh position={[0.02, 0.39, -0.1]} rotation={[0, Math.PI / 2, 0]}>
           <torusGeometry args={[0.102, 0.005, 8, 48]} />
           <meshStandardMaterial
-            {...appearance("#aeb8c1", "bike.road.r1.large-chainring", state)}
+            {...getPartAppearance("#aeb8c1", "bike.road.r1.large-chainring", state)}
             metalness={0.92}
             roughness={0.16}
           />
@@ -424,7 +386,7 @@ export function PrototypeBike(props: PrototypeBikeProps) {
             <mesh key={radius} position={[0, 0, index * 0.006 - 0.012]}>
               <torusGeometry args={[radius, 0.004, 8, 36]} />
               <meshStandardMaterial
-                {...appearance("#a7b0b9", "bike.road.r1.cassette", state)}
+                {...getPartAppearance("#a7b0b9", "bike.road.r1.cassette", state)}
                 metalness={0.94}
                 roughness={0.18}
               />
@@ -440,7 +402,7 @@ export function PrototypeBike(props: PrototypeBikeProps) {
           <mesh rotation={[0.2, 0, 0.15]} castShadow>
             <boxGeometry args={[0.055, 0.12, 0.035]} />
             <meshStandardMaterial
-              {...appearance(
+              {...getPartAppearance(
                 "#2a3138",
                 "bike.road.r1.rear-derailleur",
                 state,
@@ -455,7 +417,7 @@ export function PrototypeBike(props: PrototypeBikeProps) {
           >
             <torusGeometry args={[0.027, 0.006, 10, 32]} />
             <meshStandardMaterial
-              {...appearance(
+              {...getPartAppearance(
                 "#88929c",
                 "bike.road.r1.rear-derailleur",
                 state,
@@ -466,6 +428,12 @@ export function PrototypeBike(props: PrototypeBikeProps) {
           </mesh>
         </group>
       </SemanticPart>
+
+      <DrivetrainMotion
+        state={state}
+        handlers={handlers}
+        demo={props.drivetrainDemo}
+      />
 
       {(["front", "rear"] as const).map((side) => {
         const position = side === "front" ? front : rear;
@@ -479,7 +447,7 @@ export function PrototypeBike(props: PrototypeBikeProps) {
             >
               <circleGeometry args={[0.105, 48]} />
               <meshStandardMaterial
-                {...appearance("#939da6", id, state)}
+                {...getPartAppearance("#939da6", id, state)}
                 metalness={0.92}
                 roughness={0.2}
                 side={DoubleSide}
