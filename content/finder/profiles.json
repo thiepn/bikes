@@ -1,0 +1,80 @@
+{
+  "profiles": [
+    {
+      "bikeId": "bike.road.r1",
+      "traits": {
+        "pavedEfficiency": 1,
+        "mixedSurface": 0.32,
+        "technicalTerrain": 0.05,
+        "distanceEfficiency": 0.96,
+        "climbingCapability": 0.86,
+        "comfortControl": 0.45,
+        "cargoUtility": 0.1,
+        "allWeather": 0.45,
+        "maintenanceSimplicity": 0.72,
+        "suspensionCapability": 0.02
+      },
+      "traitReasons": {
+        "pavedEfficiency": "Road R1's narrow tires, rigid chassis and road-focused cockpit prioritize efficient paved riding.",
+        "mixedSurface": "Road R1 can tolerate limited rough surfaces, but that is not its primary design target.",
+        "technicalTerrain": "Road R1 lacks the tire volume, geometry and suspension intended for technical trail riding.",
+        "distanceEfficiency": "Its riding position and road-oriented rolling setup are built around sustained distance efficiency.",
+        "climbingCapability": "Low rolling losses and an efficient road drivetrain suit sustained paved climbing.",
+        "comfortControl": "Road R1 favors efficiency and direct response over rough-terrain control and impact isolation.",
+        "cargoUtility": "The current Road R1 reference has no dedicated cargo or utility architecture.",
+        "allWeather": "Disc brakes help, but the reference bike is not a dedicated all-weather utility platform.",
+        "maintenanceSimplicity": "A rigid frame/fork avoids suspension service, although the road drivetrain and hydraulic brakes still require maintenance.",
+        "suspensionCapability": "Road R1 is intentionally rigid and has no suspension travel."
+      },
+      "generalStrengths": [
+        "Fast paved riding",
+        "Long-distance efficiency",
+        "Direct handling",
+        "Lower suspension-service burden"
+      ],
+      "generalTradeoffs": [
+        "Very limited technical-trail capability",
+        "Little cargo utility",
+        "Less impact isolation on rough surfaces"
+      ]
+    },
+    {
+      "bikeId": "bike.mtb.m1",
+      "traits": {
+        "pavedEfficiency": 0.48,
+        "mixedSurface": 0.88,
+        "technicalTerrain": 1,
+        "distanceEfficiency": 0.56,
+        "climbingCapability": 0.82,
+        "comfortControl": 0.94,
+        "cargoUtility": 0.12,
+        "allWeather": 0.72,
+        "maintenanceSimplicity": 0.34,
+        "suspensionCapability": 1
+      },
+      "traitReasons": {
+        "pavedEfficiency": "MTB M1 can ride pavement, but wide tires, suspension and trail geometry trade some paved efficiency for control.",
+        "mixedSurface": "Large-volume tires and trail-oriented geometry cope well with changing and rough surfaces.",
+        "technicalTerrain": "Full suspension, trail geometry, wide tires and strong braking are built around technical terrain control.",
+        "distanceEfficiency": "It can cover distance, but the trail setup is not optimized for sustained paved-speed efficiency.",
+        "climbingCapability": "Wide gearing and traction support steep climbing, though the platform prioritizes trail capability over road efficiency.",
+        "comfortControl": "Suspension, wide tires, flat-bar leverage and a dropper give strong control on uneven terrain.",
+        "cargoUtility": "The current MTB M1 reference has no dedicated rack/cargo architecture.",
+        "allWeather": "Hydraulic discs and off-road tires suit changing conditions better than the Road R1 reference, without making it a utility bike.",
+        "maintenanceSimplicity": "Fork, rear shock, linkage pivots and dropper post add service complexity.",
+        "suspensionCapability": "MTB M1 provides both front and rear suspension for rough-terrain wheel control."
+      },
+      "generalStrengths": [
+        "Technical-trail control",
+        "Rough-surface capability",
+        "High traction and braking control",
+        "Full suspension and dropper-post flexibility"
+      ],
+      "generalTradeoffs": [
+        "Lower paved-speed efficiency",
+        "More suspension and pivot maintenance",
+        "Little cargo utility"
+      ]
+    }
+  ]
+}
