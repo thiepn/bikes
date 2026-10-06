@@ -8,63 +8,95 @@
   "prerequisiteProcedureIds": [],
   "assumedOperationIds": [],
   "tools": [
-    {"id":"quick-link-pliers","name":"Quick-link pliers","required":true},
-    {"id":"chain-tool","name":"Chain tool","required":false,"note":"Needed when sizing or breaking a non-reusable link."},
-    {"id":"chain-checker","name":"Chain-wear gauge","required":false}
+    {
+      "id": "quick-link-pliers",
+      "name": "Quick-link pliers",
+      "required": true
+    },
+    {
+      "id": "chain-tool",
+      "name": "Chain tool",
+      "required": false,
+      "note": "Needed when sizing or breaking a non-reusable link."
+    },
+    {
+      "id": "chain-checker",
+      "name": "Chain-wear gauge",
+      "required": false
+    }
   ],
   "steps": [
     {
-      "id":"inspect-routing",
-      "title":"Record the chain routing",
-      "instruction":"Before disconnecting anything, trace the chain around the chainring, cassette and both derailleur pulleys.",
-      "why":"Incorrect routing through the derailleur cage is a common installation mistake.",
-      "focusComponentId":"bike.road.r1.chain",
-      "highlightComponentIds":["bike.road.r1.chain","bike.road.r1.large-chainring","bike.road.r1.cassette","bike.road.r1.rear-derailleur"],
-      "inspectionMode":"systems",
-      "explosionAmount":0,
-      "tools":[],
-      "check":"You can identify the chain path through both derailleur pulleys.",
-      "removedComponentIds":[]
+      "id": "inspect-routing",
+      "title": "Record the chain routing",
+      "instruction": "Before disconnecting anything, trace the chain around the chainring, cassette and both derailleur pulleys.",
+      "why": "Incorrect routing through the derailleur cage is a common installation mistake.",
+      "focusComponentId": "bike.road.r1.chain",
+      "highlightComponentIds": [
+        "bike.road.r1.chain",
+        "bike.road.r1.large-chainring",
+        "bike.road.r1.cassette",
+        "bike.road.r1.rear-derailleur"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0,
+      "tools": [],
+      "check": "You can identify the chain path through both derailleur pulleys.",
+      "removedComponentIds": []
     },
     {
-      "id":"disconnect-chain",
-      "title":"Open the chain",
-      "instruction":"Shift to low chain tension, locate the quick link or chosen break point, then disconnect the chain with the correct tool.",
-      "why":"Controlled disconnection prevents damage and makes the old chain easy to compare with the replacement.",
-      "focusComponentId":"bike.road.r1.chain",
-      "highlightComponentIds":["bike.road.r1.chain"],
-      "inspectionMode":"normal",
-      "explosionAmount":0.25,
-      "operationId":"disconnect-chain",
-      "tools":["quick-link-pliers"],
-      "warning":"Use the link type and reuse policy specified by the chain manufacturer.",
-      "removedComponentIds":["bike.road.r1.chain"]
+      "id": "disconnect-chain",
+      "title": "Open the chain",
+      "instruction": "Shift to low chain tension, locate the quick link or chosen break point, then disconnect the chain with the correct tool.",
+      "why": "Controlled disconnection prevents damage and makes the old chain easy to compare with the replacement.",
+      "focusComponentId": "bike.road.r1.chain",
+      "highlightComponentIds": [
+        "bike.road.r1.chain"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0.25,
+      "operationId": "disconnect-chain",
+      "tools": [
+        "quick-link-pliers"
+      ],
+      "warning": "Use the link type and reuse policy specified by the chain manufacturer.",
+      "removedComponentIds": [
+        "bike.road.r1.chain"
+      ]
     },
     {
-      "id":"route-new-chain",
-      "title":"Route the replacement correctly",
-      "instruction":"Feed the replacement chain around the chainring, cassette and derailleur pulleys following the routing you recorded.",
-      "why":"The chain must pass on the correct side of derailleur cage tabs and around both pulleys.",
-      "focusComponentId":"bike.road.r1.rear-derailleur",
-      "highlightComponentIds":["bike.road.r1.rear-derailleur","bike.road.r1.chain"],
-      "inspectionMode":"xray",
-      "explosionAmount":0.25,
-      "tools":[],
-      "warning":"A chain routed outside a cage guide can appear connected but will run incorrectly.",
-      "removedComponentIds":[]
+      "id": "route-new-chain",
+      "title": "Route the replacement correctly",
+      "instruction": "Feed the replacement chain around the chainring, cassette and derailleur pulleys following the routing you recorded.",
+      "why": "The chain must pass on the correct side of derailleur cage tabs and around both pulleys.",
+      "focusComponentId": "bike.road.r1.rear-derailleur",
+      "highlightComponentIds": [
+        "bike.road.r1.rear-derailleur",
+        "bike.road.r1.chain"
+      ],
+      "inspectionMode": "xray",
+      "explosionAmount": 0.25,
+      "tools": [],
+      "warning": "A chain routed outside a cage guide can appear connected but will run incorrectly.",
+      "removedComponentIds": []
     },
     {
-      "id":"verify-chain",
-      "title":"Verify connection and shifting",
-      "instruction":"Join the chain using the correct connector, rotate the crank by hand and check that the chain runs freely through every pulley and selected gear.",
-      "why":"A final low-load inspection can reveal routing or connection errors before they become dangerous under pedaling load.",
-      "focusComponentId":"bike.road.r1.crankset",
-      "highlightComponentIds":["bike.road.r1.crankset","bike.road.r1.chain","bike.road.r1.rear-derailleur"],
-      "inspectionMode":"systems",
-      "explosionAmount":0,
-      "tools":[],
-      "check":"Chain runs smoothly with no tight link, snag or incorrect cage routing.",
-      "removedComponentIds":[]
+      "id": "verify-chain",
+      "title": "Verify connection and shifting",
+      "instruction": "Join the chain using the correct connector, rotate the crank by hand and check that the chain runs freely through every pulley and selected gear.",
+      "why": "A final low-load inspection can reveal routing or connection errors before they become dangerous under pedaling load.",
+      "focusComponentId": "bike.road.r1.crankset",
+      "highlightComponentIds": [
+        "bike.road.r1.crankset",
+        "bike.road.r1.chain",
+        "bike.road.r1.rear-derailleur"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0,
+      "tools": [],
+      "check": "Chain runs smoothly with no tight link, snag or incorrect cage routing.",
+      "removedComponentIds": []
     }
-  ]
+  ],
+  "bikeId": "bike.road.r1"
 }
