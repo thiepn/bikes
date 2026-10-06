@@ -4,94 +4,83 @@ Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle
 
 ## Current phase
 
-**P14 — Urban U1: Dutch-Style Utility Bike**
+**P15 — Urban U1 Deep Knowledge, City Learning & Everyday Workshop**
 
-Bike Atlas now contains three distinct bicycle families:
+Bike Atlas now contains three complete content families:
 
 ### Road R1
 
-Performance-road reference archetype focused on:
+Performance-road archetype with:
 
-- paved speed;
-- distance efficiency;
-- direct handling.
+- full encyclopedia;
+- Learn;
+- Workshop;
+- interactive 3D prototype.
 
 ### MTB M1
 
-Full-suspension trail reference archetype focused on:
+Full-suspension trail archetype with:
 
-- technical terrain;
-- suspension;
-- rough-surface control.
+- full encyclopedia;
+- MTB-specific Learn;
+- MTB-specific Workshop;
+- interactive 3D prototype.
 
 ### Urban U1
 
-Dutch-style utility reference archetype focused on:
+Dutch-style utility archetype with:
 
-- upright everyday riding;
-- all-weather practicality;
-- cargo;
-- protected low-maintenance drivetrain;
-- city accessories.
+- **42 / 42 full encyclopedia profiles**;
+- **4 Urban-specific interactive lessons**;
+- **4 everyday Workshop procedures**;
+- **38 interactive prototype parts**;
+- P12 comparison;
+- P13 Finder integration.
 
-Urban U1 introduces:
+Urban Learn now covers:
 
 ```text
-step-through frame
-swept upright cockpit
-internal-gear rear hub
-full chain guard
-front + rear fenders
-rear cargo rack
-integrated lights
-kickstand
-frame lock
-bell
+upright / step-through geometry
+internal-gear hub drivetrain
+weather-protection systems
+cargo, parking and security hardware
 ```
 
-Current Urban foundation:
+Urban Workshop now covers:
+
+```text
+everyday pre-ride inspection
+rack + cargo setup
+protected drivetrain / hub-shifting check
+fender + integrated-light inspection
+```
+
+Bike Atlas does not invent universal rack loads, component torque, hub lubrication/service intervals, tire pressures or lighting-law requirements. Those remain tied to the real component, bicycle and jurisdiction.
+
+Current Urban content:
 
 ```text
 42 semantic components
+42 encyclopedia profiles
 38 interactive 3D parts
 21 assembly connections
-15 systems
-reference geometry
-searchable encyclopedia foundation
-Finder profile
-Compare integration
+4 lessons / 19 lesson steps
+4 Workshop procedures / 16 steps
 ```
-
-Urban U1 is immediately available in the shared 3D scene, Systems/X-Ray/Exploded modes, P12 comparison and P13 Finder.
-
-### Finder impact
-
-The P13 **Daily utility** use case now changes from a catalog gap to:
-
-```text
-Urban U1 — 98/100 strong current match
-```
-
-Current deterministic presets:
-
-```text
-Fast road          → Road R1 100
-Mixed exploration  → MTB M1 97 / Urban U1 97
-Trail riding       → MTB M1 99
-Technical trail    → MTB M1 99
-Daily utility      → Urban U1 98
-```
-
-Urban U1 currently has an encyclopedia **foundation**. Dedicated Urban lessons and Workshop procedures are intentionally deferred to P15 rather than reusing Road/MTB content.
 
 Example links:
 
 ```text
-/?bike=urban-u1
-/?bike=urban-u1&part=rear-rack
-/?bike=urban-u1&part=chain-guard
-/?bike=urban-u1&view=systems
-/?bike=urban-u1&compare=road-r1&overlay=1
+/?bike=urban-u1&lesson=urban-internal-gear-hub
+/?bike=urban-u1&lesson=urban-cargo-security
+/?bike=urban-u1&workshop=urban-rack-cargo-check
+/?bike=urban-u1&workshop=urban-weather-lighting-check
+```
+
+The P13 Daily utility preset continues to resolve to:
+
+```text
+Urban U1 — 98/100 strong current match
 ```
 
 Run all domain checks with:
@@ -100,4 +89,4 @@ Run all domain checks with:
 npm run validate:domain
 ```
 
-See `docs/P1.md` through `docs/P14.md`.
+See `docs/P1.md` through `docs/P15.md`.
