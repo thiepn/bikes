@@ -178,7 +178,7 @@ export function BuildLabPanel({
       <header className="build-header">
         <div>
           <span className="build-kicker">
-            Build Lab · compatibility + 3D assembly
+            Build Lab · systems + consequences
           </span>
           <h2>Does it actually fit?</h2>
           <p>
