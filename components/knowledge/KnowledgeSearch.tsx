@@ -61,7 +61,7 @@ export function KnowledgeSearch({
           <p>
             Search components and systems across {bike.name}.
             {bike.capabilities.encyclopedia === "foundation"
-              ? " Detailed MTB encyclopedia content is still being authored."
+              ? ` Detailed ${bike.name} encyclopedia content is still being authored.`
               : " Materials, standards and symptoms are included where authored."}
           </p>
         </div>
