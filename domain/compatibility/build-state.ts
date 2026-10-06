@@ -1,6 +1,7 @@
 import {
   getCompatibilityPart,
   getCompatibilityProfile,
+  getInstalledReferencePart,
 } from "@/domain/compatibility/catalog";
 import { evaluateCompatibility } from "@/domain/compatibility/evaluate";
 import type {
@@ -76,7 +77,11 @@ export function sanitizeBuildSelections(
     const part = getCompatibilityPart(partId);
     if (!slot || !part) continue;
 
-    if (evaluateCompatibility(slot, part).status === "compatible") {
+    const installed = getInstalledReferencePart(bikeId, slot.id);
+    if (
+      evaluateCompatibility(slot, part).status === "compatible" &&
+      installed?.id !== part.id
+    ) {
       safe[slotId] = part.id;
     }
   }
