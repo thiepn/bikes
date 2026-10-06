@@ -2512,7 +2512,7 @@
         "hangerFamily": "ba-standard-rd",
         "chainFamily": "ba-12-road",
         "maxSprocketTeeth": 46,
-        "totalCapacityTeeth": 44
+        "totalCapacityTeeth": 50
       },
       "notes": [
         "Reference rear derailleur. Largest-sprocket clearance and total capacity are evaluated against the effective crankset and rear transmission."
