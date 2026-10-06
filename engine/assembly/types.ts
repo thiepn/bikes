@@ -14,7 +14,9 @@ export type ConnectionType =
   | "bearing"
   | "chain"
   | "freehub"
-  | "axle";
+  | "axle"
+  | "splined"
+  | "mounted";
 
 export interface AssemblyConnection {
   from: string;
