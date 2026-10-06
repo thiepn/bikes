@@ -1,0 +1,106 @@
+{
+  "id": "gravel-mount-cargo-check",
+  "bikeId": "bike.gravel.g1",
+  "title": "Check bikepacking mounts and cargo clearance",
+  "summary": "Inspect frame/fork mounts and verify that attached equipment remains within documented limits and clear of moving parts.",
+  "systemId": "accessories",
+  "difficulty": "beginner",
+  "durationMinutes": 6,
+  "prerequisiteProcedureIds": [
+    "gravel-pre-ride-check"
+  ],
+  "assumedOperationIds": [],
+  "tools": [
+    {
+      "id": "manufacturer-info",
+      "name": "Frame/fork/accessory mounting information",
+      "required": true
+    },
+    {
+      "id": "inspection-light",
+      "name": "Inspection light",
+      "required": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "mount-condition",
+      "title": "Inspect mounting points and surrounding structure",
+      "instruction": "Check frame and fork bosses for damaged threads, looseness, corrosion, cracks or movement around the insert area.",
+      "why": "The mounting point and surrounding structure carry accessory loads into the frame or fork.",
+      "focusComponentId": "bike.gravel.g1.frame-mounts",
+      "highlightComponentIds": [
+        "bike.gravel.g1.frame-mounts",
+        "bike.gravel.g1.fork-mounts",
+        "bike.gravel.g1.frame",
+        "bike.gravel.g1.fork"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0.12,
+      "tools": [
+        "inspection-light"
+      ],
+      "warning": "Do not continue loading a damaged, loose or spinning threaded insert.",
+      "check": "The intended mounting interfaces show no obvious damage.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "limits",
+      "title": "Confirm fastener and load limits",
+      "instruction": "Check the actual frame/fork and accessory instructions for permitted mounting positions, fastener length, torque and load. Use the lowest applicable limit.",
+      "why": "The number of bolts or size of an accessory does not reveal the structure's allowable load.",
+      "focusComponentId": "bike.gravel.g1.fork-mounts",
+      "highlightComponentIds": [
+        "bike.gravel.g1.fork-mounts",
+        "bike.gravel.g1.frame-mounts"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0.08,
+      "tools": [
+        "manufacturer-info"
+      ],
+      "warning": "Never infer fork or frame cargo capacity from appearance alone.",
+      "check": "The intended accessory and cargo remain within the documented limits of every involved component.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "clearance",
+      "title": "Check wheel, brake and steering clearance",
+      "instruction": "Secure bags, straps and cages so nothing can enter a tire, wheel, brake rotor/caliper, drivetrain or steering path. Turn the handlebar through its useful range and compress flexible bags by hand to check movement.",
+      "why": "Soft luggage can shift far more than a rigid component under vibration or steering.",
+      "focusComponentId": "bike.gravel.g1.fork-mounts",
+      "highlightComponentIds": [
+        "bike.gravel.g1.fork-mounts",
+        "bike.gravel.g1.front-wheel",
+        "bike.gravel.g1.front-rotor",
+        "bike.gravel.g1.handlebar"
+      ],
+      "inspectionMode": "systems",
+      "explosionAmount": 0,
+      "tools": [],
+      "warning": "Loose straps or bags near wheels and brakes can create an immediate control hazard.",
+      "check": "Mounted equipment stays clear of steering and all moving components.",
+      "removedComponentIds": []
+    },
+    {
+      "id": "loaded-test",
+      "title": "Perform a controlled loaded handling check",
+      "instruction": "Push and then ride the loaded bicycle slowly in a safe area. Confirm steering, braking and load retention remain predictable before normal riding.",
+      "why": "Cargo changes mass distribution and can alter steering and braking behavior even when every mount is structurally sound.",
+      "focusComponentId": "bike.gravel.g1.frame",
+      "highlightComponentIds": [
+        "bike.gravel.g1.frame",
+        "bike.gravel.g1.frame-mounts",
+        "bike.gravel.g1.fork-mounts",
+        "bike.gravel.g1.front-wheel",
+        "bike.gravel.g1.rear-wheel"
+      ],
+      "inspectionMode": "normal",
+      "explosionAmount": 0,
+      "tools": [],
+      "warning": "Stop and change the setup if luggage shifts or handling is unstable.",
+      "check": "The loaded bicycle remains predictable during the controlled check.",
+      "removedComponentIds": []
+    }
+  ]
+}
