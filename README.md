@@ -4,13 +4,33 @@ Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle
 
 ## Current phase
 
-**P28 — Shareable Build Reports, Portfolio Export & Decision Explanations**
+**P29 — Account-Synced Portfolios, Cross-Device Recovery & THIEPN Ecosystem Integration**
 
 Optimize now has three connected workflows:
 
 - Ranked — P25 single-goal search
 - Frontier — P26 Pareto trade-offs
 - Portfolio — P27 saved multi-scenario decisions
+
+## P29 account-synced Portfolio
+
+Bike Atlas remains guest-first and local-first, but signed-in users can now carry the explicit saved Build Portfolio across devices through THIEPN Account + Core.
+
+P29 adds:
+
+- Authorization Code + PKCE Account integration;
+- app-local access/refresh tokens;
+- a revisioned whole-Portfolio Core document;
+- compare-and-swap cloud writes;
+- automatic P27 local migration with per-entry updatedAt metadata;
+- bounded local recovery copies when another device advances the cloud revision;
+- explicit recovery restore instead of silent last-write-wins;
+- THIEPN Account/Core/Product Registry registration;
+- GitHub Pages production export at https://thiepn.dev/bikes/.
+
+Only saved Portfolio candidates sync. The active bike, Build Lab draft and temporary learning state stay local.
+
+The OAuth client ID is intentionally deployment-configured. Until the Bike Atlas public OAuth client is registered, the production UI stays local-only rather than exposing a nonfunctional sign-in control.
 
 ## P28 portable decision reports
 
@@ -48,7 +68,9 @@ If an older saved snapshot becomes blocked after Bike Atlas rules change, it rem
 
 ## Persistence
 
-P27 stores portfolio data in browser localStorage.
+P29 keeps portfolio data in browser localStorage as the immediate local-first source and optionally synchronizes the same saved Portfolio as one revisioned THIEPN Core document when signed in.
+
+Existing P27 data migrates in place; no manual import is required.
 
 Current limit:
 
@@ -56,7 +78,7 @@ Current limit:
 
 The limit is enforced during save, load and persist.
 
-Portfolio data is local to this browser in P27; it is not yet account-synced.
+Signed-out use stays browser-local. Signed-in P29 sync uses revision CAS and preserves a local recovery copy on conflict; it never silently applies last-write-wins.
 
 ## Five scenario presets
 
@@ -156,4 +178,4 @@ The current execution container could not resolve github.com, so a local clone a
 
 Committed source/data state and validator registration were audited directly through the GitHub repository.
 
-See docs/P1.md through docs/P28.md.
+See docs/P1.md through docs/P29.md.
