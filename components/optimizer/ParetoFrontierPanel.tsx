@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   getCompatibilityPart,
   getCompatibilityProfile,
@@ -175,20 +175,16 @@ export function ParetoFrontierPanel({
   const [xGoalId, setXGoalId] = useState<OptimizationGoalId>(() =>
     initialAxis("optX", "speed"),
   );
-  const [yGoalId, setYGoalId] = useState<OptimizationGoalId>(() =>
-    initialAxis("optY", "comfort"),
-  );
+  const [yGoalId, setYGoalId] = useState<OptimizationGoalId>(() => {
+    const x = initialAxis("optX", "speed");
+    const y = initialAxis("optY", "comfort");
+    return y === x
+      ? (OPTIMIZATION_GOALS.find((goal) => goal.id !== x)?.id ??
+          "comfort")
+      : y;
+  });
   const [selectedIndex, setSelectedIndex] = useState(initialPointIndex);
   const [pinnedId, setPinnedId] = useState<string | null>(null);
-  const hasMountedAxes = useRef(false);
-
-  useEffect(() => {
-    if (xGoalId !== yGoalId) return;
-    setYGoalId(
-      OPTIMIZATION_GOALS.find((goal) => goal.id !== xGoalId)?.id ??
-        "comfort",
-    );
-  }, [xGoalId, yGoalId]);
 
   const xGoal = getOptimizationGoal(xGoalId);
   const yGoal = getOptimizationGoal(yGoalId);
@@ -215,19 +211,6 @@ export function ParetoFrontierPanel({
     points.find((point) => point.id === pinnedId) ?? null;
 
   useEffect(() => {
-    if (selectedIndex !== safeIndex) setSelectedIndex(safeIndex);
-  }, [safeIndex, selectedIndex]);
-
-  useEffect(() => {
-    if (!hasMountedAxes.current) {
-      hasMountedAxes.current = true;
-      return;
-    }
-    setSelectedIndex(0);
-    setPinnedId(null);
-  }, [bikeId, xGoalId, yGoalId]);
-
-  useEffect(() => {
     if (typeof window === "undefined") return;
     const url = new URL(window.location.href);
 
@@ -246,6 +229,11 @@ export function ParetoFrontierPanel({
 
     window.history.replaceState({}, "", url);
   }, [safeIndex, xGoalId, yGoalId]);
+
+  function resetPointSelection() {
+    setSelectedIndex(0);
+    setPinnedId(null);
+  }
 
   function setAxis(
     axis: "x" | "y",
@@ -268,6 +256,7 @@ export function ParetoFrontierPanel({
         );
       }
     }
+    resetPointSelection();
   }
 
   const polyline = points
@@ -315,6 +304,7 @@ export function ParetoFrontierPanel({
             const previousX = xGoalId;
             setXGoalId(yGoalId);
             setYGoalId(previousX);
+            resetPointSelection();
           }}
           aria-label="Swap frontier axes"
         >
