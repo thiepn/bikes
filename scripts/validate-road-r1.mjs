@@ -151,7 +151,7 @@ const lessonIds = new Set(lessons.map((lesson) => lesson.id));
 assert(lessonIds.size === lessons.length, "Lesson IDs must be unique.");
 
 const calibrationText = await readFile(
-  "engine/interaction/calibration-components.ts",
+  "engine/interaction/component-availability.ts",
   "utf8",
 );
 const calibrationIds = new Set(
