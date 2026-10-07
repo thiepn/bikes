@@ -7909,3 +7909,122 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+
+/* P28 shareable decision reports */
+.portfolio-report {
+  margin-top: 10px;
+  padding: 11px;
+  border: 1px solid rgba(101, 227, 255, 0.08);
+  border-radius: 10px;
+  background: rgba(101, 227, 255, 0.015);
+}
+
+.portfolio-report__head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.portfolio-report__head > div {
+  display: grid;
+  gap: 3px;
+}
+
+.portfolio-report__head span,
+.portfolio-report__reasons span {
+  color: #63808a;
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.portfolio-report__head strong {
+  color: #b8cbd0;
+  font-size: 9px;
+  font-weight: 670;
+}
+
+.portfolio-report__head > b {
+  color: #9ddde9;
+  font-size: 14px;
+  font-weight: 620;
+}
+
+.portfolio-report__summary {
+  margin: 8px 0 0;
+  color: #8d9ea3;
+  font-size: 7px;
+  line-height: 1.48;
+}
+
+.portfolio-report__reasons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.portfolio-report__reasons article {
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.portfolio-report__reasons p {
+  margin: 5px 0 0;
+  color: #75858a;
+  font-size: 6px;
+  line-height: 1.45;
+}
+
+.portfolio-report__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 9px;
+}
+
+.portfolio-report__actions button {
+  min-height: 30px;
+  padding: 0 9px;
+  border: 1px solid rgba(101, 227, 255, 0.09);
+  border-radius: 8px;
+  color: #9ab8bf;
+  background: rgba(101, 227, 255, 0.02);
+  cursor: pointer;
+  font-size: 6px;
+  font-weight: 720;
+}
+
+.portfolio-report__actions button:hover {
+  border-color: rgba(101, 227, 255, 0.18);
+  color: #c0e8ef;
+  background: rgba(101, 227, 255, 0.035);
+}
+
+.portfolio-report__notice {
+  margin: 7px 0 0;
+  color: #8ea56d;
+  font-size: 6px;
+}
+
+.portfolio-report__boundary {
+  display: block;
+  margin-top: 8px;
+  color: #5f6d71;
+  font-size: 6px;
+  line-height: 1.45;
+}
+
+@media (max-width: 760px) {
+  .portfolio-report__head {
+    display: grid;
+  }
+
+  .portfolio-report__reasons {
+    grid-template-columns: 1fr;
+  }
+}
