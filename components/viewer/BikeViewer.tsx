@@ -67,6 +67,7 @@ import { ComponentPanel } from "./ComponentPanel";
 import { InspectionToolbar } from "./InspectionToolbar";
 import { SystemsLegend } from "./SystemsLegend";
 import { BikeSwitcher } from "./BikeSwitcher";
+import { AccountStatus } from "@/components/account/AccountStatus";
 
 const VALID_MODES = new Set<InspectionMode>([
   "normal",
@@ -1383,6 +1384,7 @@ export function BikeViewer() {
         </button>
 
         <div className="topbar-actions">
+          <AccountStatus />
           {experienceMode === "explore" && (
             <>
               <BikeSwitcher
