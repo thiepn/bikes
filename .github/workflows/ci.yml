@@ -28,11 +28,11 @@ jobs:
       - name: Validate P28 reports
         run: node scripts/validate-reports.mjs
 
-      - name: Lint
-        run: npm run lint
-
       - name: Build
         run: npm run build
+
+      - name: Lint
+        run: npm run lint
 
       - name: Validate full domain
         run: npm run validate:domain
