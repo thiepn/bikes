@@ -1,0 +1,81 @@
+name: Deploy Bike Atlas
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: bikes-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_PUBLIC_BIKES_ACCOUNT_CLIENT_ID: ${{ vars.BIKES_ACCOUNT_OAUTH_CLIENT_ID }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Validate domain
+        run: npm run validate:domain
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build static production
+        run: npm run build
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload production build
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./out
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  verify-production:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Verify live Bike Atlas
+        run: |
+          set -euo pipefail
+          base="https://thiepn.dev/bikes/"
+          for attempt in 1 2 3 4 5 6; do
+            if curl --fail --location --silent --show-error "${base}" > /tmp/bikes.html; then
+              grep -F "Bike Atlas" /tmp/bikes.html > /dev/null
+              curl --fail --location --silent --show-error "${base}auth/callback/" > /tmp/callback.html
+              exit 0
+            fi
+            sleep 10
+          done
+          exit 1
