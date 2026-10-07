@@ -110,7 +110,7 @@ const portfolioText = await readFile(
 for (const token of [
   "Saved build portfolio",
   "Save current build",
-  "Saved locally in this browser",
+  "Local-first on this device",
   "DEFAULT_SCENARIOS",
   "if (current.length === 1) return current;",
   'url.searchParams.set("optView", "portfolio")',
@@ -157,10 +157,10 @@ for (const token of [
 }
 
 assert(
-  optimizerText.includes(
-    'view === "portfolio" ? (\n          <BuildPortfolioPanel',
-  ),
-  "Portfolio must be a first-class third Optimize workspace.",
+  optimizerText.includes('view === "portfolio" ? (') &&
+    optimizerText.includes("<PortfolioSyncPanel") &&
+    optimizerText.includes("<BuildPortfolioPanel"),
+  "Portfolio must remain a first-class third Optimize workspace with the P29 sync layer.",
 );
 assert(
   optimizerText.includes(
