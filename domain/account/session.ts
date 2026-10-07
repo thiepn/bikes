@@ -142,7 +142,9 @@ class BikeAccountSession {
   subscribe(listener: (value: BikeAccountIdentity) => void) {
     this.listeners.add(listener);
     listener(this.current);
-    return () => this.listeners.delete(listener);
+    return () => {
+      this.listeners.delete(listener);
+    };
   }
 
   private publish(value: BikeAccountIdentity) {
