@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useBikeAccount } from "@/components/account/useBikeAccount";
 import {
   fetchCloudPortfolio,
@@ -9,8 +9,9 @@ import {
 import {
   ensurePortfolioSyncMeta,
   latestPortfolioRecovery,
-  loadPortfolioSyncMeta,
   markPortfolioDirty,
+  portfolioRecoveryCount,
+  subscribePortfolioSyncMeta,
   markPortfolioSynced,
   preservePortfolioRecovery,
 } from "@/domain/optimizer/portfolio-sync";
@@ -40,23 +41,20 @@ export function PortfolioSyncPanel({
   const account = useBikeAccount();
   const [status, setStatus] = useState<Status>("local");
   const [notice, setNotice] = useState("");
-  const [recoveryCount, setRecoveryCount] = useState(0);
+  const recoveryCount = useSyncExternalStore(
+    subscribePortfolioSyncMeta,
+    portfolioRecoveryCount,
+    () => 0,
+  );
   const syncedIdentity = useRef<string | null>(null);
-
-  const refreshRecoveryCount = useCallback(() => {
-    setRecoveryCount(
-      loadPortfolioSyncMeta(entries).recoveryCopies.length,
-    );
-  }, [entries]);
 
   const adoptRemote = useCallback(
     (remoteEntries: SavedBuild[], revision: number) => {
       persistSavedBuilds(remoteEntries);
       markPortfolioSynced(revision, remoteEntries);
       onReplaceEntries(remoteEntries);
-      refreshRecoveryCount();
     },
-    [onReplaceEntries, refreshRecoveryCount],
+    [onReplaceEntries],
   );
 
   const syncNow = useCallback(async () => {
@@ -91,7 +89,6 @@ export function PortfolioSyncPanel({
           setNotice("Portfolio is up to date.");
         }
         setStatus("synced");
-        refreshRecoveryCount();
         return;
       }
 
@@ -120,19 +117,12 @@ export function PortfolioSyncPanel({
         "Cloud sync is unavailable. Local Portfolio data remains unchanged.",
       );
     }
-  }, [
-    account,
-    adoptRemote,
-    entries,
-    loaded,
-    refreshRecoveryCount,
-  ]);
+  }, [account, adoptRemote, entries, loaded]);
 
   useEffect(() => {
     if (!loaded) return;
     ensurePortfolioSyncMeta(entries);
-    refreshRecoveryCount();
-  }, [entries, loaded, refreshRecoveryCount]);
+  }, [entries, loaded]);
 
   useEffect(() => {
     if (
