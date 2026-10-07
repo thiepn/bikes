@@ -300,21 +300,6 @@ export function GeometryLabPanel({
     null;
 
   useEffect(() => {
-    if (!gearing) return;
-    if (
-      selectedGearId &&
-      gearing.combinations.some((gear) => gear.id === selectedGearId)
-    ) {
-      return;
-    }
-    setSelectedGearId(
-      gearing.combinations[
-        Math.floor(gearing.combinations.length / 2)
-      ]?.id ?? "",
-    );
-  }, [gearing, selectedGearId]);
-
-  useEffect(() => {
     if (typeof window === "undefined") return;
     const url = new URL(window.location.href);
     url.searchParams.set("geometry", "1");
