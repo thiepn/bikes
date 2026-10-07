@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { BuildReportActions } from "@/components/optimizer/BuildReportActions";
 import {
   PORTFOLIO_SCENARIOS,
 } from "@/domain/optimizer/scenario-catalog";
@@ -398,6 +399,12 @@ export function BuildPortfolioPanel({
                   </strong>
                 </article>
               </div>
+
+              <BuildReportActions
+                selected={selected}
+                evaluations={evaluations}
+                scenarioIds={scenarioIds}
+              />
 
               {selected.health === "blocked" && (
                 <p className="portfolio-blocked-note">
