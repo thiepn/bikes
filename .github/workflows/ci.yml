@@ -25,11 +25,14 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Validate asset metadata
-        run: npm run validate:assets
+      - name: Validate domain
+        run: npm run validate:domain
 
       - name: Lint
         run: npm run lint
 
       - name: Build
         run: npm run build
+
+      - name: Validate asset metadata
+        run: npm run validate:assets
