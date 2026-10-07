@@ -6,10 +6,10 @@ import type {
 } from "@/engine/compatibility/types";
 
 export const COMPATIBILITY_PROFILES =
-  referenceJson.profiles as BikeCompatibilityProfile[];
+  referenceJson.profiles as unknown as BikeCompatibilityProfile[];
 
 export const COMPATIBILITY_PARTS =
-  referenceJson.parts as CompatibilityPart[];
+  referenceJson.parts as unknown as CompatibilityPart[];
 
 const PROFILE_BY_BIKE = new Map(
   COMPATIBILITY_PROFILES.map((profile) => [profile.bikeId, profile]),
