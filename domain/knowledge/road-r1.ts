@@ -144,7 +144,7 @@ export function searchRoadR1Knowledge(
   }
 
   return ROAD_R1.components
-    .map((component) => {
+    .map<KnowledgeSearchResult | null>((component) => {
       const profile = PROFILE_BY_ID.get(component.id);
       if (!profile) return null;
 
@@ -174,7 +174,7 @@ export function searchRoadR1Knowledge(
         availableIn3d: CALIBRATION_COMPONENT_IDS.has(component.id),
       };
     })
-    .filter((result): result is KnowledgeSearchResult => Boolean(result))
+    .filter((result): result is KnowledgeSearchResult => result !== null)
     .sort(
       (a, b) =>
         b.score - a.score ||
