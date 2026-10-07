@@ -116,8 +116,9 @@ export function getExplosionOffset(
   amount: number,
 ): Vector3Tuple {
   const slug = getBikeComponentById(componentId)?.slug;
-  const vector =
-    (slug && EXPLOSION_VECTORS_BY_SLUG[slug]) ?? [0, 0, 0];
+  const vector: Vector3Tuple = slug
+    ? (EXPLOSION_VECTORS_BY_SLUG[slug] ?? [0, 0, 0])
+    : [0, 0, 0];
   const normalized = Math.min(1, Math.max(0, amount));
 
   return [
