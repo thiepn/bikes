@@ -151,7 +151,7 @@ export function searchGravelKnowledge(
   }
 
   return GRAVEL_G1.components
-    .map((component) => {
+    .map<KnowledgeSearchResult | null>((component) => {
       const profile = PROFILE_BY_ID.get(component.id);
       if (!profile) return null;
 
@@ -188,7 +188,7 @@ export function searchGravelKnowledge(
         ),
       };
     })
-    .filter((result): result is KnowledgeSearchResult => Boolean(result))
+    .filter((result): result is KnowledgeSearchResult => result !== null)
     .sort(
       (a, b) =>
         b.score - a.score ||
