@@ -257,7 +257,7 @@ const analyzerText = await readFile(
 for (const token of [
   "rear-derailleur-largest-sprocket",
   "rear-derailleur-capacity",
-  "front-caliper-rotor-range",
+  "-caliper-rotor-range",
   "fork-front-rotor-limit",
   "fork-geometry-change",
   "multi-ring-no-front-derailleur",
