@@ -28,6 +28,7 @@ export interface SavedBuild {
   selections: Record<string, string>;
   source: PortfolioSource;
   savedAt: number;
+  updatedAt: number;
 }
 
 export interface PortfolioScenarioResult {
