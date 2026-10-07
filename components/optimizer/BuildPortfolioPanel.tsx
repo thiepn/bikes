@@ -141,10 +141,11 @@ export function BuildPortfolioPanel({
       </div>
 
       <p className="portfolio-storage-note">
-        Saved locally in this browser · {hostEntries.length}/
-        {MAX_PORTFOLIO_BUILDS_PER_BIKE} slots for this bike.
-        Every saved build is re-sanitized and re-evaluated against
-        the current Bike Atlas models.
+        Local-first on this device · {hostEntries.length}/
+        {MAX_PORTFOLIO_BUILDS_PER_BIKE} slots for this bike. Account
+        sync is optional and revision-safe. Every saved build is
+        re-sanitized and re-evaluated against the current Bike Atlas
+        models.
       </p>
 
       <section className="portfolio-scenarios">
