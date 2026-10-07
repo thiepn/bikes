@@ -3,6 +3,7 @@ import type { SavedBuild } from "@/engine/optimizer/portfolio-types";
 export const PORTFOLIO_SYNC_STORAGE_KEY =
   "bike-atlas:p29-sync:v1";
 const MAX_RECOVERY_COPIES = 5;
+const PORTFOLIO_SYNC_EVENT = "bike-atlas:p29-sync-change";
 
 export type PortfolioRecoveryCopy = {
   id: string;
@@ -100,9 +101,32 @@ function writeMeta(meta: PortfolioSyncMeta) {
       PORTFOLIO_SYNC_STORAGE_KEY,
       JSON.stringify(meta),
     );
+    window.dispatchEvent(new Event(PORTFOLIO_SYNC_EVENT));
   } catch {
     // Local-first behavior remains available even when metadata storage fails.
   }
+}
+
+export function subscribePortfolioSyncMeta(
+  listener: () => void,
+) {
+  if (typeof window === "undefined") return () => {};
+
+  const handleStorage = (event: StorageEvent) => {
+    if (event.key === PORTFOLIO_SYNC_STORAGE_KEY) listener();
+  };
+
+  window.addEventListener(PORTFOLIO_SYNC_EVENT, listener);
+  window.addEventListener("storage", handleStorage);
+
+  return () => {
+    window.removeEventListener(PORTFOLIO_SYNC_EVENT, listener);
+    window.removeEventListener("storage", handleStorage);
+  };
+}
+
+export function portfolioRecoveryCount() {
+  return loadPortfolioSyncMeta().recoveryCopies.length;
 }
 
 export function ensurePortfolioSyncMeta(
