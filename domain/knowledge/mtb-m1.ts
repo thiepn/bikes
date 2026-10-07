@@ -156,7 +156,7 @@ export function searchMtbKnowledge(
   }
 
   return MTB_M1.components
-    .map((component) => {
+    .map<KnowledgeSearchResult | null>((component) => {
       const profile = PROFILE_BY_ID.get(component.id);
       if (!profile) return null;
 
@@ -193,7 +193,7 @@ export function searchMtbKnowledge(
         ),
       };
     })
-    .filter((result): result is KnowledgeSearchResult => Boolean(result))
+    .filter((result): result is KnowledgeSearchResult => result !== null)
     .sort(
       (a, b) =>
         b.score - a.score ||
