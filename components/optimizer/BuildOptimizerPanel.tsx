@@ -325,10 +325,6 @@ export function BuildOptimizerPanel({
     null;
 
   useEffect(() => {
-    setSelectedResultId(optimization?.results[0]?.id ?? "");
-  }, [optimization]);
-
-  useEffect(() => {
     if (typeof window === "undefined") return;
     const url = new URL(window.location.href);
     url.searchParams.set("optimize", "1");
