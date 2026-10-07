@@ -74,7 +74,6 @@ export function BuildPortfolioPanel({
   const [scenarioIds, setScenarioIds] =
     useState<PortfolioScenarioId[]>(initialScenarios);
   const [selectedId, setSelectedId] = useState("");
-  const [renameValue, setRenameValue] = useState("");
 
   const hostEntries = useMemo(
     () => entries.filter((entry) => entry.bikeId === bikeId),
@@ -92,20 +91,6 @@ export function BuildPortfolioPanel({
     ) ??
     evaluations[0] ??
     null;
-
-  useEffect(() => {
-    if (!selected) {
-      if (selectedId) setSelectedId("");
-      return;
-    }
-    if (selected.entry.id !== selectedId) {
-      setSelectedId(selected.entry.id);
-    }
-  }, [selected, selectedId]);
-
-  useEffect(() => {
-    setRenameValue(selected?.entry.name ?? "");
-  }, [selected?.entry.id, selected?.entry.name]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -312,19 +297,24 @@ export function BuildPortfolioPanel({
                   <span>Selected candidate</span>
                   <div className="portfolio-rename">
                     <input
-                      value={renameValue}
+                      key={
+                        selected.entry.id +
+                        ":" +
+                        selected.entry.name
+                      }
+                      defaultValue={selected.entry.name}
                       maxLength={48}
                       aria-label="Saved build name"
-                      onChange={(event) =>
-                        setRenameValue(event.target.value)
-                      }
-                      onBlur={() => {
-                        const next = renameValue.trim();
+                      onBlur={(event) => {
+                        const next = event.currentTarget.value.trim();
                         if (
                           next &&
                           next !== selected.entry.name
                         ) {
                           onRename(selected.entry.id, next);
+                        } else if (!next) {
+                          event.currentTarget.value =
+                            selected.entry.name;
                         }
                       }}
                     />
