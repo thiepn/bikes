@@ -42,7 +42,7 @@ export function calculateLessonScore(
 ) {
   if (challengeStepIds.length === 0) return 100;
 
-  const points = challengeStepIds.map((stepId) => {
+  const points: number[] = challengeStepIds.map((stepId) => {
     const result = results[stepId];
     if (!result?.correct) return 0;
     if (result.attempts <= 1) return 100;
