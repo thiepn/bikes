@@ -26,6 +26,8 @@ function isSavedBuild(value: unknown): value is SavedBuild {
     typeof entry.bikeId === "string" &&
     typeof entry.name === "string" &&
     typeof entry.savedAt === "number" &&
+    (entry.updatedAt === undefined ||
+      typeof entry.updatedAt === "number") &&
     (entry.source === "current" ||
       entry.source === "ranked" ||
       entry.source === "frontier") &&
@@ -52,6 +54,10 @@ export function loadSavedBuilds(): SavedBuild[] {
         .map((entry) => ({
           ...entry,
           name: entry.name.slice(0, 48),
+          updatedAt:
+            typeof entry.updatedAt === "number"
+              ? entry.updatedAt
+              : entry.savedAt,
         })),
     );
   } catch {
@@ -67,7 +73,15 @@ export function persistSavedBuilds(
   try {
     window.localStorage.setItem(
       PORTFOLIO_STORAGE_KEY,
-      JSON.stringify(capPerBike(entries)),
+      JSON.stringify(
+        capPerBike(entries).map((entry) => ({
+          ...entry,
+          updatedAt:
+            typeof entry.updatedAt === "number"
+              ? entry.updatedAt
+              : entry.savedAt,
+        })),
+      ),
     );
   } catch {
     // Browser storage can be unavailable or full. The in-memory
