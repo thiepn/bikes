@@ -23,6 +23,8 @@ import {
 } from "@/domain/optimizer/portfolio-storage";
 import { ParetoFrontierPanel } from "@/components/optimizer/ParetoFrontierPanel";
 import { BuildPortfolioPanel } from "@/components/optimizer/BuildPortfolioPanel";
+import { PortfolioSyncPanel } from "@/components/optimizer/PortfolioSyncPanel";
+import { markPortfolioDirty } from "@/domain/optimizer/portfolio-sync";
 import type {
   GeometryGuard,
   OptimizationConstraints,
@@ -257,40 +259,50 @@ export function BuildOptimizerPanel({
       return;
     }
 
+    const now = Date.now();
     const entry: SavedBuild = {
       id:
         bikeId +
         ":" +
-        Date.now().toString(36) +
+        now.toString(36) +
         ":" +
         Math.random().toString(36).slice(2, 7),
       bikeId,
       name: suggestedName.slice(0, 48),
       selections: safe,
       source,
-      savedAt: Date.now(),
+      savedAt: now,
+      updatedAt: now,
     };
 
-    setPortfolioEntries((current) => [...current, entry]);
+    setPortfolioEntries((current) => {
+      const nextEntries = [...current, entry];
+      markPortfolioDirty(nextEntries);
+      return nextEntries;
+    });
     setPortfolioNotice(`Saved “${entry.name}”.`);
   }
 
   function renamePortfolioBuild(id: string, name: string) {
     const safeName = name.trim().slice(0, 48);
     if (!safeName) return;
-    setPortfolioEntries((current) =>
-      current.map((entry) =>
+    setPortfolioEntries((current) => {
+      const nextEntries = current.map((entry) =>
         entry.id === id
-          ? { ...entry, name: safeName }
+          ? { ...entry, name: safeName, updatedAt: Date.now() }
           : entry,
-      ),
-    );
+      );
+      markPortfolioDirty(nextEntries);
+      return nextEntries;
+    });
   }
 
   function deletePortfolioBuild(id: string) {
-    setPortfolioEntries((current) =>
-      current.filter((entry) => entry.id !== id),
-    );
+    setPortfolioEntries((current) => {
+      const nextEntries = current.filter((entry) => entry.id !== id);
+      markPortfolioDirty(nextEntries);
+      return nextEntries;
+    });
     setPortfolioNotice("Saved build removed.");
   }
 
@@ -544,6 +556,12 @@ export function BuildOptimizerPanel({
         )}
 
         {view === "portfolio" ? (
+          <>
+            <PortfolioSyncPanel
+              entries={portfolioEntries}
+              loaded={portfolioLoaded}
+              onReplaceEntries={setPortfolioEntries}
+            />
           <BuildPortfolioPanel
             bikeId={bikeId}
             entries={portfolioEntries}
@@ -564,6 +582,7 @@ export function BuildOptimizerPanel({
             onApplySelections={onApplySelections}
             onOpenBuild={onOpenBuild}
           />
+          </>
         ) : view === "frontier" ? (
           <ParetoFrontierPanel
             bikeId={bikeId}
