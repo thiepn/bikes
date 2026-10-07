@@ -102,6 +102,7 @@ assert(
 );
 
 for (const bike of bikes) {
+  const componentIds = bikeById.get(bike.id)?.componentIds ?? new Set();
   const profile = profileByBike.get(bike.id);
   assert(Boolean(profile), `Missing compatibility profile: ${bike.id}`);
   if (!profile) continue;
@@ -128,7 +129,7 @@ for (const bike of bikes) {
       `Unknown P23 build slot: ${bike.id}/${slot.id}`,
     );
     assert(
-      bike.componentIds.has(slot.hostComponentId),
+      componentIds.has(slot.hostComponentId),
       `Build slot targets unknown host component: ${slot.hostComponentId}`,
     );
     assert(
