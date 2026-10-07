@@ -55,6 +55,7 @@ assert(
 );
 
 for (const bike of bikes) {
+  const componentIds = bikeById.get(bike.id)?.componentIds ?? new Set();
   const compatibility = profileByBike.get(bike.id);
   const host = hostByBike.get(bike.id);
   const donor = donorByBike.get(bike.id);
@@ -93,7 +94,7 @@ for (const bike of bikes) {
     );
     for (const componentId of attachment.hiddenComponentIds) {
       assert(
-        bike.componentIds.has(componentId),
+        componentIds.has(componentId),
         `Attachment hides unknown component: ${bike.id}/${slot.id} -> ${componentId}`,
       );
     }
