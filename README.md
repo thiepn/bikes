@@ -4,13 +4,31 @@ Bike Atlas is an interactive 3D bicycle knowledge platform for exploring bicycle
 
 ## Current phase
 
-**P27 — Saved Build Portfolio, Scenario Presets & Multi-Build Decision Workspace**
+**P28 — Shareable Build Reports, Portfolio Export & Decision Explanations**
 
 Optimize now has three connected workflows:
 
 - Ranked — P25 single-goal search
 - Frontier — P26 Pareto trade-offs
 - Portfolio — P27 saved multi-scenario decisions
+
+## P28 portable decision reports
+
+P28 turns the P27 decision workspace into a portable evidence layer.
+
+For any selected saved build, Bike Atlas now provides:
+
+- explicit rank and decision rationale;
+- strongest and weakest selected scenarios;
+- scenario-by-scenario comparison against the current portfolio leader;
+- mass and low-gear trade-off notes where meaningful;
+- native share with clipboard fallback;
+- copyable Markdown reports;
+- downloadable Markdown reports;
+- full evaluated portfolio JSON export;
+- a reproducible Build Lab URL containing the selected canonical build.
+
+Reports are generated from the current sanitized P27 evaluation state. They do not create a second scoring engine or expose the user's browser-local portfolio unless the user explicitly exports it.
 
 ## Saved build portfolio
 
@@ -138,4 +156,4 @@ The current execution container could not resolve github.com, so a local clone a
 
 Committed source/data state and validator registration were audited directly through the GitHub repository.
 
-See docs/P1.md through docs/P27.md.
+See docs/P1.md through docs/P28.md.
